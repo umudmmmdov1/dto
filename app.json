@@ -164,7 +164,7 @@
     },
     "DEFAULT_BIO": {
       "description": "Varsayılan profil biyografisi.",
-      "value": "#TeamDerUntergang",
+      "value": "#CeteUserBot",
       "required": false
     },
     "G_DRIVE_CLIENT_SECRET": {
