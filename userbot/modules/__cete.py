@@ -19,9 +19,9 @@
 from userbot import CMD_HELP
 from userbot.events import register
 
-@register(outgoing=True, pattern="^.çete(?: |$)(.*)")
+@register(outgoing=True, pattern="^.cete(?: |$)(.*)")
 async def seden(event):
-    """ .çete komutu için """
+    """ .cete komutu için """
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
@@ -30,7 +30,7 @@ async def seden(event):
             await event.edit("Lütfen bir Çete modülü adı belirtin.")
     else:
         await event.edit("Lütfen hangi Çete modülü için yardım istediğinizi belirtin !!\
-            \nKullanım: .Çete <modül adı>")
+            \nKullanım: .cete <modül adı>")
         string = ""
         for i in CMD_HELP:
             string += "`" + str(i)
