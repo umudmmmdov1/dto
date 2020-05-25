@@ -1,7 +1,7 @@
 {
   "name": "UserBot",
   "description": "Cete UserBot",
-  "logo": "https://hizliresim.com/NvUOly",
+  "logo": "https://hizliresim.com/2FjxCS",
   "keywords": [
     "telegram",
     "userbot",
@@ -164,7 +164,7 @@
     },
     "DEFAULT_BIO": {
       "description": "Varsayılan profil biyografisi.",
-      "value": "#TeamDerUntergang",
+      "value": "#Cete",
       "required": false
     },
     "G_DRIVE_CLIENT_SECRET": {
