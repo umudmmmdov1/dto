@@ -21,15 +21,15 @@ from userbot.events import register
 
 @register(outgoing=True, pattern="^.cete(?: |$)(.*)")
 async def seden(event):
-    """ .cete komutu için """
+    """ .çete komutu için """
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
             await event.edit(str(CMD_HELP[args]))
         else:
-            await event.edit("Lütfen bir Çete modülü adı belirtin.")
+            await event.edit("Lütfen bir Cete modülü adı belirtin.")
     else:
-        await event.edit("Lütfen hangi Çete modülü için yardım istediğinizi belirtin !!\
+        await event.edit("Lütfen hangi Cete modülü için yardım istediğinizi belirtin !!\
             \nKullanım: .cete <modül adı>")
         string = ""
         for i in CMD_HELP:
