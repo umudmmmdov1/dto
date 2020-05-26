@@ -10,17 +10,16 @@ from userbot.events import register
 from userbot import CMD_HELP, bot
 
 PENIS_TEMPLATE = """
-_/﹋\_
-(҂`_´)
-<,︻╦╤─ ҉ - - @Qato_Cete
-_/﹋\_
+♪ღ♪*•.¸¸.•*¨¨*•.♪ღ♪*•.¸¸.•*¨¨*•.♪ღ♪
+░H░A░P░P░Y░♪░B░I░R░T░H░D░A░Y░
+♪ღ♪*•.¸¸.•*¨¨*•.♪ღ♪*•.¸¸.•*¨¨*•.♪ღ♪
 """
 
-@register(outgoing=True, pattern=r"^\.(?:qato)\s?(.)?")
+@register(outgoing=True, pattern=r"^\.(?:happy)\s?(.)?")
 async def emoji_nah(e):
     emoji = e.pattern_match.group(1)
 
-    await e.edit("qato...")
+    await e.edit("Happy...")
     message = PENIS_TEMPLATE
     if emoji:
         message = message.replace('🍆', emoji)
@@ -28,7 +27,7 @@ async def emoji_nah(e):
     await e.edit(message)
 
 CMD_HELP.update({
-    "qato": 
-    ".qato\
-    \nKullanım: qato yaratır :o\n"
+    "happy": 
+    ".happy\
+    \nKullanım: happy yaratır :o\n"
 })

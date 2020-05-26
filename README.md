@@ -1,5 +1,9 @@
 <div align="center">
+<<<<<<< HEAD
   <img src="https://hizliresim.com/2FjxCS" width="200" height="200">
+=======
+  <img src="https://hizliresim.com/disEbG" width="200" height="200">
+>>>>>>> 8738a20e3564d1cbfb07c5610c563ffa2436128a
   <h1>Cete UserBot</h1>
 </div>
 <p align="center">

@@ -164,7 +164,11 @@
     },
     "DEFAULT_BIO": {
       "description": "Varsayılan profil biyografisi.",
+<<<<<<< HEAD
       "value": "#Cete",
+=======
+      "value": "#CeteUserBot",
+>>>>>>> 8738a20e3564d1cbfb07c5610c563ffa2436128a
       "required": false
     },
     "G_DRIVE_CLIENT_SECRET": {
