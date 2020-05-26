@@ -97,7 +97,7 @@ async def bot_support(wannahelp):
 @register(outgoing=True, pattern="^.creator$")
 async def creator(e):
     await e.edit("Bu bot \n"
-                 "[BristolMyers](https://t.me/@BristolMyers) tarafından geliştirilmiştir. \n")
+                 "[ᏗᏂᎷᏋᏖ✇](https://t.me/@BristolMyers) tarafından geliştirilmiştir. \n")
 
 
 @register(outgoing=True, pattern="^.readme$")
@@ -123,7 +123,7 @@ async def repeat(rep):
 @register(outgoing=True, pattern="^.repo$")
 async def repo_is_here(wannasee):
     """ .repo komutunun tek yaptığı şey GitHub repomuzun bağlantısını vermek. """
-    await wannasee.edit("[CeteBot Repo](https://github.com/BristolMyers/CeteUserBot)")
+    await wannasee.edit("[CeteBot Repo](https://github.com/@BristolMyers/CeteUserBot)")
 
 
 @register(outgoing=True, pattern="^.raw$")

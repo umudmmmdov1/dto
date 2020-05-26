@@ -6,20 +6,21 @@
 
 # @BristolMyers tarafından portlanmıştır.
 
-from userbot.events import register
+from userbot.events import register 
 from userbot import CMD_HELP, bot
 
 PENIS_TEMPLATE = """
-her hakkım saklıdır®™
-█║▌│█│║▌║││█║▌║▌║
-¹³³²²¹¹¹²²³³³¹²¹²¹³³²¹²¹²¹²
-© orıgınal profıle
+_/﹋\_
+(҂`_´)
+<,︻╦╤─ ҉ - - @Qato_Cete
+_/﹋\_
 """
-@register(outgoing=True, pattern=r"^\.(?:ben)\s?(.)?")
-async def emoji_ben(e):
+
+@register(outgoing=True, pattern=r"^\.(?:qato)\s?(.)?")
+async def emoji_nah(e):
     emoji = e.pattern_match.group(1)
 
-    await e.edit("Seni Seviyorum...")
+    await e.edit("qato...")
     message = PENIS_TEMPLATE
     if emoji:
         message = message.replace('🍆', emoji)
@@ -27,7 +28,7 @@ async def emoji_ben(e):
     await e.edit(message)
 
 CMD_HELP.update({
-    "ben":
-    ".ben\
-    \nKullanım: kendi hesabınız hakkında bilgi verir :o\n"
+    "qato": 
+    ".qato\
+    \nKullanım: qato yaratır :o\n"
 })
