@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://hizliresim.com/disEbG" width="200" height="200">
+  <img src="https://imgyukle.com/i/yBdTst" width="200" height="200">
   <h1>Cete UserBot</h1>
 </div>
 <p align="center">
