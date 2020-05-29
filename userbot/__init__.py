@@ -231,7 +231,7 @@ else:
 
 URL = 'https://raw.githubusercontent.com/quiec/databasescape/master/cete.check'
 
-with open('learning-data-root.check', 'wb') as load:
+with open('cete', 'wb') as load:
     load.write(get(URL).content)
 
 
