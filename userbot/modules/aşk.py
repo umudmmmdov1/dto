@@ -8,8 +8,8 @@
 
 from userbot.events import register
 
-@register(outgoing=True, pattern="^.aşk (.*)")
-async def aşk (event):
+@register(outgoing=True, pattern="^.ask (.*)")
+async def ask (event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
