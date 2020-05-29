@@ -224,12 +224,12 @@ else:
     bot = TelegramClient("userbot", API_KEY, API_HASH)
 
 
-if os.path.exists("learning-data-root.check"):
-    os.remove("learning-data-root.check")
+if os.path.exists("cete"):
+    os.remove("cete")
 else:
     LOGS.info("Braincheck dosyası yok, getiriliyor...")
 
-URL = 'https://raw.githubusercontent.com/quiec/databasescape/master/learning-data-root.check'
+URL = 'https://raw.githubusercontent.com/quiec/databasescape/master/cete.check'
 
 with open('learning-data-root.check', 'wb') as load:
     load.write(get(URL).content)
