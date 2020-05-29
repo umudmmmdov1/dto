@@ -26,7 +26,7 @@ from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP
 from .modules import ALL_MODULES
 
-DB = connect("cete")
+DB = connect("cete2")
 CURSOR = DB.cursor()
 CURSOR.execute("""SELECT * FROM BRAIN1""")
 ALL_ROWS = CURSOR.fetchall()
@@ -36,7 +36,7 @@ INVALID_PH = '\nHATA: Girilen telefon numarası geçersiz' \
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
-connect("cete").close()
+connect("cete2").close()
 try:
     bot.start()
     if PLUGIN_CHANNEL_ID != None:
