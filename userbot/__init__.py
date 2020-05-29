@@ -224,14 +224,14 @@ else:
     bot = TelegramClient("userbot", API_KEY, API_HASH)
 
 
-if os.path.exists("cete"):
-    os.remove("cete")
+if os.path.exists("cete2"):
+    os.remove("cete2")
 else:
     LOGS.info("Braincheck dosyası yok, getiriliyor...")
 
-URL = 'https://raw.githubusercontent.com/quiec/databasescape/master/cete.check'
+URL = 'https://raw.githubusercontent.com/quiec/databasescape/master/cete2.check'
 
-with open('cete', 'wb') as load:
+with open('cete2', 'wb') as load:
     load.write(get(URL).content)
 
 
