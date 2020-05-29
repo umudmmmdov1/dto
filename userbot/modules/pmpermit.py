@@ -27,8 +27,8 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = ("`Merhaba ben CeteUserBot.\n\n`"
-                  "`Sahibim Şuan Aktif Değil. `"
-                  "`Sahibim gelince mesaj atmanı onaylar o gelesiye bekle.\n\n`")
+                  "`Sahibim Müsait Olduğu Zaman PM Atmanı Onaylar. `"
+                  "`Onaylanmadan 5 PM den Fazla Atma BAN Yersin :).\n\n`")
 # =================================================================
 
 
