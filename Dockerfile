@@ -38,13 +38,13 @@ RUN pacman -Syyu --noconfirm \
 
 
 # Repoyu klonla ve çalışma dizinini hazırla
-RUN git clone https://github.com/BristolMyers/CeteUserBot /root/cetebot
-RUN mkdir /root/cetenbot/bin/
-WORKDIR /root/cetebot/
+RUN git clone https://github.com/BristolMyers/CeteUserBot /root/sedenbot
+RUN mkdir /root/sedenbot/bin/
+WORKDIR /root/sedenbot/
 
 
 # Oturum ve yapılandırmayı kopyala (varsa)
-COPY ./sample_config.env ./userbot.session* ./config.env* /root/cetebot/
+COPY ./sample_config.env ./userbot.session* ./config.env* /root/sedenbot/
 
 
 # Zaman dilimini ayarla
