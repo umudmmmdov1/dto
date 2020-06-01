@@ -877,7 +877,7 @@ CMD_HELP.update({
 \n\n.kill\
 \nKullanım: Ateş eder ve kafadan vurur!\
 \n\n.dump\
-\nKullanım: Çöp adam animasyon.\
+\nKullanım: Yerden çöpleri toplar.\
 \n\n.ding\
 \nKullanım: ding dong kapı çalar.\
 \n\n.fping\
@@ -911,7 +911,7 @@ CMD_HELP.update({
 \n\n.cheer\
 \nKullanımı: Küçük sevgi puligini.\
 \n\n.clone\
-\nKullanımı: Kullanıcı mesajını .clone olarak yanıtlayarak veya kullanıcı adını id sini yazarak hesabını klonlayabilirsiniz.\
+\nKullanımı: Kullanıcı mesajını .klon olarak yanıtlayarak veya kullanıcı adını id sini yazarak hesabını klonlayabilirsiniz.\
 \n\n.grupbilgisi\
 \nKullanımı: Grupta komutu çalıştırdığınızda grubun bilgilerini öğrenebilirsiniz.\
 \n\n.kurucu\
