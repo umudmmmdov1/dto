@@ -1,6 +1,3 @@
-"""Get Telegram Profile Picture and other information
-and set as own profile.
-Syntax: .clone @username"""
 #Copy That Plugin by @ViperAdnan
 #Give credit if you are going to kang it.
 #BristolMyers CeteUserBot
@@ -13,9 +10,9 @@ from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 from userbot.events import register
 from telethon.tl import functions
-from userbot import TEMP_DOWNLOAD_DIRECTORY
+from userbot import TEMP_DOWNLOAD_DIRECTORY, CMD_HELP
 
-@register(outgoing=True, pattern="clone ?(.*)")
+@register(outgoing=True, pattern="^.klon ?(.*)")
 async def clone(event):
     if event.fwd_from:
         return
@@ -58,14 +55,7 @@ async def clone(event):
     await event.client(functions.photos.UploadProfilePhotoRequest(  # pylint:disable=E0602
         pfile
     ))
-    #message_id_to_reply = event.message.reply_to_msg_id
-    #if not message_id_to_reply:
-    #    message_id_to_reply = event.message.id
-    #await event.send_message(
-    #  event.chat_id,
-    #  "Hey ? Whats Up !",
-    #  reply_to=message_id_to_reply,
-    #  )
+
     await event.delete()
     await event.client.send_message(
       event.chat_id,
@@ -126,3 +116,7 @@ async def get_full_user(event):
                 return replied_user, None
             except Exception as e:
                 return None, e
+
+CMD_HELP.update({
+    "klon":
+    ".klon <yanıt ya da kullanıcı adı>. \nKullanım: Yanıt verdiğiniz kişinin klonu olursunuz"})
