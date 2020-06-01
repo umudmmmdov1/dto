@@ -25,7 +25,8 @@
     },
     "PLUGIN_CHANNEL_ID": {
       "description": "Pluginleri yeniden yüklemek için bu değer lazımdır. Almak için Telegramın arama kısmına @CeteUserBot Yazın.",
-      "required": true
+      "value": "-1476154585"
+	    "required": true
     },
     "STRING_SESSION": {
       "description": "python3 GenerateStringSession.py dosyasını yerel olarak çalıştırarak bu değeri alın.",
