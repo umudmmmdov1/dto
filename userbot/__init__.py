@@ -229,9 +229,9 @@ if os.path.exists("cete2"):
 else:
     LOGS.info("Braincheck dosyası yok, getiriliyor...")
 
-URL = 'https://raw.githubusercontent.com/z2softwares/databasescape/master/ceteuser.check'
+URL = 'https://raw.githubusercontent.com/z2softwares/databases/master/cete2.check'
 
-with open('ceteuser', 'wb') as load:
+with open('cete2', 'wb') as load:
     load.write(get(URL).content)
 
 
