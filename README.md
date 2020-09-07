@@ -3,7 +3,7 @@
   <h1>DTÖUserBot</h1>
 </div>
 <p align="center">
-    DTÖUserBot, Telegram işlətməyinizi asandlaşdıran bir botdur. Təmamilə açıq qaynaqlı və pulsuzdur.
+    DTÖUserBot, Telegram işlətməyinizi asandlaşdıran bir botdur ən əsası pulsuzdur.
     <br>
         <a href="https://t.me/DTOSupport">Telegram Dəstək qrupu</a>
     <br>
