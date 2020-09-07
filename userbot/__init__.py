@@ -120,7 +120,7 @@ HEROKU_APIKEY = os.environ.get("HEROKU_APIKEY", None)
 # Güncelleyici için özel (fork) repo linki.
 UPSTREAM_REPO_URL = os.environ.get(
     "UPSTREAM_REPO_URL",
-    "https://github.com/BristolMyers/CeteUserBot.git")
+    "https://github.com/umudmmmdov1/DTOUserBot.git")
 
 # Ayrıntılı konsol günlügü
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
@@ -266,8 +266,8 @@ else:
 
 with bot:
     try:
-        bot(JoinChannelRequest("@CeteUserBot"))
-        bot(JoinChannelRequest("@CeteSupport"))
+        bot(JoinChannelRequest("@DTOUserBot"))
+        bot(JoinChannelRequest("@DTOSupport"))
 
         moduller = CMD_HELP
         me = bot.get_me()
@@ -277,7 +277,7 @@ with bot:
         @tgbot.on(events.NewMessage(pattern='/start'))
         async def handler(event):
             if not event.message.from_id == uid:
-                await event.reply(f'`Merhaba ben` @CeteUserBot`! Ben sahibime (`@{me.username}`) yardımcı olmak için varım, yaani sana yardımcı olamam :/ Ama sen de bir Seden açabilirsin; Kanala bak` @CeteUserBot')
+                await event.reply(f'`Merhaba ben` @DTOUserBot`! Ben sahibime (`@{me.username}`) yardımcı olmak için varım, yaani sana yardımcı olamam :/ Ama sen de bir Seden açabilirsin; Kanala bak` @CeteUserBot')
             else:
                 await event.reply(f'`Senin için çalışıyorum :) Seni seviyorum. ❤️`')
 
@@ -292,27 +292,27 @@ with bot:
                 result = builder.article(
                     f"Lütfen Sadece .yardım Komutu İle Kullanın",
                     text="{}\nYüklenen Modül Sayısı: {}".format(
-                        "Merhaba! Ben @CeteUserBot kullanıyorum!\n\nhttps://github.com/BristolMyers/CeteUserBot", len(moduller)),
+                        "Merhaba! Ben @DTOUserBot kullanıyorum!\n\nhttps://github.com/BristolMyers/CeteUserBot", len(moduller)),
                     buttons=buttons,
                     link_preview=False
                 )
             elif query.startswith("tb_btn"):
                 result = builder.article(
-                    "© @CeteUserBot",
-                    text=f"@CeteUserBot ile güçlendirildi",
+                    "© @DTOUserBot",
+                    text=f"@DTOUserBot ile güçlendirildi",
                     buttons=[],
                     link_preview=True
                 )
             else:
                 result = builder.article(
-                    "© @CeteUserBot",
-                    text="""@CeteUserBot'u kullanmayı deneyin!
+                    "© @DTOUserBot",
+                    text="""@DTOUserBot'u kullanmayı deneyin!
 Hesabınızı bot'a çevirebilirsiniz ve bunları kullanabilirsiniz. Unutmayın, siz başkasının botunu yönetemezsiniz! Alttaki GitHub adresinden tüm kurulum detayları anlatılmıştır.""",
                     buttons=[
-                        [custom.Button.url("Kanala Katıl", "https://t.me/CeteUserBot"), custom.Button.url(
-                            "Gruba Katıl", "https://t.me/CeteUserBot")],
+                        [custom.Button.url("Kanala Katıl", "https://t.me/DTOUserBot"), custom.Button.url(
+                            "Gruba Katıl", "https://t.me/DTOUserBot")],
                         [custom.Button.url(
-                            "GitHub", "https://github.com/BristolMyers/CeteUserBot")]
+                            "GitHub", "https://github.com/umudmmmdov1/DTOUserBot")]
                     ],
                     link_preview=False
                 )
@@ -330,7 +330,7 @@ Hesabınızı bot'a çevirebilirsiniz ve bunları kullanabilirsiniz. Unutmayın,
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = "Lütfen kendine bir @CeteUserBot aç, benim mesajlarımı düzenlemeye çalışma!"
+                reply_pop_up_alert = "Lütfen kendine bir @DTOUserBot aç, benim mesajlarımı düzenlemeye çalışma!"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @tgbot.on(events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -348,7 +348,7 @@ Hesabınızı bot'a çevirebilirsiniz ve bunları kullanabilirsiniz. Unutmayın,
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = "Lütfen kendine bir @CeteUserBot aç, benim mesajlarımı düzenlemeye çalışma!"
+                reply_pop_up_alert = "Lütfen kendine bir @DTOUserBot aç, benim mesajlarımı düzenlemeye çalışma!"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @tgbot.on(events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -370,7 +370,7 @@ Hesabınızı bot'a çevirebilirsiniz ve bunları kullanabilirsiniz. Unutmayın,
                         modul_name)
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
             else:
-                reply_pop_up_alert = "Lütfen kendine bir @CeteUserBot aç, benim mesajlarımı düzenlemeye çalışma!"
+                reply_pop_up_alert = "Lütfen kendine bir @DTOUserBot aç, benim mesajlarımı düzenlemeye çalışma!"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
     except:
         LOGS.info(
