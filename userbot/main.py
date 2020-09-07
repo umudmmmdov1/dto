@@ -30,9 +30,9 @@ DB = connect("cete2")
 CURSOR = DB.cursor()
 CURSOR.execute("""SELECT * FROM BRAIN1""")
 ALL_ROWS = CURSOR.fetchall()
-INVALID_PH = '\nHATA: Girilen telefon numarası geçersiz' \
-             '\n  Ipucu: Ülke kodunu kullanarak numaranı gir' \
-             '\n       Telefon numaranızı tekrar kontrol edin'
+INVALID_PH = '\nHATA: Yazılan telefon nömrəsi səhvdi' \
+             '\n  Məlumat: Ülkə kodunu işlədərək nömrəni gir' \
+             '\n       Telefon nömrənizi yenidən yoxlayın'
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
@@ -40,13 +40,13 @@ connect("cete2").close()
 try:
     bot.start()
     if PLUGIN_CHANNEL_ID != None:
-        print("Pluginler Yükleniyor")
+        print("Pluginler yüklənir")
         try:
             KanalId = bot.get_entity(PLUGIN_CHANNEL_ID)
             DOGRU = 1
         except:
             KanalId = "me"
-            bot.send_message("me", f"`Plugin_Channel_Id'iniz geçersiz. Pluginler kalıcı olmuyacak.`")
+            bot.send_message("me", f"`Plugin_Channel_Id'iniz səhvdi. Pluginlər qalıcı olmuyacaq.`")
             DOGRU = 0
 
         for plugin in bot.iter_messages(KanalId, filter=InputMessagesFilterDocument):
@@ -57,7 +57,7 @@ try:
             if not os.path.exists(os.getcwd() + "/userbot/modules/" + dosyaa):
                 dosya = bot.download_media(plugin, os.getcwd() + "/userbot/modules/")
             else:
-                print("Bu Plugin Zaten Yüklü " + dosyaa)
+                print("Bu plugin onsuz yüklənib " + dosyaa)
                 dosya = dosyaa
             try:
                 spec = importlib.util.spec_from_file_location(dosya, dosya)
@@ -65,7 +65,7 @@ try:
 
                 spec.loader.exec_module(mod)
             except Exception as e:
-                bot.send_message(KanalId, f"`Yükleme başarısız! Plugin hatalı.\n\nHata: {e}`")
+                bot.send_message(KanalId, f"`Yüklənmə alınmadı! Plugin xətalı.\n\nXəta: {e}`")
                 plugin.delete()
 
                 if os.path.exists(os.getcwd() + "/userbot/modules/" + dosya):
@@ -73,12 +73,12 @@ try:
                 continue
             
             ndosya = dosya.replace(".py", "")
-            CMD_HELP[ndosya] = "Bu Plugin Dışarıdan Yüklenmiştir"
-            bot.send_message(KanalId, f"`Plugin Yüklendi\n\Dosya: {dosya}`")
+            CMD_HELP[ndosya] = "Bu plugin rəsmi olmayan yerdən yüklənmişdir"
+            bot.send_message(KanalId, f"`Plugin yükləndi\n\Dosya: {dosya}`")
         if KanalId != "me":
-            bot.send_message(KanalId, f"`Pluginler Yüklendi`")
+            bot.send_message(KanalId, f"`Pluginlər yükləndi`")
     else:
-        bot.send_message("me", f"`Lütfen pluginlerin kalıcı olması için PLUGIN_CHANNEL_ID'i ayarlayın.`")
+        bot.send_message("me", f"`Zəhmət olmasa pluginlərin qalıcı olması üçün PLUGIN_CHANNEL_ID'i ayarları düzəldin.`")
 
 except PhoneNumberInvalidError:
     print(INVALID_PH)
@@ -87,8 +87,8 @@ except PhoneNumberInvalidError:
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("Botunuz çalışıyor! Herhangi bir sohbete .alive yazarak Test edin."
-          " Yardıma ihtiyacınız varsa, Destek grubumuza gelin t.me/DTOUserBot")
+LOGS.info("Botunuz işləyir! Hər hansı bir sohbətdə .alive yazaraq Test eliyin."
+          " Köməkə ehtiyacınız varsa, Dəstək qrupumuza gəlin t.me/DTOUserBot")
 LOGS.info("Bot versiyası DTÖUserBot v0.2")
 
 """
