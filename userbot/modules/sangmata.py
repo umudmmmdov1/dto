@@ -24,7 +24,7 @@ from userbot.events import register
 from userbot import bot, CMD_HELP
 from time import sleep
 
-@register(outgoing=True, pattern="^.sangmata(?: |$)(.*)")
+@register(outgoing=True, pattern="^.ad(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return 
