@@ -11,7 +11,7 @@
 
 ----
 
-# Qurulum
+## Qurulum
 
 Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun
 
