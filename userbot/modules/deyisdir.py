@@ -12,7 +12,7 @@ from userbot import CMD_HELP
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR, ORJ_PLUGIN_MESAJLAR, PLUGIN_CHANNEL_ID
 
-@register(outgoing=True, pattern="^.değiştir ?(.*)")
+@register(outgoing=True, pattern="^.deyisdir ?(.*)")
 async def degistir(event):
     plugin = event.text.replace(".deyisdir ", "")
     mesaj = re.search(r"\"(.*)\"", plugin)
