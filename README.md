@@ -1,13 +1,12 @@
 <div align="center">
-  <img src="https://i.imgyukle.com/2020/06/01/yKsagc.jpg" width="200" height="200">
-  <h1>Cete UserBot</h1>
+  <img src="https://i.imgyukle.com/2020/09/07/xXB3SA.jpg" width="200" height="200">
+  <h1>DTÖserBot</h1>
 </div>
 <p align="center">
-    Cete UserBot, Telegram kullanmanızı kolaylaştıran bir bottur. Tamamen açık kaynaklı ve ücretsizdir.
+    DTÖUserBot, Telegram işlətməyinizi asandlaşdıran bir botdur. Təmamilə açıq qaynaqlı və pulsuzdur.
     <br>
-        <a href="https://github.com/BristolMyers/CeteUserBot/blob/master/README.md#kurulum">Kurulum</a> |
-        <a href="https://github.com/BristolMyers/CeteUserBot/wiki/G%C3%BCncelleme">Güncelleme</a> |
-        <a href="https://t.me/CeteUserBot">Telegram Kanal</a>
+        <a href="https://github.com/umudmmmdov1/DTOUserBot/blob/master/README.md#kurulum">Qurulum</a> |
+        <a href="https://t.me/DTOSupport">Telegram Dəstək qrupu</a>
     <br>
 </p>
 
