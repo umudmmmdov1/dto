@@ -4,7 +4,7 @@ import asyncio
 
 from userbot.events import register
 
-@register(outgoing=True, pattern="^.cetepol")
+@register(outgoing=True, pattern="^.dtoburda")
 
 async def port_police(event):
 
@@ -16,7 +16,7 @@ async def port_police(event):
 
     animation_ttl = range(0, 12)
 
-    await event.edit("ÇETE")
+    await event.edit("DTÖ")
 
     animation_chars = [
         
@@ -31,7 +31,7 @@ async def port_police(event):
             "🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵",
             "🔵🔵🔵⬜⬜⬜🔴🔴🔴\n🔵🔵🔵⬜⬜⬜🔴🔴🔴\n🔵🔵🔵⬜⬜⬜🔴🔴🔴",
             "🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵",
-            "**🔥Çete Is Here🔥**"
+            "**DTÖ Burdadı 😈**"
 
  ]
 
