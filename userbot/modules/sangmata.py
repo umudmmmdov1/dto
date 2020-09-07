@@ -24,38 +24,38 @@ from userbot.events import register
 from userbot import bot, CMD_HELP
 from time import sleep
 
-@register(outgoing=True, pattern="^.ad(?: |$)(.*)")
+@register(outgoing=True, pattern="^.sangmata(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return 
     if not event.reply_to_msg_id:
-       await event.edit("`Hər hansısa bir istifadəçiyə cavab olaraq yazın.`")
+       await event.edit("`Herhangi bir kullanıcı mesajına cevap verin.`")
        return
     reply_message = await event.get_reply_message() 
     if not reply_message.text:
-       await event.edit("`Mesaja cavab verin.`")
+       await event.edit("`Mesaja cevap verin.`")
        return
     chat = "@SangMataInfo_bot"
     sender = reply_message.sender
     if reply_message.sender.bot:
-       await event.edit("`Botların ad keçmişinə baxa bilmərsiz.`")
+       await event.edit("`Botlara cevap veremezsiniz.`")
        return
-    await event.edit("`İşlənir...`")
+    await event.edit("`İşleniyor...`")
     async with bot.conversation(chat, exclusive=False) as conv:
           response = None
           try:
               msg = await reply_message.forward_to(chat)
               response = await conv.get_response(message=msg, timeout=5)
           except YouBlockedUserError: 
-              await event.edit(f"`Lütfen {chat} əngəlləmədən çıxarın və yenidəm davam edin`")
+              await event.edit(f"`Lütfen {chat} engelini kaldırın ve tekrar deneyin`")
               return
           except Exception as e:
               print(e.__class__)
 
           if not response:
-              await event.edit("`Botdan cavab ala bilmədim!`")
+              await event.edit("`Botdan cevap alamadım!`")
           elif response.text.startswith("Forward"):
-             await event.edit("`Gizlilik ayarlarına görə məlumatlara baxa bilmədim`")
+             await event.edit("`Gizlilik ayarları yüzenden alıntı yapamadım`")
           else: 
              await event.edit(response.text)
           sleep(1)
@@ -65,5 +65,5 @@ async def _(event):
 CMD_HELP.update({
     "sangmata": 
     ".sangmata \
-    \nİşlədilişi: Baxmaq istədiyin istifadəçinin ad keçmişinə baxa bilərsiz.\n"
+    \nKullanım: Belirtilen kullanıcının isim geçmişini görüntüleyin.\n"
 })
