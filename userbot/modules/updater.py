@@ -92,7 +92,7 @@ async def upstream(ups):
     ac_br = repo.active_branch.name
     if ac_br != 'master':
         await ups.edit(
-            f'**[Güncelleyici]:**` Galiba Asena botunu modifiye ettin ve kendi branşını kullanıyorsun: ({ac_br}). '
+            f'**[Yeniləyici]:**` Galiba Asena botunu modifiye ettin ve kendi branşını kullanıyorsun: ({ac_br}). '
             'Bu durum güncelleyicinin kafasını karıştırıyor,'
             'Güncelleme nereden çekilecek?'
             'Lütfen seden botunu resmi repodan kullan.`')
@@ -111,7 +111,7 @@ async def upstream(ups):
 
     if not changelog and not force_update:
         await ups.edit(
-            f'\n`Botun` **tamamen güncel!** `Branch:` **{ac_br}**\n')
+            f'\n`Botunuz **ən son versiyadadı** `Branch:` **{ac_br}**\n')
         repo.__del__()
         return
 
@@ -137,7 +137,7 @@ async def upstream(ups):
         await ups.edit(
             '`Güncel stabil userbot kodu zorla eşitleniyor...`')
     else:
-        await ups.edit('`Bot güncelleştiriliyor...`')
+        await ups.edit('`Bot yenilənir...`')
     # Bot bir Heroku dynosunda çalışıyor, bu da bazı sıkıntıları beraberinde getiriyor.
     if HEROKU_APIKEY is not None:
         import heroku3
@@ -178,8 +178,8 @@ async def upstream(ups):
             await ups.edit(f'{txt}\n`Karşılaşılan hatalar burada:\n{error}`')
             repo.__del__()
             return
-        await ups.edit('`Güncelleme başarıyla tamamlandı!\n'
-                       'Yeniden başlatılıyor...`')
+        await ups.edit('`Yenilənmə tamamlandı!\n'
+                       'Yenidən başladılır...`')
     else:
         # Klasik güncelleyici, oldukça basit.
         try:
@@ -187,8 +187,8 @@ async def upstream(ups):
         except GitCommandError:
             repo.git.reset("--hard", "FETCH_HEAD")
         await update_requirements()
-        await ups.edit('`Güncelleme başarıyla tamamlandı!CeteUserBot\n'
-                       'CeteUserBot Yeniden başlıyor...`')
+        await ups.edit('`Yenilənmə tamamlandı! DTÖUserBot\n'
+                       'DTÖUserBot yenidən başladılır...`')
         # Bot için Heroku üzerinde yeni bir instance oluşturalım.
         args = [sys.executable, "main.py"]
         execle(sys.executable, *args, environ)
