@@ -1,11 +1,10 @@
 <div align="center">
   <img src="https://i.imgyukle.com/2020/09/07/xXB3SA.jpg" width="200" height="200">
-  <h1>DTÖserBot</h1>
+  <h1>DTÖUserBot</h1>
 </div>
 <p align="center">
     DTÖUserBot, Telegram işlətməyinizi asandlaşdıran bir botdur. Təmamilə açıq qaynaqlı və pulsuzdur.
     <br>
-        <a href="https://github.com/umudmmmdov1/DTOUserBot/blob/master/README.md#kurulum">Qurulum</a> |
         <a href="https://t.me/DTOSupport">Telegram Dəstək qrupu</a>
     <br>
 </p>
@@ -16,17 +15,10 @@
 ### Basit Yöntem
 Eğer botu kurma hakkında fikriniz yoksa burayı okuyunuz: [Kurulum Rehberi](https://github.com/BristolMyers/CeteUserBot/wiki/Kurulum/)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/BristolMyers/CeteUserBot)
-### Zor Yöntem
-```python
-git clone https://github.com/BristolMyers/CeteUserBot.git
-cd CeteUserBot
-pip install -r requirements.txt
-# Config.env oluşturun ve düzenleyin. #
-python3 main.py
-```
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/umudmmmdov1/DTOUserBot)
  
-Herhangi bir istek & şikâyet & öneri varsa [destek grubuna](https://t.me/CeteUserBot) ulaşabilirsiniz.
+Hər hansı bir şikayət & təklifiniz varsa [dəstək g
+qrupuna](https://t.me/DTOsupport) yaza bilərsiz.
 
 ```
     Userbottan dolayı; Telegram hesabınız yasaklanabilir.
