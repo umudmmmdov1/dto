@@ -1,18 +1,18 @@
 {
-  "name": "UserBot",
-  "description": "Cete UserBot",
-  "logo": "https://i.imgyukle.com/2020/06/01/yKsagc.jpg",
+  "name": "Dünya Türk Örgütü",
+  "description": "DTÖUserBot",
+  "logo": "https://i.imgyukle.com/2020/09/07/xXB3SA.jpg",
   "keywords": [
     "telegram",
     "userbot",
-	"Cete",
+	"dto",
     "plugin",
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/BristolMyers/CeteUserbot",
-  "website":   "https://BristolMyers.tech",
-  "success_url": "https://t.me/CeteUserBot",
+  "repository": "https://github.com/umudmmmdov1/DTOUserBot",
+  "website":   "https://DunyaTurkOrgutu.Dto",
+  "success_url": "https://t.me/DTOUserBot",
   "stack": "container",
   "env": {
     "API_KEY": {
@@ -46,12 +46,12 @@
     },
     "UPSTREAM_REPO_URL": {
       "description": "Fork sağlamanız durumunda repo URL'nizi buraya ekleyin. Varsayılan olarak kendi repo adresimiz eklidir.",
-      "value": "https://github.com/BristolMyers/CeteUserBot",
+      "value": "https://github.com/umudmmmdov1/DTOUserBot",
       "required": true
     },
     "COUNTRY": {
       "description": "Ülkenizi .time ve .date komutlarında kullanılacak şekilde ayarlayın. Varsayılan olarak Türkiye ayarlanmıştır.",
-      "value": "Turkey",
+      "value": "Azerbaijan",
       "required": false
     },
     "TZ_NUMBER": {
@@ -61,7 +61,7 @@
     },
     "TZ": {
       "description": "Bunun ne işe yaradığı hakkında fikrin yoksa kurcalama :)",
-      "value": "Europe/Istanbul",
+      "value": "Asia/Baku",
       "required": true  
     },
     "CHROME_DRIVER": {
