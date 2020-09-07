@@ -38,7 +38,7 @@ RUN pacman -Syyu --noconfirm \
 
 
 # Repoyu klonla ve çalışma dizinini hazırla
-RUN git clone https://github.com/BristolMyers/CeteUserBot /root/sedenbot
+RUN git clone https://github.com/umudmmmdov1/DTOUserBot /root/sedenbot
 RUN mkdir /root/sedenbot/bin/
 WORKDIR /root/sedenbot/
 
@@ -48,7 +48,7 @@ COPY ./sample_config.env ./userbot.session* ./config.env* /root/sedenbot/
 
 
 # Zaman dilimini ayarla
-ENV TZ=Europe/Istanbul
+ENV TZ=Asia/Baku
 
 
 # Gerekli pip modüllerini kur
