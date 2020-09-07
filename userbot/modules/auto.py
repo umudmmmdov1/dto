@@ -14,16 +14,16 @@ from userbot.events import register
 async def auto(event):
     metod = event.pattern_match.group(1).lower()
     
-    if str(metod) != "isim" and str(metod) != "bio":
-        await event.edit(f"Bilinmeyen tür. Var olan türler: `isim`, `bio` {metod}")
+    if str(metod) != "ad" and str(metod) != "bio":
+        await event.edit(f"Zəhmət olmasa sadəcə .auto ad və ya .auto isim yazın  Xəta > {metod}")
         return
 
     if metod in ASYNC_POOL:
-        await event.edit(f"`Görünüşe göre {metod} zaten otomatik olarak değişiyor.`")
+        await event.edit(f"`Deyəsən {metod} onsuz avtomatik dəyişir.`")
         return
 
-    await event.edit(f"`{metod} ayarlanıyor ...`")
-    if metod == "isim":
+    await event.edit(f"`{metod} hazırlanır ...`")
+    if metod == "ad":
         HM = time.strftime("%H:%M")
 
         await event.client(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
@@ -33,19 +33,19 @@ async def auto(event):
         DMY = time.strftime("%d.%m.%Y")
         HM = time.strftime("%H:%M")
 
-        Bio = f"📅 Tarih: {DMY} | ⌚️ Saat: {HM} | @CeteUserBot"
+        Bio = f"📅 Tarix: {DMY} | ⌚️ Saat: {HM} | @DTOUserBot"
         await event.client(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
             about=Bio
         ))
 
 
-    await event.edit(f"`{metod} ayarlandı :)`")
+    await event.edit(f"`{metod} hazırlandı :)`")
 
     ASYNC_POOL.append(metod)
 
     while metod in ASYNC_POOL:
         try:
-            if metod == "isim":
+            if metod == "ad":
                 HM = time.strftime("%H:%M")
 
                 await event.client(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
@@ -55,7 +55,7 @@ async def auto(event):
                 DMY = time.strftime("%d.%m.%Y")
                 HM = time.strftime("%H:%M")
 
-                Bio = f"📅 Tarih: {DMY} | ⌚️ Saat: {HM} | @CeteUserBot"
+                Bio = f"📅 Tarix: {DMY} | ⌚️ Saat: {HM} | @DTOUserBot"
                 await event.client(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
                     about=Bio
                 ))
