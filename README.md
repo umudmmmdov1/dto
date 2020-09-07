@@ -11,9 +11,9 @@
 
 ----
 
-## Kurulum
-### Basit Yöntem
-Eğer botu kurma hakkında fikriniz yoksa burayı okuyunuz: [Kurulum Rehberi](https://github.com/BristolMyers/CeteUserBot/wiki/Kurulum/)
+# Qurulum
+
+Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/umudmmmdov1/DTOUserBot)
  
