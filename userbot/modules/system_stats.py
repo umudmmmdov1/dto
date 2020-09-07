@@ -33,7 +33,7 @@ DEFAULTUSER = uname().node
 
 @register(outgoing=True, pattern="^.sysd$")
 async def sysdetails(sysd):
-    """ .sysd komutu neofetch kullanarak sistem bilgisini gösterir. """
+    """ .sysd əmri neofetch işlədərək sistem məlumatları göstərər. """
     try:
         neo = "neofetch --stdout"
         fetch = await asyncrunapp(
@@ -48,12 +48,12 @@ async def sysdetails(sysd):
 
         await sysd.edit("`" + result + "`")
     except FileNotFoundError:
-        await sysd.edit("`Öncelikle neofetch modülünü yükleyin !!`")
+        await sysd.edit("`Əvvəlcə neofetch modulunu yükləyin !!`")
 
 
 @register(outgoing=True, pattern="^.botver$")
 async def bot_ver(event):
-    """ .botver komutu bot versiyonunu gösterir. """
+    """ .botver əmri botun versiyasını göstərər. """
     if which("git") is not None:
         invokever = "git describe --all --long"
         ver = await asyncrunapp(
@@ -75,15 +75,15 @@ async def bot_ver(event):
         revout = str(stdout.decode().strip()) \
             + str(stderr.decode().strip())
 
-        await event.edit("`UserBot Versiyonu: "
+        await event.edit("`DTÖUserBot Versiyası: "
                          f"{verout}"
                          "` \n"
-                         "`Toplam değişiklik: "
+                         "`Toplam dəyişikliklər: "
                          f"{revout}"
                          "`")
     else:
         await event.edit(
-            "Bu arada Cete seni çok seviyor. ❤"
+            "Bu arada DTÖUserBot səni çox sevir. ❤"
         )
 
 
@@ -92,7 +92,7 @@ async def pipcheck(pip):
     """ .pip komutu python-pip araması yapar. """
     pipmodule = pip.pattern_match.group(1)
     if pipmodule:
-        await pip.edit("`Aranıyor . . .`")
+        await pip.edit("`Axtarılır . . .`")
         invokepip = f"pip3 search {pipmodule}"
         pipc = await asyncrunapp(
             invokepip,
@@ -106,7 +106,7 @@ async def pipcheck(pip):
 
         if pipout:
             if len(pipout) > 4096:
-                await pip.edit("`Çıktı çok büyük, dosya olarak gönderiliyor.`")
+                await pip.edit("`Çıxdı çox böyük fayl olaraq göndərilir.`")
                 file = open("output.txt", "w+")
                 file.write(pipout)
                 file.close()
@@ -117,34 +117,34 @@ async def pipcheck(pip):
                 )
                 remove("output.txt")
                 return
-            await pip.edit("**Sorgu: **\n`"
+            await pip.edit("**Sorğu: **\n`"
                            f"{invokepip}"
-                           "`\n**Sonuç: **\n`"
+                           "`\n**Nəticə: **\n`"
                            f"{pipout}"
                            "`")
         else:
-            await pip.edit("**Sorgu: **\n`"
+            await pip.edit("**Sorğu: **\n`"
                            f"{invokepip}"
-                           "`\n**Sonuç: **\n`Bir şey bulunamadı.`")
+                           "`\n**Nətice: **\n`Bir şey tapılmadı.`")
     else:
-        await pip.edit("`Bir örnek görmek için .cete pip komutunu kullanın.`")
+        await pip.edit("`Bir nümunə görmək üçün .dto pip əmrini işlədin.`")
 
 
 @register(outgoing=True, pattern="^.alive$")
 async def amialive(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`Salam 😈 DTÖUserBot işləyir ⚡.`")
+        await e.edit("`Allah Azərbaycanlıları qorusun\n DTÖUserBot əla işdəyir ⚡.`")
 
 
 CMD_HELP.update(
     {"sysd": ".sysd\
-    \nKullanım: Neofetch modülünü kullanarak sistem bilgisi gösterir."})
+    \nİşlədilişi: Neofetch modulunu işlədərək sistem məlumatlarına baxa bilərsiz."})
 CMD_HELP.update({"botver": ".botver\
-    \nKullanım: Userbot sürümünü gösterir."})
+    \nİşlədilişi: DTÖUserBot versiyasını göstərər."})
 CMD_HELP.update(
     {"pip": ".pip <module(s)>\
-    \nKullanım: Pip modüllerinde arama yapar."})
+    \nİşlədilişi: Pip modullarında axtarış edər."})
 CMD_HELP.update({
     "alive": ".alive\
-    \nKullanım: Cete botunun çalışıp çalışmadığını kontrol etmek için kullanılır."
+    \nİşlədilişi: DTÖUserBotunuzun işləyib işləmədiyini bilmək üçün olan əmrdi."
 })
