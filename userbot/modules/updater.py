@@ -57,7 +57,7 @@ async def update_requirements():
 @register(outgoing=True, pattern=r"^\.update(?: |$)(.*)")
 async def upstream(ups):
     ".update komutu ile botunun güncel olup olmadığını denetleyebilirsin."
-    await ups.edit("`Güncellemeler denetleniyor...CeteUserBot`")
+    await ups.edit("`Yenilənmə axtarılır...DTÖUserBot`")
     conf = ups.pattern_match.group(1)
     off_repo = UPSTREAM_REPO_URL
     force_update = False
@@ -111,7 +111,7 @@ async def upstream(ups):
 
     if not changelog and not force_update:
         await ups.edit(
-            f'\n`Botunuz **ən son versiyadadı** `Branch:` **{ac_br}**\n')
+            f'\n`Botunuz ən son versiyadadı `Branch:` **{ac_br}**\n')
         repo.__del__()
         return
 
@@ -156,12 +156,12 @@ async def upstream(ups):
                 break
         if heroku_app is None:
             await ups.edit(
-                f'{txt}\n`Heroku değişkenleri yanlış veya eksik tanımlanmış.`'
+                f'{txt}\n`Heroku dəyişkənliyi səhv yada hesab tanınmayıb.`'
             )
             repo.__del__()
             return
         await ups.edit('`[HEROKU MEMEZ]\
-                        \nCeteUserBot Heroku dynosuna aktarılıyor, lütfen bekle...`'
+                        \nDTÖUserBot Heroku dynosuna yüklənilir, zəhmət olmaza gözlə...`'
                        )
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
@@ -175,7 +175,7 @@ async def upstream(ups):
         try:
             remote.push(refspec="HEAD:refs/heads/master", force=True)
         except GitCommandError as error:
-            await ups.edit(f'{txt}\n`Karşılaşılan hatalar burada:\n{error}`')
+            await ups.edit(f'{txt}\n`Qarşılaşdığınız xətalar burada:\n{error}`')
             repo.__del__()
             return
         await ups.edit('`Yenilənmə tamamlandı!\n'
