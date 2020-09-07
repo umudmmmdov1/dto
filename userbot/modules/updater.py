@@ -15,7 +15,7 @@
 #
 
 """
-Bu modül commit sayısına bağlı olarak botu günceller.
+DTÖUserBot
 """
 
 from os import remove, execle, path, makedirs, getenv, environ
@@ -56,29 +56,29 @@ async def update_requirements():
 
 @register(outgoing=True, pattern=r"^\.update(?: |$)(.*)")
 async def upstream(ups):
-    ".update komutu ile botunun güncel olup olmadığını denetleyebilirsin."
-    await ups.edit("`Yenilənmə axtarılır...DTÖUserBot`")
+    ".update əmri ilə botunun güncəl olub olmadığını yoxlaya bilərsiz."
+    await ups.edit("`Yenilənmə yoxlanılır...DTÖUserBot`")
     conf = ups.pattern_match.group(1)
     off_repo = UPSTREAM_REPO_URL
     force_update = False
 
     try:
-        txt = "`Güncelleme başarısız oldu!"
-        txt += "Bazı sorunlarla karşılaştık.`\n\n**LOG:**\n"
+        txt = "`Yeniləmədə xəta!"
+        txt += "Bəzi probləmlər yarandı.`\n\n**LOG:**\n"
         repo = Repo()
     except NoSuchPathError as error:
-        await ups.edit(f'{txt}\n`{error} klasörü bulunamadı.`')
+        await ups.edit(f'{txt}\n`{error} faylı tapılmadı.`')
         repo.__del__()
         return
     except GitCommandError as error:
-        await ups.edit(f'{txt}\n`Git hatası! {error}`')
+        await ups.edit(f'{txt}\n`Git xətası! {error}`')
         repo.__del__()
         return
     except InvalidGitRepositoryError as error:
         if conf != "now":
             await ups.edit(
-                f"`{error} klasörü bir git reposu gibi görünmüyor.\
-            \nFakat bu sorunu .update now komutuyla botu zorla güncelleyerek çözebilirsin.`"
+                f"`{error} faylı bir git reposu kibi görünmür.\
+            \nAncaq bu problemi .update now əmri ilə botu yeniləyərək düzəldə bilərsiz.`"
             )
             return
         repo = Repo.init()
@@ -92,10 +92,10 @@ async def upstream(ups):
     ac_br = repo.active_branch.name
     if ac_br != 'master':
         await ups.edit(
-            f'**[Yeniləyici]:**` Galiba Asena botunu modifiye ettin ve kendi branşını kullanıyorsun: ({ac_br}). '
-            'Bu durum güncelleyicinin kafasını karıştırıyor,'
-            'Güncelleme nereden çekilecek?'
-            'Lütfen seden botunu resmi repodan kullan.`')
+            f'**[Yeniləyici]:**` Deyəsən DTÖUserBot botunu edit elədin və öz branşını işlədirsən: ({ac_br}). '
+            'Bu hadisə yeniləyicinin beynini qarışdırır,'
+            'Yenilənmə hardan olacaq?'
+            'Zəhmət olmasa sadəcə DTÖUserBot rəsmi repodan işlədin.`')
         repo.__del__()
         return
 
@@ -116,9 +116,9 @@ async def upstream(ups):
         return
 
     if conf != "now" and not force_update:
-        changelog_str = f'**{ac_br} için yeni güncelleme mevcut!\n\nDeğişiklikler:**\n`{changelog}`'
+        changelog_str = f'**{ac_br} üçün yeni yenilənmə var!\n\nYeniliklər:**\n`{changelog}`'
         if len(changelog_str) > 4096:
-            await ups.edit("`Değişiklik listesi çok büyük, dosya olarak görüntülemelisin.`")
+            await ups.edit("`Yenilik listi çok büyükdür, fayl olaraq baxa bilərsən.`")
             file = open("degisiklikler.txt", "w+")
             file.write(changelog_str)
             file.close()
@@ -130,15 +130,15 @@ async def upstream(ups):
             remove("degisiklikler.txt")
         else:
             await ups.edit(changelog_str)
-        await ups.respond('`Güncellemeyi yapmak için \".update now\" komutunu kullan.`')
+        await ups.respond('`Yenilənməyi etmək üçün \".update now\" əmrini işlədin.`')
         return
 
     if force_update:
         await ups.edit(
-            '`Güncel stabil userbot kodu zorla eşitleniyor...`')
+            '`Güncəl stabil bot versiyası axtarılır...`')
     else:
         await ups.edit('`Bot yenilənir...`')
-    # Bot bir Heroku dynosunda çalışıyor, bu da bazı sıkıntıları beraberinde getiriyor.
+    # Bot bir Heroku dynosunda işləyir, bu da bəzi sıxıntları özündə gətirir.
     if HEROKU_APIKEY is not None:
         import heroku3
         heroku = heroku3.from_key(HEROKU_APIKEY)
@@ -146,7 +146,7 @@ async def upstream(ups):
         heroku_applications = heroku.apps()
         if not HEROKU_APPNAME:
             await ups.edit(
-                '`[HEROKU MEMEZ] Güncelleyiciyi kullanabilmek için HEROKU_APPNAME değişkenini tanımlamalısın.`'
+                '`[Yenilənmə] Yeniləyicini işlədə bilmək üçün HEROKU_APPNAME dəyişkənliyini tamamlanmalısan.`'
             )
             repo.__del__()
             return
@@ -160,8 +160,8 @@ async def upstream(ups):
             )
             repo.__del__()
             return
-        await ups.edit('`[HEROKU MEMEZ]\
-                        \nDTÖUserBot Heroku dynosuna yüklənilir, zəhmət olmaza gözlə...`'
+        await ups.edit('`[Yenilənmə]\
+                        \nYenilənmələr yüklənir, zəhmət olmaza gözləyin...`'
                        )
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
@@ -178,7 +178,7 @@ async def upstream(ups):
             await ups.edit(f'{txt}\n`Qarşılaşdığınız xətalar burada:\n{error}`')
             repo.__del__()
             return
-        await ups.edit('`Yenilənmə tamamlandı!\n'
+        await ups.edit('`Yenilənmə hazırdı!\n'
                        'Yenidən başladılır...`')
     else:
         # Klasik güncelleyici, oldukça basit.
@@ -197,7 +197,7 @@ async def upstream(ups):
 CMD_HELP.update({
     'update':
     ".update\
-\nKullanım: Botunuza siz kurduktan sonra herhangi bir güncelleme gelip gelmediğini kontrol eder.\
+\nKullanım: Botunuza siz qurduqdan sonra hər hansı bir yenilənmə gəlib gəlmədiyini yoxlamaq üçün əmrdı.\
 \n\n.update now\
-\nKullanım: Botunuzu günceller."
+\nKullanım: Botunuzu yeniləyər."
 })
