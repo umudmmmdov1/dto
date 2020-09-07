@@ -88,8 +88,8 @@ for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
 LOGS.info("Botunuz çalışıyor! Herhangi bir sohbete .alive yazarak Test edin."
-          " Yardıma ihtiyacınız varsa, Destek grubumuza gelin t.me/CeteUserBot")
-LOGS.info("Bot sürümünüz Cete v1.3")
+          " Yardıma ihtiyacınız varsa, Destek grubumuza gelin t.me/DTOUserBot")
+LOGS.info("Bot versiyası DTÖUserBot v0.2")
 
 """
 if len(argv) not in (1, 3, 4):
