@@ -79,7 +79,7 @@ def register(**args):
                 return
              
             if groups_only and not check.is_group:
-                await check.respond("`Bunun bir grup olduğunu sanmıyorum.`")
+                await check.respond("`Zəhmət olmasa qrupda yazın.`")
                 return
 
             try:
@@ -96,11 +96,11 @@ def register(**args):
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-                    text = "**USERBOT HATA RAPORU**\n"
-                    link = "[Cete Destek Grubu](https://t.me/CeteUserBot)"
-                    text += "İsterseniz, bunu rapor edebilirsiniz"
-                    text += f"- sadece bu mesajı buraya iletin {link}.\n"
-                    text += "Hata ve Tarih dışında hiçbir şey kaydedilmez\n"
+                    text = "**USERBOT XƏTA**\n"
+                    link = "[DTÖUserBot Dəstək Qrupu](https://t.me/DTOUserBot)"
+                    text += "İstəyirsizsə, bunu şikayət edə bilərsiz"
+                    text += f"- sadəcə bu mesajı bura yönləndirin {link}.\n"
+                    text += "Xətadan başqa heçbir şey qeyd olunmur!\n"
 
                     ftext = "========== UYARI =========="
                     ftext += "\nBu dosya sadece burada yüklendi,"
@@ -109,17 +109,17 @@ def register(**args):
                     ftext += "\nburada herhangi bir gizli veri varsa"
                     ftext += "\nbu hata raporu olmayabilir, kimse verilerinize ulaşamaz.\n"
                     ftext += "================================\n\n"
-                    ftext += "--------USERBOT HATA GUNLUGU--------\n"
-                    ftext += "\nTarih: " + date
-                    ftext += "\nGrup ID: " + str(check.chat_id)
-                    ftext += "\nGönderen kişinin ID: " + str(check.sender_id)
-                    ftext += "\n\nOlay Tetikleyici:\n"
+                    ftext += "--------USERBOT XETA GUNLUYU--------\n"
+                    ftext += "\nTarix: " + date
+                    ftext += "\nQrup ID: " + str(check.chat_id)
+                    ftext += "\nGönderen istifadecinin ID: " + str(check.sender_id)
+                    ftext += "\n\nHadise:\n"
                     ftext += str(check.text)
-                    ftext += "\n\nGeri izleme bilgisi:\n"
+                    ftext += "\n\nGeri dönme melumatı:\n"
                     ftext += str(format_exc())
                     ftext += "\n\nHata metni:\n"
                     ftext += str(sys.exc_info()[1])
-                    ftext += "\n\n--------USERBOT HATA GUNLUGU BITIS--------"
+                    ftext += "\n\n--------USERBOT XETA GUNLUYU BITISI--------"
 
                     command = "git log --pretty=format:\"%an: %s\" -10"
 
@@ -139,8 +139,8 @@ def register(**args):
                     file.close()
 
                     if LOGSPAMMER:
-                        await check.client.respond("`Üzgünüm, UserBot'um çöktü.\
-                        \nHata günlükleri UserBot günlük grubunda saklanır.`")
+                        await check.client.respond("`Pis xəbərim var :( , UserBotun çökdü.\
+                        \nXəta günlükləri UserBot günlük qrupunda saxlanır.`")
 
                     await check.client.send_file(send_to,
                                                  "error.log",
