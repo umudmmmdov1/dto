@@ -44,26 +44,26 @@ async def randomise(items):
 
 @register(outgoing=True, pattern="^.sleep( [0-9]+)?$")
 async def sleepybot(time):
-    """ .sleep komutu Cete nin birkaç saniye uyumasına olanak sağlar. """
+    """ .sleep əmri DTÖUserBotun bir neçə saniyə yatmasını səbəb olur. """
     if " " not in time.pattern_match.group(1):
-        await time.reply("Kullanım Şekli: `.sleep [saniye]`")
+        await time.reply("İşlədilişi: `.sleep [saniye]`")
     else:
         counter = int(time.pattern_match.group(1))
-        await time.edit("`Horlayarak uyuyorum...`")
+        await time.edit("`Xoruldayaraq yatıram 😀...`")
         await sleep(2)
         if BOTLOG:
             await time.client.send_message(
                 BOTLOG_CHATID,
-                "Botu" + str(counter) + "saniye uykuya bıraktın.",
+                "Botu" + str(counter) + "saniyə bot yatmağa getdi.",
             )
         await sleep(counter)
-        await time.edit("`Günaydın!`")
+        await time.edit("`Sabahın xeyir! 🤗`")
 
 
 @register(outgoing=True, pattern="^.shutdown$")
 async def shutdown(event):
-    """ .shutdown komutu botu kapatır. """
-    await event.edit("`Görüşürüz... *Windows XP kapanma sesi*`")
+    """ .shutdown əmri botu söndürür. """
+    await event.edit("`Sağol 😌... *Windows XP sönmə səsi*`")
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n"
                                         "Bot kapatıldı.")
@@ -75,7 +75,7 @@ async def shutdown(event):
 
 @register(outgoing=True, pattern="^.restart$")
 async def restart(event):
-    await event.edit("`CeteBot yeniden başlıyor...`")
+    await event.edit("`DTÖUserBot yenidən başladılır...`")
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#RESTART \n"
                                         "CeteBot yeniden başladı.")
@@ -91,13 +91,13 @@ async def restart(event):
 @register(outgoing=True, pattern="^.support$")
 async def bot_support(wannahelp):
     """ .support komutu destek grubumuzu verir. """
-    await wannahelp.edit("[Buradan](http://t.me/CeteUserBot) destek grubumuza ulaşabilirsiniz.")
+    await wannahelp.edit("[Buradan](http://t.me/DTOUserBot) destek grubumuza ulaşabilirsiniz.")
 
 
 @register(outgoing=True, pattern="^.creator$")
 async def creator(e):
     await e.edit("Bu bot \n"
-                 "[BristolMyers](https://t.me/@BristolMyers) tarafından geliştirilmiştir. \n")
+                 "[Ümüd Məmmədov](https://t.me/@umudmmmdov1) tərəfindən editlənmişdir. \n")
 
 
 @register(outgoing=True, pattern="^.readme$")
@@ -123,7 +123,7 @@ async def repeat(rep):
 @register(outgoing=True, pattern="^.repo$")
 async def repo_is_here(wannasee):
     """ .repo komutunun tek yaptığı şey GitHub repomuzun bağlantısını vermek. """
-    await wannasee.edit("[CeteBot Repo](https://github.com/BristolMyers/CeteUserBot)")
+    await wannasee.edit("[CeteBot Repo](https://github.com/umudmmmdov1/DTOUserBot)")
 
 
 @register(outgoing=True, pattern="^.raw$")
@@ -183,7 +183,7 @@ CMD_HELP.update({
 CMD_HELP.update({
     "readme":
     ".readme\
-\nKullanım: Cete botunun GitHub'daki README.md dosyasına giden bir bağlantı."
+\nİşlədilişi: Cete botunun GitHub'daki README.md dosyasına giden bir bağlantı."
 })
 
 CMD_HELP.update(
