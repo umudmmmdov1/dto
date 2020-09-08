@@ -97,7 +97,7 @@ def register(**args):
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
                     text = "**USERBOT XƏTA**\n"
-                    link = "[DTÖUserBot Dəstək Qrupu](https://t.me/DTOUserBot)"
+                    link = "[DTÖUserBot Dəstək Qrupu](https://t.me/DTOSupport)"
                     text += "İstəyirsizsə, bunu şikayət edə bilərsiz"
                     text += f"- sadəcə bu mesajı bura yönləndirin {link}.\n"
                     text += "Xətadan başqa heçbir şey qeyd olunmur!\n"
