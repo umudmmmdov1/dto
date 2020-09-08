@@ -17,6 +17,16 @@ Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun deyilənləri ardı
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/umudmmmdov1/DTOUserBot)
  
+## Video qurulum
+
+object width="425" height="350">
+  <param name="movie" value="https://m.youtube.com/watch?v=7SU9RjCktHo&t=1s" />
+  <param name="wmode" value="transparent" />
+  <embed src="https://m.youtube.com/watch?v=7SU9RjCktHo&t=1s"
+         type="application/x-shockwave-flash"
+         wmode="transparent" width="425" height="350" />
+</object>
+
 Hər hansı bir şikayət & təklifiniz varsa [dəstək g
 qrupuna](https://t.me/DTOsupport) yaza bilərsiz.
 
