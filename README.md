@@ -29,5 +29,4 @@ Botu telegramı daha rahat istifade elemek xaricinde eylenmek
 üçün de istifade ede bilersiniz.
 ```
 
-Hər hansı bir şikayət & təklifiniz varsa [dəstək g
-qrupuna](https://t.me/DTOsupport) yaza bilərsiz
+Hər hansı bir şikayət & təklifiniz varsa [dəstək qrupuna](https://t.me/DTOsupport) yaza bilərsiz
