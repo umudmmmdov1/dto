@@ -21,15 +21,9 @@ Hər hansı bir şikayət & təklifiniz varsa [dəstək g
 qrupuna](https://t.me/DTOsupport) yaza bilərsiz.
 
 ```
-    Userbottan dolayı; Telegram hesabınız yasaklanabilir.
-    Botun yanlış kullanımından sorumlu değilim sorumluluk size aittir.
-    Bu bot grupları verimli bir şekilde yönetmenin yanı sıra,
-    eğlenmek amacıyla tasarlanmıştır.
-    Grupları spamlayarak eğleneceğinizi düşünüyorsanız yanılıyorsunuz.
-    Herhangi bir spam ban yeme durumunda eğer gelipte hesabım banlandı diye yazarsanız
-    sadece size güleceğim.
+Botu düzgün istifade etmediyiniz halda hesabınız blonlana biler.
+Botun yanlış istifadesi halında mesuliyyət tamamile istifadeçiyi 
+aiddir.DTÖ qrupu olaraq heç bir mesuliyyet qebul etmirik.
+Botu telegramı daha rahat istifade elemek xaricinde eylenmek
+üçün de istifade ede bilersiniz.
 ```
-
-## Credit
-[PaperPlane Repo](https://github.com/RaphielGang/Telegram-Paperplane)
-[Seden Repo](https://github.com/TeamDerUntergang/Telegram-UserBot)
