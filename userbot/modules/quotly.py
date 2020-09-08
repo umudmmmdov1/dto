@@ -14,7 +14,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-# @NaytSeyd tarafından portlanmıştır.
+# @DTOUserBot
 
 import datetime
 from telethon import events
@@ -28,18 +28,18 @@ async def _(event):
     if event.fwd_from:
         return 
     if not event.reply_to_msg_id:
-       await event.edit("`Herhangi bir kullanıcı mesajına cevap verin.`")
+       await event.edit("`Hərhansı bir istifadəçinin mesajına cavab verin`")
        return
     reply_message = await event.get_reply_message() 
     if not reply_message.text:
-       await event.edit("`Mesaja cevap verin.`")
+       await event.edit("`Mesaja cavab verin`")
        return
     chat = "@QuotLyBot"
     sender = reply_message.sender
     if reply_message.sender.bot:
-       await event.edit("`Botlara cevap veremezsiniz.`")
+       await event.edit("`Botlara cavab vere bilmərsiz.`")
        return
-    await event.edit("`Alıntı yapılıyor...`")
+    await event.edit("`Kopya edilir...`")
 
     async with bot.conversation(chat, exclusive=False, replies_are_responses=True) as conv:
           response = None
@@ -47,15 +47,15 @@ async def _(event):
               msg = await reply_message.forward_to(chat)
               response = await conv.get_response(message=msg, timeout=5)
           except YouBlockedUserError: 
-              await event.edit("`Lütfen @QuotLyBot engelini kaldırın ve tekrar deneyin`")
+              await event.edit("`Zəhmət olmasa @QuotLyBot blokunu götürün və təkrar yoxlayın`")
               return
           except Exception as e:
               print(e.__class__)
 
           if not response:
-              await event.edit("`Botdan cevap alamadım!`")
-          elif response.text.startswith("Merhaba!"):
-             await event.edit("`Gizlilik ayarları yüzenden alıntı yapamadım`")
+              await event.edit("`Botdan cavab ala bilmədim!`")
+          elif response.text.startswith("Salam!"):
+             await event.edit("`Gizlilik ayarları səbəbindən alıntı edə bilmədim`")
           else: 
              await event.delete()
              await response.forward_to(event.chat_id)
@@ -65,5 +65,5 @@ async def _(event):
 CMD_HELP.update({
     "quotly": 
     ".q \
-    \nKullanım: Metninizi çıkartmaya dönüştürün.\n"
+    \nİstifade: Her hansı metni stikere çevirin.\n"
 })
