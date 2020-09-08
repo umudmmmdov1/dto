@@ -1,10 +1,18 @@
-# Copyright (C) 2020 BristolMyers z2sofwares.
+# Copyright (C) 2020 TeamDerUntergang.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-
-# Cete UserBot - BristolMyers z2sofwares
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
 
 """ AFK ile ilgili komutları içeren UserBot modülü """
 
@@ -16,7 +24,33 @@ from telethon.events import StopPropagation
 from userbot import (AFKREASON, COUNT_MSG, CMD_HELP, ISAFK, BOTLOG,
                      BOTLOG_CHATID, USERS, PM_AUTO_BAN)
 from userbot.events import register
-from userbot.main import PLUGIN_MESAJLAR
+
+# ========================= CONSTANTS ============================
+AFKSTR = [
+    "Şu an acele işim var, daha sonra mesaj atsan olmaz mı? Zaten yine geleceğim.",
+    "Aradığınız kişi şu anda telefona cevap veremiyor. Sinyal sesinden sonra kendi tarifeniz üzerinden mesajınızı bırakabilirsiniz. Mesaj ücreti 49 kuruştur. \n`biiiiiiiiiiiiiiiiiiiiiiiiiiiiip`!",
+    "Birkaç dakika içinde geleceğim. Fakat gelmezsem...\ndaha fazla bekle.",
+    "Şu an burada değilim, muhtemelen başka bir yerdeyim.",
+    "Güller kırmızı\nMenekşeler mavi\nBana bir mesaj bırak\nVe sana döneceğim.",
+    "Bazen hayattaki en iyi şeyler beklemeye değer…\nHemen dönerim.",
+    "Hemen dönerim,\nama eğer geri dönmezsem,\ndaha sonra dönerim.",
+    "Henüz anlamadıysan,\nburada değilim.",
+    "Merhaba, uzak mesajıma hoş geldiniz, bugün sizi nasıl görmezden gelebilirim?",
+    "7 deniz ve 7 ülkeden uzaktayım,\n7 su ve 7 kıta,\n7 dağ ve 7 tepe,\n7 ovala ve 7 höyük,\n7 havuz ve 7 göl,\n7 bahar ve 7 çayır,\n7 şehir ve 7 mahalle,\n7 blok ve 7 ev...\n\nMesajların bile bana ulaşamayacağı bir yer!",
+    "Şu anda klavyeden uzaktayım, ama ekranınızda yeterince yüksek sesle çığlık atarsanız, sizi duyabilirim.",
+    "Şu yönde ilerliyorum\n---->",
+    "Şu yönde ilerliyorum\n<----",
+    "Lütfen mesaj bırakın ve beni zaten olduğumdan daha önemli hissettirin.",
+    "Sahibim burada değil, bu yüzden bana yazmayı bırak.",
+    "Burada olsaydım,\nSana nerede olduğumu söylerdim.\n\nAma ben değilim,\ngeri döndüğümde bana sor...",
+    "Uzaklardayım!\nNe zaman dönerim bilmiyorum !\nUmarım birkaç dakika sonra!",
+    "Sahibim şuan da müsait değil. Adınızı, numarınızı ve adresinizi verirseniz ona iletibilirm ve böylelikle geri döndüğü zaman.",
+    "Üzgünüm, sahibim burada değil.\nO gelene kadar benimle konuşabilirsiniz.\nSahibim size sonra döner.",
+    "Bahse girerim bir mesaj bekliyordun!",
+    "Hayat çok kısa, yapacak çok şey var...\nOnlardan birini yapıyorum...",
+    "Şu an burada değilim....\nama öyleysem ...\n\nbu harika olmaz mıydı?",
+]
+# =================================================================
 
 
 @register(incoming=True, disable_edited=True)
@@ -24,24 +58,24 @@ async def mention_afk(mention):
     """ Bu fonksiyon biri sizi etiketlediğinde sizin AFK olduğunuzu bildirmeye yarar."""
     global COUNT_MSG
     global USERS
-    global ISAFKs
+    global ISAFK
     if mention.message.mentioned and not (await mention.get_sender()).bot:
         if ISAFK:
             if mention.sender_id not in USERS:
                 if AFKREASON:
-                    await mention.reply(f"{PLUGIN_MESAJLAR['afk']}\
+                    await mention.reply(f"Sahibim halen AFK.\
                         \nSebep: `{AFKREASON}`")
                 else:
-                    await mention.reply(PLUGIN_MESAJLAR['afk'])
+                    await mention.reply(str(choice(AFKSTR)))
                 USERS.update({mention.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif mention.sender_id in USERS:
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await mention.reply(f"{PLUGIN_MESAJLAR['afk']}\
+                        await mention.reply(f"Sahibim halen AFK.\
                             \nSebep: `{AFKREASON}`")
                     else:
-                        await mention.reply(PLUGIN_MESAJLAR['afk'])
+                        await mention.reply(str(choice(AFKSTR)))
                     USERS[mention.sender_id] = USERS[mention.sender_id] + 1
                     COUNT_MSG = COUNT_MSG + 1
                 else:
@@ -71,16 +105,16 @@ async def afk_on_pm(sender):
                     await sender.reply(f"Sahibim şu an AFK.\
                     \nSebep: `{AFKREASON}`")
                 else:
-                    await sender.reply(PLUGIN_MESAJLAR['afk'])
+                    await sender.reply(str(choice(AFKSTR)))
                 USERS.update({sender.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif apprv and sender.sender_id in USERS:
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await sender.reply(f"{PLUGIN_MESAJLAR['afk']}\
+                        await sender.reply(f"Sahibim halen AFK.\
                         \nSebep: `{AFKREASON}`")
                     else:
-                        await sender.reply(PLUGIN_MESAJLAR['afk'])
+                        await sender.reply(str(choice(AFKSTR)))
                     USERS[sender.sender_id] = USERS[sender.sender_id] + 1
                     COUNT_MSG = COUNT_MSG + 1
                 else:
@@ -97,10 +131,10 @@ async def set_afk(afk_e):
     global AFKREASON
     if string:
         AFKREASON = string
-        await afk_e.edit(f"Artık AFK'yım CeteUserBot.\
+        await afk_e.edit(f"Artık AFK'yım.\
         \nSebep: `{string}`")
     else:
-        await afk_e.edit("Artık AFK'yım.")
+        await afk_e.edit("Artık AFK'yım. CeteBot")
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nAFK oldunuz.")
     ISAFK = True
@@ -116,7 +150,7 @@ async def type_afk_is_not_true(notafk):
     global AFKREASON
     if ISAFK:
         ISAFK = False
-        await notafk.respond("Artık AFK değilim CeteUserBot.")
+        await notafk.respond("Artık AFK değilim. CeteBot")
         await sleep(2)
         if BOTLOG:
             await notafk.client.send_message(
