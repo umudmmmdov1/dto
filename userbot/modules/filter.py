@@ -14,7 +14,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Filtre komutlarını içeren UserBot modülüdür. """
+""" Filter Modul """
 
 from asyncio import sleep
 import re
@@ -24,13 +24,13 @@ from userbot.events import register
 
 @register(incoming=True, disable_edited=True, disable_errors=True)
 async def filter_incoming_handler(handler):
-    """ Gelen mesajın filtre tetikleyicisi içerip içermediğini kontrol eder """
+    """ Filter """
     try:
         if not (await handler.get_sender()).bot:
             try:
                 from userbot.modules.sql_helper.filter_sql import get_filters
             except AttributeError:
-                await handler.edit("`Bot Non-SQL modunda çalışıyor!!`")
+                await handler.edit("`Bot Non-SQL modunda işdəyir!!`")
                 return
             name = handler.raw_text
             filters = get_filters(handler.chat_id)
@@ -73,7 +73,7 @@ async def add_new_filter(new_handler):
                 BOTLOG_CHATID, f"#FILTER\
             \nGrup ID: {new_handler.chat_id}\
             \nFiltre: {keyword}\
-            \n\nBu mesaj filtrenin cevaplanması için kaydedildi, lütfen bu mesajı silmeyin!"
+            \n\nBu mesaj filtrenin cavablanması üçün qeyd edildi, zəhmət olmasa bu mesajı silməyin!"
             )
             msg_o = await new_handler.client.forward_messages(
                 entity=BOTLOG_CHATID,
@@ -83,7 +83,7 @@ async def add_new_filter(new_handler):
             msg_id = msg_o.id
         else:
             await new_handler.edit(
-                "`Bir medyanın filtreye karşılık olarak kaydedilebilmesi için BOTLOG_CHATID değerinin ayarlanması gerekli.`"
+                "`Bir medyanın filterə qarşılıq olaraq qeyd edilebilməsi üçün BOTLOG_CHATID dəyərini düzəltmək lazımdı.`"
             )
             return
     elif new_handler.reply_to_msg_id and not string:
@@ -98,30 +98,30 @@ async def add_new_filter(new_handler):
 
 @register(outgoing=True, pattern="^.stop (\w*)")
 async def remove_a_filter(r_handler):
-    """ .stop komutu bir filtreyi durdurmanızı sağlar. """
+    """ .stop əmri bir filtreni dayandırmanızı kömək edər. """
     try:
         from userbot.modules.sql_helper.filter_sql import remove_filter
     except AttributeError:
-        await r_handler.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await r_handler.edit("`Bot Non-SQL modunda işdəyir!!`")
         return
     filt = r_handler.pattern_match.group(1)
     if not remove_filter(r_handler.chat_id, filt):
-        await r_handler.edit(" **{}** `filtresi mevcut değil.`".format(filt))
+        await r_handler.edit(" **{}** `filteri mövcud deil.`".format(filt))
     else:
         await r_handler.edit(
-            "**{}** `filtresi başarıyla silindi`".format(filt))
+            "**{}** `filteri silindi`".format(filt))
 
 
 @register(outgoing=True, pattern="^.rmbotfilters (.*)")
 async def kick_marie_filter(event):
-    """ .rmfilters komutu Marie'de (ya da onun tabanındaki botlarda) \
-        kayıtlı olan notları silmeye yarar. """
+    """ .rmfilters əmri Marie'de (ya da onun tabanındakı botlarda) \
+        qeydli olan notları silməyə kömək edər. """
     cmd = event.text[0]
     bot_type = event.pattern_match.group(1).lower()
     if bot_type not in ["marie", "rose"]:
-        await event.edit("`Bu bot henüz desteklenmiyor.`")
+        await event.edit("`Bu bot hələ dəstəkləmir.`")
         return
-    await event.edit("```Tüm filtreler temizleniyor...```")
+    await event.edit("```Bütün filterlər silinir...```")
     await sleep(3)
     resp = await event.get_reply_message()
     filters = resp.text.split("-")[1:]
@@ -133,25 +133,25 @@ async def kick_marie_filter(event):
             await event.reply("/stop %s" % (i.strip()))
         await sleep(0.3)
     await event.respond(
-        "```Botlardaki filtreler başarıyla temizlendi.```")
+        "```Botlardakı filterlər silindi.```")
     if BOTLOG:
         await event.client.send_message(
-            BOTLOG_CHATID, "Şu sohbetteki tüm filtreleri temizledim: " + str(event.chat_id))
+            BOTLOG_CHATID, "Bu söhbətdəki filterləri sildim. " + str(event.chat_id))
 
 
 @register(outgoing=True, pattern="^.filters$")
 async def filters_active(event):
-    """ .filters komutu bir sohbetteki tüm aktif filtreleri gösterir. """
+    """ .filters əmri bir söhbetdəki bütün aktiv filtrləri göstərər. """
     try:
         from userbot.modules.sql_helper.filter_sql import get_filters
     except AttributeError:
-        await event.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await event.edit("`Bot Non-SQL modunda işdəyir!!`")
         return
-    transact = "`Bu sohbette hiç filtre yok.`"
+    transact = "`Bu söhbətdə heç bir filter yoxdur.`"
     filters = get_filters(event.chat_id)
     for filt in filters:
-        if transact == "`Bu sohbette hiç filtre yok.`":
-            transact = "Sohbetteki filtreler:\n"
+        if transact == "`Bu sohbətdə heç bir filter yoxdu.`":
+            transact = "Sohbətdəki filterlər:\n"
             transact += "`{}`\n".format(filt.keyword)
         else:
             transact += "`{}`\n".format(filt.keyword)
@@ -162,13 +162,13 @@ async def filters_active(event):
 CMD_HELP.update({
     "filter":
     ".filters\
-    \nKullanım: Bir sohbetteki tüm userbot filtrelerini listeler.\
-    \n\n.filter <filtrelenecek kelime> <cevaplanacak metin> ya da bir mesajı .filter <filtrelenecek kelime>\
-    \nKullanım: 'filtrelenecek kelime' olarak istenilen şeyi kaydeder.\
-    \nBot her 'filtrelenecek kelime' yi algıladığında o mesaja cevap verecektir.\
-    \nDosyalardan çıkartmalara her türlü şeyle çalışır.\
-    \n\n.stop <filtre>\
-    \nKullanım: Seçilen filtreyi durdurur.\
+    \nİşlədilişi: Bir sohbətdəki bütün DTÖUserBot filterlərin listini atar.\
+    \n\n.filter <filterlənəcək söz> <cavablanacaq söz> ya da bir mesajı .filter <filterlənəcək söz>\
+    \nİşlədilişi: 'filterlənəcək söz' olaraq istənilən şeyi qeyd edər.\
+    \nBot hər 'filterlənəcək söz' deyildiyində avtomatik cavab verər.\
+    \nFayllardan stikerlərə hər cür şeylə işləyir.\
+    \n\n.stop <filter>\
+    \nİşlədilişi: Seçilən filteri dayandırır.\
     \n\n.rmbotfilters <marie/rose>\
-    \nKullanım: Grup yönetimi botlarındaki tüm filtreleri temizler. (Şu anlık Rose, Marie ve Marie klonları destekleniyor.)"
+    \nİşlədilişi: Qrup yönəldən botlarındakı bütün filtreləri silər. (Hələlik Rose, Marie ve Marie klonları dəstəkləyir.)"
 })
