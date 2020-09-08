@@ -42,7 +42,7 @@ AFKSTR = [
     "`Bu tərəfdən irəlliyirəm\n<----`",
     "`Zəhmət olmasa mesaj buraxın və məni onsuz olduğumdan daha dəyərli hiss etdirə bilərsən.`",
     "`Sahibim burada deyil, buna görə mənə mesaj yazmanı dayandır.`",
-    "`Burada olsaydım,\nSənə harada olduğumu deyərdim.\n\nAma mən deiləm,\ngeri gəldiyiyimdə məndən soruş...`",
+    "`Burada olsaydım,\nSənə harada olduğumu deyərdim.\n\nAma mən deiləm,\ngeri gəldiyimdə məndən soruş...`",
     "`Uzaqlardayım!\nNə vaxt dönərəm bilmirəm !\nDeyəsən bir neçə dəqiqə sonra!`",
     "`Sahibim indi məşğuldu. Adınızı, nömrənizi və adresinizi versəniz ona yönləndirə bilərəm və beləliklə geri döndüyü zaman.`",
     "`İnsan sevdiyini itirən zaman,canı yanar yanar yanaaaaaar.\nBoyyy bağışla bilmirdim burda kimsə var,sahibim burada deil`",
