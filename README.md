@@ -18,7 +18,7 @@ Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun deyilənləri ardı
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/umudmmmdov1/DTOUserBot)
  
 ## Video qurulum
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://
+[![Videoya keçid et](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
 ## Məlumat 
 ```
 Botu düzgün istifade etmediyiniz halda hesabınız blonlana biler.
