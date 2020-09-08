@@ -19,13 +19,8 @@ Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun deyilənləri ardı
  
 ## Video qurulum
 
-object width="425" height="350">
-  <param name="movie" value="https://m.youtube.com/watch?v=7SU9RjCktHo&t=1s" />
-  <param name="wmode" value="transparent" />
-  <embed src="https://m.youtube.com/watch?v=7SU9RjCktHo&t=1s"
-         type="application/x-shockwave-flash"
-         wmode="transparent" width="425" height="350" />
-</object>
+[![Fibonacci RMI Java EE](http://img.youtube.com/vi/nX_inqaAzOI/0.jpg)]
+(https://www.youtube.com/watch?v=nX_inqaAzOI&feature=youtu.be&hd=1 "RMI Fibonacci Java")
 
 Hər hansı bir şikayət & təklifiniz varsa [dəstək g
 qrupuna](https://t.me/DTOsupport) yaza bilərsiz.
