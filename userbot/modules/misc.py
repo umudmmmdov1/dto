@@ -14,7 +14,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Birkaç küçük komutu içeren UserBot modülü. """
+""" Bir neçə balaca əmr olan DTÖUserBot modul listi. """
 
 from random import randint
 from asyncio import sleep
@@ -30,15 +30,15 @@ from userbot.events import register
 
 @register(outgoing=True, pattern="^.random")
 async def randomise(items):
-    """ .random komutu, eşya listesinden rastgele bir eşya seçer. """
+    """ .random əmri, əşya listindən təsadufi bir əşya seçər. """
     itemo = (items.text[8:]).split()
     if len(itemo) < 2:
         await items.edit(
-            "`2 veya daha fazla eşya gerekli. Daha fazla bilgi için .cete random komutunu gir.`"
+            "`2 vəya daha çox əşya yazmaq lazımdı. Daha çox məlumat üçün .dto random əmrini yaz.`"
         )
         return
     index = randint(1, len(itemo) - 1)
-    await items.edit("**Sorgu: **\n`" + items.text[8:] + "`\n**Çıktı: **\n`" +
+    await items.edit("**Sorğu: **\n`" + items.text[8:] + "`\n**Nəticə: **\n`" +
                      itemo[index] + "`")
 
 
@@ -78,8 +78,7 @@ async def restart(event):
     await event.edit("`DTÖUserBot yenidən başladılır...`")
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#RESTART \n"
-                                        "CeteBot yeniden başladı.")
-
+                                        "DTÖUserBot yenidən başladı.")
     try:
         await bot.disconnect()
     except:
@@ -90,19 +89,18 @@ async def restart(event):
 
 @register(outgoing=True, pattern="^.support$")
 async def bot_support(wannahelp):
-    """ .support komutu destek grubumuzu verir. """
-    await wannahelp.edit("[Buradan](http://t.me/DTOUserBot) destek grubumuza ulaşabilirsiniz.")
+    """ .support əmri ilə dəstək qrupumuza gələ bilərsiz. """
+    await wannahelp.edit("[Buradan](http://t.me/DTOSupport) dəstək qrupumuza daxil ola bilərsiz.")
 
 
 @register(outgoing=True, pattern="^.creator$")
 async def creator(e):
-    await e.edit("Bu bot \n"
-                 "[Ümüd Məmmədov](https://t.me/@umudmmmdov1) tərəfindən editlənmişdir. \n")
+    await e.edit("Bu bot [Ümüd Məmmədov](https://t.me/umudmmmdov1) tərəfindən editlənmişdir. \n")
 
 
 @register(outgoing=True, pattern="^.readme$")
 async def reedme(e):
-    await e.edit("[CeteBot README.md](https://github.com/@BristolMyers/CeteUserBot/blob/cete/README.md)")
+    await e.edit("[DTÖUserBot README.md](https://github.com/umudmmmdov1/DTOUserBot/blob/master/README.md)")
 
 
 # Copyright (c) Gegham Zakaryan | 2019
@@ -122,8 +120,8 @@ async def repeat(rep):
 
 @register(outgoing=True, pattern="^.repo$")
 async def repo_is_here(wannasee):
-    """ .repo komutunun tek yaptığı şey GitHub repomuzun bağlantısını vermek. """
-    await wannasee.edit("[CeteBot Repo](https://github.com/umudmmmdov1/DTOUserBot)")
+    """ .repo əmrinin tək elədiyi şey GitHub repomuzun linkink vermək. """
+    await wannasee.edit("[DTÖUserBot Repo](https://github.com/umudmmmdov1/DTOUserBot)")
 
 
 @register(outgoing=True, pattern="^.raw$")
@@ -140,67 +138,67 @@ async def raw(event):
     with io.BytesIO(str.encode(the_real_message)) as out_file:
         out_file.name = "raw_message_data.txt"
         await event.edit(
-            "`Çözülmüş mesaj için userbot loglarını kontrol et!`")
+            "`Həlledilmiş mesaj üçün userbot loglarını yoxlayın!`")
         await event.client.send_file(
             BOTLOG_CHATID,
             out_file,
             force_document=True,
             allow_cache=False,
             reply_to=reply_to_id,
-            caption="`Çözülen mesaj`")
+            caption="`Həlledilən mesaj`")
 
 
 CMD_HELP.update({
     'random':
     '.random <eşya1> <eşya2> ... <eşyaN>\
-\nKullanım: Eşya listesinden rastgele bir eşya seçer'
+\nİşlədili: Əşya listindən təsadufi bir əşya seçər'
 })
 
 CMD_HELP.update({
     'sleep':
     '.sleep <saniye>\
-\nKullanım: Cete de bir insan, o da yoruluyor. Ara sıra biraz uyumasına izin ver.'
+\nİşlədilişi: DTÖUserBot, o da yorulur. Ara sıra biraz yatmasına icazə ver.'
 })
 
 CMD_HELP.update({
     "shutdown":
     ".shutdown\
-\nKullanım: Bazen canın botunu kapatmak ister. Gerçekten o nostaljik\
-Windows XP kapanış sesini duyabileceğini zannedersin..."
+\nİşlədilişi: Bəzən canın botunu söndürmək istəyər. Həqiqi o nostaljik\
+Windows XP bağlanış səsini eşidə biləcəyini zənn edərsən..."
 })
 
 CMD_HELP.update(
     {'support': ".support\
-\nKullanım: Yardıma ihtiyacın olursa bu komutu kullan."
+\nİşlədilişi: Yardıma ehtiyacın olursa bu əmri işləd."
      })
 
 CMD_HELP.update({
     'repo':
     '.repo\
-\nKullanım: Cete UserBot GitHub reposu'
+\nİşlədilişi: DTÖUserBot GitHub reposu'
 })
 
 CMD_HELP.update({
     "readme":
     ".readme\
-\nİşlədilişi: Cete botunun GitHub'daki README.md dosyasına giden bir bağlantı."
+\nİşlədilişi: DTÖUserBotun GitHub'daki README.md faylina gedən bir link."
 })
 
 CMD_HELP.update(
     {"creator": ".creator\
-\nKullanım: Bu güzel botu kimlerin oluşturduğunu öğren :-)"})
+\nİşlədilişi: Bu gözəl botu kimlərin yaratdığına bax :-)"})
 
 CMD_HELP.update({
     "repeat":
-    ".repeat <sayı> <metin>\
-\nKullanım: Bir metni belli bir sayıda tekrar eder. Spam komutu ile karıştırma!"
+    ".repeat <sayı> <mesaj>\
+\nİşlədilişi: Bir mətni bəlli bir sayda təkrar edər. Spam əmri ilə qarışdırma!"
 })
 
 CMD_HELP.update({"restart": ".restart\
-\nKullanım: Botu yeniden başlatır."})
+\nİşlədilişi: Botu yenidən başladar."})
 
 CMD_HELP.update({
     "raw":
     ".raw\
-\nKullanım: Kullanılan mesaj hakkında JSON'a benzer bir şekilde detaylı bilgiler verir."
+\nİşlədilişi: İşləilən mesaj haqqında JSON'a oxşar bir şəkildə ətraflı məlumat verir."
 })
