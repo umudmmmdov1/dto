@@ -14,7 +14,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-""" AFK ile ilgili komutları içeren UserBot modülü """
+""" AFK DTÖUserBot Modul"""
 
 from random import choice, randint
 from asyncio import sleep
@@ -27,35 +27,35 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 AFKSTR = [
-    "Şu an acele işim var, daha sonra mesaj atsan olmaz mı? Zaten yine geleceğim.",
-    "Aradığınız kişi şu anda telefona cevap veremiyor. Sinyal sesinden sonra kendi tarifeniz üzerinden mesajınızı bırakabilirsiniz. Mesaj ücreti 49 kuruştur. \n`biiiiiiiiiiiiiiiiiiiiiiiiiiiiip`!",
-    "Birkaç dakika içinde geleceğim. Fakat gelmezsem...\ndaha fazla bekle.",
-    "Şu an burada değilim, muhtemelen başka bir yerdeyim.",
-    "Güller kırmızı\nMenekşeler mavi\nBana bir mesaj bırak\nVe sana döneceğim.",
-    "Bazen hayattaki en iyi şeyler beklemeye değer…\nHemen dönerim.",
-    "Hemen dönerim,\nama eğer geri dönmezsem,\ndaha sonra dönerim.",
-    "Henüz anlamadıysan,\nburada değilim.",
-    "Merhaba, uzak mesajıma hoş geldiniz, bugün sizi nasıl görmezden gelebilirim?",
-    "7 deniz ve 7 ülkeden uzaktayım,\n7 su ve 7 kıta,\n7 dağ ve 7 tepe,\n7 ovala ve 7 höyük,\n7 havuz ve 7 göl,\n7 bahar ve 7 çayır,\n7 şehir ve 7 mahalle,\n7 blok ve 7 ev...\n\nMesajların bile bana ulaşamayacağı bir yer!",
-    "Şu anda klavyeden uzaktayım, ama ekranınızda yeterince yüksek sesle çığlık atarsanız, sizi duyabilirim.",
-    "Şu yönde ilerliyorum\n---->",
-    "Şu yönde ilerliyorum\n<----",
-    "Lütfen mesaj bırakın ve beni zaten olduğumdan daha önemli hissettirin.",
-    "Sahibim burada değil, bu yüzden bana yazmayı bırak.",
-    "Burada olsaydım,\nSana nerede olduğumu söylerdim.\n\nAma ben değilim,\ngeri döndüğümde bana sor...",
-    "Uzaklardayım!\nNe zaman dönerim bilmiyorum !\nUmarım birkaç dakika sonra!",
-    "Sahibim şuan da müsait değil. Adınızı, numarınızı ve adresinizi verirseniz ona iletibilirm ve böylelikle geri döndüğü zaman.",
-    "Üzgünüm, sahibim burada değil.\nO gelene kadar benimle konuşabilirsiniz.\nSahibim size sonra döner.",
-    "Bahse girerim bir mesaj bekliyordun!",
-    "Hayat çok kısa, yapacak çok şey var...\nOnlardan birini yapıyorum...",
-    "Şu an burada değilim....\nama öyleysem ...\n\nbu harika olmaz mıydı?",
+    "`İndi təcili işim var, daha sonra mesaj atsan olar? Onsuz yenə gələcəm.`",
+    "`Bu nömrəyə zəng çatmır. Telefon ya söndürülüb yada əhatə dairəsi xaricindədi. Zəhmət olmasa yenidən cəhd edin.` \n`biiiiiiiiiiiiiiiiiiiiiiiiiiiiip`!",
+    "`Bir neçə dəqiqə içində gələcəyəm. Ancaq gələ bilməsəm...\ndaha çox gözlə.`",
+    "`İndi burada deyiləm, başqa yerdəyəm.`",
+    "`Güllər qırmızı\nYerlər yaşıl\nMənə bir mesaj at\ncavab verəcəm.`",
+    "`Bəzən həyatda ki ən yaxşı şeyləri gözləməyə dəyər…\nTez gələrəm.`",
+    "`Tez gələrəm,\nama əyər geri gəlməzsəm,\ndaha sonra gələrəm.`",
+    "`Hələdə anlamadınsa,\nburada deyiləm.`",
+    "`Salam, sahibimin mesajıma xoş gəldiniz, bugün sizi necə görməzdən gələ bilərəm?`",
+    "`7 dəniz və 7 ölkədən uzaqdayam,\n7 su və 7 qitə,\n7 dağ və 7 təpə,\n7 oval və 7 kurqan,\n7 hovuz və 7 göl,\n7 bahar ve 7 çay,\n7 şəhər və 7 məhəllə,\n7 blok və 7 ev...\n\nMesajların belə mənə əlaqə saxlaya bilməyəcəyin yer.!`",
+    "`İndi klaviaturadan uzağam, ama ekranınızda yeterincə yüksək səslə qışqırığ atsanız, sizi eşidə bilərəm.`",
+    "`Bu tərəfdən irəlləyirəm\n---->`"
+    "`Bu tərəfdən irəlliyirəm\n<----`",
+    "`Zəhmət olmasa mesaj buraxın və məni onsuz olduğumdan daha dəyərli hiss etdirə bilərsən.`",
+    "`Sahibim burada deyil, buna görə mənə mesaj yazmanı dayandır.`",
+    "`Burada olsaydım,\nSənə harada olduğumu deyərdim.\n\nAma mən deiləm,\ngeri gəldiyiyimdə məndən soruş...`",
+    "`Uzaqlardayım!\nNə vaxt dönərəm bilmirəm !\nDeyəsən bir neçə dəqiqə sonra!`",
+    "`Sahibim indi məşğuldu. Adınızı, nömrənizi və adresinizi versəniz ona yönləndirə bilərəm və beləliklə geri döndüyü zaman.`",
+    "`İnsan sevdiyini itirən zaman,canı yanar yanar yanaaaaaar.\n Boyyy bağışla bilmirdim burda kimsə var,sahibim burada deil`",
+    "`Mərcə girərəmko bu mesajı gözlüyürdüm!`",
+    "`Həyat qısa,dəyməz qıza...\nSahibim burada deil ama belə zarafatlar edə bilərəm 🤗...`",
+    "`İndi burada deiləm....\nama burda olsaydım ...\n\nbu möhtəşəm olmaz idimi?`",
 ]
 # =================================================================
 
 
 @register(incoming=True, disable_edited=True)
 async def mention_afk(mention):
-    """ Bu fonksiyon biri sizi etiketlediğinde sizin AFK olduğunuzu bildirmeye yarar."""
+    """ AFK Tag."""
     global COUNT_MSG
     global USERS
     global ISAFK
@@ -63,7 +63,7 @@ async def mention_afk(mention):
         if ISAFK:
             if mention.sender_id not in USERS:
                 if AFKREASON:
-                    await mention.reply(f"Sahibim halen AFK.\
+                    await mention.reply(f"`Sahibim hələdə AFK.`\
                         \nSebep: `{AFKREASON}`")
                 else:
                     await mention.reply(str(choice(AFKSTR)))
@@ -72,7 +72,7 @@ async def mention_afk(mention):
             elif mention.sender_id in USERS:
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await mention.reply(f"Sahibim halen AFK.\
+                        await mention.reply(f"`Sahibim hələdə AFK.`\
                             \nSebep: `{AFKREASON}`")
                     else:
                         await mention.reply(str(choice(AFKSTR)))
@@ -85,7 +85,7 @@ async def mention_afk(mention):
 
 @register(incoming=True, disable_errors=True)
 async def afk_on_pm(sender):
-    """ Siz afk iken PM atanları afk olduğunuza dair bildirmeye yarayan fonksiyondur. """
+    """ AFK PM """
     global ISAFK
     global USERS
     global COUNT_MSG
@@ -102,7 +102,7 @@ async def afk_on_pm(sender):
         if apprv and ISAFK:
             if sender.sender_id not in USERS:
                 if AFKREASON:
-                    await sender.reply(f"Sahibim şu an AFK.\
+                    await sender.reply(f"`Sahibim hələdə AFK.`\
                     \nSebep: `{AFKREASON}`")
                 else:
                     await sender.reply(str(choice(AFKSTR)))
@@ -111,7 +111,7 @@ async def afk_on_pm(sender):
             elif apprv and sender.sender_id in USERS:
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await sender.reply(f"Sahibim halen AFK.\
+                        await sender.reply(f"`Sahibim halen AFK.`\
                         \nSebep: `{AFKREASON}`")
                     else:
                         await sender.reply(str(choice(AFKSTR)))
@@ -124,39 +124,39 @@ async def afk_on_pm(sender):
 
 @register(outgoing=True, pattern="^.afk(?: |$)(.*)", disable_errors=True)
 async def set_afk(afk_e):
-    """ .afk komutu siz afk iken insanları afk olduğunuza dair bilgilendirmeye yarar. """
+    """ .afk əmri siz afk olduğunuz zaman sizi kimsə tağ edəndə və yaxud yazanda afk olduğunuzu bildirər. """
     message = afk_e.text
     string = afk_e.pattern_match.group(1)
     global ISAFK
     global AFKREASON
     if string:
         AFKREASON = string
-        await afk_e.edit(f"Artık AFK'yım.\
-        \nSebep: `{string}`")
+        await afk_e.edit(f"`AFK'yəm.`\
+        \n`Səbəb:` `{string}`")
     else:
-        await afk_e.edit("Artık AFK'yım. CeteBot")
+        await afk_e.edit("`Artıq AFK`yəm. DTÖUserBot 🇦🇿`")
     if BOTLOG:
-        await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nAFK oldunuz.")
+        await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\n`AFK olduz.`")
     ISAFK = True
     raise StopPropagation
 
 
 @register(outgoing=True)
 async def type_afk_is_not_true(notafk):
-    """ Bu kısım bir yere bir şey yazdığınızda sizi AFK modundan çıkarmaya yarar. """
+    """ AFK Deaktiv """
     global ISAFK
     global COUNT_MSG
     global USERS
     global AFKREASON
     if ISAFK:
         ISAFK = False
-        await notafk.respond("Artık AFK değilim. CeteBot")
+        await notafk.respond("`Artıq AFK deyiləm. DTÖUserBot 🇦🇿`")
         await sleep(2)
         if BOTLOG:
             await notafk.client.send_message(
                 BOTLOG_CHATID,
-                "Siz AFK iken " + str(len(USERS)) + " kişi size " +
-                str(COUNT_MSG) + " mesaj gönderdi.",
+                "`Siz AFK olan vaxt` " + str(len(USERS)) + " `nəfər sizə` " +
+                str(COUNT_MSG) + " `mesaj göndərdi.`",
             )
             for i in USERS:
                 name = await notafk.client.get_entity(i)
@@ -164,7 +164,7 @@ async def type_afk_is_not_true(notafk):
                 await notafk.client.send_message(
                     BOTLOG_CHATID,
                     "[" + name0 + "](tg://user?id=" + str(i) + ")" +
-                    " size " + "`" + str(USERS[i]) + " mesaj gönderdi`",
+                    " size " + "`" + str(USERS[i]) + " mesaj göndərdi`",
                 )
         COUNT_MSG = 0
         USERS = {}
@@ -173,8 +173,8 @@ async def type_afk_is_not_true(notafk):
 
 CMD_HELP.update({
     "afk":
-    ".afk [İsteğe bağlı sebep]\
-\nKullanım: AFK olduğunuzu belirtir.\nKim size pm atarsa ya da sizi etiketlerse \
-sizin AFK olduğunuzu ve belirlediğiniz sebebi gösterir.\n\nHerhangi bir yere mesaj yazdığınızda AFK modu kapanır.\
+    ".afk [İstəyə bağlı səbəb]\
+\nİşlədilişi: AFK olduğunuzu bildirər.\nKim sizə özəl mesajda yazarsa yada tağ edərsə\
+sizin AFK olduğunuzu və bildirər səbəbi göstərir.\n\nHər hansı bir yerə mesaj yazdığınızda AFK modu sönür.\
 "
 })
