@@ -556,25 +556,24 @@ async def gspider(gspdr):
                 f"USER: [{user.first_name}](tg://user?id={user.id})\n"
                 f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
 
-
 @register(outgoing=True, pattern="^.zombies(?: |$)(.*)", groups_only=False)
 async def rm_deletedacc(show):
-    """ .zombies əmri bir sohbətdə bütün ruh / silinmiş / zombi hesablarını list edər. """
+    """ .zombies komutu bir sohbette tüm hayalet / silinmiş / zombi hesaplarını listeler. """
 
     con = show.pattern_match.group(1).lower()
     del_u = 0
-    del_status = "`Silinmiş hesap tapılmadı, qrup təmiz`"
+    del_status = "`Silinmiş hesap bulunamadı, grup temiz`"
 
     if con != "clean":
-        await show.edit("`DTÖUserBot ruh / silinmiş / zombi hesabları axtarılır...`")
+        await show.edit("`CeteBot hayalet / silinmiş / zombi hesapları aranıyor...`")
         async for user in show.client.iter_participants(show.chat_id):
 
             if user.deleted:
                 del_u += 1
                 await sleep(1)
         if del_u > 0:
-            del_status = f"**`Bu qrupda` **{del_u}** `dənə ruh / silinmiş / zombi hesab tapıldı,\
-            \ntəmizləmək üçün --.zombies clean-- əmrini işlədin`"
+            del_status = f"**`Bu grupta` **{del_u}** `tane hayalet / silinmiş / zombi hesap bulundu,\
+            \ntemizlemek için --.zombies clean-- komutunu kullanın`"
         await show.edit(del_status)
         return
 
@@ -584,10 +583,10 @@ async def rm_deletedacc(show):
     creator = chat.creator
 
     if not admin and not creator:
-        await show.edit("`Admin deiləm!`")
+        await show.edit("`Yönetici değilim!`")
         return
 
-    await show.edit("`DTÖUserBot silinmiş hesabları çıxardır...`")
+    await show.edit("`CeteBot Silinmiş hesapları çıkartıyor...`")
     del_u = 0
     del_a = 0
 
@@ -600,18 +599,18 @@ async def rm_deletedacc(show):
                 del_u -= 1
                 del_a += 1
             except:
-                await show.edit("`Bu qrupda ban vermək icazəm yoxdur`")
+                await show.edit("`Bu grupta ban yetkim bulunmamakta`")
                 return
             await show.client(
                 EditBannedRequest(show.chat_id, user.id, UNBAN_RIGHTS))
             del_u += 1
 
     if del_u > 0:
-        del_status = f"**{del_u}** dənə silinmiş hesab qrupdan çıxarıldı"
+        del_status = f"**{del_u}** tane silinmiş hesap gruptan çıkarıldı"
 
     if del_a > 0:
-        del_status = f"**{del_u}** dənə silinmiş hesab qrupdan çıxarıldı \
-        \n**{del_a}** dənə silinmiş olan admin hesabları çıxarılamadı"
+        del_status = f"**{del_u}** tane silinmiş hesap gruptan çıkarıldı \
+        \n**{del_a}** tane silinmiş olan yönetici hesapları çıkartılamadı"
 
     await show.edit(del_status)
     await sleep(2)
@@ -620,16 +619,16 @@ async def rm_deletedacc(show):
     if BOTLOG:
         await show.client.send_message(
             BOTLOG_CHATID, "#TEMIZLIK\n"
-            f"**{del_u}** dənə silinmiş hesap çıxarıldı !!\
+            f"**{del_u}** tane silinmiş hesap çıkartıldı !!\
             \nGRUP: {show.chat.title}(`{show.chat_id}`)")
 
 
 @register(outgoing=True, pattern="^.admins$")
 async def get_admin(show):
-    """ .admins əmri ilə qrupdakı admin listinə baxa bilərsiz """
+    """ .admins komutu girilen gruba ait yöneticileri listeler """
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
-    mentions = f'<b>{title} qrupunun adminləri:</b> \n'
+    mentions = f'<b>{title} grubunun yöneticileri:</b> \n'
     try:
         async for user in show.client.iter_participants(
                 show.chat_id, filter=ChannelParticipantsAdmins):
@@ -660,7 +659,7 @@ async def pin(msg):
     to_pin = msg.reply_to_msg_id
 
     if not to_pin:
-        await msg.edit("`Sabitləmək üçün mənə mesaj ver`")
+        await msg.edit("`Sabitlemek için herhangi bir mesaja yanıt verin`")
         return
 
     options = msg.pattern_match.group(1)
@@ -677,7 +676,7 @@ async def pin(msg):
         await msg.edit(NO_PERM)
         return
 
-    await msg.edit("`DTÖUserBot mesajı pinlədi!`")
+    await msg.edit("`CeteBot Mesajı Başarıyla sabitledi!`")
 
     user = await get_user_from_id(msg.from_id, msg)
 
@@ -691,7 +690,7 @@ async def pin(msg):
 
 @register(outgoing=True, pattern="^.kick(?: |$)(.*)")
 async def kick(usr):
-    """ .kick əmri ilə istofadəçini qrupdan ata bilərsiz """
+    """ .kick komutu belirlenen kişiyi gruptan çıkartır """
     # Yetki kontrolü
     chat = await usr.get_chat()
     admin = chat.admin_rights
@@ -704,17 +703,17 @@ async def kick(usr):
 
     user, reason = await get_user_from_event(usr)
     if not user:
-        await usr.edit("`İstifadəçi tapılmadı.`")
+        await usr.edit("`Kullanıcı bulunamadı.`")
         return
 
     # Eğer kullanıcı sudo ise
     if user.id in BRAIN_CHECKER:
         await usr.edit(
-            "`Kick Xətası! DTÖUserBot adminini qrupdan ata bilmərəm.`"
+            "`Kick Hatası! Cete Yetkilisini gruptan tekmeleyemem.`"
         )
         return
 
-    await usr.edit("`DTÖUserBot tərəfindən istifadəçi qrupdan çıxarılır...`")
+    await usr.edit("`CeteBot Trafından Kullanıcı Çıkartılıyor...`")
 
     try:
         await usr.client.kick_participant(usr.chat_id, user.id)
@@ -725,17 +724,17 @@ async def kick(usr):
 
     if reason:
         await usr.edit(
-            f"[{user.first_name}](tg://user?id={user.id}) `qrupdan çıxarıldı !`\nSəbəbi: {reason}"
+            f"[{user.first_name}](tg://user?id={user.id}) `gruptan atıldı !`\nNedeni: {reason}"
         )
     else:
         await usr.edit(
-            f"[{user.first_name}](tg://user?id={user.id}) `qrupdan çıxarıldı !`")
+            f"[{user.first_name}](tg://user?id={user.id}) `gruptan atıldı !`")
 
     if BOTLOG:
         await usr.client.send_message(
             BOTLOG_CHATID, "#KICK\n"
-            f"İSTİFADECİ: [{user.first_name}](tg://user?id={user.id})\n"
-            f"QRUP: {usr.chat.title}(`{usr.chat_id}`)\n")
+            f"KULLANICI: [{user.first_name}](tg://user?id={user.id})\n"
+            f"GRUP: {usr.chat.title}(`{usr.chat_id}`)\n")
 
 
 @register(outgoing=True, pattern="^.users ?(.*)")
@@ -750,7 +749,7 @@ async def get_users(show):
                 if not user.deleted:
                     mentions += f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
                 else:
-                    mentions += f"\nSilinən hesab `{user.id}`"
+                    mentions += f"\nSilinen hesap `{user.id}`"
         else:
             searchq = show.pattern_match.group(1)
             async for user in show.client.iter_participants(
@@ -758,28 +757,28 @@ async def get_users(show):
                 if not user.deleted:
                     mentions += f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
                 else:
-                    mentions += f"\nSilinən hesab `{user.id}`"
+                    mentions += f"\nSilinen hesap `{user.id}`"
     except Exception as err:
         mentions += " " + str(err) + "\n"
     try:
         await show.edit(mentions)
     except MessageTooLongError:
         await show.edit(
-            "`Lənət olsun, Çox böyük qrupdu. İstifadəçi listini fayl olaraq göndərirəm.")
+            "Lanet olsun, bu büyük bir grup. Kullanıcı listesini dosya olarak gönderiyorum.")
         file = open("userslist.txt", "w+")
         file.write(mentions)
         file.close()
         await show.client.send_file(
             show.chat_id,
             "userslist.txt",
-            caption='{} qrupundakı insanlar'.format(title),
+            caption='{} grubundaki kişiler'.format(title),
             reply_to=show.id,
         )
         remove("userslist.txt")
 
 
 async def get_user_from_event(event):
-    """ İstifadəçinin ya yönlədirilən mesajını alın. """
+    """ Kullanıcıyı argümandan veya yanıtlanan mesajdan alın. """
     args = event.pattern_match.group(1).split(' ', 1)
     extra = None
     if event.reply_to_msg_id and not len(args) == 2:
@@ -795,7 +794,7 @@ async def get_user_from_event(event):
             user = int(user)
 
         if not user:
-            await event.edit("`İstifadəçinin istifadəçi adını, ID'sini vəya mesajını yönləndirin!`")
+            await event.edit("`Kişinin kullanıcı adını, ID'sini veya yanıtını iletin!`")
             return
 
         if event.message.entities is not None:
@@ -830,10 +829,10 @@ async def get_user_from_id(user, event):
 
 @register(outgoing=True, pattern="^.usersdel ?(.*)")
 async def get_usersdel(show):
-    """ .usersdel əmri qrup içində ki silinən hesabları gösterər """
+    """ .usersdel komutu grup içinde ki silinen hesapları gösterir """
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
-    mentions = '{} qrupunda tapılan silinmiş hesablar: \n'.format(title)
+    mentions = '{} grubunda bulunan silinmiş hesaplar: \n'.format(title)
     try:
         if not show.pattern_match.group(1):
             async for user in show.client.iter_participants(show.chat_id):
@@ -855,14 +854,14 @@ async def get_usersdel(show):
         await show.edit(mentions)
     except MessageTooLongError:
         await show.edit(
-            "Lənət olsun, bu büyük bir qrupdur. Silinən istifadəçilərin listini fayl olaraq göndərirəm.")
+            "Lanet olsun, bu büyük bir grup. Silinen kullanıcılar listesini dosya olarak gönderiyorum.")
         file = open("userslist.txt", "w+")
         file.write(mentions)
         file.close()
         await show.client.send_file(
             show.chat_id,
             "deleteduserslist.txt",
-            caption='{} qrupuna aid olan silinmiş hesablar:'.format(title),
+            caption='{} grubuna ait olan silinmiş hesaplar:'.format(title),
             reply_to=show.id,
         )
         remove("deleteduserslist.txt")
@@ -885,7 +884,7 @@ async def get_userdel_from_event(event):
             user = int(user)
 
         if not user:
-            await event.edit("`Silinən hesabın istifadəçi adını, ID'sini vəya mesajını yönləndirin!`")
+            await event.edit("`Silinen kullanıcının kullanıcı adını, ID'sini veya yanıtını iletin!`")
             return
 
         if event.message.entities is not None:
@@ -920,13 +919,13 @@ async def get_userdel_from_id(user, event):
 
 @register(outgoing=True, pattern="^.bots$", groups_only=True)
 async def get_bots(show):
-    """ .bots əmri qrupa aid olan botları list edər """
+    """ .bots komutu gruba ait olan botları listeler """
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
-    mentions = f'<b> {title} qrupunda tapılan botlar:</b>\n'
+    mentions = f'<b> {title} grubunda bulunan botlar:</b>\n'
     try:
        # if isinstance(message.to_id, PeerChat):
-        #    await show.edit("`Sadəcə super qrupların botlara sahip ola biləcəyini eşitdim.`")
+        #    await show.edit("`Sadece süper grupların botlara sahip olabileceğini duydum.`")
         #   return
        # else:
         async for user in show.client.iter_participants(
@@ -943,17 +942,18 @@ async def get_bots(show):
         await show.edit(mentions, parse_mode="html")
     except MessageTooLongError:
         await show.edit(
-            "Lənət olsun, burada çox bot var. Botların listini fayl olaraq göndərirəm.")
+            "Lanet olsun, burada çok fazla bot var. Botların listesini dosya olarak gönderiyorum.")
         file = open("botlist.txt", "w+")
         file.write(mentions)
         file.close()
         await show.client.send_file(
             show.chat_id,
             "botlist.txt",
-            caption='{} qrupunda tapılan botlar:'.format(title),
+            caption='{} grubunda bulunan botlar:'.format(title),
             reply_to=show.id,
         )
         remove("botlist.txt")
+
 
 CMD_HELP.update({
     "admin":
