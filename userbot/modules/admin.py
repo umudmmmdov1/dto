@@ -1,18 +1,10 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2020 BristolMyers z2sofwares.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Cete UserBot - BristolMyers z2sofwares
 
 """
 Grup yönetmenize yardımcı olacak UserBot modülü
@@ -39,17 +31,17 @@ from userbot import BOTLOG, BOTLOG_CHATID, BRAIN_CHECKER, CMD_HELP, bot
 from userbot.events import register
 
 # =================== CONSTANT ===================
-PP_TOO_SMOL = "`Şəkil çox balacadı`"
-PP_ERROR = "`Şəkil yüklənən zaman xəta yarandı`"
-NO_ADMIN = "`Admin deyiləm!`"
-NO_PERM = "`Bəzi icazələrim yoxdur!`"
-NO_SQL = "`SQL dışı modda işləyir!`"
+PP_TOO_SMOL = "`Görüntü çok küçük`"
+PP_ERROR = "`Görüntü işleme sırasında hata oluştu`"
+NO_ADMIN = "`Yönetici değilim!`"
+NO_PERM = "`Yeterli iznim yok!`"
+NO_SQL = "`SQL dışı modda çalışıyor!`"
 
-CHAT_PP_CHANGED = "`Qrup şəkili dəyişdirildi!`"
-CHAT_PP_ERROR = "`Şəkili yeniləyərkən bəzi xətalar yarandı.`" \
-                "`Bəlkə də bir admin deyiləm`" \
-                "`ya da yetərli icazələrə sahib deiləm.`"
-INVALID_MEDIA = "`Keçərsiz əlavə`"
+CHAT_PP_CHANGED = "`Grup resmi değiştirildi`"
+CHAT_PP_ERROR = "`Resmi güncellerken bazı sorunlar oluştu.`" \
+                "`Belki de bir yönetici değilim`" \
+                "`ya da yeterli haklara sahip değilim.`"
+INVALID_MEDIA = "`Geçersiz uzantı`"
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -82,9 +74,9 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 @register(outgoing=True, pattern="^.setgpic$")
 async def set_group_photo(gpic):
-    """ .setgpic əmri ilə qrupunuzun fotosunu dəyişdirə bilərsiniz! """
+    """ .setgpic komutu ile grubunuzun fotoğrafını değiştirebilirsiniz """
     if not gpic.is_group:
-        await gpic.edit("`Bunun bir qrup olduğuna inanmıram.`")
+        await gpic.edit("`Bunun bir grup olduğunu sanmıyorum.`")
         return
     replymsg = await gpic.get_reply_message()
     chat = await gpic.get_chat()
@@ -120,7 +112,7 @@ async def set_group_photo(gpic):
 @register(outgoing=True, pattern="^.promote(?: |$)(.*)")
 @register(incoming=True, from_users=BRAIN_CHECKER, pattern="^.promote(?: |$)(.*)")
 async def promote(promt):
-    """ .promote əmri ilə istədiyin istifadəçini admin edər """
+    """ .promote komutu ile belirlenen kişiyi yönetici yapar """
     # Hedef sohbeti almak
     chat = await promt.get_chat()
     # Yetkiyi sorgula
@@ -142,7 +134,7 @@ async def promote(promt):
     await promt.edit("`Yetkilendiriliyor...`")
     user, rank = await get_user_from_event(promt)
     if not rank:
-        rank = "Admin"  # Her ihtimale karşı.
+        rank = "Yönetici"  # Her ihtimale karşı.
     if user:
         pass
     else:
@@ -152,7 +144,7 @@ async def promote(promt):
     try:
         await promt.client(
             EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
-        await promt.edit("`Admin edildi!`")
+        await promt.edit("`Başarıyla yetkilendirildi!`")
 
     # Telethon BadRequestError hatası verirse
     # yönetici yapma yetkimiz yoktur
@@ -170,7 +162,7 @@ async def promote(promt):
 
 @register(outgoing=True, pattern="^.demote(?: |$)(.*)")
 async def demote(dmod):
-    """ .demote əmri seçdiyin insanın adminliyini alar """
+    """ .demote komutu belirlenen kişiyi yöneticilikten çıkarır """
     # Yetki kontrolü
     chat = await dmod.get_chat()
     admin = chat.admin_rights
@@ -181,7 +173,7 @@ async def demote(dmod):
         return
 
     # Eğer başarılı olursa, yetki düşürüleceğini beyan edelim
-    await dmod.edit("`Adminlikdən çıxarılır...`")
+    await dmod.edit("`Yetki düşürülüyor...`")
     rank = "admeme"  # Burayı öylesine yazdım
     user = await get_user_from_event(dmod)
     user = user[0]
@@ -219,7 +211,7 @@ async def demote(dmod):
 
 @register(outgoing=True, pattern="^.ban(?: |$)(.*)")
 async def ban(bon):
-    """ .ban əmri seçdiyin istifadəçini banlayar """
+    """ .ban komutu belirlenen kişiyi gruptan yasaklar """
     # Yetki kontrolü
     chat = await bon.get_chat()
     admin = chat.admin_rights
@@ -238,12 +230,12 @@ async def ban(bon):
     # Eğer kullanıcı sudo ise
     if user.id in BRAIN_CHECKER:
         await bon.edit(
-            "`Ban Xətası! DTÖUserBot adminini banlaya bilmərəm.`"
+            "`Ban Hatası! Cete Yetkilisini yasaklayamam.`"
         )
         return
 
     # Hedefi yasaklayacağınızı duyurun
-    await bon.edit("`Düşman DTÖUserBot tərəfindən vuruldu!`")
+    await bon.edit("`Düşman Cete Tarafından vuruldu!`")
 
     try:
         await bon.client(EditBannedRequest(bon.chat_id, user.id,
@@ -258,25 +250,25 @@ async def ban(bon):
             await reply.delete()
     except:
         await bon.edit(
-            "`Mesaj atma haqqın yoxdur, ama yenədə banladız!`")
+            "`Mesaj atma hakkım yok! Ama yine de kullanıcı yasaklandı!`")
         return
     # Mesajı silin ve ardından komutun
     # incelikle yapıldığını söyleyin
     if reason:
-        await bon.edit(f"`{str(user.id)}` banlandı !!\nNedeni: {reason}")
+        await bon.edit(f"`{str(user.id)}` yasaklandı !!\nNedeni: {reason}")
     else:
-        await bon.edit(f"`{str(user.id)}` banlandı !!")
+        await bon.edit(f"`{str(user.id)}` yasaklandı !!")
     # Yasaklama işlemini günlüğe belirtelim
     if BOTLOG:
         await bon.client.send_message(
             BOTLOG_CHATID, "#BAN\n"
-            f"İSTİFADECİ: [{user.first_name}](tg://user?id={user.id})\n"
-            f"QRUP: {bon.chat.title}(`{bon.chat_id}`)")
+            f"KULLANICI: [{user.first_name}](tg://user?id={user.id})\n"
+            f"GRUP: {bon.chat.title}(`{bon.chat_id}`)")
 
 
 @register(outgoing=True, pattern="^.unban(?: |$)(.*)")
 async def nothanos(unbon):
-    """ .unban əmri seçdiyin istifadəçinin banını qaldırar """
+    """ .unban komutu belirlenen kişinin yasağını kaldırır """
     # Yetki kontrolü
     chat = await unbon.get_chat()
     admin = chat.admin_rights
@@ -287,7 +279,7 @@ async def nothanos(unbon):
         return
 
     # Her şey yolunda giderse...
-    await unbon.edit("`DTÖUserBot istifadəçini bandan çıxarır, zəhmət olmasa gözləyin...`")
+    await unbon.edit("`CeteBot Yasağı Kaldırıyor Lütfen Bekleyiniz...`")
 
     user = await get_user_from_event(unbon)
     user = user[0]
@@ -299,15 +291,15 @@ async def nothanos(unbon):
     try:
         await unbon.client(
             EditBannedRequest(unbon.chat_id, user.id, UNBAN_RIGHTS))
-        await unbon.edit("```Bandan çıxarıldı```")
+        await unbon.edit("```Yasaklama başarıyla kaldırıldı```")
 
         if BOTLOG:
             await unbon.client.send_message(
                 BOTLOG_CHATID, "#UNBAN\n"
-                f"İSTİFADECİ: [{user.first_name}](tg://user?id={user.id})\n"
-                f"QRUP: {unbon.chat.title}(`{unbon.chat_id}`)")
+                f"KULLANICI: [{user.first_name}](tg://user?id={user.id})\n"
+                f"GRUP: {unbon.chat.title}(`{unbon.chat_id}`)")
     except:
-        await unbon.edit("`Deyəsən bu istifadəçiyə ban atmaq mümkün deil`")
+        await unbon.edit("`Sanırım bu kişi yasaklama mantığım ile uyuşmuyor`")
 
 
 @register(outgoing=True, pattern="^.mute(?: |$)(.*)")
@@ -341,7 +333,7 @@ async def spider(spdr):
     # Eğer kullanıcı sudo ise
     if user.id in BRAIN_CHECKER:
         await spdr.edit(
-            "`Mute Xətası! DTÖUserBot adminini susdura bilmərəm.`"
+            "`Mute Hatası! Cete Yetkilisini susturamam.`"
         )
         return
 
@@ -349,13 +341,13 @@ async def spider(spdr):
 
     if user.id == self_user.id:
         await spdr.edit(
-            "`Təəsüf edirəm ama özümü susdura bilmərəm...\n(ヘ･_･)ヘ┳━┳`")
+            "`Üzgünüm ama kendime sessize alamam...\n(ヘ･_･)ヘ┳━┳`")
         return
 
     # Hedefi sustaracağınızı duyurun
-    await spdr.edit("`DTÖUserBot istifadəçini susdurarkən gözləyin...`")
+    await spdr.edit("`CeteBot Kullanıcıyı Susturuken Lütfen Bekleyin...`")
     if mute(spdr.chat_id, user.id) is False:
-        return await spdr.edit('`Xəta! İstifadəçi onsuz susdurulub.`')
+        return await spdr.edit('`Hata! Kullanıcı zaten sessize alındı.`')
     else:
         try:
             await spdr.client(
@@ -365,27 +357,27 @@ async def spider(spdr):
         except UserAdminInvalidError:
             await mutmsg(spdr, user, reason)
         except:
-            return await spdr.edit("`Deyəsən bu istifadəçi səssizə atmaq mümküm deil`")
+            return await spdr.edit("`Sanırım bu kişi sessize alma mantığım ile uyuşmuyor`")
 
 
 async def mutmsg(spdr, user, reason):
     # Fonksiyonun yapıldığını duyurun
     if reason:
-        await spdr.edit(f"`İstifadəçi susduruldu !!`\nSəbəbi: {reason}")
+        await spdr.edit(f"`Kullanıcı sessize alındı !!`\nNedeni: {reason}")
     else:
-        await spdr.edit("`Şşş indi səssiz ol !!`")
+        await spdr.edit("`Şşş Sessiz ol şimdi !!`")
 
     # Susturma işlemini günlüğe belirtelim
     if BOTLOG:
         await spdr.client.send_message(
             BOTLOG_CHATID, "#MUTE\n"
-            f"İSTİFADECİ: [{user.first_name}](tg://user?id={user.id})\n"
-            f"QRUP: {spdr.chat.title}(`{spdr.chat_id}`)")
+            f"KULLANICI: [{user.first_name}](tg://user?id={user.id})\n"
+            f"GRUP: {spdr.chat.title}(`{spdr.chat_id}`)")
 
 
 @register(outgoing=True, pattern="^.unmute(?: |$)(.*)")
 async def unmoot(unmot):
-    """ .unmute əmri ilə istifadəçinin səsini açar(yəni qrupda təkrardan danışa bilər) """
+    """ .unmute komutu belirlenin kişinin sesini açar (yani grupta tekrardan konuşabilir) """
     # Yetki kontrolü
     chat = await unmot.get_chat()
     admin = chat.admin_rights
@@ -403,7 +395,7 @@ async def unmoot(unmot):
         await unmot.edit(NO_SQL)
         return
 
-    await unmot.edit('```DTÖUserBot istifadəçinin səsini açır, gözləyin...```')
+    await unmot.edit('```CeteBot Kullanıcıyı Sessizden çıkartıyor...```')
     user = await get_user_from_event(unmot)
     user = user[0]
     if user:
@@ -412,24 +404,24 @@ async def unmoot(unmot):
         return
 
     if unmute(unmot.chat_id, user.id) is False:
-        return await unmot.edit("`Xəta! İstifadəçi onsuz səssizdə deildi.`")
+        return await unmot.edit("`Hata! Kullanıcı zaten sessizden çıkarıldı.`")
     else:
 
         try:
             await unmot.client(
                 EditBannedRequest(unmot.chat_id, user.id, UNBAN_RIGHTS))
-            await unmot.edit("`Danışa bilərsən! bir daha diqqətli ol :)!`")
+            await unmot.edit("`Konuşabilirsin bir daha dikkatli ol :)!`")
         except UserAdminInvalidError:
-            await unmot.edit("`Danışa bilərsən! bir daha diqqəli ol :)!`")
+            await unmot.edit("`Konuşabilirsin bir daha dikkatli ol :)!`")
         except:
-            await unmot.edit("`Deyəsən bu istifadəçi səssizdən çıxarılma məntiqlərinə uymur`")
+            await unmot.edit("`Sanırım bu kişi sessizden çıkarma mantığım ile uyuşmuyor`")
             return
 
         if BOTLOG:
             await unmot.client.send_message(
                 BOTLOG_CHATID, "#UNMUTE\n"
-                f"İSTİFADECİ: [{user.first_name}](tg://user?id={user.id})\n"
-                f"QRUP: {unmot.chat.title}(`{unmot.chat_id}`)")
+                f"KULLANICI: [{user.first_name}](tg://user?id={user.id})\n"
+                f"GRUP: {unmot.chat.title}(`{unmot.chat_id}`)")
 
 
 @register(incoming=True)
@@ -468,7 +460,7 @@ async def muter(moot):
 
 @register(outgoing=True, pattern="^.ungmute(?: |$)(.*)")
 async def ungmoot(un_gmute):
-    """ .ungmute əmri seçilən istifadəçinin qlobal səssizdən çıxarar """
+    """ .ungmute komutu belirlenen kişinin küresel susturulmasını kaldırır """
     # Yetki kontrolü
     chat = await un_gmute.get_chat()
     admin = chat.admin_rights
@@ -493,13 +485,13 @@ async def ungmoot(un_gmute):
     else:
         return
 
-    await un_gmute.edit('```DTÖUserBot tərəfindən qlobal olaraq susdurulmaqdan çıxarılır...```')
+    await un_gmute.edit('```CeteBot Tarafından Küresel susturma kaldırılıyor...```')
 
     if ungmute(user.id) is False:
-        await un_gmute.edit("`Xəta! Deyəsən istifadəçinin cəzası yoxdur.`")
+        await un_gmute.edit("`Hata! Muhtemelen kullanıcının kısıtlanması yok.`")
     else:
         # Başarı olursa bilgi ver
-        await un_gmute.edit("```Danışa bilərsən bir daha sonra diqqətli ol :)```")
+        await un_gmute.edit("```Konuşabilirsin bir daha dikkatli ol :)```")
 
         if BOTLOG:
             await un_gmute.client.send_message(
@@ -510,7 +502,7 @@ async def ungmoot(un_gmute):
 
 @register(outgoing=True, pattern="^.gmute(?: |$)(.*)")
 async def gspider(gspdr):
-    """ .gmute əmri seçilən istofadəçinin qlobal olaraq  susdurar """
+    """ .gmute komutu belirlenen kişiyi küresel olarak susturur """
     # Yetki kontrolü
     chat = await gspdr.get_chat()
     admin = chat.admin_rights
@@ -536,25 +528,26 @@ async def gspider(gspdr):
 
     # Eğer kullanıcı sudo ise
     if user.id in BRAIN_CHECKER:
-        await gspdr.edit("`Gmute Xətası! DTÖUserBot Adminini qlobal olaraq susdura bilmərəm.`")
+        await gspdr.edit("`Gmute Hatası! Cete Yetkilisini küresel olarak susturamam.`")
         return
 
     # Başarı olursa bilgi ver
-    await gspdr.edit("`DTÖUserBot istifadəçini qlobal olaraq susdurur...`")
+    await gspdr.edit("`CeteBot Kullacıyı Küresel Susturuyor...`")
     if gmute(user.id) is False:
         await gspdr.edit(
-            '`Xəta! İstifadəçi onsuz qlobal olaraq susdurulub.`')
+            '`Hata! Kullanıcı zaten küresel olarak susturuldu.`')
     else:
         if reason:
-            await gspdr.edit(f"`İstifadəçi qlobal olaraq susduruldu!`Səbəbi: {reason}")
+            await gspdr.edit(f"`Kullanıcı küresel olarak susturuldu!`Nedeni: {reason}")
         else:
-            await gspdr.edit("`İstifadəçi qlobal olaraq susduruldu!`")
+            await gspdr.edit("`Kullanıcı küresel olarak susturuldu!`")
 
         if BOTLOG:
             await gspdr.client.send_message(
                 BOTLOG_CHATID, "#GMUTE\n"
                 f"USER: [{user.first_name}](tg://user?id={user.id})\n"
                 f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
+
 
 @register(outgoing=True, pattern="^.zombies(?: |$)(.*)", groups_only=False)
 async def rm_deletedacc(show):
