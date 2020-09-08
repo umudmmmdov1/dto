@@ -19,8 +19,9 @@ Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun deyilənləri ardı
  
 ## Video qurulum
 
-[![Fibonacci RMI Java EE](http://img.youtube.com/vi/nX_inqaAzOI/0.jpg)]
-(https://www.youtube.com/watch?v=nX_inqaAzOI&feature=youtu.be&hd=1 "RMI Fibonacci Java")
+<br>
+        <a href="https://youtube.com/">Videoya baxmaq üçün klikləyin</a>
+    <br>
 
 Hər hansı bir şikayət & təklifiniz varsa [dəstək g
 qrupuna](https://t.me/DTOsupport) yaza bilərsiz.
