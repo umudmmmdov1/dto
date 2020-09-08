@@ -975,8 +975,8 @@ CMD_HELP.update({
 \n\n.ungmute <istifadəçi adı/cavablama>\
 \nİşlədilişi: İstifadəçiyi qlobal olaraq səssizə alınanlar listindən qaldırar.\
 \n\n.zombies\
-\nİşlədilişi: Bir qrupdakı silinmiş hesabları axtarar. Qrupdan silinən hesabları silmək üçün --.zombies clean-- əmrini işlədin.\
-\n\n.admins
+\nKullanım: Bir gruptaki silinmiş hesapları arar. Gruptan silinen hesapları kaldırmak için --.zombies clean-- komutunu kullanın.\
+\n\n.admins\
 \nİşlədilişi: Söhbət adminlərinin listini alar.\
 \n\n.bots\
 \nİşlədilişi: Söhbət içində tapılan botların listini alar.\
