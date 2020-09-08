@@ -13,11 +13,11 @@
 
 ## Qurulum
 
-Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun deyilənləri ardılcılıqla edin
+Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/umudmmmdov1/DTOUserBot)
  
-## Video qurulum
+## Video qurullum
 [![Videoya keçid et](https://timesofindia.indiatimes.com/thumb/msid-75369164,width-400,resizemode-4/75369164.jpg)](https://youtu.be/vt5fpE0bzSY)
 ## Məlumat 
 ```
