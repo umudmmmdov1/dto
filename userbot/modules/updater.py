@@ -161,7 +161,7 @@ async def upstream(ups):
             repo.__del__()
             return
         await ups.edit('`[Yenilənmə]\
-                        \nYenilənmələr yüklənir, zəhmət olmaza gözləyin...\nYenilənmə 10 dəqiqə çəkəcək`'
+                        \nYenilənmələr yüklənir, zəhmət olmasa gözləyin...\nYenilənmə maksimum 10 dəqiqə çəkəcək`'
                        )
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
