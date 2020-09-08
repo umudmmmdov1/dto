@@ -75,7 +75,9 @@ async def bot_ver(event):
         revout = str(stdout.decode().strip()) \
             + str(stderr.decode().strip())
 
-        await event.edit("`DTÖUserBot Versiyası: v0.2"
+        await event.edit("`DTÖUserBot Versiyası:"
+                         f"{verout}" 
+                         "` \n"
                          "`Toplam dəyişikliklər: "
                          f"{revout}"
                          "`")
