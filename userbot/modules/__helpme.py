@@ -29,13 +29,13 @@ from userbot.events import register
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.WARNING)
 
-@register(outgoing=True, pattern="^.yardım")
+@register(outgoing=True, pattern="^.komek")
 async def yardim(event):
     tgbotusername = BOT_USERNAME
     if tgbotusername is not None:
         results = await event.client.inline_query(
             tgbotusername,
-            "@CeteUserBot"
+            "@DTOUserBot"
         )
         await results[0].click(
             event.chat_id,
@@ -44,4 +44,4 @@ async def yardim(event):
         )
         await event.delete()
     else:
-        await event.edit("`Bot çalışmıyor! Lütfen Bot Tokeni ve Kullanıcı adını doğru ayarlayın. Modül durduruldu.`")
+        await event.edit("`Bot işləmir! Zəhmət olmasa Bot Tokeni və istifadəçi adını düzgün düzəldin. Modul dayandırıldı.`")
