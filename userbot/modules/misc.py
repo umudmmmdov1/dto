@@ -66,7 +66,7 @@ async def shutdown(event):
     await event.edit("`Sağol 😌... *Windows XP sönmə səsi*`")
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n"
-                                        "Bot kapatıldı.")
+                                        "Bot söndürüldü.")
     try:
         await bot.disconnect()
     except:
