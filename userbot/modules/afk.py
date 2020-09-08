@@ -1,4 +1,4 @@
-# Copyright (C) 2020 TeamDerUntergang.
+io# Copyright (C) 2020 TeamDerUntergang.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -131,10 +131,10 @@ async def set_afk(afk_e):
     global AFKREASON
     if string:
         AFKREASON = string
-        await afk_e.edit(f"`Artıq AFK'yəm.`\
+        await afk_e.edit(f"`Artıq AFK'yam.`\
         \n`Səbəb:` `{string}`")
     else:
-        await afk_e.edit("`Artıq AFK`yam`")
+        await afk_e.edit("`Artıq AFK'yam`")
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\n`AFK olduz.`")
     ISAFK = True
