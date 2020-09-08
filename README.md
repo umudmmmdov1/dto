@@ -19,9 +19,7 @@ Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun deyilənləri ardı
  
 ## Video qurulum
 
-<br>
-        <a href="https://youtube.com/">Videoya baxmaq üçün klikləyin</a>
-    <br>
+<br><a href="https://youtube.com/">Videoya baxmaq üçün klikləyin</a><br>
 
 Hər hansı bir şikayət & təklifiniz varsa [dəstək g
 qrupuna](https://t.me/DTOsupport) yaza bilərsiz.
