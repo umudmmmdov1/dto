@@ -17,6 +17,6 @@ from userbot.events import register
 async def oof(e):
     t = "cart"
     for j in range(16):
-        t = t[:-1] + "art"
+        t = t[:-1] + "rt"
         await e.edit(t)
         
