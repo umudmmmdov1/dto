@@ -21,9 +21,6 @@ Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun deyilənləri ardı
 
 <br><a href="https://youtube.com/">Videoya baxmaq üçün klikləyin</a><br>
 
-Hər hansı bir şikayət & təklifiniz varsa [dəstək g
-qrupuna](https://t.me/DTOsupport) yaza bilərsiz.
-
 ```
 Botu düzgün istifade etmediyiniz halda hesabınız blonlana biler.
 Botun yanlış istifadesi halında mesuliyyet tamamile istifadeçiyi 
@@ -31,3 +28,6 @@ aiddir.DTÖ qrupu olaraq heç bir mesuliyyet qebul etmirik.
 Botu telegramı daha rahat istifade elemek xaricinde eylenmek
 üçün de istifade ede bilersiniz.
 ```
+
+Hər hansı bir şikayət & təklifiniz varsa [dəstək g
+qrupuna](https://t.me/DTOsupport) yaza bilərsiz
