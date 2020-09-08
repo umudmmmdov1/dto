@@ -102,12 +102,12 @@ def register(**args):
                     text += f"- sadəcə bu mesajı bura yönləndirin {link}.\n"
                     text += "Xətadan başqa heçbir şey qeyd olunmur!\n"
 
-                    ftext = "========== UYARI =========="
-                    ftext += "\nBu dosya sadece burada yüklendi,"
-                    ftext += "\nsadece hata ve tarih kısmını kaydettik,"
-                    ftext += "\ngizliliğinize saygı duyuyoruz,"
-                    ftext += "\nburada herhangi bir gizli veri varsa"
-                    ftext += "\nbu hata raporu olmayabilir, kimse verilerinize ulaşamaz.\n"
+                    ftext = "========== XEBERDARLIQ =========="
+                    ftext += "\nBu fayl sadece burada yüklendi,"
+                    ftext += "\nsadece xeta ve tarix qismink qeyd eledik,"
+                    ftext += "\ngizliliyinize hörmet edirik,"
+                    ftext += "\nburada her hansı bir gizli veri varsa"
+                    ftext += "\nbu xeta şikayetj olmaya biler, kimse verilerinize oğurlayamaz.\n"
                     ftext += "================================\n\n"
                     ftext += "--------USERBOT XETA GUNLUYU--------\n"
                     ftext += "\nTarix: " + date
@@ -115,7 +115,7 @@ def register(**args):
                     ftext += "\nGönderen istifadecinin ID: " + str(check.sender_id)
                     ftext += "\n\nHadise:\n"
                     ftext += str(check.text)
-                    ftext += "\n\nGeri dönme melumatı:\n"
+                    ftext += "\n\nMelumat:\n"
                     ftext += str(format_exc())
                     ftext += "\n\nHata metni:\n"
                     ftext += str(sys.exc_info()[1])
