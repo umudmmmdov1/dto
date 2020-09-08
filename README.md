@@ -20,7 +20,7 @@ Botu qurmaq üçün aşağıdakı Heroku logosuna daxil olun deyilənləri ardı
 ## Video qurulum
 
 <br><a href="https://youtube.com/">Videoya baxmaq üçün klikləyin</a><br>
-
+## Məlumat 
 ```
 Botu düzgün istifade etmediyiniz halda hesabınız blonlana biler.
 Botun yanlış istifadesi halında mesuliyyet tamamile istifadeçiyi 
