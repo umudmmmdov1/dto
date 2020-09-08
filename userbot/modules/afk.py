@@ -45,7 +45,7 @@ AFKSTR = [
     "`Burada olsaydım,\nSənə harada olduğumu deyərdim.\n\nAma mən deiləm,\ngeri gəldiyiyimdə məndən soruş...`",
     "`Uzaqlardayım!\nNə vaxt dönərəm bilmirəm !\nDeyəsən bir neçə dəqiqə sonra!`",
     "`Sahibim indi məşğuldu. Adınızı, nömrənizi və adresinizi versəniz ona yönləndirə bilərəm və beləliklə geri döndüyü zaman.`",
-    "`İnsan sevdiyini itirən zaman,canı yanar yanar yanaaaaaar.\n Boyyy bağışla bilmirdim burda kimsə var,sahibim burada deil`",
+    "`İnsan sevdiyini itirən zaman,canı yanar yanar yanaaaaaar.\nBoyyy bağışla bilmirdim burda kimsə var,sahibim burada deil`",
     "`Mərcə girərəmko bu mesajı gözlüyürdüm!`",
     "`Həyat qısa,dəyməz qıza...\nSahibim burada deil ama belə zarafatlar edə bilərəm 🤗...`",
     "`İndi burada deiləm....\nama burda olsaydım ...\n\nbu möhtəşəm olmaz idimi?`",
@@ -63,7 +63,7 @@ async def mention_afk(mention):
         if ISAFK:
             if mention.sender_id not in USERS:
                 if AFKREASON:
-                    await mention.reply(f"`Sahibim hələdə AFK.`\
+                    await mention.reply(f"`Sahibim hələdə AFKdir.`\
                         \nSebep: `{AFKREASON}`")
                 else:
                     await mention.reply(str(choice(AFKSTR)))
@@ -72,7 +72,7 @@ async def mention_afk(mention):
             elif mention.sender_id in USERS:
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await mention.reply(f"`Sahibim hələdə AFK.`\
+                        await mention.reply(f"`Sahibim hələdə AFKdir.`\
                             \nSebep: `{AFKREASON}`")
                     else:
                         await mention.reply(str(choice(AFKSTR)))
@@ -102,7 +102,7 @@ async def afk_on_pm(sender):
         if apprv and ISAFK:
             if sender.sender_id not in USERS:
                 if AFKREASON:
-                    await sender.reply(f"`Sahibim hələdə AFK.`\
+                    await sender.reply(f"`Sahibim hələdə AFKdir.`\
                     \nSebep: `{AFKREASON}`")
                 else:
                     await sender.reply(str(choice(AFKSTR)))
@@ -111,7 +111,7 @@ async def afk_on_pm(sender):
             elif apprv and sender.sender_id in USERS:
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await sender.reply(f"`Sahibim halen AFK.`\
+                        await sender.reply(f"`Sahibim halen AFKdir.`\
                         \nSebep: `{AFKREASON}`")
                     else:
                         await sender.reply(str(choice(AFKSTR)))
@@ -131,10 +131,10 @@ async def set_afk(afk_e):
     global AFKREASON
     if string:
         AFKREASON = string
-        await afk_e.edit(f"`AFK'yəm.`\
+        await afk_e.edit(f"`Artıq AFK'yəm.`\
         \n`Səbəb:` `{string}`")
     else:
-        await afk_e.edit("`Artıq AFK`yəm. DTÖUserBot 🇦🇿`")
+        await afk_e.edit("`Artıq AFK`yam`")
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\n`AFK olduz.`")
     ISAFK = True
@@ -150,7 +150,7 @@ async def type_afk_is_not_true(notafk):
     global AFKREASON
     if ISAFK:
         ISAFK = False
-        await notafk.respond("`Artıq AFK deyiləm. DTÖUserBot 🇦🇿`")
+        await notafk.respond("`Artıq AFK deyiləm.`")
         await sleep(2)
         if BOTLOG:
             await notafk.client.send_message(
