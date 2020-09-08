@@ -123,7 +123,7 @@
       "required": false
     },
     "ANTI_SPAMBOT": {
-      "description": "AntiSpamBot qarşı olan özəllik",
+      "description": "Spama qarşı olan özəllik aktiv etmək istəyirsizsə True yazın.",
       "value": "False"
     },
     "ANTI_SPAMBOT_SHOUT": {
