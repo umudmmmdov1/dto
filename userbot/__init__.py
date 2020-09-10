@@ -58,7 +58,7 @@ def paginate_help(page_number, loaded_modules, prefix):
         pairs = pairs[modulo_page * number_of_rows:number_of_rows * (modulo_page + 1)] + \
             [
             (custom.Button.inline("⬅️Geri", data="{}_prev({})".format(prefix, modulo_page)),
-             custom.Button.inline("İleri➡️", data="{}_next({})".format(prefix, modulo_page)))
+             custom.Button.inline("İrəli➡️", data="{}_next({})".format(prefix, modulo_page)))
         ]
     return pairs
 
@@ -79,8 +79,8 @@ else:
 LOGS = getLogger(__name__)
 
 if version_info[0] < 3 or version_info[1] < 6:
-    LOGS.info("En az python 3.6 sürümüne sahip olmanız gerekir."
-              "Birden fazla özellik buna bağlıdır. Bot kapatılıyor.")
+    LOGS.info("Ən azından python 3.6 versiyasına sahib olmanız lazımdır."
+              "Birdən çox özəlliy buna bağlıdır. Bot söndürülür.")
     quit(1)
 
 # Yapılandırmanın önceden kullanılan değişkeni kullanarak düzenlenip düzenlenmediğini kontrol edin.
@@ -227,7 +227,7 @@ else:
 if os.path.exists("dtobrain"):
     os.remove("dtobrain")
 else:
-    LOGS.info("Braincheck dosyası yok, getiriliyor...")
+    LOGS.info("Braincheck faylı yoxdur, gətirilir...")
 
 URL = 'https://raw.githubusercontent.com/umudmmmdov1/DunyaTurkOrgutu/master/dtobrain.check'
 
@@ -238,12 +238,12 @@ with open('dtobrain', 'wb') as load:
 async def check_botlog_chatid():
     if not BOTLOG_CHATID and LOGSPAMMER:
         LOGS.info(
-            "Özel hata günlüğünün çalışması için yapılandırmadan BOTLOG_CHATID değişkenini ayarlamanız gerekir.")
+            "Özəl xəta günlüyünün işdəməsi üçün quraşdırılma BOTLOG_CHATID dəyişkənink düzəltmək lazımdır.")
         quit(1)
 
     elif not BOTLOG_CHATID and BOTLOG:
         LOGS.info(
-            "Günlüğe kaydetme özelliğinin çalışması için yapılandırmadan BOTLOG_CHATID değişkenini ayarlamanız gerekir.")
+            "Günlüyə qeydetmə özəlliyinin işdəməsi üçün quraşdırmadan əvvəl BOTLOG_CHATID dəyişkənini düzəltmək lazımdır.")
         quit(1)
 
     elif not BOTLOG or not LOGSPAMMER:
@@ -252,8 +252,8 @@ async def check_botlog_chatid():
     entity = await bot.get_entity(BOTLOG_CHATID)
     if entity.default_banned_rights.send_messages:
         LOGS.info(
-            "Hesabınızın BOTLOG_CHATID grubuna mesaj gönderme yetkisi yoktur. "
-            "Grup ID'sini doğru yazıp yazmadığınızı kontrol edin.")
+            "Hesabınızın BOTLOG_CHATID qrupuna mesaj göndərmə icazəsi yoxdur. "
+            "Qrup ID'sini doğru yazıb yazmadığınızı yoxlayın.")
         quit(1)
 if BOT_TOKEN != None:
     tgbot = TelegramClient(
@@ -277,40 +277,40 @@ with bot:
         @tgbot.on(events.NewMessage(pattern='/start'))
         async def handler(event):
             if not event.message.from_id == uid:
-                await event.reply(f'`Merhaba ben` @DTOUserBot`! Ben sahibime (`@{me.username}`) yardımcı olmak için varım, yaani sana yardımcı olamam :/ Ama sen de bir Seden açabilirsin; Kanala bak` @CeteUserBot')
+                await event.reply(f'`Salam mən` @DTOUserBot`! Mən sahibimə (`@{me.username}`) kömək olmaq üçün varam, yəni sənə kömək ola bilmərəm :/ Ama sən də bir DTÖUserBota qoşula bilərsən; Qrupa gəl` @DTOSupport')
             else:
-                await event.reply(f'`Senin için çalışıyorum :) Seni seviyorum. ❤️`')
+                await event.reply(f'`Sənin üçün işdəyirəm :) Səni sevirəm. ❤️`')
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
             builder = event.builder
             result = None
             query = event.text
-            if event.query.user_id == uid and query == "@CeteUserBot":
+            if event.query.user_id == uid and query == "@DTOUserBot":
                 rev_text = query[::-1]
                 buttons = paginate_help(0, moduller, "helpme")
                 result = builder.article(
-                    f"Lütfen Sadece .yardım Komutu İle Kullanın",
-                    text="{}\nYüklenen Modül Sayısı: {}".format(
-                        "Merhaba! Ben @DTOUserBot kullanıyorum!\n\nhttps://github.com/BristolMyers/CeteUserBot", len(moduller)),
+                    f"Zəhmət olmasa sadəce .komek əmri ilə işlədin",
+                    text="{}\nYüklənən Modul Sayı: {}".format(
+                        "Salam! Mən @DTOUserBot işlədirəm!\n\nhttps://github.com/umudmmmdov1/DTOUserBot", len(moduller)),
                     buttons=buttons,
                     link_preview=False
                 )
             elif query.startswith("tb_btn"):
                 result = builder.article(
                     "© @DTOUserBot",
-                    text=f"@DTOUserBot ile güçlendirildi",
+                    text=f"@DTOUserBot ile gücləndirildi",
                     buttons=[],
                     link_preview=True
                 )
             else:
                 result = builder.article(
                     "© @DTOUserBot",
-                    text="""@DTOUserBot'u kullanmayı deneyin!
+                    text="""@DTOUserBot'u işlətməyi yoxlayın!
 Hesabınızı bot'a çevirebilirsiniz ve bunları kullanabilirsiniz. Unutmayın, siz başkasının botunu yönetemezsiniz! Alttaki GitHub adresinden tüm kurulum detayları anlatılmıştır.""",
                     buttons=[
-                        [custom.Button.url("Kanala Katıl", "https://t.me/DTOUserBot"), custom.Button.url(
-                            "Gruba Katıl", "https://t.me/DTOUserBot")],
+                        [custom.Button.url("Qrupa qatıl", "https://t.me/DTOSupport"), custom.Button.url(
+                            "Kanala qatıl", "https://t.me/DTOUserBot")],
                         [custom.Button.url(
                             "GitHub", "https://github.com/umudmmmdov1/DTOUserBot")]
                     ],
@@ -330,7 +330,7 @@ Hesabınızı bot'a çevirebilirsiniz ve bunları kullanabilirsiniz. Unutmayın,
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = "Lütfen kendine bir @DTOUserBot aç, benim mesajlarımı düzenlemeye çalışma!"
+                reply_pop_up_alert = "Zəhmət olmasa özümə @DTOUserBot botunu quraşdır, mənim mesajlarımı düzəltməyə çalışma!"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @tgbot.on(events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -348,7 +348,7 @@ Hesabınızı bot'a çevirebilirsiniz ve bunları kullanabilirsiniz. Unutmayın,
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = "Lütfen kendine bir @DTOUserBot aç, benim mesajlarımı düzenlemeye çalışma!"
+                reply_pop_up_alert = "Zəhmət olmasa özünə @DTOUserBot botunu quraşdır, mənim mesajlarımı düzəltməyə çalışma!"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @tgbot.on(events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -361,30 +361,30 @@ Hesabınızı bot'a çevirebilirsiniz ve bunları kullanabilirsiniz. Unutmayın,
                 cmdhel = str(CMD_HELP[modul_name])
                 if len(cmdhel) > 90:
                     help_string = str(CMD_HELP[modul_name])[
-                        :90] + "\n\nDevamı için .cete " + modul_name + " yazın."
+                        :90] + "\n\nDavamı üçün .dto " + modul_name + " yazın."
                 else:
                     help_string = str(CMD_HELP[modul_name])
 
                 reply_pop_up_alert = help_string if help_string is not None else \
-                    "{} modülü için herhangi bir döküman yazılmamış.".format(
+                    "{} modulu üçün məlumat yazılmayıb.".format(
                         modul_name)
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
             else:
-                reply_pop_up_alert = "Lütfen kendine bir @DTOUserBot aç, benim mesajlarımı düzenlemeye çalışma!"
+                reply_pop_up_alert = "Zəhmət olmasa özünə @DTOUserBot botunu quraşdır, mənim mesajlarımı düzəltməyə çalışma!"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
     except:
         LOGS.info(
-            "Botunuzda inline desteği devre dışı bırakıldı. "
-            "Etkinleştirmek için bir bot token tanımlayın ve botunuzda inline modunu etkinleştirin. "
-            "Eğer bunun dışında bir sorun olduğunu düşünüyorsanız bize ulaşın."
+            "Botunuzda inline dəstəyi deaktiv edildi. "
+            "Aktiv eləmək üçün bir bot token düzəldin və botunuzda inline modunu aktivləşdirin. "
+            "Əgər bunun xaricində bir problem olduğunu düşünürsüzsə bizlə əlaqə yaradın."
         )
 
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
     except:
         LOGS.info(
-            "BOTLOG_CHATID ortam değişkeni geçerli bir varlık değildir. "
-            "Ortam değişkenlerinizi / config.env dosyanızı kontrol edin." 
+            "BOTLOG_CHATID ortam dəyişkəni düzgün bir varlıq deyil. "
+            "Ortam dəyişkənlərinizi / config.env faylını yoxlayın." 
         )
         quit(1)
 
