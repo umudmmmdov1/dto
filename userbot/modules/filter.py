@@ -50,11 +50,11 @@ async def filter_incoming_handler(handler):
 
 @register(outgoing=True, pattern="^.filter (\w*)")
 async def add_new_filter(new_handler):
-    """ .filter komutu bir sohbete yeni filtreler eklemeye izin verir """
+    """ .filter əmri söhbətdə filterlər əlavə edər """
     try:
         from userbot.modules.sql_helper.filter_sql import add_filter
     except AttributeError:
-        await new_handler.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await new_handler.edit("`Bot Non-SQL modunda işdəyir!!`")
         return
     mesj = new_handler.text
 
@@ -89,11 +89,11 @@ async def add_new_filter(new_handler):
     elif new_handler.reply_to_msg_id and not string:
         rep_msg = await new_handler.get_reply_message()
         string = rep_msg.text
-    success = " **{}** `filtresi {}`"
+    success = " **{}** `filteri {}`"
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
-        await new_handler.edit(success.format(keyword, 'eklendi'))
+        await new_handler.edit(success.format(keyword, 'əlavə olundu'))
     else:
-        await new_handler.edit(success.format(keyword, 'güncellendi'))
+        await new_handler.edit(success.format(keyword, 'yeniləndi'))
 
 
 @register(outgoing=True, pattern="^.stop (\w*)")
@@ -170,5 +170,5 @@ CMD_HELP.update({
     \n\n.stop <filter>\
     \nİşlədilişi: Seçilən filteri dayandırır.\
     \n\n.rmbotfilters <marie/rose>\
-    \nİşlədilişi: Qrup yönəldən botlarındakı bütün filtreləri silər. (Hələlik Rose, Marie ve Marie klonları dəstəkləyir.)"
+    \nİşlədilişi: Qrup yönəldən botlarındakı bütün filtreləri silər. (Hələlik Rose, Marie ve Marie klonları dəstəkləyir)"
 })
