@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Cete UserBot - BristolMyers z2sofwares
+# DTÖUserBot - Ümüd Məmmədov
 import asyncio
 import json
 import logging
