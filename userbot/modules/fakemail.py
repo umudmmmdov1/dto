@@ -4,9 +4,9 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Cete UserBot - BristolMyers
+# DTÖUserBot - Ümüd Məmmədov
 
-""" İnsanlarla eğlenmek için yapılmış olan UserBot modülü. """
+""" İnsanlarla əylənməm üçün hazırlana UserBot modul. """
 
 from asyncio import sleep
 from random import choice, getrandbits, randint
@@ -39,7 +39,7 @@ async def fakemail(event):
       return
    chat = "@fakemailbot"
    command = "/generate"
-   await event.edit("```Fakemail Oluşturuluyor lütfen bekle CeteUserBot...```")
+   await event.edit("```Fakemail yaradılır zəhmət olmasa gözlə...```")
    async with event.client.conversation(chat) as conv:
       try:
          m = await event.client.send_message("@fakemailbot","/generate")
@@ -58,7 +58,7 @@ async def mailid(event):
       return
    chat = "@fakemailbot"
    command = "/id"
-   await event.edit("```Fakemail listesi getiriliyor lütfen bekleyin```")
+   await event.edit("```Fakemail listi gətirilir zəhmət olmaza gözləyin```")
    async with event.client.conversation(chat) as conv:
         try:
             m = await event.client.send_message("@fakemailbot","/id")
@@ -67,6 +67,6 @@ async def mailid(event):
             mail = k[0].text
             # print(k[0].text)
         except YouBlockedUserError:
-            await event.reply("```Lütfe @fakemailbot engellemesini kaldırın tekrar deneyin```")
+            await event.reply("```Zəhmət olmasa @fakemailbot blokunu açıb yenidən cəhd edin```")
             return
         await event.edit(mail)
