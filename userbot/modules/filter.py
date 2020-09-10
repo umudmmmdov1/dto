@@ -150,7 +150,7 @@ async def filters_active(event):
     transact = "`Bu söhbətdə heç bir filter yoxdur.`"
     filters = get_filters(event.chat_id)
     for filt in filters:
-        if transact == "`Bu sohbətdə heç bir filter yoxdu.`":
+        if transact == "`Bu sohbətdəki filterlər: `":
             transact = "Sohbətdəki filterlər:\n"
             transact += "`{}`\n".format(filt.keyword)
         else:
