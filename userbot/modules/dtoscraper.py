@@ -112,7 +112,7 @@ async def _(event):
     if reply_message.sender.bot:
        await event.edit("`Lütfen gerçekten bir kullanıcının mesajına yanıt verin.`")
        return
-    await event.edit("`CeteUserBot Sesi Dinliyor Lütfen Bekleyin...`")
+    await event.edit("`DTÖUserBot Sesi Dinliyor Lütfen Bekleyin...`")
     async with event.client.conversation(chat) as conv:
         try:
             await event.client.forward_messages(chat, reply_message)
