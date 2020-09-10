@@ -1,4 +1,4 @@
-#cete bristolmyers
+# @DTOUserBot
 from telethon import events
 
 import asyncio
