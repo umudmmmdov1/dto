@@ -4,9 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# CeteUserBot - BristolMyers
-# @Qulec tarafından yazılmıştır.
-#
+# @DTOUserBot - Ümüd Məmmədov
 
 import datetime
 from telethon import events
