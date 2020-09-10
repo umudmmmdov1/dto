@@ -22,7 +22,7 @@ PENIS_TEMPLATE = """
 async def emoji_sevgi(e):
     emoji = e.pattern_match.group(1)
 
-    await e.edit("Seni Seviyorum...")
+    await e.edit("`Səni Sevirəm ❤️...`")
     message = PENIS_TEMPLATE
     if emoji:
         message = message.replace('🍆', emoji)
@@ -32,5 +32,5 @@ async def emoji_sevgi(e):
 CMD_HELP.update({
     "sevgi":
     ".sevgi\
-    \nKullanım: kalp yaratır :o\n"
+    \nİşlədilişi: ürək yaradar :o\n"
 })
