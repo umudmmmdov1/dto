@@ -4,7 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 
-# @BristolMyers tarafından portlanmıştır.
 
 from userbot.events import register
 
