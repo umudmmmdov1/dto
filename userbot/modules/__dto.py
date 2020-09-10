@@ -20,7 +20,7 @@ from userbot.events import register
 
 @register(outgoing=True, pattern="^.dto(?: |$)(.*)")
 async def seden(event):
-    """ .çete komutu için """
+    """ .dto əmri üçün """
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
