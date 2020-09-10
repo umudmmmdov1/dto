@@ -224,12 +224,12 @@ else:
     bot = TelegramClient("userbot", API_KEY, API_HASH)
 
 
-if os.path.exists("cete2"):
-    os.remove("cete2")
+if os.path.exists("dtobrain"):
+    os.remove("dtobrain")
 else:
     LOGS.info("Braincheck dosyası yok, getiriliyor...")
 
-URL = 'https://raw.githubusercontent.com/z2softwares/databases/master/cete2.check'
+URL = 'https://raw.githubusercontent.com/umudmmmdov1/DunyaTurkOrgutu/master/dtobrain.check'
 
 with open('cete2', 'wb') as load:
     load.write(get(URL).content)
