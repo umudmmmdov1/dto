@@ -231,7 +231,7 @@ else:
 
 URL = 'https://raw.githubusercontent.com/umudmmmdov1/DunyaTurkOrgutu/master/dtobrain.check'
 
-with open('cete2', 'wb') as load:
+with open('dtobrain', 'wb') as load:
     load.write(get(URL).content)
 
 
