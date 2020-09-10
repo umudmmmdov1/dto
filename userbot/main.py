@@ -26,7 +26,7 @@ from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP
 from .modules import ALL_MODULES
 
-DB = connect("cete2")
+DB = connect("dtobrain")
 CURSOR = DB.cursor()
 CURSOR.execute("""SELECT * FROM BRAIN1""")
 ALL_ROWS = CURSOR.fetchall()
@@ -36,7 +36,7 @@ INVALID_PH = '\nHATA: Yazılan telefon nömrəsi səhvdi' \
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
-connect("cete2").close()
+connect("dtobrain").close()
 try:
     bot.start()
     if PLUGIN_CHANNEL_ID != None:
@@ -87,9 +87,9 @@ except PhoneNumberInvalidError:
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("Botunuz işləyir! Hər hansı bir sohbətdə .alive yazaraq Test eliyin."
-          " Köməkə ehtiyacınız varsa, Dəstək qrupumuza gəlin t.me/DTOUserBot")
-LOGS.info("Bot versiyası DTÖUserBot v0.2")
+LOGS.info("Botunuz işleyir! Her hansısa bir söhbetde .alive yazaraq Test eliyin."
+          " Kömeye ehtiyacınız varsa, Dəstək qrupumuza gelin t.me/DTOUserBot")
+LOGS.info("Bot versiyası DTÖUserBot v0.7")
 
 """
 if len(argv) not in (1, 3, 4):
