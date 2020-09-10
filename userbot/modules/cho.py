@@ -4,7 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 
-# @BristolMyers tarafından portlanmıştır.
 
 from userbot.events import register 
 from userbot import CMD_HELP, bot
@@ -14,14 +13,14 @@ PENIS_TEMPLATE = """
 ╠╬╬╬╣
 ╠╬╬╬╣ I ♥
 ╠╬╬╬╣ Chocolate
-╚╩╩╩╝ CeteUserBot
+╚╩╩╩╝ DTÖUserBot
 """
 
 @register(outgoing=True, pattern=r"^\.(?:cho)\s?(.)?")
 async def emoji_nah(e):
     emoji = e.pattern_match.group(1)
 
-    await e.edit("Cete...")
+    await e.edit("DTÖ 😈")
     message = PENIS_TEMPLATE
     if emoji:
         message = message.replace('🍆', emoji)
@@ -31,5 +30,5 @@ async def emoji_nah(e):
 CMD_HELP.update({
     "cho": 
     ".cho\
-    \nKullanım: cho yaratır :o\n"
+    \nİşlədilişi: cho yaradar :o\n"
 })
