@@ -147,10 +147,10 @@ async def filters_active(event):
     except AttributeError:
         await event.edit("`Bot Non-SQL modunda işdəyir!!`")
         return
-    transact = "`Bu söhbətdə heç bir filter yoxdur.`"
+    transact = "`Bu söhbətdəki filterlər :`"
     filters = get_filters(event.chat_id)
     for filt in filters:
-        if transact == "`Bu sohbətdəki filterlər: `":
+        if transact == "`Bu sohbətdə heç bir filter yoxdur `":
             transact = "Sohbətdəki filterlər:\n"
             transact += "`{}`\n".format(filt.keyword)
         else:
