@@ -51,7 +51,7 @@ async def speedtst(spd):
 
 def speed_convert(size):
     """
-    Merhaba Seden, baytları okuyamıyor musun?
+    Salam DTÖUserBot, baytları oxuyursan?
     """
     power = 2**10
     zero = 0
