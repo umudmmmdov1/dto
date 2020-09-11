@@ -113,16 +113,16 @@ async def delayspammer(e):
                 )
                                
 CMD_HELP.update({
-    "spammer": ".tspam <metin>\
-\nKullanım: Verilen mesajı tek tek göndererek spam yapar\
-\n\n.spam <miktar> <metin>\
-\nKullanım: Verilen miktarda spam gönderir\
-\n\n.bigspam <miktar> <metin>\
-\nKullanım: .spam komutunun büyük hali\
-\n\n.picspam <miktar> <link>\
-\nKullanım: Verilen miktarda resimli spam gönderir\
-\n\n.delayspam <gecikme> <miktar> <metin>\
-\nKullanım: Verilen miktar ve verilen gecikme ile gecikmeli spam yapar\
-\n\n\nNOT : Sorumluluk size aittir!!"
+    "spammer": ".tspam <mətin>\
+\nİşlədilişi: Verilən mesajı tək tək göndərərək spam edər\
+\n\n.spam <miqdar> <mətin>\
+\nİşlədilişi: Verilən miqdarda spam göndərər\
+\n\n.bigspam <miqdar> <mətin>\
+\nİşlədilişi: .spam əmrinin böyük hali\
+\n\n.picspam <miqdar> <link>\
+\nİşlədilişi: Verilən miqdarda şəkilli spam göndərir\
+\n\n.delayspam <gecikmə> <miqdar> <mətin>\
+\nİşlədilişi: Verilən miqdar və verilən gecikmə ilə gecikməli spam edər\
+\n\n\nMƏLUMAT : Məsuliyyət sizə aiddir!"
 })
 
