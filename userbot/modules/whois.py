@@ -14,7 +14,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Telegram'daki herhangi bir kullanıcı hakkında bilgi almak için UserBot modülü (sizde dahil!). """
+""" DTÖUserBot Telegram whois modul """
 
 import os
 
@@ -30,7 +30,7 @@ from userbot.events import register
 async def who(event):
 
     await event.edit(
-        "`*DTÖUserBot istifadəçinin məlumatlarımı araşdırmağa başladı...`")
+        "`*DTÖUserBot istifadəçinin məlumatlarımı araşdırmağa başladı*`")
 
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -40,7 +40,7 @@ async def who(event):
     try:
         photo, caption = await fetch_info(replied_user, event)
     except AttributeError:
-        event.edit("`Bu kullanıcının bilgilerini getiremedim.`")
+        event.edit("`Bu istifadəçinin məlumatlarına baxa bilmədim.`")
         return
 
     message_id_to_reply = event.message.reply_to_msg_id
@@ -66,7 +66,7 @@ async def who(event):
 
 
 async def get_user(event):
-    """ Kullanıcıyı argümandan veya yanıtlanan mesajdan alın. """
+    """ . """
     if event.reply_to_msg_id and not event.pattern_match.group(1):
         previous_message = await event.get_reply_message()
         replied_user = await event.client(
@@ -101,13 +101,12 @@ async def get_user(event):
 
 
 async def fetch_info(replied_user, event):
-    """ Kullanıcı nesnesinden ayrıntıları alın. """
     replied_user_profile_photos = await event.client(
         GetUserPhotosRequest(user_id=replied_user.user.id,
                              offset=42,
                              max_id=0,
                              limit=80))
-    replied_user_profile_photos_count = "Kişinin profil resmi yükleme konusunda yardıma ihtiyacı var."
+    replied_user_profile_photos_count = "İstifadəçinin profil şəkili yoxdur."
     try:
         replied_user_profile_photos_count = replied_user_profile_photos.count
     except AttributeError as e:
@@ -118,7 +117,7 @@ async def fetch_info(replied_user, event):
     try:
         dc_id, location = get_input_location(replied_user.profile_photo)
     except Exception as e:
-        dc_id = "DC ID getiremedim!"
+        dc_id = "DC ID ala bilmədim!"
         location = str(e)
     common_chat = replied_user.common_chats_count
     username = replied_user.user.username
@@ -131,26 +130,26 @@ async def fetch_info(replied_user, event):
                                                       str(user_id) + ".jpg",
                                                       download_big=True)
     first_name = first_name.replace(
-        "\u2060", "") if first_name else ("Bu kullanıcının adı yok")
+        "\u2060", "") if first_name else ("Bu istifadəçinin adı yoxdur")
     last_name = last_name.replace(
-        "\u2060", "") if last_name else ("Bu kullanıcının soyadı yok")
+        "\u2060", "") if last_name else ("Bu istifadəçinin soyadı yoxdur")
     username = "@{}".format(username) if username else (
-        "Bu kullanıcının kullanıcı adı yok")
-    user_bio = "Bu kullanıcının hakkında hiçbir şey yok" if not user_bio else user_bio
+        "Bu istifadəçinin istifadəçi adı yoxdur")
+    user_bio = "Bu istifadəçi haqqında heç bir şey yoxdur" if not user_bio else user_bio
 
-    caption = "<b>KULLANICI BILGISI:</b>\n\n"
-    caption += f"İsim: {first_name}\n"
-    caption += f"Soyisim: {last_name}\n"
-    caption += f"Kullanıcı Adı: {username}\n"
-    caption += f"Veri merkezi ID: {dc_id}\n"
-    caption += f"Profil resim sayısı: {replied_user_profile_photos_count}\n"
-    caption += f"Bot mu: {is_bot}\n"
-    caption += f"Kısıtlı mı: {restricted}\n"
-    caption += f"Telegram tarafından doğrulandı mı: {verified}\n"
+    caption = "<b>İstifadəçi haqqında:</b>\n\n"
+    caption += f"Ad: {first_name}\n"
+    caption += f"Soyad: {last_name}\n"
+    caption += f"İstifadəçi Adı: {username}\n"
+    caption += f"Veri mərkəzi ID: {dc_id}\n"
+    caption += f"Profil şəkil sayı: {replied_user_profile_photos_count}\n"
+    caption += f"Botdur: {is_bot}\n"
+    caption += f"Cəzalıdırmı: {restricted}\n"
+    caption += f"Telegram tərəfindən doğruulanıbmı: {verified}\n"
     caption += f"ID: <code>{user_id}</code>\n\n"
-    caption += f"Biyografi: \n<code>{user_bio}</code>\n\n"
-    caption += f"Bu kullanıcı ile ortak sohbetler: {common_chat}\n"
-    caption += f"Profil için kalıcı bağlantı: "
+    caption += f"Bioqrafiya: \n<code>{user_bio}</code>\n\n"
+    caption += f"Ortaq qruplar: {common_chat}\n"
+    caption += f"İstifadəçinin profil linki: "
     caption += f"<a href=\"tg://user?id={user_id}\">{first_name}</a>"
 
     return photo, caption
@@ -158,6 +157,6 @@ async def fetch_info(replied_user, event):
 
 CMD_HELP.update({
     "whois":
-    ".whois <kullanıcı adı> veya .whois komutu ile birinin metnine cevap verin.\
-    \nKullanım: Kullanıcının bilgilerini alır."
+    ".whois <istifadəçj adı> vəya .whois əmri ile birinin mətninə cavab verin.\
+    \nİşlədilişi: İstifadəçi haqqında məlumat alır."
 })
