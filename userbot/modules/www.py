@@ -36,15 +36,15 @@ async def speedtst(spd):
     result = test.results.dict()
 
     await spd.edit("`"
-                   "Başlama Tarihi: "
+                   "Başlama Tarixi: "
                    f"{result['timestamp']} \n\n"
-                   "İndirme Hızı: "
+                   "Yükləmə sürəti: "
                    f"{speed_convert(result['download'])} \n"
-                   "Yükleme Hızı: "
+                   "Yüklənmə sürəti: "
                    f"{speed_convert(result['upload'])} \n"
                    "Ping: "
                    f"{result['ping']} \n"
-                   "İnternet Servis Sağlayıcısı: "
+                   "İnternet Servis Serveri: "
                    f"{result['client']['isp']}"
                    "`")
 
@@ -66,27 +66,27 @@ def speed_convert(size):
 async def neardc(event):
     """ .dc komutu en yakın datacenter bilgisini verir. """
     result = await event.client(functions.help.GetNearestDcRequest())
-    await event.edit(f"Şehir : `{result.country}`\n"
-                     f"En yakın datacenter : `{result.nearest_dc}`\n"
-                     f"Şu anki datacenter : `{result.this_dc}`")
+    await event.edit(f"Şəhər : `{result.country}`\n"
+                     f"Ən yaxın datacenter : `{result.nearest_dc}`\n"
+                     f"İndiki datacenter : `{result.this_dc}`")
 
 
 @register(outgoing=True, pattern="^.ping$")
 async def pingme(pong):
     """ .ping komutu userbotun ping değerini herhangi bir sohbette gösterebilir.  """
     start = datetime.now()
-    await pong.edit("`Pong!`")
+    await pong.edit("`Pinginiz!`")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await pong.edit("`Pong!\n%sms`" % (duration))
+    await pong.edit("`Pinginiz!\n%sms`" % (duration))
 
 
 CMD_HELP.update(
     {"speed": ".speed\
-    \nKullanım: Bir speedtest uygular ve sonucu gösterir."})
+    \nİşlədilişi: İnternet sürətinizi göstərər."})
 CMD_HELP.update(
     {"dc": ".dc\
-    \nKullanım: Sunucunuza en yakın datacenter'ı gösterir."})
+    \nİşlədilişi: Serverə ən yaxın datacenter'ı göstərər"})
 CMD_HELP.update(
     {"ping": ".ping\
-    \nKullanım: Botun ping değerini gösterir."})
+    \nİşlədilişi: Pinginizi göstərər."})
