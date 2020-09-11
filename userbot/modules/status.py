@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 from userbot import CMD_HELP, ASYNC_POOL, tgbot, SPOTIFY_DC, G_DRIVE_CLIENT_ID, lastfm, LYDIA_API_KEY, YOUTUBE_API_KEY, OPEN_WEATHER_MAP_APPID, AUTO_PP, REM_BG_API_KEY, OCR_SPACE_API_KEY, PM_AUTO_BAN, BOTLOG_CHATID
 from userbot.events import register
@@ -24,11 +24,11 @@ def durum(s):
 async def durums(event):
 
     await event.edit(f"""
-**Python Sürümü:** `{python_version()}`
-**TeleThon Sürümü:** `{version.__version__}` 
-**Asena Sürümü:** `1.9`
+**Python Versiyası:** `{python_version()}`
+**TeleThon Versiyası:** `{version.__version__}` 
+**DTÖUserBot Versiyası:** `0.7`
 
-**Plugin Sayısı:** `{len(CMD_HELP)}`
+**Plugin Sayı:** `{len(CMD_HELP)}`
 
 **Inline Bot:** `{durum(tgbot)}`
 **Spotify:** `{durum(SPOTIFY_DC)}`
@@ -42,9 +42,9 @@ async def durums(event):
 **OcrSpace:** `{durum(OCR_SPACE_API_KEY)}`
 **Pm AutoBan:** `{durum(PM_AUTO_BAN)}`
 **BotLog:** `{durum(BOTLOG_CHATID)}`
-**Pluginler:** `Kalıcı`
+**Pluginler:** `Qalıcı`
 
-**Her Şey Normal ✅**
+**Her şey normaldı ✅**
     """)
 
 CMD_HELP["durum"] = ".durum\nKullanım: Eklenen Apiler ve sürümleri gösterir."
