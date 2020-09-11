@@ -14,9 +14,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-# @Qulec tarafından yazılmıştır.
-# Thanks @Spechide.
-
 import asyncio
 import json
 import logging
