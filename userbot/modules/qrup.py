@@ -14,9 +14,9 @@ from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipant
 from telethon.utils import get_input_location
 
 # FORKED FROM https://github.com/alcyper/alcyper #
-@register(outgoing=True, pattern="^.grupbilgisi(?: |$)(.*)")
+@register(outgoing=True, pattern="^.qrup(?: |$)(.*)")
 async def info(event):
-    await event.edit("`Grup analiz ediliyor...`")
+    await event.edit("`Qrup analiz edilir...`")
     chat = await get_chatinfo(event)
     caption = await fetch_info(chat, event)
     try:
@@ -51,10 +51,10 @@ async def get_chatinfo(event):
             await event.reply("`Geçersiz kanal/grup`")
             return None
         except ChannelPrivateError:
-            await event.reply("`Burası gizli grup veya Ben burdan ban yedim.`")
+            await event.reply("`Burası ya gizli qrupdu yada mən ban yedim.`")
             return None
         except ChannelPublicGroupNaError:
-            await event.reply("`Böyle bir supergrup veya kanal yok`")
+            await event.reply("`Belə bir qrup və ya kanal yoxdur`")
             return None
         except (TypeError, ValueError) as err:
             await event.reply(str(err))
@@ -131,42 +131,42 @@ async def fetch_info(chat, event):
     if chat_title is not None:
         caption += f"{chat_type} ismi: {chat_title}\n"
     if former_title is not None:  # Meant is the very first title
-        caption += f"Eski isim: {former_title}\n"
+        caption += f"Əvvəlki ad: {former_title}\n"
     if username is not None:
-        caption += f"{chat_type} türü: Açık\n"
+        caption += f"{chat_type} Açıq/Gizli : Açıq\n"
         caption += f"Link: {username}\n"
     else:
-        caption += f"{chat_type} Türü: Gizli\n"
+        caption += f"{chat_type} Açıq/Gizli : Gizli\n"
     if creator_username is not None:
-        caption += f"Kurucu: {creator_username}\n"
+        caption += f"Qurucu: {creator_username}\n"
     elif creator_valid:
-        caption += f"Kurucu: <a href=\"tg://user?id={creator_id}\">{creator_firstname}</a>\n"
+        caption += f"Qurucu: <a href=\"tg://user?id={creator_id}\">{creator_firstname}</a>\n"
     if created is not None:
-        caption += f"Kuruluş zamanı: <code>{created.date().strftime('%b %d, %Y')} - {created.time()}</code>\n"
+        caption += f"Quruluş tarixi: <code>{created.date().strftime('%b %d, %Y')} - {created.time()}</code>\n"
     else:
-        caption += f"Kuruluş zamanı: <code>{chat_obj_info.date.date().strftime('%b %d, %Y')} - {chat_obj_info.date.time()}</code> {warn_emoji}\n"
-    caption += f"VeriMerkezi ID: {dc_id}\n"
+        caption += f"Quruluş tarixi: <code>{chat_obj_info.date.date().strftime('%b %d, %Y')} - {chat_obj_info.date.time()}</code> {warn_emoji}\n"
+    caption += f"VeriMərkəzi ID: {dc_id}\n"
     if exp_count is not None:
         chat_level = int((1+sqrt(1+7*exp_count/14))/2)
         caption += f"{chat_type} seviyesi: <code>{chat_level}</code>\n"
     if messages_viewable is not None:
         caption += f"Görüntülenebilir mesajlar: <code>{messages_viewable}</code>\n"
     if messages_sent:
-        caption += f"Gönderilen mesajlar: <code>{messages_sent}</code>\n"
+        caption += f"Göndərilən mesajlar: <code>{messages_sent}</code>\n"
     elif messages_sent_alt:
-        caption += f"Gönderilen mesajlar: <code>{messages_sent_alt}</code> {warn_emoji}\n"
+        caption += f"Gönderilən mesajlar: <code>{messages_sent_alt}</code> {warn_emoji}\n"
     if members is not None:
         caption += f"Üyeler: <code>{members}</code>\n"
     if admins is not None:
-        caption += f"Adminler: <code>{admins}</code>\n"
+        caption += f"Adminlər: <code>{admins}</code>\n"
     if bots_list:
         caption += f"Botlar: <code>{bots}</code>\n"
     if members_online:
-        caption += f"Şu an aktif: <code>{members_online}</code>\n"
+        caption += f"İndi aktiv olanlar: <code>{members_online}</code>\n"
     if restrcited_users is not None:
-        caption += f"Kısıtlanan üyeler: <code>{restrcited_users}</code>\n"
+        caption += f"Cəzası olan userlər: <code>{restrcited_users}</code>\n"
     if banned_users is not None:
-        caption += f"Yasaklanan üyeler: <code>{banned_users}</code>\n"
+        caption += f"Ban sayı: <code>{banned_users}</code>\n"
     if group_stickers is not None:
         caption += f"{chat_type} stickerları: <a href=\"t.me/addstickers/{chat.full_chat.stickerset.short_name}\">{group_stickers}</a>\n"
     caption += "\n"
@@ -179,17 +179,17 @@ async def fetch_info(chat, event):
     if not broadcast:
         caption += f"Supergroup: {supergroup}\n\n"
     if hasattr(chat_obj_info, "restricted"):
-        caption += f"Kısıtlanan: {restricted}\n"
+        caption += f"Cəzası olan: {restricted}\n"
         if chat_obj_info.restricted:
             caption += f"> Platform: {chat_obj_info.restriction_reason[0].platform}\n"
-            caption += f"> Sebep: {chat_obj_info.restriction_reason[0].reason}\n"
+            caption += f"> Səbəb: {chat_obj_info.restriction_reason[0].reason}\n"
             caption += f"> Yazı: {chat_obj_info.restriction_reason[0].text}\n\n"
         else:
             caption += "\n"
     if hasattr(chat_obj_info, "scam") and chat_obj_info.scam:
     	caption += "Scam: <b>Evet</b>\n\n"
     if hasattr(chat_obj_info, "verified"):
-        caption += f"Telegram tarafından doğrulandı: {verified}\n\n"
+        caption += f"Telegram tərəfindən doğrulandı: {verified}\n\n"
     if description:
-        caption += f"Açıklama: \n<code>{description}</code>\n"
+        caption += f"Açıqlama: \n<code>{description}</code>\n"
     return caption    
