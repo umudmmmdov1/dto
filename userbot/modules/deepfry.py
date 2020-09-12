@@ -12,10 +12,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
-
-# Deepfry modülü kaynak kodu: https://github.com/Ovyerus/deeppyer
-# @NaytSeyd tarafından portlanmıştır.
 
 import io
 from random import randint, uniform
@@ -42,20 +38,20 @@ async def deepfryer(event):
         data = await check_media(reply_message)
 
         if isinstance(data, bool):
-            await event.edit("`Bunu deepfry yapamam!`")
+            await event.edit("`Bunu deepfry edə bilmərəm!`")
             return
     else:
-        await event.edit("`Deepfry yapmam için bir resme veya çıkartmaya cevap verin!`")
+        await event.edit("`Deepfry eləmək üçün bir şəkilə vəya stikerə cavab olaraq qarşısına yazmalısız.`")
         return
 
     # Fotoğrafı (yüksek çözünürlük) bayt dizisi olarak indir
-    await event.edit("`Medya indiriliyor...`")
+    await event.edit("`Şəkil yüklənir...`")
     image = io.BytesIO()
     await event.client.download_media(data, image)
     image = Image.open(image)
 
     # Resime uygula
-    await event.edit("`Medyaya deepfry uygulanıyor...`")
+    await event.edit("`Şəkilə deepfry edilir...`")
     for _ in range(frycount):
         image = await deepfry(image)
 
@@ -121,5 +117,5 @@ async def check_media(reply_message):
 CMD_HELP.update({
     "deepfry":
     ".deepfry [numara 1-5]\
-    \nKullanım: Belirlenen görüntüye deepfry efekti uygular."
+    \nİşlədilişi: Seçilən şəkilə deepfry efekti edər."
 })
