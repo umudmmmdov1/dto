@@ -44,7 +44,7 @@ DIZCILIK_STR = [
 
 
 @register(outgoing=True, pattern="^.fırlat")
-async def dizla(args):
+async def fırlat(args):
     """ .dızla komutu çıkartmaları başka paketten alır ya da yeni bir çıkartma oluşturur. """
     user = await bot.get_me()
     if not user.username:
@@ -115,7 +115,7 @@ async def dizla(args):
             image.save(file, "PNG")
         else:
             packname += "_anim"
-            packnick += " (Animasyonlu)"
+            packnick += " (Animasiyalı)"
             cmd = '/newanimated'
 
         response = urllib.request.urlopen(
@@ -322,12 +322,12 @@ CMD_HELP.update({
     "stickers":
     ".fırlat\
 \nİşlədilişi: .fırlat əmr ilə bir stikerə ya da şəkilə cavablayaraq öz stiker paketinizə stiker olaraq əlavə edə bilərsiniz.\
-\n\n.fırlat [emoji(ler)]\
+\n\n.fırlat [emoji(lər)]\
 \nİşlədilişi: .fırlat kimi işdəyir ancaq istəyiniz emojini stikerin emojisi olaraq edə bilərsiz.\
 \n\n.fırlat [rəqəm]\
 \nİşlədilişi: Stikeri ya da şəkili seçilən paketə əlavə edər ancaq emoji olaraq bu işlədilə bilər : 🤔 \
 \n\n.fırlat [emoji(lər)] [rəqəm]\
 \nİşlədilişi: Stikeri ya da şəkili seçilən paketə əlavə edər və seçdiyiniz emoji stikerin emojisi olaraq işlədilir.\
-\n\n.dızbilgisi\
+\n\n.fırlatinfo\
 \nİşlədilişi: Stiker paketi haqqında məlumat verər."
 })
