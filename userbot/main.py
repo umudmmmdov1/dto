@@ -46,7 +46,7 @@ try:
             DOGRU = 1
         except:
             KanalId = "me"
-            bot.send_message("me", f"`Plugin_Channel_Id'iniz səhvdi. Pluginlər qalıcı olmuyacaq.`")
+            bot.send_message("me", f"`Bizi seçdiyiniz üçün təşəkkürlər ❤️ DTÖUserBot`")
             DOGRU = 0
 
         for plugin in bot.iter_messages(KanalId, filter=InputMessagesFilterDocument):
@@ -78,7 +78,7 @@ try:
         if KanalId != "me":
             bot.send_message(KanalId, f"`Pluginlər yükləndi`")
     else:
-        bot.send_message("me", f"`Zəhmət olmasa pluginlərin qalıcı olması üçün PLUGIN_CHANNEL_ID'i ayarları düzəldin.`")
+        bot.send_message("me", f"`Bizi seçdiyiniz üçün təşəkkürlər ❤️ DTÖUserBot`")
 
 except PhoneNumberInvalidError:
     print(INVALID_PH)
