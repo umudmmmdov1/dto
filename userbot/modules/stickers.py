@@ -246,7 +246,7 @@ async def dizla(args):
                 await bot.send_read_acknowledge(conv.chat_id)
 
         await args.edit(f"`Stiker paketə əlavə olundu.`\
-            \nPaket [şurada](t.me/addstickers/{packname}) bulunabilir.",
+            \nPaketə [buradan](t.me/addstickers/{packname}) baxa bilərsiz.",
                         parse_mode='md')
 
 
