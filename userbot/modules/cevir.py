@@ -41,9 +41,9 @@ async def cevir(event):
         await event.delete()
         os.remove("sticker.png")
     elif islem == "ses":
-        EFEKTLER = ["usaq", "robot", "earrape", "suretli", "parazit", "yangi"]
+        EFEKTLER = ["çoçuk", "robot", "earrape", "hızlı", "parazit", "yankı"]
         # https://www.vacing.com/ffmpeg_audio_filters/index.html #
-        KOMUT = {"usaq": '-filter_complex "rubberband=pitch=1.5"', "robot": '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"', "earrape": '-filter_complex "acrusher=level_in=8:level_out=18:bits=8:mode=log:aa=1"', "suretli": "-filter_complex \"rubberband=tempo=1.5\"", "parazit": '-filter_complex "afftfilt=real=\'hypot(re,im)*cos((random(0)*2-1)*2*3.14)\':imag=\'hypot(re,im)*sin((random(1)*2-1)*2*3.14)\':win_size=128:overlap=0.8"', "yangi": "-filter_complex \"aecho=0.8:0.9:500|1000:0.2|0.1\""}
+        KOMUT = {"çoçuk": '-filter_complex "rubberband=pitch=1.5"', "robot": '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"', "earrape": '-filter_complex "acrusher=level_in=8:level_out=18:bits=8:mode=log:aa=1"', "hızlı": "-filter_complex \"rubberband=tempo=1.5\"", "parazit": '-filter_complex "afftfilt=real=\'hypot(re,im)*cos((random(0)*2-1)*2*3.14)\':imag=\'hypot(re,im)*sin((random(1)*2-1)*2*3.14)\':win_size=128:overlap=0.8"', "yankı": "-filter_complex \"aecho=0.8:0.9:500|1000:0.2|0.1\""}
         efekt = event.pattern_match.group(2)
 
         if len(efekt) < 1:
@@ -98,4 +98,4 @@ async def cevir(event):
         await event.edit("**Bilinməyən əmr!** `İşlədilişi: .çevir ses/foto`")
         return
 
-CMD_HELP["cevir"] = ".çevir foto/gif/ses <usaq/robot/earrape/suretli/parazit/yangi>\n**Foto:** cavab olaraq yazdığınız Sticker'ı şəkilə çevirər.\n**Gif:** cavab olaraq yazdığınız videonu Gif'ə çevirər.\n**Ses:** cavab olaraq yazdığınız Səs'ə efektlər edər. Efektlər: usaq/robot/earrape/suretli/parazit/yangi."
+CMD_HELP["cevir"] = ".çevir foto/gif/ses <çocuk/robot/earrape/hızlı/parazit/yankı>\n**Foto:** cavab olaraq yazdığınız Sticker'ı şəkilə çevirər.\n**Gif:** cavab olaraq yazdığınız videonu Gif'ə çevirər.\n**Ses:** cavab olaraq yazdığınız Səs'ə efektlər edər. Efektlər: çoçuk/robot/earrape/hızlı/parazit/yankı."
