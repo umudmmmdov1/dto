@@ -30,20 +30,20 @@ from telethon.tl.types import InputStickerSetID
 from telethon.tl.types import DocumentAttributeSticker
 
 DIZCILIK_STR = [
-    "Çıkartmayı dızlıyorum CeteUserBot...",
-    "Bu Çıkartma Hoşuma gitti...",
-    "Bu çıkartmayı kendi paketime davet ediyorum...",
-    "Bunu dızlamam lazım...",
-    "Hey bu güzel bir çıkartma!\nHemen dızlıyorum..",
-    "Çıkartmanı dızlıyorum\nhahaha.",
-    "Hey şuraya bak. (☉｡☉)!→\nBen bunu dızlarken...",
-    "Güller kırmızı menekşeler mavi, bu çıkartmayı paketime dızlayarak havalı olacağım...",
-    "Çıkartma hapsediliyor...",
-    "Bay dızcı bu çıkartmayı dızlıyor... ",
+    "`Stikerivi oğurladım...`",
+    "`Bu stiker xoşuma gəldi...`",
+    "`Bu stikeri öz stiker paketimə dəvət edirəm...`",
+    "`Bunu fırlatmalıyam...",
+    "`Hmm nə gözəl stikerdi bu!\nTez fırladım..`",
+    "`Stikerini fırladıram\nhahaha.`",
+    "`Stikerivi oğurladım. (☉｡☉)!→\nHalal elə 🤗...`",
+    "`Məhşur stiker oğrusu gəldi, stikerün getdi...`",
+    "`Stiker öz paketinizə əlavə olundu...`",
+    "`Stikerivi oğurlayıram voram zoram...`",
 ]
 
 
-@register(outgoing=True, pattern="^.dızla")
+@register(outgoing=True, pattern="^.fırlat")
 async def dizla(args):
     """ .dızla komutu çıkartmaları başka paketten alır ya da yeni bir çıkartma oluşturur. """
     user = await bot.get_me()
@@ -82,10 +82,10 @@ async def dizla(args):
             is_anim = True
             photo = 1
         else:
-            await args.edit("`Desteklenmeyen dosya!`")
+            await args.edit("`Dəstəklənməyən fayl!`")
             return
     else:
-        await args.edit("`Bunu dızlayamam...`")
+        await args.edit("`Bunu fırlada bilmərəm...`")
         return
 
     if photo:
@@ -134,11 +134,11 @@ async def dizla(args):
                     pack += 1
                     packname = f"a{user.id}_by_{user.username}_{pack}"
                     packnick = f"@{user.username}'s UserBot pack {pack}"
-                    await args.edit("`Yetersiz paket alanından dolayı " + str(pack) +
-                                    " numaralı pakete geçiliyor`")
+                    await args.edit("`Stiked paketində yer olmadığına görə" + str(pack) +
+                                    " nömrəli paketə köçrülür`")
                     await conv.send_message(packname)
                     x = await conv.get_response()
-                    if x.text == "Geçersiz paket seçildi.":
+                    if x.text == "Keçərsiz paket seçildi.":
                         await conv.send_message(cmd)
                         await conv.get_response()
                         # Kullanıcının sürekli bildirim almamasını sağlar.
@@ -175,9 +175,9 @@ async def dizla(args):
                         await conv.get_response()
                         # Kullanıcının sürekli bildirim almamasını sağlar.
                         await bot.send_read_acknowledge(conv.chat_id)
-                        await args.edit(f"`Çıkartma başka bir pakete eklendi.\
-                            \nBu paket yeni oluşturuldu.\
-                            \nYeni paket [burada](t.me/addstickers/{packname}) bulunabilir.",
+                        await args.edit(f"`Stiker başqa bir paketə əlavə olundu.\
+                            \nBu paket yeni yaradıldı.\
+                            \nYeni paket [burdadı](t.me/addstickers/{packname}) baxa bilərsiz.",
                                         parse_mode='md')
                         return
                 if is_anim:
@@ -189,7 +189,7 @@ async def dizla(args):
                 rsp = await conv.get_response()
                 if "Sorry, the file type is invalid." in rsp.text:
                     await args.edit(
-                        "`Çıkartma ekleme başarısız, ` @Stickers `botu ile elle eklemeyi deneyin.`"
+                        "`Stiker əlavə etmək alınmadı, ` @Stickers `botu ilə əllə əlavə etməyi cəhd edin.`"
                     )
                     return
                 await conv.send_message(emoji)
@@ -201,7 +201,7 @@ async def dizla(args):
                 # Kullanıcının sürekli bildirim almamasını sağlar.
                 await bot.send_read_acknowledge(conv.chat_id)
         else:
-            await args.edit("`Yeni paket oluşturuluyor...`")
+            await args.edit("`Yeni paket yaradılır...`")
             async with bot.conversation('Stickers') as conv:
                 await conv.send_message(cmd)
                 await conv.get_response()
@@ -220,7 +220,7 @@ async def dizla(args):
                 rsp = await conv.get_response()
                 if "Sorry, the file type is invalid." in rsp.text:
                     await args.edit(
-                        "`Çıkartma ekleme başarısız, ` @Stickers `botu ile elle eklemeyi deneyin.`"
+                        "`Stikəri əlavə etmək alınmadı, ` @Stickers `botu ilə əllə əlavə etməyi cəhd edin.`"
                     )
                     return
                 await conv.send_message(emoji)
@@ -245,7 +245,7 @@ async def dizla(args):
                 # Kullanıcının sürekli bildirim almamasını sağlar.
                 await bot.send_read_acknowledge(conv.chat_id)
 
-        await args.edit(f"`Çıkartma başarıyla pakete eklendi.`\
+        await args.edit(f"`Stiker paketə əlavə olundu.`\
             \nPaket [şurada](t.me/addstickers/{packname}) bulunabilir.",
                         parse_mode='md')
 
@@ -275,27 +275,27 @@ async def resize_photo(photo):
     return image
 
 
-@register(outgoing=True, pattern="^.dızbilgisi$")
+@register(outgoing=True, pattern="^.firlatinfo$")
 async def dizbilgisi(event):
     if not event.is_reply:
-        await event.edit("`Hiçlikten bir bilgi çekemem, sence yapabilir miyim?!`")
+        await event.edit("`Heçlikdən bir məlumat ala bilmərəm, səncə edə bilərəm?!`")
         return
 
     rep_msg = await event.get_reply_message()
     if not rep_msg.document:
-        await event.edit("`Paket detaylarını görmek için bir çıkartmayı yanıtlayın`")
+        await event.edit("`Paket detaylarını görmək üçün bir stikerə cavab olaraq yazın`")
         return
 
     try:
         stickerset_attr = rep_msg.document.attributes[1]
         await event.edit(
-            "`Bu paketten detaylar alınıyor, lütfen bekleyin..`")
+            "`Bu paketdən detaylar alınır, zəhmət olmasa gözləyin..`")
     except BaseException:
-        await event.edit("`Bu bir çıkartma değil. Bir çıkartmayı yanıtlayın.`")
+        await event.edit("`Bu stiker deyil. Bir stikerə cavab olaraq yazın`")
         return
 
     if not isinstance(stickerset_attr, DocumentAttributeSticker):
-        await event.edit("`Bu bir çıkartma değil. Bir çıkartmayı yanıtlayın.`")
+        await event.edit("`Bu stiker deyil. Bir stikerə cavab olaraq yazın.`")
         return
 
     get_stickerset = await bot(
@@ -308,26 +308,26 @@ async def dizbilgisi(event):
         if document_sticker.emoticon not in pack_emojis:
             pack_emojis.append(document_sticker.emoticon)
 
-    OUTPUT = f"**Sticker başlığı:** `{get_stickerset.set.title}\n`" \
-        f"**Sticker kısa adı:** `{get_stickerset.set.short_name}`\n" \
-        f"**Resmi mi:** `{get_stickerset.set.official}`\n" \
-        f"**Arşivlenmiş mi:** `{get_stickerset.set.archived}`\n" \
-        f"**Paketteki çıkartma sayısı:** `{len(get_stickerset.packs)}`\n" \
-        f"**Paketteki emoji sayısı:**\n{' '.join(pack_emojis)}"
+    OUTPUT = f"**Stiker başlığı:** `{get_stickerset.set.title}\n`" \
+        f"**Stiker qısa adı:** `{get_stickerset.set.short_name}`\n" \
+        f"**Rəsmi mi:** `{get_stickerset.set.official}`\n" \
+        f"**Arxivlənmiş mi:** `{get_stickerset.set.archived}`\n" \
+        f"**Paketdəki stiker sayı:** `{len(get_stickerset.packs)}`\n" \
+        f"**Paketdəki emoji sayı:**\n{' '.join(pack_emojis)}"
 
     await event.edit(OUTPUT)
 
 
 CMD_HELP.update({
     "stickers":
-    ".dızla\
-\nKullanım: .dızla ile bir çıkartmaya ya da resme yanıtlayarak kendi çıkartma paketinize çıkartma olarak ekleyebilirsiniz.\
-\n\n.dızla [emoji(ler)]\
-\nKullanım: .dızla gibi çalışır fakat istediğiniz emojiyi çıkartmanın emojisi olarak belirtir.\
-\n\n.dızla [numara]\
-\nKullanım: Çıkartmayı ya da resmi belirtilen pakete ekler fakat emoji olarak şu kullanılır: 🤔 \
-\n\n.dızla [emoji(ler)] [numara]\
-\nKullanım: Çıkartmayı ya da resmi belirtilen pakete ekler ve belirttiğiniz emoji çıkartmanın emojisi olarak kullanılır.\
+    ".fırlat\
+\nİşlədilişi: .fırlat əmr ilə bir stikerə ya da şəkilə cavablayaraq öz stiker paketinizə stiker olaraq əlavə edə bilərsiniz.\
+\n\n.fırlat [emoji(ler)]\
+\nİşlədilişi: .fırlat kimi işdəyir ancaq istəyiniz emojini stikerin emojisi olaraq edə bilərsiz.\
+\n\n.fırlat [rəqəm]\
+\nİşlədilişi: Stikeri ya da şəkili seçilən paketə əlavə edər ancaq emoji olaraq bu işlədilə bilər : 🤔 \
+\n\n.fırlat [emoji(lər)] [rəqəm]\
+\nİşlədilişi: Stikeri ya da şəkili seçilən paketə əlavə edər və seçdiyiniz emoji stikerin emojisi olaraq işlədilir.\
 \n\n.dızbilgisi\
-\nKullanım: Çıkartma paketi hakkında bilgi verir."
+\nİşlədilişi: Stiker paketi haqqında məlumat verər."
 })
