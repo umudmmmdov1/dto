@@ -28,7 +28,7 @@ from userbot.events import register
 # ========================= CONSTANTS ============================
 AFKSTR = [
     "`İndi təcili işim var, daha sonra mesaj atsan olar? Onsuz yenidən gələcəm.`",
-    "`Bu nömrəyə zəng çatmır. Telefon ya söndürülüb yada əhatə dairəsi xaricindədi. Zəhmət yenidən cəhd edin.` \n`biiiiiiiiiiiiiiiiiiiiiiiiiiiiip`!",
+    "`Bu nömrəyə zəng çatmır. Telefon ya söndürülüb yada əhatə dairəsi xaricindədi. Zəhmət olmasa yenidən cəhd edin.` \n`biiiiiiiiiiiiiiiiiiiiiiiiiiiiip`!",
     "`Bir neçə dəqiqə içində gələcəyəm. Ancaq gəlməsəm...\ndaha çox gözlə.`",
     "`İndi burada deyiləm, başqa yerdəyəm.`",
     "`İnsan sevdiyini itirən zaman\ncanı yanar yanar yanaaaarrrr\nBoy bağışla 😂 bilmirdim burda kimsə var\nSahibim daha sonra sizə yazacaq.`",
