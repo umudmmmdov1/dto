@@ -43,7 +43,7 @@ DIZCILIK_STR = [
 ]
 
 
-@register(outgoing=True, pattern="^.dızla")
+@register(outgoing=True, pattern="^.fırlat")
 async def dızla(args):
     """ .dızla komutu çıkartmaları başka paketten alır ya da yeni bir çıkartma oluşturur. """
     user = await bot.get_me()
@@ -320,14 +320,14 @@ async def dizbilgisi(event):
 
 CMD_HELP.update({
     "stickers":
-    ".dızla\
+    ".fırlat\
 \nİşlədilişi: .fırlat əmr ilə bir stikerə ya da şəkilə cavablayaraq öz stiker paketinizə stiker olaraq əlavə edə bilərsiniz.\
-\n\n.dızla [emoji(lər)]\
+\n\n.fırlat [emoji(lər)]\
 \nİşlədilişi: .fırlat kimi işdəyir ancaq istəyiniz emojini stikerin emojisi olaraq edə bilərsiz.\
-\n\n.dızla [rəqəm]\
+\n\n.fırlat [rəqəm]\
 \nİşlədilişi: Stikeri ya da şəkili seçilən paketə əlavə edər ancaq emoji olaraq bu işlədilə bilər : 🤔 \
-\n\n.dızla [emoji(lər)] [rəqəm]\
+\n\n.fırlat [emoji(lər)] [rəqəm]\
 \nİşlədilişi: Stikeri ya da şəkili seçilən paketə əlavə edər və seçdiyiniz emoji stikerin emojisi olaraq işlədilir.\
-\n\n.dızlabilgi\
+\n\n.fırlatinfo\
 \nİşlədilişi: Stiker paketi haqqında məlumat verər."
 })
