@@ -98,4 +98,4 @@ async def cevir(event):
         await event.edit("**Bilinməyən əmr!** `İşlədilişi: .çevir ses/foto`")
         return
 
-CMD_HELP["cevir"] = ".çevir foto/gif/ses <çocuk/robot/earrape/hızlı/parazit/yankı>\n**Foto:** cavab olaraq yazdığınız Sticker'ı şəkilə çevirər.\n**Gif:** cavab olaraq yazdığınız videonu Gif'ə çevirər.\n**Ses:** cavab olaraq yazdığınız Səs'ə efektlər edər. Efektlər: usaq/robot/earrape/suretli/parazit/yangi."
+CMD_HELP["cevir"] = ".çevir foto/gif/ses <usaq/robot/earrape/suretli/parazit/yangi>\n**Foto:** cavab olaraq yazdığınız Sticker'ı şəkilə çevirər.\n**Gif:** cavab olaraq yazdığınız videonu Gif'ə çevirər.\n**Ses:** cavab olaraq yazdığınız Səs'ə efektlər edər. Efektlər: usaq/robot/earrape/suretli/parazit/yangi."
