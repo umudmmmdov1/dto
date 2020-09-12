@@ -958,30 +958,30 @@ async def get_bots(show):
 
 CMD_HELP.update({
     "admin":
-    ".promote <kullanıcı adı/yanıtlama> <özel isim (isteğe bağlı)>\
-\nKullanım: Sohbetteki kişiye yönetici hakları sağlar.\
-\n\n.demote <kullanıcı adı/yanıtlama>\
-\nKullanım: Sohbetteki kişinin yönetici izinlerini iptal eder.\
-\n\n.ban <kullanıcı adı/yanıtlama> <nedeni (isteğe bağlı)>\
-\nKullanım: Sohbetteki kişiyi gruptan yasaklar.\
-\n\n.unban <kullanıcı adı/yanıtlama>\
-\nKullanım: Sohbetteki kişinin yasağını kaldırır.\
-\n\n.mute <kullanıcı adı/yanıtlama> <nedeni (isteğe bağlı)>\
-\nKullanım: Sohbetteki kişiyi susturur, yöneticilerde de çalışır.\
-\n\n.unmute <kullanıcı adı/yanıtlama>\
-\nKullanım: Kişiyi sessize alınanlar listesinden kaldırır.\
-\n\n.gmute <kullanıcı adı/yanıtlama> <nedeni (isteğe bağlı)>\
-\nKullanım: Kişiyi yönetici olduğunuz tüm gruplarda susturur.\
-\n\n.ungmute <kullanıcı adı/yanıtlama>\
-\nKullanım: Kişiyi küresel olarak sessize alınanlar listesinden kaldırır.\
+    ".promote <istifadəçi adı/cavablama> <özəl tağ (istəyə bağlı)>\
+\nİşlədilişi: Söhbətdəki istifadəçiyə adminlik verər.\
+\n\n.demote <istifadəçi adı/cavablama>\
+\nİşlədilişi: Söhbətdəki istifadəçinin adminliyini alar.\
+\n\n.ban <istifadəçi adı/cavablama> <səbəbi (istəyə bağlı)>\
+\nİşlədilişi: Söhbətdəki istifadəçini qrupdan banlayar.\
+\n\n.unban <istifadəçi adı/cavablama>\
+\nİşlədilişi: Söhbətdəki istifadəçinin bandan çıxardar.\
+\n\n.mute <istifadəçi adı/cavablama> <səbəbi (istəyə bağlı)>\
+\nİşlədilişi: Söhbətdəki istifadəçini susdurar, adminləridə susdurur.\
+\n\n.unmute <istifadəçi adı/cavablama>\
+\nİşlədilişi: İstifadəçini səssizə alınanlar listindən silər.\
+\n\n.gmute <istifadəçi adı/cavablama> <səbəbi (istəyə bağlı)>\
+\nİşlədilişi: İstifadəçini admin olduğunuz bütün qruplarda susdurar.\
+\n\n.ungmute <istifadəçi adı/cavablama>\
+\nİşlədilişi: İstifadəçini qlobal səssizə alınanlar listindən silər.\
 \n\n.zombies\
-\nKullanım: Bir gruptaki silinmiş hesapları arar. Gruptan silinen hesapları kaldırmak için --.zombies clean-- komutunu kullanın.\
+\nİşlədilişi: Bir qruptakı silinmiş hesabları axtarar. Qrupxan silinən hesabları silmək üçün --.zombies clean-- əmrini işlədin.\
 \n\n.admins\
-\nKullanım: Sohbet yöneticilerinin listesini alır.\
+\nİşlədilişi: Söhbət adminlərinin listini alar.\
 \n\n.bots\
-\nKullanım: Sohbet içinde bulunan botların listesini alır.\
-\n\n.users veya .users <kullanıcı adı>\
-\nKullanım: Sohbetteki tüm (veya sorgulanan) kullanıcıları alır.\
-\n\n.setgppic <yanıtlanan resim>\
-\nKullanım: Grubun resmini değiştirir."
+\nİşlədilişi: Söhbət içində tapılan botların listini alar.\
+\n\n.users vəya .users <istifadəçi adı>\
+\nİşlədilişi: Söhbətdəki bütün (vəya sorğulanan) istifadəçilərin listini alar.\
+\n\n.setgppic <cavablanacaq şəkil>\
+\nİşlədilişi: Qrupun şəklini dəyişdirər."
 })
