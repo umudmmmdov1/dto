@@ -25,7 +25,7 @@
     },
     "PLUGIN_CHANNEL_ID": {
       "description": "Pluginlərin qalıcı qalması üçün burası önəmllidir, Kanal ID'inizi bura yazın.",
-      "required": true
+      "required": false
     },
     "STRING_SESSION": {
       "description": "Proqramda aldığınız Session keyi bura yazın.",
