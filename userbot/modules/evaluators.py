@@ -159,7 +159,7 @@ async def terminal_runner(term):
         return
 
     if not command:
-        await term.edit("``` Yardım almak için .cete term yazarak \
+        await term.edit("``` Yardım almak için .dto term yazarak \
             örneğe bakabilirsin.```")
         return
 
