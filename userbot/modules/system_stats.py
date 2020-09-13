@@ -41,7 +41,7 @@ async def sysdetails(sysd):
 
         await sysd.edit("`" + result + "`")
     except FileNotFoundError:
-        await sysd.edit("`Öncelikle neofetch modülünü yükleyin !!`")
+        await sysd.edit("`Əvvəlcə neofetch modulunu yükləyin !!`")
 
 
 @register(outgoing=True, pattern="^.botver$")
@@ -85,7 +85,7 @@ async def pipcheck(pip):
     """ .pip komutu python-pip araması yapar. """
     pipmodule = pip.pattern_match.group(1)
     if pipmodule:
-        await pip.edit("`Aranıyor . . .`")
+        await pip.edit("`Axtarılır . . .`")
         invokepip = f"pip3 search {pipmodule}"
         pipc = await asyncrunapp(
             invokepip,
@@ -99,7 +99,7 @@ async def pipcheck(pip):
 
         if pipout:
             if len(pipout) > 4096:
-                await pip.edit("`Çıktı çok büyük, dosya olarak gönderiliyor.`")
+                await pip.edit("`Çıxdı ama çox böyükdür, fayl olaraq göndərilir.`")
                 file = open("output.txt", "w+")
                 file.write(pipout)
                 file.close()
@@ -110,15 +110,15 @@ async def pipcheck(pip):
                 )
                 remove("output.txt")
                 return
-            await pip.edit("**Sorgu: **\n`"
+            await pip.edit("**Sorğu: **\n`"
                            f"{invokepip}"
-                           "`\n**Sonuç: **\n`"
+                           "`\n**Nəticə: **\n`"
                            f"{pipout}"
                            "`")
         else:
-            await pip.edit("**Sorgu: **\n`"
+            await pip.edit("**Sorğu: **\n`"
                            f"{invokepip}"
-                           "`\n**Sonuç: **\n`Bir şey bulunamadı.`")
+                           "`\n**Nəticə: **\n`Heçnə tapılmadı.`")
     else:
         await pip.edit("`Bir örnek görmek için .cete pip komutunu kullanın.`")
 
@@ -130,13 +130,13 @@ async def amialive(e):
 
 CMD_HELP.update(
     {"sysd": ".sysd\
-    \nKullanım: Neofetch modülünü kullanarak sistem bilgisi gösterir."})
+    \nİşlədilişi: Neofetch modulunu işlədərək sistem məlumatlarını göstərir."})
 CMD_HELP.update({"botver": ".botver\
-    \nKullanım: Userbot sürümünü gösterir."})
+    \nİşlədilişi: DTÖUserbot versiyasını göstərir."})
 CMD_HELP.update(
     {"pip": ".pip <module(s)>\
-    \nKullanım: Pip modüllerinde arama yapar."})
+    \nİşlədilişi: Pip modullarında axtarış edər."})
 CMD_HELP.update({
     "alive": ".alive\
-    \nKullanım: Cete botunun çalışıp çalışmadığını kontrol etmek için kullanılır."
+    \nİşlədilişi: Botunuzun işləyib işləmədiyini yoxlamaq üçün işlədilir."
 })
