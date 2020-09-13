@@ -108,7 +108,7 @@ async def upstream(ups):
         return
 
     if conf != "now" and not force_update:
-        changelog_str = f'**{ac_br} üçün yenilənmə mövcuddu!\n\nDəyişikliklər:**\n`{changelog}`'
+        changelog_str = f'**{ac_br} üçün yenilənmə mövcuddu!\n\nYeniliklər:**\n`{changelog}`'
         if len(changelog_str) > 4096:
             await ups.edit("`Dəyişiklik listi çox böyükdür, fayl olaraq baxmalısan.`")
             file = open("degisiklikler.txt", "w+")
