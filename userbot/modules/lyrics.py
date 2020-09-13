@@ -27,13 +27,13 @@ async def lyrics(lyric):
     if r"-" in lyric.text:
         pass
     else:
-        await lyric.edit("`Hata: lütfen <sanatçı> ve <şarkı> için bölücü olarak '-' kullanın`\n"
-                         "Örnek: `Stabil - Reenkarne`")
+        await lyric.edit("`Xəta: zəhmət olmasa <musiqiçi> və <musiqi> üçün tire olaraq '-' işlədin`\n"
+                         "Nümunə: `Okaber - TABOO`")
         return
 
     if GENIUS is None:
         await lyric.edit(
-            "`Lütfen Genius tokeni ayarlayınız. Teşekkürler!`")
+            "`Zəhmət olmasa Genius tokenini düzəldin. Təşəkkürlər!`")
         return
     else:
         genius = lyricsgenius.Genius(GENIUS)
@@ -42,14 +42,14 @@ async def lyrics(lyric):
             artist = args[0].strip(' ')
             song = args[1].strip(' ')
         except:
-            await lyric.edit("`Lütfen sanatçı ve şarkı ismini veriniz`")
+            await lyric.edit("`Zəhmət olmasa musiqiçi və musiqi adını yazın`")
             return
 
     if len(args) < 1:
-        await lyric.edit("`Lütfen sanatçı ve şarkı ismini veriniz`")
+        await lyric.edit("`Zəhmət olmasa musiqiçi və musiqi adını yazın`")
         return
 
-    await lyric.edit(f"`{artist} - {song} için şarkı sözleri aranıyor...`")
+    await lyric.edit(f"`{artist} - {song}  musiqi sözləri axtarılır...`")
 
     try:
         songs = genius.search_song(song, artist)
@@ -57,12 +57,12 @@ async def lyrics(lyric):
         songs = None
 
     if songs is None:
-        await lyric.edit(f"Şarkı **{artist} - {song}** bulunamadı!")
+        await lyric.edit(f"Musiqi **{artist} - {song}** tapılmadı!")
         return
     if len(songs.lyrics) > 4096:
-        await lyric.edit("`Şarkı sözleri çok uzun, görmek için dosyayı görüntüleyin.`")
+        await lyric.edit("`Musiqi sözləri çox uzundur, görmək üçün fayla baxa bilərsən.`")
         with open("lyrics.txt", "w+") as f:
-            f.write(f"Arama sorgusu: \n{artist} - {song}\n\n{songs.lyrics}")
+            f.write(f"Axtarış sorğusu: \n{artist} - {song}\n\n{songs.lyrics}")
         await lyric.client.send_file(
             lyric.chat_id,
             "lyrics.txt",
@@ -70,21 +70,21 @@ async def lyrics(lyric):
         )
         os.remove("lyrics.txt")
     else:
-        await lyric.edit(f"**Arama sorgusu**: \n`{artist} - {song}`\n\n```{songs.lyrics}```")
+        await lyric.edit(f"**Axtarış sorğusu**: \n`{artist} - {song}`\n\n```{songs.lyrics}```")
     return
 
-@register(outgoing=True, pattern="^.singer(?: |$)(.*)")
+@register(outgoing=True, pattern="^.oxumaq(?: |$)(.*)")
 async def singer(lyric):
     if r"-" in lyric.text:
         pass
     else:
-        await lyric.edit("`Hata: lütfen <sanatçı> ve <şarkı> için bölücü olarak '-' kullanın`\n"
-                         "Örnek: `Duman - Haberin Yok Ölüyorum`")
+        await lyric.edit("`Xəta: zəhmət olmasa <musiqiçi> və <musiqi> üçün tire olaraq '-' işlədin`\n"
+                         "Nümunə: `Okaber - TABOO`")
         return
 
     if GENIUS is None:
         await lyric.edit(
-            "`Lütfen Genius tokeni ayarlayınız. Teşekkürler!`")
+            "`Zəhmət olmasa Genius tokenini düzəldin. Təşəkkürlər!`")
         return
     else:
         genius = lyricsgenius.Genius(GENIUS)
@@ -93,14 +93,14 @@ async def singer(lyric):
             artist = args[0].strip(' ')
             song = args[1].strip(' ')
         except:
-            await lyric.edit("`Lütfen sanatçı ve şarkı ismini veriniz`")
+            await lyric.edit("`Zəhmət olmasa musiqiçi və musiqi adını yazın`")
             return
 
     if len(args) < 1:
-        await lyric.edit("`Lütfen sanatçı ve şarkı ismini veriniz`")
+        await lyric.edit("`Zəhmət olmasa musiqiçi və musiqi adını yazın`")
         return
 
-    await lyric.edit(f"`{artist} - {song} için şarkı sözleri aranıyor...`")
+    await lyric.edit(f"`{artist} - {song} musiqi sözləri axtarılır...`")
 
     try:
         songs = genius.search_song(song, artist)
@@ -108,9 +108,9 @@ async def singer(lyric):
         songs = None
 
     if songs is None:
-        await lyric.edit(f"Şarkı **{artist} - {song}** bulunamadı!")
+        await lyric.edit(f"Musiqi **{artist} - {song}** tapılmadı!")
         return
-    await lyric.edit(f"🎙 Kulaklarınız pasını sileceğim! {artist}'dan {song} geliyor!")
+    await lyric.edit(f"`🎙 Qulaqlarıvın pası açılacaq! {artist}'dən {song} gəlir!`")
     await asyncio.sleep(1)
 
     split = songs.lyrics.splitlines()
@@ -123,7 +123,7 @@ async def singer(lyric):
             i += 1
         except:
             i += 1
-    await lyric.edit(f"🎙Çok güzel söyledim, değil mi?")
+    await lyric.edit(f"`🎙Necə oxudum? Xoşuva gəldi?`")
 
     return
 
@@ -131,10 +131,10 @@ async def singer(lyric):
 
 CMD_HELP.update({
     "lyrics":
-    "Kullanım: .`lyrics <sanatçı adı> - <şarkı ismi>`\n"
-    "NOT: ""-"" ayracı önemli!",
+    "İşlədilişi: .`lyrics <musiqiçi adı> - <musiqi adı>`\n"
+    "MƏLUMAT: ""-"" tire önəmlidir!",
     "singer":
-    "Şarkı söyler, Kullanım: .`singer <sanatçı adı> - <şarkı ismi>`\n"
-    "NOT: ""-"" ayracı önemli!"
+    "İşlədilişi: Musiqi oxuyar .`singer <musiqiçi adı> - <musiqi adı>`\n"
+    "MƏLUMAT: ""-"" tire önəmlidir!"
 
 })
