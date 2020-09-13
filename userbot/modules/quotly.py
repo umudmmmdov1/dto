@@ -39,7 +39,7 @@ async def _(event):
     if reply_message.sender.bot:
        await event.edit("`Botlara cavab vere bilmərsiz.`")
        return
-    await event.edit("`Kopya edilir...`")
+    await event.edit("`Stiker edilir...`")
 
     async with bot.conversation(chat, exclusive=False, replies_are_responses=True) as conv:
           response = None
