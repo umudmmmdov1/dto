@@ -54,7 +54,7 @@ UNAPPROVED_MSG = ("`Salam mən DTÖUserBot.\n\n`"
                   "`Zəhmət olmasa sahibimin aktiv olmasını gözləyin, o ancaq mesajlara icazə verir.\n\n`"
                   "`Əgər çox mesaj yazsanız sizi bloka atmağa məcbur qalacam.`")
 
-DB = connect("dto")
+DB = connect("dtobrain")
 CURSOR = DB.cursor()
 CURSOR.execute("""SELECT * FROM BRAIN1""")
 ALL_ROWS = CURSOR.fetchall()
@@ -64,7 +64,7 @@ INVALID_PH = '\nXƏTA: Girilən telefon nömrəsi yanlışdır' \
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
-connect("dto").close()
+connect("dtobrain").close()
 try:
     bot.start()
 
