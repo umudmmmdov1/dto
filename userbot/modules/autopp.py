@@ -32,10 +32,10 @@ import shutil
 @register(outgoing=True, pattern="^.autopp ?(.*)")
 async def autopic(event):
     if 'autopic' in ASYNC_POOL:
-        await event.edit("`Görünüşe göre profil fotoğrafınız zaten otomatik olarak değişiyor.`")
+        await event.edit("`Profil şəkliniz onsuz avtomatik dəyişir.`")
         return
 
-    await event.edit("`Profil fotoğrafınız ayarlanıyor ...`")
+    await event.edit("`Profil şəkliniz hazırlanır ...`")
 
     FONT_FILE_TO_USE = await get_font_file(event.client, "@FontDunyasi")
 
@@ -46,7 +46,7 @@ async def autopic(event):
     while not downloader.isFinished():
         continue
 
-    await event.edit("`Profil fotoğrafınız ayarlandı :)`")
+    await event.edit("`Profil şəkliniz hazırlandı :)`")
 
     ASYNC_POOL.append('autopic')
 
@@ -88,7 +88,7 @@ async def get_font_file(client, channel_id):
 CMD_HELP.update({
     "autopp": 
     ".autopp \
-    \nKullanım: Bu komut belirlediğiniz fotoğrafı profil resmi yapar \
-    \nve bir saat ekler. Bu saat her dakika değişir. \
-    \nNOT: Küçük bir ihtimal bile olsa ban yeme riskiniz var. Bu yüzden dikkatli kullanın."
+    \nİşlədilişi: Bu əmr seçdiyiniz şəkli profil şəkli edər \
+    \nvə şəklin altına saat əlavə edər. Bu saat hər dəqiqə dəyişir. \
+    \nMƏLUMAT: Balaca bir ehtimal belə olsa profilinizin blok olması riski var. Bunu diqqətli işlədin."
 })
