@@ -29,24 +29,24 @@ async def degistir(event):
             silme = sql.sil_mesaj(plugin)
             if silme == True:
                 PLUGIN_MESAJLAR[plugin] = ORJ_PLUGIN_MESAJLAR[plugin]
-                await event.edit("`Plugin mesajı başarıyla silindi.`")
+                await event.edit("`Plugin mesajı uğurla silindi.`")
             else:
-                await event.edit(f"**Plugin mesajı silinemedi.** Hata: `{silme}`")
+                await event.edit(f"**Plugin mesajı silinmədi.** Xəta: `{silme}`")
         else:
-            await event.edit("**Bilinmeyen plugin.** Mesajını silebileceğiniz pluginler: `afk/alive/pm/kickme`")
+            await event.edit("**Bilinməyən plugin.** Mesajını silə biləcəyiniz pluginlər: `afk/alive/pm`")
     elif len(plugin) < 1:
-        await event.edit("**Değiştir, bottaki plugin-mesajlarını değiştirmenize yarar.**\nÖrnek Kullanım: `.değiştir afk \"Şu an burda değilim... Belki hiç gelmem\"`\nPlugin-mesajı silme: `.değiştir afk`\nDeğiştirebileceğiniz plugin-mesajları (şu anlık): `afk/alive/pm`")
+        await event.edit("**Dəyişdir, botdakı plugin-mesajlarını dəyişdirmənizə yarayır.**\nNümunə İşlədilişi: `.deyisdir afk /"İmdi burada deiləm...\"`\nPlugin-mesajını silmə: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları (indilik): `afk/alive/pm`")
     elif type(mesaj) == str:
         if plugin in TURLER:
             if mesaj.isspace():
-                await event.edit(f"**Plugin mesajı boş olamaz.**")
+                await event.edit(f"**Plugin mesajı boş ola bilməz.**")
                 return
             else:
                 PLUGIN_MESAJLAR[plugin] = mesaj
                 sql.ekle_mesaj(plugin, mesaj)
-                await event.edit(f"Plugin(`{plugin}`) için mesajınız(`{mesaj}`) ayarlandı.")
+                await event.edit(f"`Plugin(`{plugin}`) üçün mesajınız(`{mesaj}`) qeyd edildi.`")
         else:
-            await event.edit("**Bilinmeyen plugin.** Değiştirebileceğiniz pluginler: `afk/alive/pm/kickme`")
+            await event.edit("**Bilinməyən plugin.** Dəyişdirə biləcəyiniz pluginlər: `afk/alive/pm`")
 
-CMD_HELP.update({'degistir': '.değiştir <modül> <mesaj>\
-        \nKullanım: **Değiştir, bottaki plugin-mesajlarını değiştirmenize yarar.**\nÖrnek Kullanım: `.değiştir afk \"Şu an burda değilim... Belki hiç gelmem\"`\nPlugin-mesajı silme: `.değiştir afk`\nDeğiştirebileceğiniz plugin-mesajları (şu anlık): `afk/alive/pm`'})
+CMD_HELP.update({'deyisdir': '.deyisdir <modul> <mesaj>\
+        \nİşlədilişi: **Dəyişdir, botdaki plugin-mesajlarını dəyişdirmənizə yarayır.**\nNümunə İşlədilişi: `.deyisdir afk /"Şu an burda değilim...\"`\nPlugin-mesajını silmə: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları (indilik): `afk/alive/pm`'})
