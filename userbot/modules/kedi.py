@@ -16,11 +16,11 @@ PENIS_TEMPLATE = """
 █▄▄█─█░░▀░░┬░░▀░░█─█▄▄█ 
 """
 
-@register(outgoing=True, pattern=r"^\.(?:kedi)\s?(.)?")
+@register(outgoing=True, pattern=r"^\.(?:pisik)\s?(.)?")
 async def emoji_nah(e):
     emoji = e.pattern_match.group(1)
 
-    await e.edit("Kedi...")
+    await e.edit("Miyauuu...")
     message = PENIS_TEMPLATE
     if emoji:
         message = message.replace('🍆', emoji)
@@ -28,7 +28,7 @@ async def emoji_nah(e):
     await e.edit(message)
 
 CMD_HELP.update({
-    "kedi": 
-    ".kedi\
-    \nKullanım: kedi yaratır :o\n"
+    "pisik": 
+    ".pisik\
+    \nİşlədilişj: pişik yaradar :o\n"
 })
