@@ -70,7 +70,7 @@ async def upstream(ups):
         if conf != "now":
             await ups.edit(
                 f"`{error} faylı bir git reposu kimi görünmür.\
-            \nFakat bu sorunu .update now komutuyla botu zorla güncelleyerek çözebilirsin.`"
+            \nAncaq bu problem .update now əmri ilə botu yeniləyərək həll edə bilərsən.`"
             )
             return
         repo = Repo.init()
@@ -87,7 +87,7 @@ async def upstream(ups):
             f'**[Yenilənmə]:**` Deyəzən DTÖUserBotunu editləmizən və öz branşını işlədirsən: ({ac_br}). '
             'Buna görədə yeniləyicinin beyni xarab olub 😂,'
             'Yenilənmə hardan gələcək?'
-            'Zəhmət olmasa DTÖUsrrBotu rəsmi repodan işlədin.`')
+            'Zəhmət olmasa DTÖUserBotu rəsmi repodan işlədin.`')
         repo.__del__()
         return
 
@@ -108,7 +108,7 @@ async def upstream(ups):
         return
 
     if conf != "now" and not force_update:
-        changelog_str = f'**{ac_br} DTÖUserBot üçün yenilənmə mövcuddu!\n\nDəyişikliklər:**\n`{changelog}`'
+        changelog_str = f'**{ac_br} üçün yenilənmə mövcuddu!\n\nDəyişikliklər:**\n`{changelog}`'
         if len(changelog_str) > 4096:
             await ups.edit("`Dəyişiklik listi çox böyükdür, fayl olaraq baxmalısan.`")
             file = open("degisiklikler.txt", "w+")
@@ -138,7 +138,7 @@ async def upstream(ups):
         heroku_applications = heroku.apps()
         if not HEROKU_APPNAME:
             await ups.edit(
-                '`[Yenilənmə] Yenilənmənk etmək üçün HEROKU_APPNAME dəyişkənini düzəltməlisən.`'
+                '`[Yenilənmə] Yenilənmənk etmək üçün HEROKU_APPNAME dəyişkənini düzəltməlisiz.`'
             )
             repo.__del__()
             return
@@ -148,12 +148,12 @@ async def upstream(ups):
                 break
         if heroku_app is None:
             await ups.edit(
-                f'{txt}\n`Heroku dəyişkənlikləri səhv və ya əksik tamamlanmayıb.`'
+                f'{txt}\n`Heroku dəyişkənlikləri səhv və ya əksikdir tamamlanmayıb.`'
             )
             repo.__del__()
             return
         await ups.edit('`[Yenilənmə]\
-                        \nYenilənmə yüklənir zəhmət olmada gözləyin.\nYenilənmə maksimum 10 dəqiqə çəkəcək.`'
+                        \nYenilənmə yüklənir, zəhmət olmada gözləyin.\nYenilənmə maksimum 10 dəqiqə çəkəcək.`'
                        )
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
