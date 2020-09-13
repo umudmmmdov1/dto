@@ -78,10 +78,10 @@ async def permitpm(event):
                         if BOTLOG:
                             await event.client.send_message(
                                 BOTLOG_CHATID,
-                                "PM sayacı kafayı yemiş gibi, botu lütfen yeniden başlatın.",
+                                "`PM sayğacı beyni gic olub, botu yenidən başladın.`",
                             )
                         LOGS.info(
-                            "PM sayacı kafayı yemiş gibi, botu lütfen yeniden başlatın.")
+                            "PM sayğacı beyni gic olub, botu yenidən başladın.`")
                         return
 
                     await event.client(BlockRequest(event.chat_id))
@@ -94,7 +94,7 @@ async def permitpm(event):
                             BOTLOG_CHATID,
                             "[" + name0 + "](tg://user?id=" +
                             str(event.chat_id) + ")" +
-                            " kişisi sadece bir hayal kırıklığı idi. PM'ni meşgul ettiği için engellendi.",
+                            " isticadəçi sadəcə mənə xəcalət verdi. PM'ni məşğul etdiyi üçün bloklandı.",
                         )
 
 
@@ -142,7 +142,7 @@ async def notifoff(noff_event):
         await noff_event.edit("`Bot Non-SQL modunda çalışıyor!!`")
         return
     addgvar("NOTIF_OFF", True)
-    await noff_event.edit("`PM izni olmayan kullanıcıların bildirimleri sessize alındı!`")
+    await noff_event.edit("`PM icazəsi olmayan istifadəçilər üçün bildirişlər deaktiv edildi!`")
 
 
 @register(outgoing=True, pattern="^.notifon$")
@@ -151,10 +151,10 @@ async def notifon(non_event):
     try:
         from userbot.modules.sql_helper.globals import delgvar
     except:
-        await non_event.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await non_event.edit("`Bot Non-SQL modunda işdəyir!!`")
         return
     delgvar("NOTIF_OFF")
-    await non_event.edit("`PM izni olmayan kullanıcıarın bildirim göndermesine izin verildi!`")
+    await non_event.edit("`PM icazəsi olmayan istifadəçilər üçün bildirişlər aktiv edildi!`")
 
 
 @register(outgoing=True, pattern="^.approve$")
@@ -163,7 +163,7 @@ async def approvepm(apprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import approve
     except:
-        await apprvpm.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await apprvpm.edit("`Bot Non-SQL modunda işdəyir!!`")
         return
 
     if apprvpm.reply_to_msg_id:
@@ -181,10 +181,10 @@ async def approvepm(apprvpm):
     try:
         approve(uid)
     except IntegrityError:
-        await apprvpm.edit("`Kullanıcı halihazırda PM gönderebiliyor olmalıdır.`")
+        await apprvpm.edit("`İstifadəçi sizə hal-hazırda yaza bilir.`")
         return
 
-    await apprvpm.edit(f"[{name0}](tg://user?id={uid}) `kişisi PM gönderebilir!`")
+    await apprvpm.edit(f"[{name0}](tg://user?id={uid}) `istifadəçisi mesaj göndərə bilər!`")
 
     async for message in apprvpm.client.iter_messages(apprvpm.chat_id,
                                                       from_user='me',
@@ -194,7 +194,7 @@ async def approvepm(apprvpm):
     if BOTLOG:
         await apprvpm.client.send_message(
             BOTLOG_CHATID,
-            "#ONAYLANDI\n" + "Kullanıcı: " + f"[{name0}](tg://user?id={uid})",
+            "#İCAZEVERİLDİ\n" + "İstifadəçi: " + f"[{name0}](tg://user?id={uid})",
         )
 
 
@@ -203,7 +203,7 @@ async def disapprovepm(disapprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import dissprove
     except:
-        await disapprvpm.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await disapprvpm.edit("`Bot Non-SQL modunda işdəyir!!`")
         return
 
     if disapprvpm.reply_to_msg_id:
@@ -218,13 +218,13 @@ async def disapprovepm(disapprvpm):
         name0 = str(aname.first_name)
 
     await disapprvpm.edit(
-        f"[{name0}](tg://user?id={disapprvpm.chat_id}) `kişisinin PM atma izni kaldırıldı.`")
+        f"[{name0}](tg://user?id={disapprvpm.chat_id}) `istifadəçisinin mesaj göndərilməsinə icazə verilmir.`")
 
     if BOTLOG:
         await disapprvpm.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={disapprvpm.chat_id})"
-            " kişisinin PM atma izni kaldırıldı.",
+            " istifadəçisinin mesaj atma icazəsi verilmədi.",
         )
 
 
@@ -237,12 +237,12 @@ async def blockpm(block):
         aname = replied_user.id
         name0 = str(replied_user.first_name)
         await block.client(BlockRequest(replied_user.id))
-        await block.edit("`Engellendin!`")
+        await block.edit("`Bloklandın!`")
         uid = replied_user.id
     else:
         await block.client(BlockRequest(block.chat_id))
         aname = await block.client.get_entity(block.chat_id)
-        await block.edit("`Engellendin!`")
+        await block.edit("`Bloklandın!`")
         name0 = str(aname.first_name)
         uid = block.chat_id
 
@@ -255,7 +255,7 @@ async def blockpm(block):
     if BOTLOG:
         await block.client.send_message(
             BOTLOG_CHATID,
-            "#ENGELLENDI\n" + "Kullanıcı: " + f"[{name0}](tg://user?id={uid})",
+            "#BLOKLANDI\n" + "İstifadəçi: " + f"[{name0}](tg://user?id={uid})",
         )
 
 
@@ -267,13 +267,13 @@ async def unblockpm(unblock):
         replied_user = await unblock.client.get_entity(reply.from_id)
         name0 = str(replied_user.first_name)
         await unblock.client(UnblockRequest(replied_user.id))
-        await unblock.edit("`Engelin kaldırıldı.`")
+        await unblock.edit("`Blokdan çıxarıldı.`")
 
     if BOTLOG:
         await unblock.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={replied_user.id})"
-            " kişisinin engeli kaldırıldı.",
+            " istifadəçisi blokdan çıxarıldı.",
         )
 
 
@@ -281,15 +281,15 @@ CMD_HELP.update({
     "pmpermit":
     "\
 .approve\
-\nKullanım: Yanıt verilen kullanıcıya PM atma izni verilir.\
+\nİşlədilişi: Özəldə mesaj göndərməsinə icazə verər.\
 \n\n.disapprove\
-\nKullanım: Yanıt verilen kullanıcının PM onayını kaldırır.\
+\nİşlədilişi: Özəldə mesaj göndərməyə icazə verməz.\
 \n\n.block\
-\nKullanım: Bir kullanıcıyı engeller.1\
+\nİşlədilişi: İstifadəçini bloklayar.1\
 \n\n.unblock\
-\nKullanımı: Engellenmiş kullanıcının engelini kaldırır.\
+\nİşlədilişi: Bloklanmış istifadəçini blokdan çıxarar.\
 \n\n.notifoff\
-\nKullanım: Onaylanmamış özel mesajların bildirimlerini temizler ya da devre dışı bırakır.\
+\nİşlədilişi: Özəldə yazmağa icazə verilməmiş mesaj yazanların bildirişlərini deaktiv edər.\
 \n\n.notifon\
-\nKullanım: Onaylanmamış özel mesajların bildirim göndermesine izin verir."
+\nİşlədilişi: Özəldə yazmağa icazə verilməmiş mesaj yazanların bildirişlərini aktiv edər."
 })
