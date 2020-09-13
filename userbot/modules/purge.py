@@ -41,19 +41,19 @@ async def fastpurger(purg):
                 await purg.client.delete_messages(chat, msgs)
                 msgs = []
     else:
-        await purg.edit("`Temizlemeye başlamak için bir mesaja ihtiyacım var.`")
+        await purg.edit("`Təmizləməyə başlamaq üçün mesajları hardan silmək istəyirsizsə oradan mesaja cavab olaraq yazmaq lazımdır.`")
         return
 
     if msgs:
         await purg.client.delete_messages(chat, msgs)
     done = await purg.client.send_message(
-        purg.chat_id, f"`Hızlı temizlik tamamlandı!`\
-        \n{str(count)} tane mesaj silindi.")
+        purg.chat_id, f"`Mesajlar silindi`\
+        \n{str(count)} dənə mesaj silindi.")
 
     if BOTLOG:
         await purg.client.send_message(
             BOTLOG_CHATID,
-            "Hedeflenen " + str(count) + " mesaj başarıyla silindi.")
+            "Seçilən " + str(count) + " mesajlar silindi.")
     await sleep(2)
     await done.delete()
 
@@ -74,12 +74,12 @@ async def purgeme(delme):
 
     smsg = await delme.client.send_message(
         delme.chat_id,
-        "`Temizlik tamamlandı` " + str(count) + " tane mesaj silindi.",
+        "`Təmizlik tamamlandı` " + str(count) + " dənə mesaj silindi.",
     )
     if BOTLOG:
         await delme.client.send_message(
             BOTLOG_CHATID,
-            "Hedeflenen " + str(count) + " mesaj başarıyla silindi.")
+            "Seçilən " + str(count) + " mesajlar silindi.")
     await sleep(2)
     i = 1
     await smsg.delete()
@@ -95,11 +95,11 @@ async def delete_it(delme):
             await delme.delete()
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Hedeflenen mesajın silinmesi başarılıyla tamamlandı")
+                    BOTLOG_CHATID, "Seçilən mesaj silindi")
         except rpcbaseerrors.BadRequestError:
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Bu mesajı silemiyorum.")
+                    BOTLOG_CHATID, "Bu mesajı silə bilmirəm.")
 
 
 @register(outgoing=True, pattern="^.edit")
@@ -118,7 +118,7 @@ async def editer(edit):
         i = i + 1
     if BOTLOG:
         await edit.client.send_message(BOTLOG_CHATID,
-                                       "Mesaj düzenleme sorgusu başarıyla yürütüldü")
+                                       "Mesaj düzənləndi")
 
 
 @register(outgoing=True, pattern="^.sd")
@@ -133,33 +133,33 @@ async def selfdestruct(destroy):
     await smsg.delete()
     if BOTLOG:
         await destroy.client.send_message(BOTLOG_CHATID,
-                                          "sd sorgusu başarıyla tamamlandı")
+                                          "sd sorgusu tamamlandı")
 
 
 CMD_HELP.update({
     'purge':
     '.purge\
-        \nKullanım: Hedeflenen yanıttan başlayarak tüm mesajları temizler.'
+        \nİşlədilişi: Seçilən mesajdan başlayaraq bütün mesajları silər.'
 })
 
 CMD_HELP.update({
     'purgeme':
     '.purgeme <x>\
-        \nKullanım: Hedeflenen yanıttan başlayarak tüm mesajları temizler.'
+        \nİşlədilişi: Öz mesajlarınızı silər nümunə .purgeme 25 əmrini yazsaz 25 ədəd mesajınız silinəcək həmin söhbətdə.'
 })
 
 CMD_HELP.update({"del": ".del\
-\nKullanım: Yanıtladığınız mesajı siler."})
+\nİşlədilişi: Seçdiyiniz mesajı silər."})
 
 CMD_HELP.update({
     'edit':
     ".edit <yenimesaj>\
-\nKullanım: Son mesajanızı <yenimesaj> ile değiştirin."
+\nİşlədilişi: Son mesajınızı <yenimesaj> ilə dəyişdirər."
 })
 
 CMD_HELP.update({
     'sd':
     '.sd <x> <mesaj>\
-\nKullanım: x saniye içinde kendini yok eden bir mesaj oluşturur.\
-\nBotunuzu uyku moduna geçirdiğinden, saniyeleri 100 ün altında tutun.'
+\nİşlədilişi: x saniyə içində öz özünə yox olan bir mesaj yaradar.\
+\nBotunuzu yuxu moduna keçirtdiyinizdə, saniyələri 100 saniyənin altında tutun.'
 })
