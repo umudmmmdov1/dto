@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Cete UserBot - BristolMyers z2sofwares
+# DTÖUserBot - Ümüd
 
 """ Sunucu hakkında bilgi veren UserBot modülüdür. """
 
@@ -120,7 +120,7 @@ async def pipcheck(pip):
                            f"{invokepip}"
                            "`\n**Nəticə: **\n`Heçnə tapılmadı.`")
     else:
-        await pip.edit("`Bir örnek görmek için .cete pip komutunu kullanın.`")
+        await pip.edit("`Bir nümunə görmək üçün .dto pip əmrini işlədin.`")
 
 
 @register(outgoing=True, pattern="^.alive$")
