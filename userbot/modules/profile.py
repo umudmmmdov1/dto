@@ -31,16 +31,16 @@ from userbot import bot, CMD_HELP
 from userbot.events import register
 
 # ====================== CONSTANT ===============================
-INVALID_MEDIA = "```Medya geçerli değil.```"
-PP_CHANGED = "```Profil resmi başarıyla değiştirildi.```"
-PP_TOO_SMOL = "```Bu resim çok küçük, daha büyük bir resim kullanın.```"
-PP_ERROR = "```Resim işlenirken bir hata oluştu.```"
+INVALID_MEDIA = "```Medya keçərli deil.```"
+PP_CHANGED = "```Profil şəkili dəyişdirildi.```"
+PP_TOO_SMOL = "```Bu şəkil çox balacadı, daha böyük bir şəkil işlədin.```"
+PP_ERROR = "```Şəkili dəyişərkən bir xəta yarandı.```"
 
-BIO_SUCCESS = "```Biyografi başarıyla değiştirildi.```"
+BIO_SUCCESS = "```Biyoqraf dəyişdirildi.```"
 
-NAME_OK = "```Adın başarıyla değiştirildi.```"
-USERNAME_SUCCESS = "```Kullanıcı adın başarıyla değiştirildi.```"
-USERNAME_TAKEN = "```Kullanıcı adı müsait değil.```"
+NAME_OK = "```Adınız dəyişdirildi.```"
+USERNAME_SUCCESS = "```İstifadəçi adınız dəyişdirildi.```"
+USERNAME_TAKEN = "```Bu adda istifadəçi adı var.```"
 # ===============================================================
 
 
@@ -127,7 +127,7 @@ async def count(event):
     bc = 0
     b = 0
     result = ""
-    await event.edit("`Lütfen bekleyin..`")
+    await event.edit("`Zəhmət olmaza gözləyin..`")
     dialogs = await bot.get_dialogs(limit=None, ignore_migrated=True)
     for d in dialogs:
         currrent_entity = d.entity
@@ -146,9 +146,9 @@ async def count(event):
         else:
             print(d)
 
-    result += f"`Kullanıcılar:`\t**{u}**\n"
-    result += f"`Gruplar:`\t**{g}**\n"
-    result += f"`Süpergruplar:`\t**{c}**\n"
+    result += f"`İstifadəçilər:`\t**{u}**\n"
+    result += f"`Qruplar:`\t**{g}**\n"
+    result += f"`Superqruplar:`\t**{c}**\n"
     result += f"`Kanallar:`\t**{bc}**\n"
     result += f"`Botlar:`\t**{b}**"
 
@@ -179,23 +179,23 @@ async def remove_profilepic(delpfp):
                        file_reference=sep.file_reference))
     await delpfp.client(DeletePhotosRequest(id=input_photos))
     await delpfp.edit(
-        f"`{len(input_photos)} adet profil fotoğrafı silindi.`")
+        f"`{len(input_photos)} ədəd profil şəkili silindi.`")
 
 
 CMD_HELP.update({
     "profile":
-    ".username <yeni kullanıcı adı>\
-\nKullanımı: Telegram'daki kullanıcı adınızı değişir.\
-\n\n.name <isim> or .name <isim> <soyisim>\
-\nKullanımı: Telegram'daki isminizi değişir. (Ad ve soyad ilk boşluğa dayanarak birleştirilir.)\
+    ".username <yeni istifadəçi adı>\
+\nİşlədilişi: Telegram'dakı istkfadəçi adınızı dəyişdirər.\
+\n\n.name <ad> or .name <ad> <soyad>\
+\nİşlədilişi: Telegram'dakı adınızı dəyişdirər. (Ad və soyad ilk boşluğa dayanaraq birləşdilir.)\
 \n\n.setpfp\
-\nKullanımı: Bir resmi Telegram'da profil resmi yapmak için .setpfp komutuyla cevap verin.\
-\n\n.setbio <yeni biyografi>\
-\nKullanımı: Telegram'daki biyografinizi bu komutu kullanarak değiştirin..\
-\n\n.delpfp or .delpfp <numara>/<all>\
-\nKullanımı: Telegram profil fotoğrafınızı kaldırır.\
+\nİşlədilişi: Bir şəkili Telegram'da profil şəkili etmək üçün .setpfp əmriylə şəkilə cavab olaraq yazın.\
+\n\n.setbio <yeni biyoqrafi>\
+\nİşlədilişi: Telegram'dakı biyoqrafınızı bu əmri işlədərək dəyişdirin..\
+\n\n.delpfp or .delpfp <rəqəm>/<all>\
+\nİşlədilişi: Telegram profil şəkilinizi silər.\
 \n\n.reserved\
-\nKullanımı: Rezerve ettiğiniz kullanıcı adlarını gösterir.\
+\nİşlədilişi: Rezerv etdiyiniz istifadəçi adlarını göstərir.\
 \n\n.count\
-\nKullanımı: Gruplarınızı, sohbetlerinizi, aktif botları vs. sayar."
+\nİşlədilişi: Qruplarınızı, söhbətlərinizi, aktiv botları vs. sayar."
 })
