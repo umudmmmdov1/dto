@@ -24,19 +24,6 @@ from telethon.tl import functions
 
 from random import choice
 
-DIZCILIK_STR = [
-    "`Stikerivi oğurladım...`",
-    "`Bu stiker xoşuma gəldi...`",
-    "`Bu stikeri öz stiker paketimə dəvət edirəm...`",
-    "`Bunu fırlatmalıyam...",
-    "`Hmm nə gözəl stikerdi bu!\nTez fırladım..`",
-    "`Stikerini fırladıram\nhahaha.`",
-    "`Stikerivi oğurladım. (☉｡☉)!→\nHalal elə 🤗...`",
-    "`Məhşur stiker oğrusu gəldi, stikerün getdi...`",
-    "`Stiker öz paketinizə əlavə olundu...`",
-    "`Stikerivi oğurlayıram voram zoram...`",
-]
-
 AFKSTR = [
     "`İndi təcili işim var, daha sonra mesaj atsan olar? Onsuz yenidən gələcəm.`",
     "`Bu nömrəyə zəng çatmır. Telefon ya söndürülüb yada əhatə dairəsi xaricindədi. Zəhmət olmasa yenidən cəhd edin.` \n`biiiiiiiiiiiiiiiiiiiiiiiiiiiiip`!",
@@ -77,7 +64,7 @@ INVALID_PH = '\nXƏTA: Girilən telefon nömrəsi yanlışdır' \
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
-connect("cete2").close()
+connect("dto").close()
 try:
     bot.start()
 
@@ -89,7 +76,7 @@ try:
     PLUGIN_MESAJLAR = {}
     ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanlıları qorusun\nDTÖUserBot əla işdəyir ⚡.`", "afk": str(choice(AFKSTR)), "kickme": "Bye bye mən qaçdım 🤠", "pm": UNAPPROVED_MSG, "fırlat": str(choice(DIZCILIK_STR))}
 
-    PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "kickme", "pm", "fırlat"]
+    PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "kickme", "pm"]
     for mesaj in PLUGIN_MESAJLAR_TURLER:
         dmsj = MSJ_SQL.getir_mesaj(mesaj)
         if dmsj == False:
@@ -115,7 +102,7 @@ try:
             if not os.path.exists(os.getcwd() + "/userbot/modules/" + dosyaa):
                 dosya = bot.download_media(plugin, os.getcwd() + "/userbot/modules/")
             else:
-                print("Bu Plugin Zaten Yüklü " + dosyaa)
+                print("Bu plugin onsuz yüklənib " + dosyaa)
                 dosya = dosyaa
             try:
                 spec = importlib.util.spec_from_file_location(dosya, dosya)
