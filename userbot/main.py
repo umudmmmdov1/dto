@@ -72,14 +72,10 @@ try:
                     os.remove(os.getcwd() + "/userbot/modules/" + dosya)
                 continue
             
-            ndosya = dosya.replace(".py", "")
-            CMD_HELP[ndosya] = "Bu plugin rəsmi olmayan yerdən yüklənmişdir"
-            bot.send_message(KanalId, f"`Plugin yükləndi\n\Dosya: {dosya}`")
-        if KanalId != "me":
-            bot.send_message(KanalId, f"`Pluginlər yükləndi`")
+            ndosya = dosyaismi[0]
+            CMD_HELP[ndosya] = "Bu Plugin qırağdan yüklənmişdir"
     else:
-        bot.send_message("me", f"`Bizi seçdiyiniz üçün təşəkkürlər ❤️ DTÖUserBot`")
-
+        bot.send_message("me", f"`Zəhmət olmasa pluginlərin qalıcı olması üçün PLUGIN_CHANNEL_ID'i düzəldin`")
 except PhoneNumberInvalidError:
     print(INVALID_PH)
     exit(1)
