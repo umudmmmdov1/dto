@@ -74,9 +74,9 @@ try:
 
     # PLUGIN MESAJLARI AYARLIYORUZ
     PLUGIN_MESAJLAR = {}
-    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanlıları qorusun\nDTÖUserBot əla işdəyir ⚡.`", "afk": str(choice(AFKSTR)), "kickme": "Bye bye mən qaçdım 🤠", "pm": UNAPPROVED_MSG))}
+    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanlıları qorusun\nDTÖUserBot əla işdəyir ⚡.`", "afk": str(choice(AFKSTR)), "pm": UNAPPROVED_MSG))}
 
-    PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "kickme", "pm"]
+    PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "pm"]
     for mesaj in PLUGIN_MESAJLAR_TURLER:
         dmsj = MSJ_SQL.getir_mesaj(mesaj)
         if dmsj == False:
