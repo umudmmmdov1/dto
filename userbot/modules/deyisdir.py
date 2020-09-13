@@ -35,7 +35,7 @@ async def degistir(event):
         else:
             await event.edit("**Bilinməyən plugin.** Mesajını silə biləcəyiniz pluginlər: `afk/alive/pm`")
     elif len(plugin) < 1:
-        await event.edit("**Dəyişdir, botdakı plugin-mesajlarını dəyişdirmənizə yarayır.**\nNümunə İşlədilişi: `.deyisdir afk /"İmdi burada deiləm...\"`\nPlugin-mesajını silmə: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları (indilik): `afk/alive/pm`")
+        await event.edit("**Dəyişdir, botdakı plugin-mesajlarını dəyişdirmənizə yarayır.**\nNümunə İşlədilişi: `.deyisdir afk \"İmdi burada deiləm...\"`\nPlugin-mesajını silmə: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları : `afk/alive/pm`")
     elif type(mesaj) == str:
         if plugin in TURLER:
             if mesaj.isspace():
@@ -49,4 +49,4 @@ async def degistir(event):
             await event.edit("**Bilinməyən plugin.** Dəyişdirə biləcəyiniz pluginlər: `afk/alive/pm`")
 
 CMD_HELP.update({'deyisdir': '.deyisdir <modul> <mesaj>\
-        \nİşlədilişi: **Dəyişdir, botdaki plugin-mesajlarını dəyişdirmənizə yarayır.**\nNümunə İşlədilişi: `.deyisdir afk /"Şu an burda değilim...\"`\nPlugin-mesajını silmə: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları (indilik): `afk/alive/pm`'})
+        \nİşlədilişi: **Dəyişdir, botdaki plugin-mesajlarını dəyişdirmənizə yarayır.**\nNümunə İşlədilişi: `.deyisdir afk \"İndi burada deiləm...\"`\nPlugin-mesajını silmə: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları: `afk/alive/pm`'})
