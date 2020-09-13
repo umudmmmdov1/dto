@@ -122,7 +122,7 @@ async def upstream(ups):
             remove("degisiklikler.txt")
         else:
             await ups.edit(changelog_str)
-        await ups.respond('`Yenilənmə etmək üçün \".update now\" əmrini işlədin.\"Yenilənmə maksimum 10 dəqiqə çəkir."\"DTÖUserBot.`')
+        await ups.respond('`Yenilənmə etmək üçün \".update now\" əmrini işlədin.`')
         return
 
     if force_update:
