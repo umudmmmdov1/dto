@@ -4,7 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 
-# @BristolMyers tarafından portlanmıştır.
 
 from userbot.events import register 
 from userbot import CMD_HELP, bot
@@ -14,7 +13,7 @@ PENIS_TEMPLATE = """
 ╚╗╔╝║║╔═╦╦╦╔╗
 ╔╝╚╗║╚╣║║║║╔╣
 ╚══╝╚═╩═╩═╩═╝
-ஜ۞ஜ ÇETE ஜ۞ஜ
+ஜ۞ஜ DTÖ ஜ۞ஜ
 """
 
 @register(outgoing=True, pattern=r"^\.(?:love)\s?(.)?")
@@ -31,5 +30,5 @@ async def emoji_nah(e):
 CMD_HELP.update({
     "love": 
     ".love\
-    \nKullanım: love yaratır :o\n"
+    \nİşlədilişi: love yaradır \n"
 })
