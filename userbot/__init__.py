@@ -141,8 +141,12 @@ AUTO_PP = os.environ.get("AUTO_PP", None)
 CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
 GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
 
+PLUGINID = os.environ.get("PLUGIN_CHANNEL_ID", None)
 # Plugin İçin
-PLUGIN_CHANNEL_ID = int(os.environ.get("PLUGIN_CHANNEL_ID", None))
+if not PLUGINID:
+    PLUGIN_CHANNEL_ID = "me"
+else:
+    PLUGIN_CHANNEL_ID = int(PLUGINID)
 
 # OpenWeatherMap API Key
 OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
