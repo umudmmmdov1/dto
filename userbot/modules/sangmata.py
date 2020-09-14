@@ -29,25 +29,25 @@ async def _(event):
     if event.fwd_from:
         return 
     if not event.reply_to_msg_id:
-       await event.edit("`Herhangi bir kullanıcı mesajına cevap verin.`")
+       await event.edit("`Hər hansı bir istifadəçi mesajına cavab verin.`")
        return
     reply_message = await event.get_reply_message() 
     if not reply_message.text:
-       await event.edit("`Mesaja cevap verin.`")
+       await event.edit("`Mesaja cavab verin.`")
        return
     chat = "@SangMataInfo_bot"
     sender = reply_message.sender
     if reply_message.sender.bot:
-       await event.edit("`Botlara cevap veremezsiniz.`")
+       await event.edit("`Botlara cavab verə bilmərsiz.`")
        return
-    await event.edit("`İşleniyor...`")
+    await event.edit("`İşlənir...`")
     async with bot.conversation(chat, exclusive=False) as conv:
           response = None
           try:
               msg = await reply_message.forward_to(chat)
               response = await conv.get_response(message=msg, timeout=5)
           except YouBlockedUserError: 
-              await event.edit(f"`Lütfen {chat} engelini kaldırın ve tekrar deneyin`")
+              await event.edit(f"`Zəhmət olmasa {chat} blokdan çıxardın və təkrar cəhd edin.`")
               return
           except Exception as e:
               print(e.__class__)
@@ -55,7 +55,7 @@ async def _(event):
           if not response:
               await event.edit("`Botdan cevap alamadım!`")
           elif response.text.startswith("Forward"):
-             await event.edit("`Gizlilik ayarları yüzenden alıntı yapamadım`")
+             await event.edit("`Gizlilik ayarlarına görə heçnə edənmədim.`")
           else: 
              await event.edit(response.text)
           sleep(1)
@@ -65,5 +65,5 @@ async def _(event):
 CMD_HELP.update({
     "sangmata": 
     ".sangmata \
-    \nKullanım: Belirtilen kullanıcının isim geçmişini görüntüleyin.\n"
+    \nİşlədilişi: Seçilən istifadəçinin ad keçmişini göstərər.\n"
 })
