@@ -27,7 +27,7 @@ async def auto(event):
         HM = time.strftime("%H:%M")
 
         await event.client(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
-            last_name=f"⏰{HM}"
+            last_name=f"| {HM}"
         ))
     elif metod == "bio":
         DMY = time.strftime("%d.%m.%Y")
@@ -49,7 +49,7 @@ async def auto(event):
                 HM = time.strftime("%H:%M")
 
                 await event.client(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
-                    last_name=f"⏰{HM}"
+                    last_name=f"| {HM}"
                 ))
             elif metod == "bio":
                 DMY = time.strftime("%d.%m.%Y")
