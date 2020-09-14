@@ -54,7 +54,7 @@ async def get_weather(weather):
 
     if not OWM_API:
         await weather.edit(
-            "`Önce` https://openweathermap.org/ `adresinden bir API anahtarı almalısın.`")
+            "`Əvvəlcə` https://openweathermap.org/ `saytından bir API key almalısan.`")
         return
 
     APPID = OWM_API
@@ -63,7 +63,7 @@ async def get_weather(weather):
         CITY = DEFCITY
         if not CITY:
             await weather.edit(
-                "`WEATHER_DEFCITY değişkeniyle bir şehri varsayılan olarak belirt, ya da komutu yazarken hangi şehrin hava durumunu istediğini de belirt!`"
+                "`WEATHER_DEFCITY dəyişkəniylənə bir şəhər həmişəlik olaraq düzəlt, ya da əmri yazarkən hansı şəhərin hava proqnozunu istədiyinidə orada yaz.`"
             )
             return
     else:
@@ -83,7 +83,7 @@ async def get_weather(weather):
             try:
                 countrycode = timezone_countries[f'{country}']
             except KeyError:
-                await weather.edit("`Geçersiz ülke.`")
+                await weather.edit("`Səhv ölkə.`")
                 return
             CITY = newcity[0].strip() + "," + countrycode.strip()
 
@@ -92,7 +92,7 @@ async def get_weather(weather):
     result = json.loads(request.text)
 
     if request.status_code != 200:
-        await weather.edit(f"`Geçersiz ülke.`")
+        await weather.edit(f"`Səhv ölkə.`")
         return
 
     cityname = result['name']
@@ -133,20 +133,20 @@ async def get_weather(weather):
         return xx
 
     await weather.edit(
-        f"**Sıcaklık:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
+        f"**İstilik:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
         +
-        f"**En Düşük Sıcaklık:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
+        f"**Ən az istilik:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
         +
-        f"**En Yüksek Sıcaklık:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
-        + f"**Nem:** `{humidity}%`\n" +
-        f"**Rüzgar Hızı:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
-        f"**Gündoğumu:** `{sun(sunrise)}`\n" +
+        f"**Ən yüksək istilik:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
+        + f"**Nəm:** `{humidity}%`\n" +
+        f"**Külək sürəti:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
+        f"**Gündoğuşu:** `{sun(sunrise)}`\n" +
         f"**Günbatımı:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
         f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
 
 
 CMD_HELP.update({
     "weather":
-    "Kullanım: .weather şehir adı veya .weather şehir adı, ülke adı/ülke kodu\
-    \nBir bölgenin hava durumunu verir."
+    "İşlədilişi: .weather şəhər adı vəya .weather ölkə adı/ölkə kodu\
+    \nBölgənin hava proqnozunu göstərir."
 })
