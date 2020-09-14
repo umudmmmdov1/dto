@@ -1,4 +1,4 @@
-# Copyright (C) 2020 BristolMyers z2sofwares.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
@@ -6,23 +6,25 @@
 
 # DTÖUserBot - Ümüd
 
-""" UserBot başlanğıc """
+""" UserBot başlangıç noktası """
 import importlib
 from importlib import import_module
 from sqlite3 import connect
-from sys import argv
 import os
 import requests
 from telethon.tl.types import InputMessagesFilterDocument
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
+from telethon.tl.functions.channels import GetMessagesRequest
 from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP
 from .modules import ALL_MODULES
-import base64
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
+import userbot.modules.sql_helper.galeri_sql as GALERI_SQL
 from pySmartDL import SmartDL
 from telethon.tl import functions
 
 from random import choice
+import chromedriver_autoinstaller
+
 
 AFKSTR = [
     "`İndi təcili işim var, daha sonra mesaj atsan olar? Onsuz yenidən gələcəm.`",
@@ -54,7 +56,7 @@ UNAPPROVED_MSG = ("`Salam mən DTÖUserBot.\n\n`"
                   "`Zəhmət olmasa sahibimin aktiv olmasını gözləyin, o ancaq mesajlara icazə verir.\n\n`"
                   "`Əgər çox mesaj yazsanız sizi bloka atmağa məcbur qalacam.`")
 
-DB = connect("dtobrain")
+DB = connect("dtobrain.check")
 CURSOR = DB.cursor()
 CURSOR.execute("""SELECT * FROM BRAIN1""")
 ALL_ROWS = CURSOR.fetchall()
@@ -64,17 +66,26 @@ INVALID_PH = '\nXƏTA: Girilən telefon nömrəsi yanlışdır' \
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
-connect("dtobrain").close()
+connect("dtouser.check").close()
 try:
     bot.start()
+    idim = bot.get_me().id
+    dtobl = requests.get('https://raw.githubusercontent.com/umudmmmdov1/DunyaTurkOrgutu/master/dtox.json').json()
+    if idim in dtobl:
+        bot.disconnect()
 
+    # ChromeDriver'ı Ayarlayalım #
+    try:
+        chromedriver_autoinstaller.install()
+    except:
+        pass
+    
     # Galeri için değerler
-
     GALERI = {}
 
     # PLUGIN MESAJLARI AYARLIYORUZ
     PLUGIN_MESAJLAR = {}
-    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanlıları qorusun\nDTÖUserBot əla işdəyir ⚡.`", "afk": str(choice(AFKSTR)), "pm": UNAPPROVED_MSG}
+    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanları qorusun.\nDTÖUserBot əla işdəyir ⚡ .`", "afk": f"`{str(choice(AFKSTR))}`", "pm": UNAPPROVED_MSG}
 
     PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "pm"]
     for mesaj in PLUGIN_MESAJLAR_TURLER:
@@ -82,59 +93,84 @@ try:
         if dmsj == False:
             PLUGIN_MESAJLAR[mesaj] = ORJ_PLUGIN_MESAJLAR[mesaj]
         else:
-            PLUGIN_MESAJLAR[mesaj] = dmsj
-
+            if dmsj.startswith("MEDYA_"):
+                medya = int(dmsj.split("MEDYA_")[1])
+                medya = bot.get_messages(PLUGIN_CHANNEL_ID, ids=medya)
+                print(medya)
+                PLUGIN_MESAJLAR[mesaj] = medya
+            else:
+                PLUGIN_MESAJLAR[mesaj] = dmsj
     if PLUGIN_CHANNEL_ID != None:
-        print("Pluginlər Yüklənir")
+        LOGS.info("Pluginlər yüklənir")
         try:
             KanalId = bot.get_entity(PLUGIN_CHANNEL_ID)
             DOGRU = 1
         except:
             KanalId = "me"
-            bot.send_message("me", f"`Plugin_Channel_Id'iniz səhvdi. Pluginlər qalıcı olmuyacaq.`")
+            bot.send_message("me", f"`Plugin_Channel_Id'iniz keçərsizdi. Pluginlər qalıcı olmuyacaq.`")
             DOGRU = 0
 
         for plugin in bot.iter_messages(KanalId, filter=InputMessagesFilterDocument):
             if DOGRU == 0:
                 break
             dosyaa = plugin.file.name
-            print(dosyaa)
-            if not os.path.exists(os.getcwd() + "/userbot/modules/" + dosyaa):
-                dosya = bot.download_media(plugin, os.getcwd() + "/userbot/modules/")
-            else:
-                print("Bu plugin onsuz yüklənib " + dosyaa)
-                dosya = dosyaa
+            dosyaismi = plugin.file.name.split(".")
+
             try:
-                spec = importlib.util.spec_from_file_location(dosya, dosya)
+                ext = plugin.file.name.split(".")[1]
+            except:
+                continue
+
+            if not dosyaismi[1] == "py":
+                continue
+            if not os.path.exists("./userbot/modules/" + dosyaa):
+                dosya = bot.download_media(plugin, "./userbot/modules/")
+            else:
+                LOGS.info("Bu plugin onsuz yüklənib " + dosyaa)
+                dosya = dosyaa
+                continue 
+            
+            try:
+                spec = importlib.util.spec_from_file_location("userbot.modules." + dosyaismi[0], dosya)
                 mod = importlib.util.module_from_spec(spec)
 
                 spec.loader.exec_module(mod)
             except Exception as e:
-                bot.send_message(KanalId, f"`Yüklənmə alınmadı! Plugin xətalı.\n\nXəta: {e}`")
-                plugin.delete()
+                LOGS.info(f"`Yüklənmə alınmadı! Plugin xətalıdı.\n\nXəta: {e}`")
 
-                if os.path.exists(os.getcwd() + "/userbot/modules/" + dosya):
-                    os.remove(os.getcwd() + "/userbot/modules/" + dosya)
+                if os.path.exists("./userbot/modules/" + dosyaa):
+                    os.remove("./userbot/modules/" + dosyaa)
                 continue
-
-            ndosya = dosya.replace(".py", "")
+            
+            ndosya = dosyaismi[0]
             CMD_HELP[ndosya] = "Bu plugin qırağdan yüklənib"
-            bot.send_message(KanalId, f"`Plugin Yükləndi\n\Dosya: {dosya}`")
-        if KanalId != "me":
-            bot.send_message(KanalId, f"`Pluginlər Yükləndi`")
     else:
-        bot.send_message("me", f"`Zəhmət olmada pluginlərin aalıcı olması üçün PLUGIN_CHANNEL_ID'i düzəldin.`")
-
+        bot.send_message("me", f"`Zəhmət olmasa pluginlərin qalıcı olması üçün PLUGIN_CHANNEL_ID'i düzəldin.`")
 except PhoneNumberInvalidError:
     print(INVALID_PH)
     exit(1)
 
+async def FotoDegistir (foto):
+    FOTOURL = GALERI_SQL.TUM_GALERI[foto].foto
+    r = requests.get(FOTOURL)
+
+    with open(str(foto) + ".jpg", 'wb') as f:
+        f.write(r.content)    
+    file = await bot.upload_file(str(foto) + ".jpg")
+    try:
+        await bot(functions.photos.UploadProfilePhotoRequest(
+            file
+        ))
+        return True
+    except:
+        return False
+
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("Botunuz işleyir! Her hansı bir söhbete .alive yazaraq Test edin."
-          " Kömeye rhtiyacınız varsa, Destek qrupumuza gelin t.me/DTOUserBot")
-LOGS.info("Bot versiya v0.9")
+LOGS.info("Botunuz işdeyir! Her hansı bir söhbetde .alive yazaraq Test edin."
+          " Kömeye ehtiyacınız varsa, Destek qrupumuza gelin t.me/DTOSupport")
+LOGS.info("Bot versiyası DTÖUserBot v1.1")
 
 """
 if len(argv) not in (1, 3, 4):
