@@ -15,7 +15,7 @@ async def auto(event):
     metod = event.pattern_match.group(1).lower()
     
     if str(metod) != "ad" and str(metod) != "bio":
-        await event.edit(f"Zəhmət olmasa sadəcə .auto ad və ya .auto isim yazın  Xəta > {metod}")
+        await event.edit(f"Zəhmət olmasa sadəcə .auto ad və ya .auto bio yazın  Xəta > {metod}")
         return
 
     if metod in ASYNC_POOL:
@@ -33,7 +33,7 @@ async def auto(event):
         DMY = time.strftime("%d.%m.%Y")
         HM = time.strftime("%H:%M")
 
-        Bio = f"📅 Tarix: {DMY} | ⌚️ Saat: {HM} | @DTOUserBot"
+        Bio = f"@DTOUserBot | ⌚️ Saat: {HM}"
         await event.client(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
             about=Bio
         ))
@@ -55,7 +55,7 @@ async def auto(event):
                 DMY = time.strftime("%d.%m.%Y")
                 HM = time.strftime("%H:%M")
 
-                Bio = f"📅 Tarix: {DMY} | ⌚️ Saat: {HM} | @DTOUserBot"
+                Bio = f"@DTOUserBot | ⌚️ Saat: {HM}"
                 await event.client(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
                     about=Bio
                 ))
