@@ -4,7 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 
-# @BristolMyers tarafından portlanmıştır.
 
 from userbot.events import register 
 from userbot import CMD_HELP, bot
@@ -33,5 +32,5 @@ async def emoji_nah(e):
 CMD_HELP.update({
     "huu": 
     ".huu\
-    \nKullanım: huu yaratır :o\n"
+    \nİşlədilişi: huu yaradır :o\n"
 })
