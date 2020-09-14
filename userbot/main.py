@@ -1,12 +1,5 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
 # DTÖUserBot - Ümüd
 
-""" UserBot başlangıç noktası """
 import importlib
 from importlib import import_module
 from sqlite3 import connect
@@ -26,28 +19,28 @@ from random import choice
 
 
 AFKSTR = [
-    "`İndi təcili işim var, daha sonra mesaj atsan olar? Onsuz yenidən gələcəm.`",
-    "`Bu nömrəyə zəng çatmır. Telefon ya söndürülüb yada əhatə dairəsi xaricindədi. Zəhmət olmasa yenidən cəhd edin.` \n`biiiiiiiiiiiiiiiiiiiiiiiiiiiiip`!",
-    "`Bir neçə dəqiqə içində gələcəyəm. Ancaq gəlməsəm...\ndaha çox gözlə.`",
-    "`İndi burada deyiləm, başqa yerdəyəm.`",
-    "`İnsan sevdiyini itirən zaman\ncanı yanar yanar yanaaaarrrr\nBoy bağışla 😂 bilmirdim burda kimsə var\nSahibim daha sonra sizə yazacaq.`",
-    "`Bəzən həyatdakı ən yaxşı şeylər gözləməyə dəyər…\nTez qayıdaram.`",
-    "`Tez qayıdaram,\nama əyər geri qayıtmasam,\ndaha sonra qayıdaram.`",
-    "`Hələdə anlamadınsa,\nburada deyiləm.`",
-    "`Aləm qalxsa səni məni məndən alnağa hamıdan alıb götürrəm səni...\nSahibim burada deil ama qruza salacaq mahnılar oxuya bilərəm 😓🚬`",
-    "`7 dəniz və 7 ölkədən uzaqdayam,\n7 su və 7 qitə,\n7 dağ və 7 təpə,\n7 ovala və 7 höyük,\n7 hovuz və 7 göl,\n7 bahar və 7 çay,\n7 şəhər və 7 məhəllə,\n7 blok və 7 ev...\n\nMesajların belə mənə çatmayacağı yer!`",
-    "`İndi klaviaturadan uzaqdayam, ama ekranınızda yeterincə yüksək səslə qışqırığ atsanız, sizi eşidə bilərəm.`",
-    "`Bu tərəfdən irəlləyirəm\n---->`",
-    "`Bu tərəfdən irəlləyirəm\n<----`",
-    "`Zəhmət olmasa mesaj buraxın və məni olduğumdan daha önəmli hiss etdirin.`",
-    "`Sahibim burda deil, buna görə mənə yazmağı dayandır.`",
-    "`Burda olsaydım,\nSənə harada olduğumu deyərdim.\n\nAma mən deiləm,\ngeri qayıtdığımda məndən soruş...`",
-    "`Uzaqlardayam!\nNə vaxt qayıdaram bilmirəm !\nBəlkə bir neçə dəqiqə sonra!`",
-    "`Sahibim indi məşğuldu. Adınızı, nömrənizi və adresinizi versəniz ona yönləndirərəm və beləliklə geri gəldiyi zaman, sizə cavab yazar`",
-    "`Bağışlayın, sahibim burda deil.\nO gələnə qədər mənimlə danışa bilərsən.\nSahibim sizə sonra yazar.`",
-    "`Dünən gecə yarə namə yazdım qalmışam əllərdə ayaqlarda denən heç halımı soruşmazmı? Qalmışam əllərdə ayaqlarda\nSahibim burda deil ama sənə mahnı oxuyajammmm`",
-    "`Həyat qısa, dəyməz qıza...\nNətər zarafat elədim?`",
-    "`İndi burada deiləm....\nama burda olsaydım...\n\nbu möhtəşəm olardı eləmi qadan alım ?`",
+    "İndi təcili işim var, daha sonra mesaj atsan olar? Onsuz yenidən gələcəm.",
+    "Bu nömrəyə zəng çatmır. Telefon ya söndürülüb yada əhatə dairəsi xaricindədi. Zəhmət olmasa yenidən cəhd edin. \nbiiiiiiiiiiiiiiiiiiiiiiiiiiiiip!",
+    "Bir neçə dəqiqə içində gələcəyəm. Ancaq gəlməsəm...\ndaha çox gözlə.",
+    "İndi burada deyiləm, başqa yerdəyəm.",
+    "İnsan sevdiyini itirən zaman\ncanı yanar yanar yanaaaarrrr\nBoy bağışla 😂 bilmirdim burda kimsə var\nSahibim daha sonra sizə yazacaq.",
+    "Bəzən həyatdakı ən yaxşı şeylər gözləməyə dəyər…\nTez qayıdaram.",
+    "Tez qayıdaram,\nama əyər geri qayıtmasam,\ndaha sonra qayıdaram.",
+    "Hələdə anlamadınsa,\nburada deyiləm.",
+    "Aləm qalxsa səni məni məndən alnağa hamıdan alıb götürrəm səni...\nSahibim burada deil ama qruza salacaq mahnılar oxuya bilərəm 😓🚬",
+    "7 dəniz və 7 ölkədən uzaqdayam,\n7 su və 7 qitə,\n7 dağ və 7 təpə,\n7 ovala və 7 höyük,\n7 hovuz və 7 göl,\n7 bahar və 7 çay,\n7 şəhər və 7 məhəllə,\n7 blok və 7 ev...\n\nMesajların belə mənə çatmayacağı yer!",
+    "İndi klaviaturadan uzaqdayam, ama ekranınızda yeterincə yüksək səslə qışqırığ atsanız, sizi eşidə bilərəm.",
+    "Bu tərəfdən irəlləyirəm\n---->",
+    "Bu tərəfdən irəlləyirəm\n<----",
+    "Zəhmət olmasa mesaj buraxın və məni olduğumdan daha önəmli hiss etdirin.",
+    "Sahibim burda deil, buna görə mənə yazmağı dayandır.",
+    "Burda olsaydım,\nSənə harada olduğumu deyərdim.\n\nAma mən deiləm,\ngeri qayıtdığımda məndən soruş...",
+    "Uzaqlardayam!\nNə vaxt qayıdaram bilmirəm !\nBəlkə bir neçə dəqiqə sonra!",
+    "Sahibim indi məşğuldu. Adınızı, nömrənizi və adresinizi versəniz ona yönləndirərəm və beləliklə geri gəldiyi zaman, sizə cavab yazar",
+    "Bağışlayın, sahibim burda deil.\nO gələnə qədər mənimlə danışa bilərsən.\nSahibim sizə sonra yazar.",
+    "Dünən gecə yarə namə yazdım qalmışam əllərdə ayaqlarda denən heç halımı soruşmazmı? Qalmışam əllərdə ayaqlarda\nSahibim burda deil ama sənə mahnı oxuyajammmm",
+    "Həyat qısa, dəyməz qıza...\nNətər zarafat elədim?",
+    "İndi burada deiləm....\nama burda olsaydım...\n\nbu möhtəşəm olardı eləmi qadan alım ?",
 ]
 
 UNAPPROVED_MSG = ("`Salam mən DTÖUserBot.\n\n`"
