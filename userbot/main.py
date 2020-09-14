@@ -23,7 +23,6 @@ from pySmartDL import SmartDL
 from telethon.tl import functions
 
 from random import choice
-import chromedriver_autoinstaller
 
 
 AFKSTR = [
@@ -74,12 +73,6 @@ try:
     if idim in dtobl:
         bot.disconnect()
 
-    # ChromeDriver'ı Ayarlayalım #
-    try:
-        chromedriver_autoinstaller.install()
-    except:
-        pass
-    
     # Galeri için değerler
     GALERI = {}
 
