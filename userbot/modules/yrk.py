@@ -4,8 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 
-# @NaytSeyd tarafından portlanmıştır.
-
 from userbot.events import register 
 from userbot import CMD_HELP, bot
 
@@ -40,5 +38,5 @@ async def emoji_yrk(e):
 CMD_HELP.update({
     "yrk": 
     ".yrk \
-    \nKullanım: yrk yaratır :o\n"
+    \nİşlədilişi: DiCK yaradır \n"
 })
