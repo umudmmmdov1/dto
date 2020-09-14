@@ -1,18 +1,20 @@
-import io
+# Copyright (C) 2020 Ümüd.
+#
+# Licensed under the Yusuf Usta Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
+#
+
+# DTÖUserBot - Ümüd
+
 import re
-import asyncio
-
-from telethon import events, utils
-from telethon.tl import types, functions
-
 import userbot.modules.sql_helper.mesaj_sql as sql
 from userbot import CMD_HELP
 from userbot.events import register
-from userbot.main import PLUGIN_MESAJLAR, ORJ_PLUGIN_MESAJLAR
+from userbot.main import PLUGIN_MESAJLAR, ORJ_PLUGIN_MESAJLAR, PLUGIN_CHANNEL_ID
 
-@register(outgoing=True, pattern="^.deyisdir (.*)")
+@register(outgoing=True, pattern="^.deyisdir ?(.*)")
 async def degistir(event):
-    plugin = event.pattern_match.group(1)
+    plugin = event.text.replace(".deyisdir ", "")
     mesaj = re.search(r"\"(.*)\"", plugin)
 
     if mesaj:
@@ -26,6 +28,17 @@ async def degistir(event):
     TURLER = ["afk", "alive", "pm"]
     if type(mesaj) == list:
         if plugin in TURLER:
+            if event.is_reply:
+                reply = await event.get_reply_message()
+                if reply.media:
+                    mesaj = await reply.forward_to(PLUGIN_CHANNEL_ID)
+                    PLUGIN_MESAJLAR[plugin] = reply
+                    sql.ekle_mesaj(plugin, f"MEDYA_{mesaj.id}")
+                    return await event.edit(f"Plugin(`{plugin}`) üçün medya qeyd edildi.")
+                PLUGIN_MESAJLAR[plugin] = reply.text
+                sql.ekle_mesaj(plugin, reply.text)
+                return await event.edit(f"Plugin(`{plugin}`) üçün mesajınız qeyd edildi.")   
+
             silme = sql.sil_mesaj(plugin)
             if silme == True:
                 PLUGIN_MESAJLAR[plugin] = ORJ_PLUGIN_MESAJLAR[plugin]
@@ -35,7 +48,7 @@ async def degistir(event):
         else:
             await event.edit("**Bilinməyən plugin.** Mesajını silə biləcəyiniz pluginlər: `afk/alive/pm`")
     elif len(plugin) < 1:
-        await event.edit("**Dəyişdir, botdakı plugin-mesajlarını dəyişdirmənizə yarayır.**\nNümunə İşlədilişi: `.deyisdir afk \"İmdi burada deiləm...\"`\nPlugin-mesajını silmə: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları : `afk/alive/pm`")
+        await event.edit("**Dəyişdir modulu, botdakı plugin-mesajlarını dəyişdirməyinizə yarayır.**\nNümunə: `.deyisdir afk \"İndi burada deiləm... Daha sonra gələcəm\"`\nPlugin-mesajını silmək: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları: `afk/alive/pm`")
     elif type(mesaj) == str:
         if plugin in TURLER:
             if mesaj.isspace():
@@ -44,9 +57,9 @@ async def degistir(event):
             else:
                 PLUGIN_MESAJLAR[plugin] = mesaj
                 sql.ekle_mesaj(plugin, mesaj)
-                await event.edit(f"`Plugin(`{plugin}`) üçün mesajınız(`{mesaj}`) qeyd edildi.`")
+                await event.edit(f"Plugin(`{plugin}`) üçün mesajınız(`{mesaj}`) qeyd edildi.")
         else:
             await event.edit("**Bilinməyən plugin.** Dəyişdirə biləcəyiniz pluginlər: `afk/alive/pm`")
 
 CMD_HELP.update({'deyisdir': '.deyisdir <modul> <mesaj>\
-        \nİşlədilişi: **Dəyişdir, botdaki plugin-mesajlarını dəyişdirmənizə yarayır.**\nNümunə İşlədilişi: `.deyisdir afk \"İndi burada deiləm...\"`\nPlugin-mesajını silmə: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları: `afk/alive/pm`'})
+        \nİşlədilişi: **Dəyişdir modulu, botdakı plugin-mesajlarını dəyişdirməyinizə yarayır.**\nNümunə: `.deyisdir afk \"İndir burada deiləm... Daha sonra gələcəm\"`\nPlugin-mesajını silmək: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları: `afk/alive/pm`'})
