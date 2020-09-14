@@ -175,13 +175,13 @@ async def add_new_filter(new_handler):
             msg_id = msg_o.id
         else:
             await new_handler.edit(
-                "`Bir medyanın filterə qarşılıq olaraq qeyd edilə bilməsi üçün BOTLOG_CHATID aktiv etməlisiz.`"
+                "`Bir medyanın filterə cavab mesajı olaraq qeyd edilə bilməsi üçün BOTLOG_CHATID aktiv etməlisiz.`"
             )
             return
     elif new_handler.reply_to_msg_id and not string:
         rep_msg = await new_handler.get_reply_message()
         string = rep_msg.text
-    success = " **{}** `filtresi {}`"
+    success = " **{}** `filteri {}`"
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
         await new_handler.edit(success.format(keyword, 'əlavə olundu'))
     else:
@@ -202,7 +202,7 @@ async def remove_a_genel(r_handler):
         filt = r_handler.pattern_match.group(1)
 
     if not remove_filter("GENEL", filt):
-        await r_handler.edit(" **{}** `filtresi mevcut değil.`".format(filt))
+        await r_handler.edit(" **{}** `filteri mövcud deil.`".format(filt))
     else:
         await r_handler.edit(
             "**{}** `filteri silindi`".format(filt))
