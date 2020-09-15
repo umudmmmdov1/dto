@@ -9,7 +9,6 @@
 
 """ Diğer kategorilere uymayan fazlalık komutların yer aldığı modül. """
 
-import twitter_scraper
 import os
 import time
 import asyncio
