@@ -125,69 +125,7 @@ async def reddit(event):
         except Exception as e:
             print(e)
             await event.edit(mesaj + "\n\n`" + veri["selftext"] + "`")
-
-@register(pattern="^.twit ?(.*)", outgoing=True)
-async def twit(event):
-    hesap = event.pattern_match.group(1)
-    if len(hesap) < 1:
-        await event.edit("`Zəhmət olmasa bir Twitter hesabı yazın. Məsələn: ``.twit st4r_m0rn1ng`")
-        return
-    try:
-        twits = list(twitter_scraper.get_tweets(hesap, pages=1))
-    except Exception as e:
-        await event.edit(f"`Muhtemelen böyle bir hesap yok. Çünkü hata oluştu. Hata: {e}`")
-        return
-
-    if len(twits) > 2:
-        if twits[0]["tweetId"] < twits[1]["tweetId"]:
-            twit = twits[1]
-            fotolar = twit['entries']['photos']
-            sonuc = []
-            if len(fotolar) >= 1:
-                i = 0
-                while i < len(fotolar):
-                    with open(f"{hesap}-{i}.jpg", 'wb') as load:
-                        load.write(get(fotolar[i]).content)
-                    sonuc.append(f"{hesap}-{i}.jpg")
-                    i += 1
-                await event.client.send_file(event.chat_id, sonuc, caption=f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-                await event.delete()
-                return
-            await event.edit(f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-        else:
-            twit = twits[1]
-            fotolar = twit['entries']['photos']
-            sonuc = []
-            if len(fotolar) >= 1:
-                i = 0
-                while i < len(fotolar):
-                    with open(f"{hesap}-{i}.jpg", 'wb') as load:
-                        load.write(get(fotolar[i]).content)
-                    sonuc.append(f"{hesap}-{i}.jpg")
-                    i += 1
-                print(sonuc)
-                await event.client.send_file(event.chat_id, sonuc, caption=f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-                await event.delete()
-                return
-            await event.edit(f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-        return
-    else:
-        twit = twits[0]
-        fotolar = twit['entries']['photos']
-        sonuc = []
-        if len(fotolar) >= 1:
-            i = 0
-            while i < len(fotolar):
-                with open(f"{hesap}-{i}.jpg", 'wb') as load:
-                    load.write(get(fotolar[i]).content)
-                sonuc.append(f"{hesap}-{i}.jpg")
-                i += 1
-            await event.client.send_file(event.chat_id, sonuc, caption=f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-            await event.delete()
-            return
-        await event.edit(f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-        return
-        
+       
 @register(outgoing=True, pattern="^.ekşi(?: |$)(.*)")
 async def eksi(event):
     cmd = event.pattern_match.group(1)
