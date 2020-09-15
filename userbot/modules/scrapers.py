@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - @umudmmmdov1
 
 
 """ Diğer kategorilere uymayan fazlalık komutların yer aldığı modül. """
@@ -67,9 +67,10 @@ async def tts2(query):
     textx = await query.get_reply_message()
     mesj = query.pattern_match.group(1)
     parca = mesj.split(" ")[0]
-    if parca == "kadın":
+    if parca == "qadin":
         cins = "female"
     else:
+    if parca == "kisi"
         cins = "male"
 
     message = mesj.replace(parca, "")
@@ -79,7 +80,7 @@ async def tts2(query):
         message = textx.text
     else:
         await query.edit(
-            "`Yazıdan sese çevirmek için bir metin gir. Kullanım: .tts2 erkek/kadın merhaba`")
+            "`Yazıdan səsə çevirmək üçün bir söz yaz. İşlədilişi: .tts2 kisi/qadin salam`")
         return
 
     mp3 = get(f"https://texttospeech.responsivevoice.org/v1/text:synthesize?text={message}&lang={TTS_LANG}&engine=g3&name=&pitch=0.5&rate=0.5&volume=1&key=AsenaUserbot&gender={cins}").content
@@ -97,21 +98,21 @@ async def reddit(event):
     }       
 
     if len(sub) < 1:
-        await event.edit("`Lütfen bir Subreddit hesabı belirtin. Örnek: ``.reddit kopyamakarna`")
+        await event.edit("`Zəhmət olmasa Subreddit hesabı seçin. Məsələn: ``.reddit kopyamakarna`")
         return
 
     kaynak = get(f"https://www.reddit.com/r/{sub}/hot.json?limit=1", headers=headers).json()
 
     if not "kind" in kaynak:
         if kaynak["error"] == 404:
-            await event.edit("`Böyle bir Subreddit bulunamadı.`")
+            await event.edit("`Belə bir Subreddit tapılmadı.`")
         elif kaynak["error"] == 429:
-            await event.edit("`Reddit yavaşlaman için uyarıyor.`")
+            await event.edit("`Reddit yavaşlatmaq üçün xəbərdarlıq edilir.`")
         else:
-            await event.edit("`Bir şeyler oldu ama... Neden oldu bilmiyorum.`")
+            await event.edit("`Bir şeylər oldu ama... Niyə oldu bilmirəm.`")
         return
     else:
-        await event.edit("`Veriler getiriliyor...`")
+        await event.edit("`Verilər gətirilir...`")
 
         veri = kaynak["data"]["children"][0]["data"]
         mesaj = f"**{veri['title']}**\n⬆️{veri['score']}\n\nBy: __u/{veri['author']}__\n\n[Link](https://reddit.com{veri['permalink']})"
@@ -130,7 +131,7 @@ async def reddit(event):
 async def twit(event):
     hesap = event.pattern_match.group(1)
     if len(hesap) < 1:
-        await event.edit("`Lütfen bir Twitter hesabı belirtin. Örnek: ``.twit st4r_m0rn1ng`")
+        await event.edit("`Zəhmət olmasa bir Twitter hesabı yazın. Məsələn: ``.twit st4r_m0rn1ng`")
         return
     try:
         twits = list(twitter_scraper.get_tweets(hesap, pages=1))
@@ -207,20 +208,20 @@ async def eksi(event):
                 break
             
             giri += f"**Entry**: `{i['entry'][6:]}`\n**Yazar:** `{i['sahibi']}`\n\n"
-        await event.edit(f"**Ekşi Sözlük** Başlık: `{cmd}`\n\n{giri}")
+        await event.edit(f"**Ekşi Sözlük** Başlıq: `{cmd}`\n\n{giri}")
         return
 
-@register(outgoing=True, pattern="^.haber(?: |$)(.*)")
+@register(outgoing=True, pattern="^.xeber(?: |$)(.*)")
 async def haber(event):
-    TURLER = ["guncel", "magazin", "spor", "ekonomi", "politika", "dunya"]
+    TURLER = ["siyaset", "magazin", "idman", "ekonomi", "politika", "dunya"]
     cmd = event.pattern_match.group(1)
     if len(cmd) < 1:
-            HABERURL = 'https://sondakika.haberler.com/'
+            HABERURL = 'https://apa.az/az/'
     else:
         if cmd in TURLER:
-            HABERURL = f'https://sondakika.haberler.com/{cmd}'
+            HABERURL = f'https://apa.az/az/{cmd}'
         else:
-            await event.edit("`Yanlış haber kategorisi! Bulunan kategoriler: .haber guncel/magazin/spor/ekonomi/politika/dunya`")
+            await event.edit("`Səhv xəbər kateqoriyası! Mövcud olan kateqoriyalar: .haber guncel/magazin/spor/ekonomi/politika/dunya`")
             return
     await event.edit("`Haberler Getiriliyor...`")
 
@@ -234,13 +235,13 @@ async def haber(event):
         HABERLER += haberdiv[i].find("p").text
         i += 1
 
-    await event.edit(f"**Son Dakika Haberler {cmd.title()}**" + HABERLER)
+    await event.edit(f"**Son dəqiqə xəbərlər {cmd.title()}**" + HABERLER)
 
 @register(outgoing=True, pattern="^.karbon ?(.*)")
 async def karbon(e):
     cmd = e.pattern_match.group(1)
-    if os.path.exists("@AsenaUserBot-Karbon.jpg"):
-        os.remove("@AsenaUserBot-Karbon.jpg")
+    if os.path.exists("@DTOUserBot-Karbon.jpg"):
+        os.remove("@DTOUserBot-Karbon.jpg")
 
     if len(cmd) < 1:
         await e.edit("Kullanım: .karbon mesaj")    
@@ -251,10 +252,10 @@ async def karbon(e):
 
     r = get(f"https://carbonnowsh.herokuapp.com/?code={cmd}")
 
-    with open("@AsenaUserBot-Karbon.jpg", 'wb') as f:
+    with open("@DTOUserBot-Karbon.jpg", 'wb') as f:
         f.write(r.content)    
 
-    await e.client.send_file(e.chat_id, file="@AsenaUserBot-Karbon.jpg", force_document=True, caption="[AsenaUserBot](https://t.me/asenauserbot) ile oluşturuldu.")
+    await e.client.send_file(e.chat_id, file="@DTOUserBot-Karbon.jpg", force_document=True, caption="[DTOUserBot](https://t.me/asenauserbot) ile oluşturuldu.")
     await e.delete()
 
 @register(outgoing=True, pattern="^.crblang (.*)")
