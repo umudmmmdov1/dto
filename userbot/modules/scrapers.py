@@ -66,7 +66,7 @@ async def tts2(query):
     textx = await query.get_reply_message()
     mesj = query.pattern_match.group(1)
     parca = mesj.split(" ")[0]
-    if parca == "kadın":
+    if parca == "qadin":
         cins = "female"
     else:
         cins = "male"
@@ -125,173 +125,10 @@ async def reddit(event):
             print(e)
             await event.edit(mesaj + "\n\n`" + veri["selftext"] + "`")
        
-@register(outgoing=True, pattern="^.ekşi(?: |$)(.*)")
-async def eksi(event):
-    cmd = event.pattern_match.group(1)
-
-    if len(cmd) < 1:
-        await event.edit("`Bir başlık belirtmesiniz. Kullanım: .ekşi pena`")
-    else:
-        await event.edit(f"`Entryler getiriliyor...`")
-
-        eksi = get("https://api.quiec.tech/eksi.php?a=a&b=" + cmd).json()
-        entry = ""
-        giri = ""
-
-        for i in eksi:
-            entry += i["entry"]
-            if len(entry) > 3064:
-                break
-            
-            giri += f"**Entry**: `{i['entry'][6:]}`\n**Yazar:** `{i['sahibi']}`\n\n"
-        await event.edit(f"**Ekşi Sözlük** Başlıq: `{cmd}`\n\n{giri}")
-        return
-
-@register(outgoing=True, pattern="^.xeber(?: |$)(.*)")
-async def haber(event):
-    TURLER = ["siyaset", "magazin", "idman", "ekonomi", "politika", "dunya"]
-    cmd = event.pattern_match.group(1)
-    if len(cmd) < 1:
-            HABERURL = 'https://apa.az/az/'
-    else:
-        if cmd in TURLER:
-            HABERURL = f'https://apa.az/az/{cmd}'
-        else:
-            await event.edit("`Səhv xəbər kateqoriyası! Mövcud olan kateqoriyalar: .haber guncel/magazin/spor/ekonomi/politika/dunya`")
-            return
-    await event.edit("`Haberler Getiriliyor...`")
-
-    haber = get(HABERURL).text
-    kaynak = BeautifulSoup(haber, "lxml")
-    haberdiv = kaynak.find_all("div", attrs={"class":"hblnContent"})
-    i = 0
-    HABERLER = ""
-    while i < 3:
-        HABERLER += "\n\n❗️**" + haberdiv[i].find("a").text + "**\n"
-        HABERLER += haberdiv[i].find("p").text
-        i += 1
-
-    await event.edit(f"**Son dəqiqə xəbərlər {cmd.title()}**" + HABERLER)
-
-@register(outgoing=True, pattern="^.karbon ?(.*)")
-async def karbon(e):
-    cmd = e.pattern_match.group(1)
-    if os.path.exists("@DTOUserBot-Karbon.jpg"):
-        os.remove("@DTOUserBot-Karbon.jpg")
-
-    if len(cmd) < 1:
-        await e.edit("Kullanım: .karbon mesaj")    
-    yanit = await e.get_reply_message()
-    if yanit:
-        cmd = yanit.message
-    await e.edit("`Lütfen bekleyiniz...`")    
-
-    r = get(f"https://carbonnowsh.herokuapp.com/?code={cmd}")
-
-    with open("@DTOUserBot-Karbon.jpg", 'wb') as f:
-        f.write(r.content)    
-
-    await e.client.send_file(e.chat_id, file="@DTOUserBot-Karbon.jpg", force_document=True, caption="[DTOUserBot](https://t.me/asenauserbot) ile oluşturuldu.")
-    await e.delete()
-
-@register(outgoing=True, pattern="^.crblang (.*)")
-async def setlang(prog):
-    global CARBONLANG
-    CARBONLANG = prog.pattern_match.group(1)
-    await prog.edit(f"Karbon modülü için varsayılan dil {CARBONLANG} olarak ayarlandı.")
-
-
-@register(outgoing=True, pattern="^.carbon")
-async def carbon_api(e):
-    """ carbon.now.sh için bir çeşit wrapper """
-    await e.edit("`İşleniyor...`")
-    CARBON = 'https://carbon.now.sh/?l={lang}&code={code}'
-    global CARBONLANG
-    textx = await e.get_reply_message()
-    pcode = e.text
-    if pcode[8:]:
-        pcode = str(pcode[8:])
-    elif textx:
-        pcode = str(textx.message)  # Girilen metin, modüle aktarılıyor.
-    code = quote_plus(pcode)  # Çözülmüş url'ye dönüştürülüyor.
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 25%`")
-    if os.path.isfile("./carbon.png"):
-        os.remove("./carbon.png")
-    url = CARBON.format(code=code, lang=CARBONLANG)
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=1920x1080")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-gpu")
-    prefs = {'download.default_directory': './'}
-    chrome_options.add_experimental_option('prefs', prefs)
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.get(url)
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 50%`")
-    download_path = './'
-    driver.command_executor._commands["send_command"] = (
-        "POST", '/session/$sessionId/chromium/send_command')
-    params = {
-        'cmd': 'Page.setDownloadBehavior',
-        'params': {
-            'behavior': 'allow',
-            'downloadPath': download_path
-        }
-    }
-    command_result = driver.execute("send_command", params)
-    driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
-    # driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
-    # driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 75%`")
-    # İndirme için bekleniyor
-    while not os.path.isfile("./carbon.png"):
-        await sleep(0.5)
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 100%`")
-    file = './carbon.png'
-    await e.edit("`Resim karşıya yükleniyor...`")
-    await e.client.send_file(
-        e.chat_id,
-        file,
-        caption="Bu resim [Carbon](https://carbon.now.sh/about/) kullanılarak yapıldı,\
-        \nbir [Dawn Labs](https://dawnlabs.io/) projesi.",
-        force_document=True,
-        reply_to=e.message.reply_to_msg_id,
-    )
-
-    os.remove('./carbon.png')
-    driver.quit()
-    # Karşıya yüklemenin ardından carbon.png kaldırılıyor
-    await e.delete()  # Mesaj siliniyor
-
-@register(outgoing=True, pattern="^.ceviri")
-async def ceviri(e):
-    # http://www.tamga.org/2016/01/web-tabanl-gokturkce-cevirici-e.html #
-    await e.edit("`Çeviriliyor...`")
-    textx = await e.get_reply_message()
-    pcode = e.text
-    if pcode[8:]:
-        pcode = str(pcode[8:])
-    elif textx:
-        pcode = str(textx.message)  # Girilen metin, modüle aktarılıyor.
-    url = "http://www.tamga.org/2016/01/web-tabanl-gokturkce-cevirici-e.html"
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=1920x1080")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-gpu")
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.get(url)
-    driver.find_element_by_name("Latin_Metin").send_keys(pcode)
-    Turk = driver.find_element_by_name("Göktürk_Metin").get_attribute("value")
-    await e.edit(f"**Çeviri: Türkçe -> KökTürkçe**\n\n**Verilen Metin:** `{pcode}`\n**Çıktı:** `{Turk}`")
-
-
 @register(outgoing=True, pattern="^.img (.*)")
 async def img_sampler(event):
     """ .img komutu Google'da resim araması yapar. """
-    await event.edit("İşleniyor...")
+    await event.edit("İşlənir...")
     query = event.pattern_match.group(1)
     lim = findall(r"lim=\d+", query)
     try:
@@ -334,12 +171,12 @@ async def moni(event):
                     number, currency_from, rebmun, currency_to))
             else:
                 await event.edit(
-                    "`Yazdığın şey uzaylıların kullandığı bir para birimine benziyor, bu yüzden dönüştüremiyorum.`"
+                    "`Yazdığın şey yadplanetlilərin pul vahidinə oxşayır, buna görədə dönüşdürə bilmərəm.`"
                 )
         except Exception as e:
             await event.edit(str(e))
     else:
-        await event.edit("`Sözdizimi hatası.`")
+        await event.edit("`Sözdizimi xətası.`")
         return
 
 
@@ -366,16 +203,15 @@ async def gsearch(q_event):
             msg += f"[{title}]({link})\n`{desc}`\n\n"
         except IndexError:
             break
-    await q_event.edit("**Arama Sorgusu:**\n`" + match + "`\n\n**Sonuçlar:**\n" +
+    await q_event.edit("**Axtarış sorğusu:**\n`" + match + "`\n\n**Nəticələr:**\n" +
                        msg,
                        link_preview=False)
 
     if BOTLOG:
         await q_event.client.send_message(
             BOTLOG_CHATID,
-            match + "`sözcüğü başarıyla Google'da aratıldı!`",
+            match + "`sözü uğurla Google'da axtarıldı!`",
         )
-
 
 @register(outgoing=True, pattern=r"^.wiki (.*)")
 async def wiki(wiki_q):
@@ -384,10 +220,10 @@ async def wiki(wiki_q):
     try:
         summary(match)
     except DisambiguationError as error:
-        await wiki_q.edit(f"Belirsiz bir sayfa bulundu.\n\n{error}")
+        await wiki_q.edit(f"Səçilməyən bir səhifə tapılmadı.\n\n{error}")
         return
     except PageError as pageerror:
-        await wiki_q.edit(f"Aradığınız sayfa bulunamadı.\n\n{pageerror}")
+        await wiki_q.edit(f"Axtardığınız səhifə tapılmadı.\n\n{pageerror}")
         return
     result = summary(match)
     if len(result) >= 4096:
@@ -403,7 +239,7 @@ async def wiki(wiki_q):
         if os.path.exists("wiki.txt"):
             os.remove("wiki.txt")
         return
-    await wiki_q.edit("**Arama:**\n`" + match + "`\n\n**Sonuç:**\n" + result)
+    await wiki_q.edit("**Axtarış:**\n`" + match + "`\n\n**Nəticə:**\n" + result)
     if BOTLOG:
         await wiki_q.client.send_message(
             BOTLOG_CHATID, f"{match}` teriminin Wikipedia sorgusu başarıyla gerçekleştirildi!`")
@@ -599,7 +435,7 @@ async def translateme(trans):
 
     source_lan = LANGUAGES[f'{reply_text.src.lower()}']
     transl_lan = LANGUAGES[f'{reply_text.dest.lower()}']
-    reply_text = f"Şu dilden:**{source_lan.title()}**\nŞu dile:**{transl_lan.title()}:**\n\n{reply_text.text}"
+    reply_text = f"Bu dildən :**{source_lan.title()}**\nBu dilə:**{transl_lan.title()}:**\n\n{reply_text.text}"
 
     await trans.edit(reply_text)
     if BOTLOG:
