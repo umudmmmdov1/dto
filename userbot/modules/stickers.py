@@ -30,16 +30,16 @@ from telethon.tl.types import InputStickerSetID
 from telethon.tl.types import DocumentAttributeSticker
 
 DIZCILIK_STR = [
-    "`Stikerivi oğurladım...`",
-    "`Bu stiker xoşuma gəldi...`",
-    "`Bu stikeri öz stiker paketimə dəvət edirəm...`",
-    "`Bunu fırlatmalıyam...",
-    "`Hmm nə gözəl stikerdi bu!\nTez fırladım..`",
-    "`Stikerini fırladıram\nhahaha.`",
-    "`Stikerivi oğurladım. (☉｡☉)!→\nHalal elə 🤗...`",
-    "`Məhşur stiker oğrusu gəldi, stikerün getdi...`",
-    "`Stiker öz paketinizə əlavə olundu...`",
-    "`Stikerivi oğurlayıram voram zoram...`",
+    "Stikerivi oğurladım...",
+    "Bu stiker xoşuma gəldi...",
+    "Bu stikeri öz stiker paketimə dəvət edirəm...",
+    "Bunu fırlatmalıyam...",
+    "Hmm nə gözəl stikerdi bu!\nTez fırladım..",
+    "Stikerini fırladıram\nhahaha.",
+    "Stikerivi oğurladım. (☉｡☉)!→\nHalal elə 🤗...",
+    "Məhşur stiker oğrusu gəldi, stikerün getdi...",
+    "Stiker öz paketinizə əlavə olundu...",
+    "Stikerivi oğurlayıram voram zoram...",
 ]
 
 
@@ -135,7 +135,7 @@ async def dızla(args):
                     packname = f"a{user.id}_by_{user.username}_{pack}"
                     packnick = f"@{user.username}'s UserBot pack {pack}"
                     await args.edit("`Stiked paketində yer olmadığına görə" + str(pack) +
-                                    " nömrəli paketə köçrülür`")
+                                    " nömrəli paketə köçürülür`")
                     await conv.send_message(packname)
                     x = await conv.get_response()
                     if x.text == "Keçərsiz paket seçildi.":
