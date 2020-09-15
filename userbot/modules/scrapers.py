@@ -67,10 +67,9 @@ async def tts2(query):
     textx = await query.get_reply_message()
     mesj = query.pattern_match.group(1)
     parca = mesj.split(" ")[0]
-    if parca == "qadin":
+    if parca == "kadın":
         cins = "female"
     else:
-    if parca == "kisi"
         cins = "male"
 
     message = mesj.replace(parca, "")
