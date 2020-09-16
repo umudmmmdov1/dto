@@ -26,10 +26,10 @@ async def dto(event):
         if args in CMD_HELP:
             await event.edit(str(CMD_HELP[args]))
         else:
-            await event.edit("Zəhmət olmasa bir DTÖUserBot modulu yazın.")
+            await event.edit("Zəhmət olmasa bir DTÖUserBot modulu yazın ✏️")
     else:
-        await event.edit("Zəhmət olmasa hər hansısa DTÖUserBot modulunu yazın !!\
-            \nİşlədilişi: .dto <modul adı>")
+        await event.edit("Zəhmət olmasa hər hansısa DTÖUserBot modulunu yazın ✏️\
+            \n🔰**İşlədilişi:** .dto <modul adı>")
         string = ""
         for i in CMD_HELP:
             string += "`" + str(i)
