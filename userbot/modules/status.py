@@ -43,7 +43,7 @@ async def durums(event):
 **BotLog:** `{durum(BOTLOG_CHATID)}`
 **Pluginlər:** `Qalıcı`
 
-**Her şey normaldı ✅**
+**Hər şey normaldı ✅**
     """)
 
 CMD_HELP["status"] = "✏️ **Əmr:** .status\n🔰 **İşlədilişi:** Əlavə olunan Apilər və versiyaları göstərər."
