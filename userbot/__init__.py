@@ -202,9 +202,6 @@ BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
 GENIUS = os.environ.get("GENIUS", None)
 CMD_HELP = {}
 
-SPOTIFY_DC = os.environ.get("SPOTIFY_DC", None)
-SPOTIFY_KEY = os.environ.get("SPOTIFY_KEY", None)
-
 # CloudMail.ru ve MEGA.nz ayarlama
 if not os.path.exists('bin'):
     os.mkdir('bin')
