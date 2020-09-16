@@ -116,6 +116,6 @@ async def check_media(reply_message):
 
 CMD_HELP.update({
     "deepfry":
-    ".deepfry [numara 1-5]\
-    \nİşlədilişi: Seçilən şəkilə deepfry efekti edər."
+    "✏️**Əmr:** .deepfry [rəqəm 1-5]\
+    \n🔰**İşlədilişi:** Seçilən şəkilə deepfry efekti edər."
 })
