@@ -31,14 +31,6 @@
       "description": "Proqramda aldığınız Session keyi bura yazın.",
       "required": true
     },
-     "SPOTIFY_DC": {
-      "description": "Spotify bio için gerekli olan anahtar",
-      "required": false
-    },
-    "SPOTIFY_KEY": {
-      "description": "Spotify bio için gerekli olan anahtar",
-      "required": false
-    },
     "HEROKU_MEMEZ": {
       "description": "Toxunmayın True olaraq qalsın.",
       "value": "True",
