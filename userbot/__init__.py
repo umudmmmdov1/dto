@@ -200,8 +200,10 @@ BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
 
 # Genius modülünün çalışması için buradan değeri alın https://genius.com/developers her ikisi de aynı değerlere sahiptir
 GENIUS = os.environ.get("GENIUS", None)
-CMD_HELP = {}
+CMD_HELP = {}b
 
+SPOTIFY_DC = os.environ.get("SPOTIFY_DC", None)
+SPOTIFY_KEY = os.environ.get("SPOTIFY_KEY", None)
 
 # CloudMail.ru ve MEGA.nz ayarlama
 if not os.path.exists('bin'):
