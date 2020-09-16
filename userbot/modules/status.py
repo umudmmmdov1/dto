@@ -21,7 +21,7 @@ def durum(s):
             return "✅"
 
 @register(outgoing=True, pattern="^.status")
-async def statuss(event):
+async def durums(event):
 
     await event.edit(f"""
 **Python Versiya:** `{python_version()}`
@@ -30,17 +30,17 @@ async def statuss(event):
 
 **Plugin Sayı:** `{len(CMD_HELP)}`
 
-**Inline Bot:** `{status(tgbot)}`
-**GDrive:** `{status(G_DRIVE_CLIENT_ID)}`
-**LastFm:** `{status(lastfm)}`
-**YouTube ApiKey:** `{status(YOUTUBE_API_KEY)}`
-**Lydia:** `{status(LYDIA_API_KEY)}`
-**OpenWeather:** `{status(OPEN_WEATHER_MAP_APPID)}`
-**AutoPP:** `{status(AUTO_PP)}`
-**RemoveBG:** `{status(REM_BG_API_KEY)}`
-**OcrSpace:** `{status(OCR_SPACE_API_KEY)}`
-**Pm AutoBan:** `{status(PM_AUTO_BAN)}`
-**BotLog:** `{status(BOTLOG_CHATID)}`
+**Inline Bot:** `{durum(tgbot)}`
+**GDrive:** `{durum(G_DRIVE_CLIENT_ID)}`
+**LastFm:** `{durum(lastfm)}`
+**YouTube ApiKey:** `{durum(YOUTUBE_API_KEY)}`
+**Lydia:** `{durum(LYDIA_API_KEY)}`
+**OpenWeather:** `{durum(OPEN_WEATHER_MAP_APPID)}`
+**AutoPP:** `{durum(AUTO_PP)}`
+**RemoveBG:** `{durum(REM_BG_API_KEY)}`
+**OcrSpace:** `{durum(OCR_SPACE_API_KEY)}`
+**Pm AutoBan:** `{durum(PM_AUTO_BAN)}`
+**BotLog:** `{durum(BOTLOG_CHATID)}`
 **Pluginlər:** `Qalıcı`
 
 **Her şey normaldı ✅**
