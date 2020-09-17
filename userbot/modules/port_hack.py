@@ -29,21 +29,21 @@ async def port_hack(event):
 
     #if input_str == "hack":
 
-    await event.edit("Hacking..")
+    await event.edit("Heklənir..")
 
     animation_chars = [
         
-            "`Connecting To Hacked Private Server...`",
-            "`Target Selected.`",
-            "`Hacking... 0%\n▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
-            "`Hacking... 4%\n█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
-            "`Hacking... 8%\n██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",    
-            "`Hacking... 20%\n█████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
-            "`Hacking... 36%\n█████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
-            "`Hacking... 52%\n█████████████▒▒▒▒▒▒▒▒▒▒▒▒ `",
-            "`Hacking... 84%\n█████████████████████▒▒▒▒ `",
-            "`Hacking... 100%\n█████████HACKED███████████ `",
-            "`Targeted Account Hacked...\n\nPay 69$ To Remove this hack..`"
+            "`Ən yaxın serverə qoşulur...`",
+            "`Server seçildi.`",
+            "`Hack olunur... 0%\n▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "`Hack olunur... 4%\n█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "`Hack olunur... 8%\n██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",    
+            "`Hack olunur... 20%\n█████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "`Hack olunur... 36%\n█████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "`Hack olunur... 52%\n█████████████▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "`Hack olunur... 84%\n█████████████████████▒▒▒▒ `",
+            "`Hack olunur... 100%\n█████████HACKED███████████ `",
+            "`Profil qırıldı...\n\n59$ ödəniş et və məlumatların silinsin..`"
         ]
 
     for i in animation_ttl:
