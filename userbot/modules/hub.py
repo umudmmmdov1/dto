@@ -6,7 +6,7 @@ from os import remove
 from telethon.tl.functions.users import GetFullUserRequest
 from time import time
 
-@register(outgoing=True, pattern=r"^.phub ?(.*)")
+@register(outgoing=True, pattern=r"^.hub ?(.*)")
 async def tweet(event):
     if not event.is_reply:
         return await event.edit('**Mesaja cavab olaraq yazın!**')
