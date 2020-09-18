@@ -694,7 +694,6 @@ CMD_HELP.update({
     '✏️**Əmr:** .currency <miqdar> <çevriləcək döviz> <çevrilən döviz>\
         \n🔰**İşlədilişi:** Ümüdün 1 manatlıq botu kimidir, ama boş qaldığında qızlara yazmır.'
 })
-
 CMD_HELP.update({
     'carbon':
     '✏️**Əmr:** .carbon <mətin>\
@@ -709,6 +708,7 @@ CMD_HELP.update(
 CMD_HELP.update(
     {'ud': '✏️**Əmr:** .ud <terim>\
         \n🔰**İşlədilişi:** Urban Dictionary axtarışı etmənin asand yolu?'})
+})
 CMD_HELP.update({
     'tts':
     '.tts <mətin>\
