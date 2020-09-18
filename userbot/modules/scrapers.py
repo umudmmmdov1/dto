@@ -686,47 +686,52 @@ def deEmojify(inputString):
 
 CMD_HELP.update({
     'img':
-    '✏️**Əmr:** .img <söz>\
-        \n🔰**İşlədilişi:** Google üsründən sürətli bir şəkil axtarışı edər və ilk 5 fotonu göstərər.'
+    '.img <kelime>\
+        \nKullanım: Google üzerinde hızlı bir resim araması yapar ve ilk 5 resmi gösterir.'
 })
 CMD_HELP.update({
     'currency':
-    '✏️**Əmr:** .currency <miqdar> <çevriləcək döviz> <çevrilən döviz>\
-        \n🔰**İşlədilişi:** Ümüdün 1 manatlıq botu kimidir, ama boş qaldığında qızlara yazmır.'
+    '.currency <miktar> <dönüştürülecek birim> <dönüşecek birim>\
+        \nKullanım: Yusufun Türk Lirası Botu gibi, ama boş kaldığında kızlara yazmıyor.'
 })
+
 CMD_HELP.update({
     'carbon':
-    '✏️**Əmr:** .carbon <mətin>\
-        \n🔰**İşlədilişi:** carbon.now.sh saytını işlədərək yazdıqlarından aşşşşşşırı babat görsənməsini şey edə bilərsən.\n✏️**Əmr:** .crblang <dil> əmriylə həmişəki dilini qeyd edə bilərsənn.'
+    '.carbon <metin>\
+        \nKullanım: carbon.now.sh sitesini kullanarak yazdıklarının aşşşşşşırı şekil görünmesini sağlar.\n.crblang <dil> komutuyla varsayılan dilini ayarlayabilirsin.'
 })
 CMD_HELP.update(
-    {'google': '✏️**Əmr:** .google <mətin>\
-        \n🔰**İşlədilişi:** Sürətli bir Google axtarışı edər.'})
+    {'google': '.google <kelime>\
+        \nKullanım: Hızlı bir Google araması yapar.'})
 CMD_HELP.update(
-    {'wiki': '✏️**Mər:** .wiki <terim>\
-        \n🔰**İşləidlişi:** Bir Vikipedi axtarışı edilir'})
+    {'wiki': '.wiki <terim>\
+        \nKullanım: Bir Vikipedi araması gerçekleştirir.'})
 CMD_HELP.update(
-    {'ud': '✏️**Əmr:** .ud <terim>\
-        \n🔰**İşlədilişi:** Urban Dictionary axtarışı etmənin asand yolu?'})
+    {'ud': '.ud <terim>\
+        \nKullanım: Urban Dictionary araması yapmanın kolay yolu?'})
 CMD_HELP.update({
     'tts':
-    '✏️**Əmr:** .tts <mətin>\
-        \n🔰**İşlədilişi:** Mətni səsə çevirir.\n.lang tts əmriylə həmişəki dili qeyd edə bilərsən.\
-    ✏️**Əmr:** .tts2 <cinsiyət> <mətin>\
-        \n🔰**İşlədilişi:** Mətni səsə çevirmək üçün.\n.lang tts əmriylə həmişəki dili qeyd edə bilərsən.'
+    '.tts <metin>\
+        \nKullanım: Metni sese dönüştürür.\n.lang tts komutuyla varsayılan dili ayarlayabilirsin. (Türkçe ayarlı geliyor merak etme.)\
+    .tts2 <cinsiyet> <metin>\
+        \nKullanım: Metni sese dönüştürür.\n.lang tts komutuyla varsayılan dili ayarlayabilirsin.'
 })
 CMD_HELP.update({
     'trt':
     '.trt <metin>\
-        \n🔰**İşlədilişi:** Asand bir tərcümə modulu olan.\n.lang trt əmriylə həmişəki dilinə kecə bilərsiz (Azərbaycanca ayarlı gəlir darıxmayın.)'
-}}
-CMD_HELP.update({
-        'yt': '✏️**Əmr:** .yt <mətin>\
-        \n🔰**İşlədilişi:** YouTube üstümdən bir axtarış edər.'})
-CMD_HELP.update({
-      "imdb": "✏️**Əmr:** .imdb <film>\n🔰**İşlədilişi:** Film haqqında məlumat verər."})
+        \nKullanım: Basit bir çeviri modülü.\n.lang trt komutuyla varsayılan dili ayarlayabilirsin. (Türkçe ayarlı geliyor merak etme.)'
+})
+CMD_HELP.update({'yt': '.yt <metin>\
+        \nKullanım: YouTube üzerinde bir arama yapar.'})
+CMD_HELP.update(
+    {"ekşi": ".ekşi <başlık>\nKullanım: Ekşi sözlükten veri çekin."})
+CMD_HELP.update(
+    {"haber": ".haber <guncel/magazin/spor/ekonomi/politika/dunya>\nKullanım: Son dakika haberler."})
+
+CMD_HELP.update(
+    {"imdb": ".imdb <film>\nKullanım: Film hakkında bilgi verir."})
 CMD_HELP.update({
     'rip':
-    '✏️**Əmr:** .ripaudio <link> vəya .ripvideo <link>\
-        \n🔰**İşlədilişi:** YouTube üstündən (vəya [başqa saytlardan](https://ytdl-org.github.io/youtube-dl/supportedsites.html)) video vəya musiqi yüklə.'
+    '.ripaudio <bağlantı> veya .ripvideo <bağlantı>\
+        \nKullanım: YouTube üzerinden (veya [başka sitelerden](https://ytdl-org.github.io/youtube-dl/supportedsites.html)) video veya ses indirir.'
 })
