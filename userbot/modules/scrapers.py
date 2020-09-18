@@ -1,15 +1,13 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
+# Copyright (C) 2020 BristolMyers z2sofwares.
 #
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
-
+# Cete UserBot - BristolMyers z2sofwares
 
 """ Diğer kategorilere uymayan fazlalık komutların yer aldığı modül. """
 
-import twitter_scraper
 import os
 import time
 import asyncio
@@ -24,9 +22,6 @@ from urllib.parse import quote_plus
 from urllib.error import HTTPError
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from urbandict import define
@@ -48,214 +43,12 @@ from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRI
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.modules.upload_download import progress, humanbytes, time_formatter
-from google_images_download import google_images_download
-import base64, binascii
-import random
+from userbot.google_images_download import googleimagesdownload
+
 CARBONLANG = "auto"
 TTS_LANG = "tr"
 TRT_LANG = "tr"
 
-
-from telethon import events
-import subprocess
-from telethon.errors import MessageEmptyError, MessageTooLongError, MessageNotModifiedError
-import io
-import glob
-
-@register(pattern="^.tts2 (.*)", outgoing=True)
-async def tts2(query):
-    textx = await query.get_reply_message()
-    mesj = query.pattern_match.group(1)
-    parca = mesj.split(" ")[0]
-    if parca == "kadın":
-        cins = "female"
-    else:
-        cins = "male"
-
-    message = mesj.replace(parca, "")
-    if message:
-        pass
-    elif textx:
-        message = textx.text
-    else:
-        await query.edit(
-            "`Yazıdan sese çevirmek için bir metin gir. Kullanım: .tts2 erkek/kadın merhaba`")
-        return
-
-    mp3 = get(f"https://texttospeech.responsivevoice.org/v1/text:synthesize?text={message}&lang={TTS_LANG}&engine=g3&name=&pitch=0.5&rate=0.5&volume=1&key=AsenaUserbot&gender={cins}").content
-    with open("h.mp3", "wb") as audio:
-        audio.write(mp3)
-    await query.client.send_file(query.chat_id, "h.mp3", voice_note=True)
-    os.remove("h.mp3")
-    await query.delete()
-
-@register(pattern="^.reddit ?(.*)", outgoing=True)
-async def reddit(event):
-    sub = event.pattern_match.group(1)
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36 Avast/77.2.2153.120',
-    }       
-
-    if len(sub) < 1:
-        await event.edit("`Lütfen bir Subreddit hesabı belirtin. Örnek: ``.reddit kopyamakarna`")
-        return
-
-    kaynak = get(f"https://www.reddit.com/r/{sub}/hot.json?limit=1", headers=headers).json()
-
-    if not "kind" in kaynak:
-        if kaynak["error"] == 404:
-            await event.edit("`Böyle bir Subreddit bulunamadı.`")
-        elif kaynak["error"] == 429:
-            await event.edit("`Reddit yavaşlaman için uyarıyor.`")
-        else:
-            await event.edit("`Bir şeyler oldu ama... Neden oldu bilmiyorum.`")
-        return
-    else:
-        await event.edit("`Veriler getiriliyor...`")
-
-        veri = kaynak["data"]["children"][0]["data"]
-        mesaj = f"**{veri['title']}**\n⬆️{veri['score']}\n\nBy: __u/{veri['author']}__\n\n[Link](https://reddit.com{veri['permalink']})"
-        try:
-            resim = veri["url"]
-            with open(f"reddit.jpg", 'wb') as load:
-                load.write(get(resim).content)
-
-            await event.client.send_file(event.chat_id, "reddit.jpg", caption=mesaj)
-            os.remove("reddit.jpg")
-        except Exception as e:
-            print(e)
-            await event.edit(mesaj + "\n\n`" + veri["selftext"] + "`")
-
-@register(pattern="^.twit ?(.*)", outgoing=True)
-async def twit(event):
-    hesap = event.pattern_match.group(1)
-    if len(hesap) < 1:
-        await event.edit("`Lütfen bir Twitter hesabı belirtin. Örnek: ``.twit st4r_m0rn1ng`")
-        return
-    try:
-        twits = list(twitter_scraper.get_tweets(hesap, pages=1))
-    except Exception as e:
-        await event.edit(f"`Muhtemelen böyle bir hesap yok. Çünkü hata oluştu. Hata: {e}`")
-        return
-
-    if len(twits) > 2:
-        if twits[0]["tweetId"] < twits[1]["tweetId"]:
-            twit = twits[1]
-            fotolar = twit['entries']['photos']
-            sonuc = []
-            if len(fotolar) >= 1:
-                i = 0
-                while i < len(fotolar):
-                    with open(f"{hesap}-{i}.jpg", 'wb') as load:
-                        load.write(get(fotolar[i]).content)
-                    sonuc.append(f"{hesap}-{i}.jpg")
-                    i += 1
-                await event.client.send_file(event.chat_id, sonuc, caption=f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-                await event.delete()
-                return
-            await event.edit(f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-        else:
-            twit = twits[1]
-            fotolar = twit['entries']['photos']
-            sonuc = []
-            if len(fotolar) >= 1:
-                i = 0
-                while i < len(fotolar):
-                    with open(f"{hesap}-{i}.jpg", 'wb') as load:
-                        load.write(get(fotolar[i]).content)
-                    sonuc.append(f"{hesap}-{i}.jpg")
-                    i += 1
-                print(sonuc)
-                await event.client.send_file(event.chat_id, sonuc, caption=f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-                await event.delete()
-                return
-            await event.edit(f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-        return
-    else:
-        twit = twits[0]
-        fotolar = twit['entries']['photos']
-        sonuc = []
-        if len(fotolar) >= 1:
-            i = 0
-            while i < len(fotolar):
-                with open(f"{hesap}-{i}.jpg", 'wb') as load:
-                    load.write(get(fotolar[i]).content)
-                sonuc.append(f"{hesap}-{i}.jpg")
-                i += 1
-            await event.client.send_file(event.chat_id, sonuc, caption=f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-            await event.delete()
-            return
-        await event.edit(f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-        return
-        
-@register(outgoing=True, pattern="^.ekşi(?: |$)(.*)")
-async def eksi(event):
-    cmd = event.pattern_match.group(1)
-
-    if len(cmd) < 1:
-        await event.edit("`Bir başlık belirtmesiniz. Kullanım: .ekşi pena`")
-    else:
-        await event.edit(f"`Entryler getiriliyor...`")
-
-        eksi = get("https://api.quiec.tech/eksi.php?a=a&b=" + cmd).json()
-        entry = ""
-        giri = ""
-
-        for i in eksi:
-            entry += i["entry"]
-            if len(entry) > 3064:
-                break
-            
-            giri += f"**Entry**: `{i['entry'][6:]}`\n**Yazar:** `{i['sahibi']}`\n\n"
-        await event.edit(f"**Ekşi Sözlük** Başlık: `{cmd}`\n\n{giri}")
-        return
-
-@register(outgoing=True, pattern="^.haber(?: |$)(.*)")
-async def haber(event):
-    TURLER = ["guncel", "magazin", "spor", "ekonomi", "politika", "dunya"]
-    cmd = event.pattern_match.group(1)
-    if len(cmd) < 1:
-            HABERURL = 'https://sondakika.haberler.com/'
-    else:
-        if cmd in TURLER:
-            HABERURL = f'https://sondakika.haberler.com/{cmd}'
-        else:
-            await event.edit("`Yanlış haber kategorisi! Bulunan kategoriler: .haber guncel/magazin/spor/ekonomi/politika/dunya`")
-            return
-    await event.edit("`Haberler Getiriliyor...`")
-
-    haber = get(HABERURL).text
-    kaynak = BeautifulSoup(haber, "lxml")
-    haberdiv = kaynak.find_all("div", attrs={"class":"hblnContent"})
-    i = 0
-    HABERLER = ""
-    while i < 3:
-        HABERLER += "\n\n❗️**" + haberdiv[i].find("a").text + "**\n"
-        HABERLER += haberdiv[i].find("p").text
-        i += 1
-
-    await event.edit(f"**Son Dakika Haberler {cmd.title()}**" + HABERLER)
-
-@register(outgoing=True, pattern="^.karbon ?(.*)")
-async def karbon(e):
-    cmd = e.pattern_match.group(1)
-    if os.path.exists("@AsenaUserBot-Karbon.jpg"):
-        os.remove("@AsenaUserBot-Karbon.jpg")
-
-    if len(cmd) < 1:
-        await e.edit("Kullanım: .karbon mesaj")    
-    yanit = await e.get_reply_message()
-    if yanit:
-        cmd = yanit.message
-    await e.edit("`Lütfen bekleyiniz...`")    
-
-    r = get(f"https://carbonnowsh.herokuapp.com/?code={cmd}")
-
-    with open("@AsenaUserBot-Karbon.jpg", 'wb') as f:
-        f.write(r.content)    
-
-    await e.client.send_file(e.chat_id, file="@AsenaUserBot-Karbon.jpg", force_document=True, caption="[AsenaUserBot](https://t.me/asenauserbot) ile oluşturuldu.")
-    await e.delete()
 
 @register(outgoing=True, pattern="^.crblang (.*)")
 async def setlang(prog):
@@ -283,13 +76,15 @@ async def carbon_api(e):
     url = CARBON.format(code=code, lang=CARBONLANG)
     chrome_options = Options()
     chrome_options.add_argument("--headless")
+    chrome_options.binary_location = GOOGLE_CHROME_BIN
     chrome_options.add_argument("--window-size=1920x1080")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-gpu")
     prefs = {'download.default_directory': './'}
     chrome_options.add_experimental_option('prefs', prefs)
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
+                              options=chrome_options)
     driver.get(url)
     await e.edit("`İşleniyor...\nTamamlanma Oranı: 50%`")
     download_path = './'
@@ -337,18 +132,21 @@ async def ceviri(e):
         pcode = str(pcode[8:])
     elif textx:
         pcode = str(textx.message)  # Girilen metin, modüle aktarılıyor.
+    code = quote_plus(pcode)  # Çözülmüş url'ye dönüştürülüyor.
     url = "http://www.tamga.org/2016/01/web-tabanl-gokturkce-cevirici-e.html"
     chrome_options = Options()
     chrome_options.add_argument("--headless")
+    chrome_options.binary_location = GOOGLE_CHROME_BIN
     chrome_options.add_argument("--window-size=1920x1080")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-gpu")
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
+                              options=chrome_options)
     driver.get(url)
-    driver.find_element_by_name("Latin_Metin").send_keys(pcode)
+    Latin = driver.find_element_by_name("Latin_Metin").send_keys(pcode)
     Turk = driver.find_element_by_name("Göktürk_Metin").get_attribute("value")
-    await e.edit(f"**Çeviri: Türkçe -> KökTürkçe**\n\n**Verilen Metin:** `{pcode}`\n**Çıktı:** `{Turk}`")
+    e.edit(Turk)
 
 
 @register(outgoing=True, pattern="^.img (.*)")
@@ -363,18 +161,22 @@ async def img_sampler(event):
         query = query.replace("lim=" + lim[0], "")
     except IndexError:
         lim = 5
+    response = googleimagesdownload()
 
-    URL = "https://www.google.com.tr/search?q=%s&source=lnms&tbm=isch" % query
-    page = get(URL)
+    # creating list of arguments
+    arguments = {
+        "keywords": query,
+        "limit": lim,
+        "format": "jpg",
+        "no_directory": "no_directory"
+    }
 
-    soup = BeautifulSoup(page.content, 'html.parser')
-    imgclass = soup.find_all("img", {"class": "t0fcAb"})
-    i = 0
-    resimler = []
-    while i < lim:
-        resimler.append(imgclass[i]['src'])
-        i += 1
-    await event.client.send_file(await event.client.get_input_entity(event.chat_id), file=resimler, force_document=True)
+    # passing the arguments to the function
+    paths = response.download(arguments)
+    lst = paths[0][query]
+    await event.client.send_file(
+        await event.client.get_input_entity(event.chat_id), lst)
+    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
     await event.delete()
 
 
@@ -921,7 +723,6 @@ CMD_HELP.update({
     '.currency <miktar> <dönüştürülecek birim> <dönüşecek birim>\
         \nKullanım: Yusufun Türk Lirası Botu gibi, ama boş kaldığında kızlara yazmıyor.'
 })
-
 CMD_HELP.update({
     'carbon':
     '.carbon <metin>\
@@ -939,9 +740,7 @@ CMD_HELP.update(
 CMD_HELP.update({
     'tts':
     '.tts <metin>\
-        \nKullanım: Metni sese dönüştürür.\n.lang tts komutuyla varsayılan dili ayarlayabilirsin. (Türkçe ayarlı geliyor merak etme.)\
-    .tts2 <cinsiyet> <metin>\
-        \nKullanım: Metni sese dönüştürür.\n.lang tts komutuyla varsayılan dili ayarlayabilirsin.'
+        \nKullanım: Metni sese dönüştürür.\n.lang tts komutuyla varsayılan dili ayarlayabilirsin. (Türkçe ayarlı geliyor merak etme.)'
 })
 CMD_HELP.update({
     'trt':
@@ -950,11 +749,6 @@ CMD_HELP.update({
 })
 CMD_HELP.update({'yt': '.yt <metin>\
         \nKullanım: YouTube üzerinde bir arama yapar.'})
-CMD_HELP.update(
-    {"ekşi": ".ekşi <başlık>\nKullanım: Ekşi sözlükten veri çekin."})
-CMD_HELP.update(
-    {"haber": ".haber <guncel/magazin/spor/ekonomi/politika/dunya>\nKullanım: Son dakika haberler."})
-
 CMD_HELP.update(
     {"imdb": ".imdb <film>\nKullanım: Film hakkında bilgi verir."})
 CMD_HELP.update({
