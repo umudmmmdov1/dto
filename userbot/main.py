@@ -71,7 +71,7 @@ try:
 
     # PLUGIN MESAJLARI AYARLIYORUZ
     PLUGIN_MESAJLAR = {}
-    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanları qorusun\nDTÖUserBot əla işdəyir ⚡ .`", "afk": f"`{str(choice(AFKSTR))}`", "pm": UNAPPROVED_MSG}
+    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanlıları qorusun\nDTÖUserBot əla işdəyir ⚡`", "afk": f"`{str(choice(AFKSTR))}`", "pm": UNAPPROVED_MSG}
 
     PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "pm"]
     for mesaj in PLUGIN_MESAJLAR_TURLER:
@@ -87,7 +87,7 @@ try:
             else:
                 PLUGIN_MESAJLAR[mesaj] = dmsj
     if PLUGIN_CHANNEL_ID != None:
-        LOGS.info("Pluginlər yüklənir")
+        LOGS.info("Pluginler yüklenir")
         try:
             KanalId = bot.get_entity(PLUGIN_CHANNEL_ID)
             DOGRU = 1
@@ -154,7 +154,7 @@ async def FotoDegistir (foto):
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("Botunuz işdeyir! Her hansı bir söhbetde .alive yazaraq Test edin."
+LOGS.info("Botunuz işleyir! Her hansı bir söhbetde .alive yazaraq Test edin."
           " Kömeye ehtiyacınız varsa, Destek qrupumuza gelin t.me/DTOSupport")
 LOGS.info("Bot versiyası DTÖUserBot v1.1")
 
