@@ -57,7 +57,7 @@ async def magnet_download(event):
         download = aria2.add_magnet(magnet_uri)
     except Exception as e:
         LOGS.info(str(e))
-        await event.edit("Hata:\n`" + str(e) + "`")
+        await event.edit("Xəta:\n`" + str(e) + "`")
         return
     gid = download.gid
     await check_progress_for_dl(gid=gid, event=event, previous=None)
@@ -89,7 +89,7 @@ async def amagnet_download(event):
         download = aria2.add_uris(uri, options=None, position=None)
     except Exception as e:
         LOGS.info(str(e))
-        await event.edit("Hata :\n`{}`".format(str(e)))
+        await event.edit("Xəta :\n`{}`".format(str(e)))
         return
     gid = download.gid
     await check_progress_for_dl(gid=gid, event=event, previous=None)
@@ -101,7 +101,7 @@ async def amagnet_download(event):
 
 @register(outgoing=True, pattern="^.aclear(?: |$)(.*)")
 async def remove_all(event):
-    await event.edit("`Devam eden indirmeler temizleniyor... `")
+    await event.edit("`Davam edən yüklənmələr təmizlənir... `")
     try:
         removed = aria2.remove_all(force=True)
         aria2.purge_all()
@@ -109,22 +109,22 @@ async def remove_all(event):
         pass
     if not removed:  # Eğer API False olarak dönerse sistem vasıtasıyla kaldırılmaya çalışılır.
         system("aria2p remove-all")
-    await event.edit("`Tüm indirilenler başarıyla temizlendi.`")
+    await event.edit("`Bütün yüklənmələr təmizləndi.`")
 
 
 @register(outgoing=True, pattern="^.apause(?: |$)(.*)")
 async def pause_all(event):
     # Tüm devam eden indirmeleri duraklatır.
-    await event.edit("`İndirmeler duraklatılıyor...`")
+    await event.edit("`Yüklənmələr dayandırılır...`")
     aria2.pause_all(force=True)
-    await event.edit("`Devam eden indirmeler başarıyla durduruldu.`")
+    await event.edit("`Davam edən yüklənmələr uğurla dayandırıldı.`")
 
 
 @register(outgoing=True, pattern="^.aresume(?: |$)(.*)")
 async def resume_all(event):
-    await event.edit("`İndirmeler devam ettiriliyor...`")
+    await event.edit("`Yüklənmələr davam etdirilir...`")
     aria2.resume_all()
-    await event.edit("`İndirmeler devam ettirildi.`")
+    await event.edit("`Yüklənmə davam etdirildi.`")
     await sleep(2.5)
     await event.delete()
 
@@ -135,18 +135,18 @@ async def show_all(event):
     downloads = aria2.get_downloads()
     msg = ""
     for download in downloads:
-        msg = msg + "Dosya: `" + str(download.name) + "`\nHız: " + str(
-            download.download_speed_string()) + "\nİşlem: " + str(
-                download.progress_string()) + "\nToplam Boyut: " + str(
-                    download.total_length_string()) + "\nDurum: " + str(
-                        download.status) + "\nTahmini bitiş:  " + str(
+        msg = msg + "Fayl: `" + str(download.name) + "`\nHız: " + str(
+            download.download_speed_string()) + "\nƏməliyyat: " + str(
+                download.progress_string()) + "\nToplam həcm: " + str(
+                    download.total_length_string()) + "\nStatus: " + str(
+                        download.status) + "\nTəxmini bitiş:  " + str(
                             download.eta_string()) + "\n\n"
     if len(msg) <= 4096:
-        await event.edit("`Devam eden indirmeler: `\n" + msg)
+        await event.edit("`Davam edən yüklənmələr: `\n" + msg)
         await sleep(5)
         await event.delete()
     else:
-        await event.edit("`Çıktı çok büyük, bu sebepten dolayı dosya olarak gönderiliyor...`")
+        await event.edit("`Çıxdı ama çox böyük, bu səbəbə görə fayl olaraq göndərilir...`")
         with open(output, 'w') as f:
             f.write(msg)
         await sleep(2)
@@ -164,7 +164,7 @@ async def show_all(event):
 async def check_metadata(gid):
     file = aria2.get_download(gid)
     new_gid = file.followed_by_ids[0]
-    LOGS.info("GID " + gid + " şu değerden şu değere değiştiriliyor:" + new_gid)
+    LOGS.info("GID " + gid + " bu dəyərdən bu dəyərə dəyişdirilir:" + new_gid)
     return new_gid
 
 
@@ -175,12 +175,12 @@ async def check_progress_for_dl(gid, event, previous):
         complete = file.is_complete
         try:
             if not complete and not file.error_message:
-                msg = f"\nİndirilen dosya: `{file.name}`"
-                msg += f"\nHız: {file.download_speed_string()}"
-                msg += f"\nİşlem: {file.progress_string()}"
-                msg += f"\nToplam Boyut: {file.total_length_string()}"
-                msg += f"\nDurum: {file.status}"
-                msg += f"\nTahmini bitiş: {file.eta_string()}"
+                msg = f"\nYüklənən fayl: `{file.name}`"
+                msg += f"\nSürət: {file.download_speed_string()}"
+                msg += f"\nƏməliyyat: {file.progress_string()}"
+                msg += f"\nToplam həcm: {file.total_length_string()}"
+                msg += f"\nStatus: {file.status}"
+                msg += f"\nTəxmini bitiş: {file.eta_string()}"
                 if msg != previous:
                     await event.edit(msg)
                     msg = previous
@@ -192,30 +192,30 @@ async def check_progress_for_dl(gid, event, previous):
             file = aria2.get_download(gid)
             complete = file.is_complete
             if complete:
-                await event.edit(f"Dosya başarıyla indirdi: `{file.name}`"
+                await event.edit(f"Fayl uğurlar yükləndi: `{file.name}`"
                                  )
                 return False
         except Exception as e:
             if " not found" in str(e) or "'file'" in str(e):
-                await event.edit("İndirme iptal edildi :\n`{}`".format(file.name))
+                await event.edit("Yüklənmə ləğv olundu :\n`{}`".format(file.name))
                 await sleep(2.5)
                 await event.delete()
                 return
             elif " depth exceeded" in str(e):
                 file.remove(force=True)
                 await event.edit(
-                    "İndirme otomatik olarak iptal edildi:\n`{}`\nTorrent ya da link ölü."
+                    "Yüklənmə avtomatik olaraq ləğv edildi:\n`{}`\nTorrent ya da link qırılıb."
                     .format(file.name))
 
 
 CMD_HELP.update({
     "aria":
-    ".aurl [URL] (ya da) .amag [Magnet Linki] (ya da) .ator [torrent dosyasının yolu]\
-    \nKullanım: Bir dosyayı userbot sunucusuna indirir.\
-    \n\n.apause (ya da) .aresume\
-    \nKullanım: Devam eden indirmeyi durdurur ya da devam ettirir.\
-    \n\n.aclear\
-    \nKullanım: İndirme kuyruğunu temizler, devam eden tüm indirmeleri siler.\
-    \n\n.ashow\
-    \nKullanım: Devam eden indirmelerin durumunu gösterir."
+    "✏️**Əmr:** .aurl [URL] (ya da) .amag [Magnet Linki] (ya da) .ator [torrent faylın yolu]\
+    \n🔰**İşlədilişi:** Bir faylı userbot serverinə yükləyir.\
+    \n\n✏️**Əmr:** .apause (ya da) .aresume\
+    \n🔰**İşlədilişi:** Davam edən yüklənməni dayandırar ya da davam etdirər.\
+    \n\n✏️**Əmr:** .aclear\
+    \n🔰**İşlədilişi:** Yüklənmə quyruğunu təmizləyər, davam edən bütün yüklənmələri silər.\
+    \n\n✏️**Əmr:** .ashow\
+    \n🔰**İşlədilişi:** Davam edən yüklənmələrin statusunu göstərir."
 })
