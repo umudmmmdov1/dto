@@ -721,15 +721,12 @@ CMD_HELP.update({
     '.trt <metin>\
         \nKullanım: Basit bir çeviri modülü.\n.lang trt komutuyla varsayılan dili ayarlayabilirsin. (Türkçe ayarlı geliyor merak etme.)'
 })
-CMD_HELP.update({'yt': '.yt <metin>\
-        \nKullanım: YouTube üzerinde bir arama yapar.'})
+CMD_HELP.update({
+        'yt': '.yt <metin>\
+        \nKullanım: YouTube üzerinde bir arama yapar.'
+})
 CMD_HELP.update(
-    {"ekşi": ".ekşi <başlık>\nKullanım: Ekşi sözlükten veri çekin."})
-CMD_HELP.update(
-    {"haber": ".haber <guncel/magazin/spor/ekonomi/politika/dunya>\nKullanım: Son dakika haberler."})
-
-CMD_HELP.update(
-    {"imdb": ".imdb <film>\nKullanım: Film hakkında bilgi verir."})
+    {"imdb": ".imdb <film>\nKullanım: Film hakkında bilgi verir.)"
 CMD_HELP.update({
     'rip':
     '.ripaudio <bağlantı> veya .ripvideo <bağlantı>\
