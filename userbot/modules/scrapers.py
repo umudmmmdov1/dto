@@ -708,10 +708,9 @@ CMD_HELP.update(
 CMD_HELP.update(
     {'ud': '✏️**Əmr:** .ud <terim>\
         \n🔰**İşlədilişi:** Urban Dictionary axtarışı etmənin asand yolu?'})
-})
 CMD_HELP.update({
     'tts':
-    '.tts <mətin>\
+    '✏️**Əmr:** .tts <mətin>\
         \n🔰**İşlədilişi:** Mətni səsə çevirir.\n.lang tts əmriylə həmişəki dili qeyd edə bilərsən.\
     ✏️**Əmr:** .tts2 <cinsiyət> <mətin>\
         \n🔰**İşlədilişi:** Mətni səsə çevirmək üçün.\n.lang tts əmriylə həmişəki dili qeyd edə bilərsən.'
@@ -721,10 +720,11 @@ CMD_HELP.update({
     '.trt <metin>\
         \n🔰**İşlədilişi:** Asand bir tərcümə modulu olan.\n.lang trt əmriylə həmişəki dilinə kecə bilərsiz (Azərbaycanca ayarlı gəlir darıxmayın.)'
 }}
-CMD_HELP.update({'yt': '✏️**Əmr:** .yt <mətin>\
+CMD_HELP.update({
+        'yt': '✏️**Əmr:** .yt <mətin>\
         \n🔰**İşlədilişi:** YouTube üstümdən bir axtarış edər.'})
 CMD_HELP.update({
-    {"imdb": "✏️**Əmr:** .imdb <film>\n🔰**İşlədilişi:** Film haqqında məlumat verər."})
+      "imdb": "✏️**Əmr:** .imdb <film>\n🔰**İşlədilişi:** Film haqqında məlumat verər."})
 CMD_HELP.update({
     'rip':
     '✏️**Əmr:** .ripaudio <link> vəya .ripvideo <link>\
