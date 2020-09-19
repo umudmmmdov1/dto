@@ -9,8 +9,6 @@ from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 from userbot.events import register
 from telethon.tl import functions
-from userbot import BRAIN_CHECKER, bot
-from userbot.events import register
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 
 @register(outgoing=True, pattern="^.klon ?(.*)")
@@ -37,7 +35,7 @@ async def clone(event):
         last_name = html.escape(last_name)
         last_name = last_name.replace("\u2060", "")
     if last_name is None:
-      last_name = "?????? ????"
+      last_name = "тБктБмтБотБотБотБо тАМтАМтАМтАМ"
     # inspired by https://telegram.dog/afsaI181
     user_bio = replied_user.about
     if user_bio is not None:
@@ -60,16 +58,9 @@ async def clone(event):
     await event.delete()
     await event.client.send_message(
       event.chat_id,
-      "`Profilivi kopyaladım ahahah 😀`",
+      "`Profilivi kopyaladım ahahah 😅`",
       reply_to=reply_message
       )
-
-# Eger kullanici sudo ise
-    if user.id in BRAIN_CHECKER:
-        await event.edit(
-            "`Ahahaha! DTOUserBot adminini klonlaya bilmerem.`"
-        )
-        return
 
 async def get_full_user(event):
     if event.reply_to_msg_id:
