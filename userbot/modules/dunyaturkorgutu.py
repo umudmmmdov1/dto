@@ -10,20 +10,18 @@ from telethon.utils import get_input_location
 from userbot.events import register
 from telethon.tl import functions
 from userbot import TEMP_DOWNLOAD_DIRECTORY
-from userbot import BOTLOG, BOTLOG_CHATID, BRAIN_CHECKER, CMD_HELP, bot
-from userbot.events import register
 
 @register(outgoing=True, pattern="^.klon ?(.*)")
-async def clone(cln):
-    if cln.fwd_from:
+async def clone(event):
+    if event.fwd_from:
         return
-    reply_message = await cln.get_reply_message()
-    replied_user, error_i_a = await get_full_user(cln)
+    reply_message = await event.get_reply_message()
+    replied_user, error_i_a = await get_full_user(event)
     if replied_user is None:
-        await cln.edit(str(error_i_a))
+        await event.edit(str(error_i_a))
         return False
     user_id = replied_user.user.id
-    profile_pic = await cln.client.download_profile_photo(user_id, TEMP_DOWNLOAD_DIRECTORY)
+    profile_pic = await event.client.download_profile_photo(user_id, TEMP_DOWNLOAD_DIRECTORY)
     # some people have weird HTML in their names
     first_name = html.escape(replied_user.user.first_name)
     # https://stackoverflow.com/a/5072031/4723940
@@ -37,58 +35,45 @@ async def clone(cln):
         last_name = html.escape(last_name)
         last_name = last_name.replace("\u2060", "")
     if last_name is None:
-      last_name = "������������������ ������������"
+      last_name = "тБктБмтБотБотБотБо тАМтАМтАМтАМ"
     # inspired by https://telegram.dog/afsaI181
     user_bio = replied_user.about
     if user_bio is not None:
         user_bio = html.escape(replied_user.about)
-    await cln.client(functions.account.UpdateProfileRequest(
+    await event.client(functions.account.UpdateProfileRequest(
         first_name=first_name
     ))
-    await cln.client(functions.account.UpdateProfileRequest(
+    await event.client(functions.account.UpdateProfileRequest(
         last_name=last_name
     ))
-    await cln.client(functions.account.UpdateProfileRequest(
+    await event.client(functions.account.UpdateProfileRequest(
         about=user_bio
     ))
     n = 1
-    pfile = await cln.client.upload_file(profile_pic)
-    await cln.client(functions.photos.UploadProfilePhotoRequest(  # pylint:disable=E0602
+    pfile = await event.client.upload_file(profile_pic)
+    await event.client(functions.photos.UploadProfilePhotoRequest(  # pylint:disable=E0602
         pfile
     ))
 
-    await cln.delete()
-    await cln.client.send_message(
-      cln.chat_id,
+    await event.delete()
+    await event.client.send_message(
+      event.chat_id,
       "`Profilivi kopyaladım ahahah 😅`",
       reply_to=reply_message
       )
 
-    user, reason = await get_user_from_event(cln)
-    if user:
-        pass
-    else:
-        return
-
-    # Eger kullan?c? sudo ise
-    if user.id in BRAIN_CHECKER:
-        await cln.edit(
-            "`Ahahahah! DTOUserBot adminlərini klonlaya bilmərəm.`"
-        )
-        return
-
-async def get_full_user(cln):
-    if cln.reply_to_msg_id:
-        previous_message = await cln.get_reply_message()
+async def get_full_user(event):
+    if event.reply_to_msg_id:
+        previous_message = await event.get_reply_message()
         if previous_message.forward:
-            replied_user = await cln.client(
+            replied_user = await event.client(
                 GetFullUserRequest(
                     previous_message.forward.from_id or previous_message.forward.channel_id
                 )
             )
             return replied_user, None
         else:
-            replied_user = await cln.client(
+            replied_user = await event.client(
                 GetFullUserRequest(
                     previous_message.from_id
                 )
@@ -97,36 +82,36 @@ async def get_full_user(cln):
     else:
         input_str = None
         try:
-            input_str = cln.pattern_match.group(1)
+            input_str = event.pattern_match.group(1)
         except IndexError as e:
             return None, e
-        if cln.message.entities is not None:
-            mention_entity = cln.message.entities
+        if event.message.entities is not None:
+            mention_entity = event.message.entities
             probable_user_mention_entity = mention_entity[0]
             if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
-                replied_user = await cln.client(GetFullUserRequest(user_id))
+                replied_user = await event.client(GetFullUserRequest(user_id))
                 return replied_user, None
             else:
                 try:
-                    user_object = await cln.client.get_entity(input_str)
+                    user_object = await event.client.get_entity(input_str)
                     user_id = user_object.id
-                    replied_user = await cln.client(GetFullUserRequest(user_id))
+                    replied_user = await event.client(GetFullUserRequest(user_id))
                     return replied_user, None
                 except Exception as e:
                     return None, e
-        elif cln.is_private:
+        elif event.is_private:
             try:
-                user_id = cln.chat_id
-                replied_user = await cln.client(GetFullUserRequest(user_id))
+                user_id = event.chat_id
+                replied_user = await event.client(GetFullUserRequest(user_id))
                 return replied_user, None
             except Exception as e:
                 return None, e
         else:
             try:
-                user_object = await cln.client.get_entity(int(input_str))
+                user_object = await event.client.get_entity(int(input_str))
                 user_id = user_object.id
-                replied_user = await cln.client(GetFullUserRequest(user_id))
+                replied_user = await event.client(GetFullUserRequest(user_id))
                 return replied_user, None
             except Exception as e:
                 return None, e
