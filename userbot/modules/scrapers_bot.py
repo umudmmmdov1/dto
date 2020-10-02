@@ -1,10 +1,10 @@
-# Copyright (C) 2020 Yusuf Usta.
+# Copyright (C) 2020 Ümüd
 #
-# Licensed under the Yusuf Usta Public License, Version 1.c (the "License");
+# Licensed under the Ümüd Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - @umudmmmdov1
 
 import datetime
 from telethon import events
@@ -40,33 +40,33 @@ async def sangmata(event):
     if event.fwd_from:
         return 
     if not event.reply_to_msg_id:
-       await event.edit("`Herhangi bir kullanıcı mesajına cevap verin.`")
+       await event.edit("`Hər hansı bir istifadəçi mesajına cavab olaraq yazın.`")
        return
     reply_message = await event.get_reply_message() 
     if not reply_message.text:
-       await event.edit("`Mesaja cevap verin.`")
+       await event.edit("`Mesaja cavab olaraq yazın.`")
        return
     chat = "@SangMataInfo_bot"
     sender = reply_message.sender
     if reply_message.sender.bot:
-       await event.edit("`Botlara cevap veremezsiniz.`")
+       await event.edit("`Botlara cavab verə bilmərsiz.`")
        return
-    await event.edit("`İşleniyor...`")
+    await event.edit("`İşlənir...`")
     async with bot.conversation(chat, exclusive=False) as conv:
           response = None
           try:
               msg = await reply_message.forward_to(chat)
               response = await conv.get_response(message=msg, timeout=5)
           except YouBlockedUserError: 
-              await event.edit(f"`Lütfen {chat} engelini kaldırın ve tekrar deneyin`")
+              await event.edit(f"`Xaiş {chat} blokdan çıxarın və təkrar cəhd edin`")
               return
           except Exception as e:
               print(e.__class__)
 
           if not response:
-              await event.edit("`Botdan cevap alamadım!`")
+              await event.edit("`Botdan cavab ala bilmədim`")
           elif response.text.startswith("Forward"):
-             await event.edit("`Gizlilik ayarları yüzenden alıntı yapamadım`")
+             await event.edit("`Gizlilik ayarlarına görə heçnə edənmədim.`")
           else: 
              await event.edit(response.text)
           sleep(1)
@@ -79,11 +79,11 @@ async def memeyap(event):
     if event.fwd_from:
         return 
     if not event.reply_to_msg_id:
-       await event.edit("`Kullanım: Lütfen bir mesaja yanıt vererek yazın. Örnek: .meme üst;alt`")
+       await event.edit("`İşlədiliş: Xaiş bir mesaja cavab olaraq yazın. Məsələn: .meme üst;alt`")
        return
     reply_message = await event.get_reply_message() 
     if not reply_message.media:
-       await event.edit("```Bir Fotoğraf/sticker/gif'e yanıt verin.```")
+       await event.edit("```Bir Foto/sticker/gif'ə cavab olaraq yazın.```")
        return
     chat = "@MemeAutobot"
     sender = reply_message.sender
@@ -91,10 +91,10 @@ async def memeyap(event):
     file = await event.client.download_file(reply_message.media)
     uploaded_gif = None
     if reply_message.sender.bot:
-       await event.edit("```Gerçek bir kullanıcının mesajına yanıt verin.```")
+       await event.edit("```Həqiqi bir istifadəçinin mesajına cavab olaraq yazın.```")
        return
     else:
-     await event.edit("```Memeleniyor! (」ﾟﾛﾟ)｣ ```")
+     await event.edit("```Memelənir! (」ﾟﾛﾟ)｣ ```")
     
     async with event.client.conversation(chat) as bot_conv:
           try:
@@ -314,18 +314,18 @@ async def quotly(event):
     if event.fwd_from:
         return 
     if not event.reply_to_msg_id:
-       await event.edit("`Herhangi bir kullanıcı mesajına cevap verin.`")
+       await event.edit("`Hər hansı bir istifadəçi mesajına cavab olaraq yazın`")
        return
     reply_message = await event.get_reply_message() 
     if not reply_message.text:
-       await event.edit("`Mesaja cevap verin.`")
+       await event.edit("`Mesaja cavab olaraq yazın.`")
        return
     chat = "@QuotLyBot"
     sender = reply_message.sender
     if reply_message.sender.bot:
-       await event.edit("`Botlara cevap veremezsiniz.`")
+       await event.edit("`Botlara cavab verə bilmərsiz.`")
        return
-    await event.edit("`Alıntı yapılıyor...`")
+    await event.edit("`Stiker edilir...`")
 
     async with bot.conversation(chat, exclusive=False, replies_are_responses=True) as conv:
         response = None
