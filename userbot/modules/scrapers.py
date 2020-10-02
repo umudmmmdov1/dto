@@ -210,19 +210,19 @@ async def eksi(event):
         await event.edit(f"**Ekşi Sözlük** Başlık: `{cmd}`\n\n{giri}")
         return
 
-@register(outgoing=True, pattern="^.haber(?: |$)(.*)")
+@register(outgoing=True, pattern="^.xeber(?: |$)(.*)")
 async def haber(event):
-    TURLER = ["guncel", "magazin", "spor", "ekonomi", "politika", "dunya"]
+    TURLER = ["sosial-xeberler", "sou-biznes-xeberleri", "idman-xeberleri", "kriminal-xeberler", "siyaset-xeberleri", "maraqli-xeberler"]
     cmd = event.pattern_match.group(1)
     if len(cmd) < 1:
-            HABERURL = 'https://sondakika.haberler.com/'
+            HABERURL = 'https://sonxeber.az/'
     else:
         if cmd in TURLER:
-            HABERURL = f'https://sondakika.haberler.com/{cmd}'
+            HABERURL = f'https://sonxeber.az/{cmd}'
         else:
-            await event.edit("`Yanlış haber kategorisi! Bulunan kategoriler: .haber guncel/magazin/spor/ekonomi/politika/dunya`")
+            await event.edit("`Səhv xəbər kateqoriyası! Kateqoriyalar: .xeber guncel/magazin/spor/ekonomi/politika/dunya`")
             return
-    await event.edit("`Haberler Getiriliyor...`")
+    await event.edit("`Ən son xəbərlər əldə olunur...`")
 
     haber = get(HABERURL).text
     kaynak = BeautifulSoup(haber, "lxml")
@@ -234,7 +234,7 @@ async def haber(event):
         HABERLER += haberdiv[i].find("p").text
         i += 1
 
-    await event.edit(f"**Son Dakika Haberler {cmd.title()}**" + HABERLER)
+    await event.edit(f"**Son dəqiqə xəbərlər{cmd.title()}**" + HABERLER)
 
 @register(outgoing=True, pattern="^.karbon ?(.*)")
 async def karbon(e):
