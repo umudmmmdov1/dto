@@ -52,7 +52,7 @@ import base64, binascii
 import random
 CARBONLANG = "auto"
 TTS_LANG = "tr"
-TRT_LANG = "az"
+TRT_LANG = "tr"
 
 
 from telethon import events
