@@ -52,7 +52,7 @@ import base64, binascii
 import random
 CARBONLANG = "auto"
 TTS_LANG = "tr"
-TRT_LANG = "tr"
+TRT_LANG = "az"
 
 
 from telethon import events
@@ -66,7 +66,7 @@ async def tts2(query):
     textx = await query.get_reply_message()
     mesj = query.pattern_match.group(1)
     parca = mesj.split(" ")[0]
-    if parca == "kadın":
+    if parca == "qadin":
         cins = "female"
     else:
         cins = "male"
@@ -78,7 +78,7 @@ async def tts2(query):
         message = textx.text
     else:
         await query.edit(
-            "`Yazıdan sese çevirmek için bir metin gir. Kullanım: .tts2 erkek/kadın merhaba`")
+            "`Yazıdan səsə çevirmək üçün bir mesaj yazın. Məsələn: .tts2 kisk/qadin salam`")
         return
 
     mp3 = get(f"https://texttospeech.responsivevoice.org/v1/text:synthesize?text={message}&lang={TTS_LANG}&engine=g3&name=&pitch=0.5&rate=0.5&volume=1&key=AsenaUserbot&gender={cins}").content
@@ -96,21 +96,21 @@ async def reddit(event):
     }       
 
     if len(sub) < 1:
-        await event.edit("`Lütfen bir Subreddit hesabı belirtin. Örnek: ``.reddit kopyamakarna`")
+        await event.edit("`Xaiş bir Subreddit hesabı yazın. Məsələn: ``.reddit kopyamakarna`")
         return
 
     kaynak = get(f"https://www.reddit.com/r/{sub}/hot.json?limit=1", headers=headers).json()
 
     if not "kind" in kaynak:
         if kaynak["error"] == 404:
-            await event.edit("`Böyle bir Subreddit bulunamadı.`")
+            await event.edit("`Belə bir Subreddit tapılmadı.`")
         elif kaynak["error"] == 429:
-            await event.edit("`Reddit yavaşlaman için uyarıyor.`")
+            await event.edit("`Reddit yavaşlatmaq üçün xəbərdarlıq edilir.`")
         else:
-            await event.edit("`Bir şeyler oldu ama... Neden oldu bilmiyorum.`")
+            await event.edit("`Bir şeylər oldu ama... Niyə oldu bilmirəm 😃`")
         return
     else:
-        await event.edit("`Veriler getiriliyor...`")
+        await event.edit("`Məlumatlar yazılır...`")
 
         veri = kaynak["data"]["children"][0]["data"]
         mesaj = f"**{veri['title']}**\n⬆️{veri['score']}\n\nBy: __u/{veri['author']}__\n\n[Link](https://reddit.com{veri['permalink']})"
@@ -125,87 +125,38 @@ async def reddit(event):
             print(e)
             await event.edit(mesaj + "\n\n`" + veri["selftext"] + "`")
 
-
-@register(outgoing=True, pattern="^.ekşi(?: |$)(.*)")
-async def eksi(event):
-    cmd = event.pattern_match.group(1)
-
-    if len(cmd) < 1:
-        await event.edit("`Bir başlık belirtmesiniz. Kullanım: .ekşi pena`")
-    else:
-        await event.edit(f"`Entryler getiriliyor...`")
-
-        eksi = get("https://api.quiec.tech/eksi.php?a=a&b=" + cmd).json()
-        entry = ""
-        giri = ""
-
-        for i in eksi:
-            entry += i["entry"]
-            if len(entry) > 3064:
-                break
-            
-            giri += f"**Entry**: `{i['entry'][6:]}`\n**Yazar:** `{i['sahibi']}`\n\n"
-        await event.edit(f"**Ekşi Sözlük** Başlık: `{cmd}`\n\n{giri}")
-        return
-
-@register(outgoing=True, pattern="^.xeber(?: |$)(.*)")
-async def haber(event):
-    TURLER = ["sosial-xeberler", "sou-biznes-xeberleri", "idman-xeberleri", "kriminal-xeberler", "siyaset-xeberleri", "maraqli-xeberler"]
-    cmd = event.pattern_match.group(1)
-    if len(cmd) < 1:
-            HABERURL = 'https://sonxeber.az/'
-    else:
-        if cmd in TURLER:
-            HABERURL = f'https://sonxeber.az/{cmd}'
-        else:
-            await event.edit("`Səhv xəbər kateqoriyası! Kateqoriyalar: .xeber guncel/magazin/spor/ekonomi/politika/dunya`")
-            return
-    await event.edit("`Ən son xəbərlər əldə olunur...`")
-
-    haber = get(HABERURL).text
-    kaynak = BeautifulSoup(haber, "lxml")
-    haberdiv = kaynak.find_all("div", attrs={"class":"hblnContent"})
-    i = 0
-    HABERLER = ""
-    while i < 3:
-        HABERLER += "\n\n❗️**" + haberdiv[i].find("a").text + "**\n"
-        HABERLER += haberdiv[i].find("p").text
-        i += 1
-
-    await event.edit(f"**Son dəqiqə xəbərlər{cmd.title()}**" + HABERLER)
-
 @register(outgoing=True, pattern="^.karbon ?(.*)")
 async def karbon(e):
     cmd = e.pattern_match.group(1)
-    if os.path.exists("@AsenaUserBot-Karbon.jpg"):
-        os.remove("@AsenaUserBot-Karbon.jpg")
+    if os.path.exists("@DTOUserBot-Karbon.jpg"):
+        os.remove("@DTOUserBot-Karbon.jpg")
 
     if len(cmd) < 1:
-        await e.edit("Kullanım: .karbon mesaj")    
+        await e.edit("İşlədilişi: .karbon mesaj")    
     yanit = await e.get_reply_message()
     if yanit:
         cmd = yanit.message
-    await e.edit("`Lütfen bekleyiniz...`")    
+    await e.edit("`Xaiş gözləyin...`")    
 
     r = get(f"https://carbonnowsh.herokuapp.com/?code={cmd}")
 
-    with open("@AsenaUserBot-Karbon.jpg", 'wb') as f:
+    with open("@DTOUserBot-Karbon.jpg", 'wb') as f:
         f.write(r.content)    
 
-    await e.client.send_file(e.chat_id, file="@AsenaUserBot-Karbon.jpg", force_document=True, caption="[AsenaUserBot](https://t.me/asenauserbot) ile oluşturuldu.")
+    await e.client.send_file(e.chat_id, file="@DTOUserBot-Karbon.jpg", force_document=True, caption="[DTÖUserBot](https://t.me/dtosupport) ilə yaradıldı.")
     await e.delete()
 
 @register(outgoing=True, pattern="^.crblang (.*)")
 async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
-    await prog.edit(f"Karbon modülü için varsayılan dil {CARBONLANG} olarak ayarlandı.")
+    await prog.edit(f"Karbon modulu üçün default dil {CARBONLANG} olaraq qeyd edildi.")
 
 
 @register(outgoing=True, pattern="^.carbon")
 async def carbon_api(e):
     """ carbon.now.sh için bir çeşit wrapper """
-    await e.edit("`İşleniyor...`")
+    await e.edit("`İşlənir...`")
     CARBON = 'https://carbon.now.sh/?l={lang}&code={code}'
     global CARBONLANG
     textx = await e.get_reply_message()
@@ -215,7 +166,7 @@ async def carbon_api(e):
     elif textx:
         pcode = str(textx.message)  # Girilen metin, modüle aktarılıyor.
     code = quote_plus(pcode)  # Çözülmüş url'ye dönüştürülüyor.
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 25%`")
+    await e.edit("`İşlənir...\nBitmə faizi: 25%`")
     if os.path.isfile("./carbon.png"):
         os.remove("./carbon.png")
     url = CARBON.format(code=code, lang=CARBONLANG)
@@ -229,7 +180,7 @@ async def carbon_api(e):
     chrome_options.add_experimental_option('prefs', prefs)
     driver = webdriver.Chrome(options=chrome_options)
     driver.get(url)
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 50%`")
+    await e.edit("`İşlənir...\nBitmə faizi: 50%`")
     download_path = './'
     driver.command_executor._commands["send_command"] = (
         "POST", '/session/$sessionId/chromium/send_command')
@@ -244,18 +195,18 @@ async def carbon_api(e):
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 75%`")
+    await e.edit("`İşlənir...\nBitmə faizi: 75%`")
     # İndirme için bekleniyor
     while not os.path.isfile("./carbon.png"):
         await sleep(0.5)
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 100%`")
+    await e.edit("`İşlənir...\nBitmə faizi: 100%`")
     file = './carbon.png'
-    await e.edit("`Resim karşıya yükleniyor...`")
+    await e.edit("`Şəkil qarşıya yüklənir...`")
     await e.client.send_file(
         e.chat_id,
         file,
-        caption="Bu resim [Carbon](https://carbon.now.sh/about/) kullanılarak yapıldı,\
-        \nbir [Dawn Labs](https://dawnlabs.io/) projesi.",
+        caption="Bu şəkil [Carbon](https://carbon.now.sh/about/) işlədilərək edildi,\
+        \nbir [Dawn Labs](https://dawnlabs.io/) proyekti.",
         force_document=True,
         reply_to=e.message.reply_to_msg_id,
     )
@@ -264,30 +215,6 @@ async def carbon_api(e):
     driver.quit()
     # Karşıya yüklemenin ardından carbon.png kaldırılıyor
     await e.delete()  # Mesaj siliniyor
-
-@register(outgoing=True, pattern="^.ceviri")
-async def ceviri(e):
-    # http://www.tamga.org/2016/01/web-tabanl-gokturkce-cevirici-e.html #
-    await e.edit("`Çeviriliyor...`")
-    textx = await e.get_reply_message()
-    pcode = e.text
-    if pcode[8:]:
-        pcode = str(pcode[8:])
-    elif textx:
-        pcode = str(textx.message)  # Girilen metin, modüle aktarılıyor.
-    url = "http://www.tamga.org/2016/01/web-tabanl-gokturkce-cevirici-e.html"
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=1920x1080")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-gpu")
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.get(url)
-    driver.find_element_by_name("Latin_Metin").send_keys(pcode)
-    Turk = driver.find_element_by_name("Göktürk_Metin").get_attribute("value")
-    await e.edit(f"**Çeviri: Türkçe -> KökTürkçe**\n\n**Verilen Metin:** `{pcode}`\n**Çıktı:** `{Turk}`")
-
 
 @register(outgoing=True, pattern="^.img (.*)")
 async def img_sampler(event):
@@ -461,22 +388,22 @@ async def text_to_speech(query):
         message = textx.text
     else:
         await query.edit(
-            "`Yazıdan sese çevirmek için bir metin gir.`")
+            "`Yazıdan səsə çevirmək üçün bir mesaj yaz.`")
         return
 
     try:
         gTTS(message, lang=TTS_LANG)
     except AssertionError:
         await query.edit(
-            'Metin boş.\n'
-            'Ön işleme, tokenizasyon ve temizlikten sonra konuşacak hiçbir şey kalmadı.'
+            'Mesaj boşdur.\n'
+            'Ön izləmə, tokenizasyon və təmizlikdən sonra danışacaq heçbir şey qalmadı.'
         )
         return
     except ValueError:
-        await query.edit('Bu dil henüz desteklenmiyor.')
+        await query.edit('Bu dil hələ dəstəklənmir.')
         return
     except RuntimeError:
-        await query.edit('Dilin sözlüğünü görüntülemede bir hata gerçekleşti.')
+        await query.edit('Dilin sözlüyünə baxanda bir xəta yarandı.')
         return
     tts = gTTS(message, lang=TTS_LANG)
     tts.save("h.mp3")
@@ -491,7 +418,7 @@ async def text_to_speech(query):
         os.remove("h.mp3")
         if BOTLOG:
             await query.client.send_message(
-                BOTLOG_CHATID, "Metin başarıyla sese dönüştürüldü!")
+                BOTLOG_CHATID, "Mesaj uğurla səsə döndərildi!")
         await query.delete()
 
 
@@ -589,24 +516,24 @@ async def translateme(trans):
     elif textx:
         message = textx.text
     else:
-        await trans.edit("`Bana çevirilecek bir metin wer!`")
+        await trans.edit("`Mənə tərcümə olunacaq mesaj ver!`")
         return
 
     try:
         reply_text = translator.translate(deEmojify(message), dest=TRT_LANG)
     except ValueError:
-        await trans.edit("Ayarlanan hedef dil geçersiz.")
+        await trans.edit("`Qeyd edilən dil dəyişilmədi.`")
         return
 
     source_lan = LANGUAGES[f'{reply_text.src.lower()}']
     transl_lan = LANGUAGES[f'{reply_text.dest.lower()}']
-    reply_text = f"Şu dilden:**{source_lan.title()}**\nŞu dile:**{transl_lan.title()}:**\n\n{reply_text.text}"
+    reply_text = f"Bu dildən 👉🏻**{source_lan.title()}**\nBu dilə 👉🏻**{transl_lan.title()}:**\n\n{reply_text.text}"
 
     await trans.edit(reply_text)
     if BOTLOG:
         await trans.client.send_message(
             BOTLOG_CHATID,
-            f"Biraz {source_lan.title()} kelime az önce {transl_lan.title()} diline çevirildi.",
+            f"Biraz {source_lan.title()} söz az əvvəl {transl_lan.title()} dilinə dəyişildi.",
         )
 
 
@@ -623,11 +550,11 @@ async def lang(value):
             LANG = LANGUAGES[arg]
         else:
             await value.edit(
-                f"`Geçersiz dil kodu!`\n`Geçerli dil kodları`:\n\n`{LANGUAGES}`"
+                f"`Kəçərsiz dil kodu!`\n`Kəçərli dil kodları`:\n\n`{LANGUAGES}`"
             )
             return
     elif util == "tts":
-        scraper = "Yazıdan Sese"
+        scraper = "Yazıdan Səsə"
         global TTS_LANG
         arg = value.pattern_match.group(2).lower()
         if arg in tts_langs():
@@ -635,14 +562,15 @@ async def lang(value):
             LANG = tts_langs()[arg]
         else:
             await value.edit(
-                f"`Geçersiz dil kodu!`\n`Geçerli dil kodları`:\n\n`{LANGUAGES}`"
+                f"`Kəçərsiz dil kodu`\n`Keçərli dil kodları`:\n\n`{LANGUAGES}`"
             )
             return
-    await value.edit(f"`{scraper} modülü için varsayılan dil {LANG.title()} diline çevirildi.`")
+    await value.edit(f"`{scraper} modulu üçün varsayılan 
+dil {LANG.title()} diline çevirildi.`")
     if BOTLOG:
         await value.client.send_message(
             BOTLOG_CHATID,
-            f"`{scraper} modülü için varsayılan dil {LANG.title()} diline çevirildi.`")
+            f"`{scraper} modülü için həmişəlik dil olaraq {LANG.title()} dilinə çevirildi.`")
 
 
 @register(outgoing=True, pattern="^.yt (.*)")
@@ -888,10 +816,7 @@ CMD_HELP.update({
 })
 CMD_HELP.update({'yt': '.yt <metin>\
         \nKullanım: YouTube üzerinde bir arama yapar.'})
-CMD_HELP.update(
-    {"ekşi": ".ekşi <başlık>\nKullanım: Ekşi sözlükten veri çekin."})
-CMD_HELP.update(
-    {"haber": ".haber <guncel/magazin/spor/ekonomi/politika/dunya>\nKullanım: Son dakika haberler."})
+
 
 CMD_HELP.update(
     {"imdb": ".imdb <film>\nKullanım: Film hakkında bilgi verir."})
