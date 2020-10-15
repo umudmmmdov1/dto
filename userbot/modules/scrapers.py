@@ -51,7 +51,7 @@ from google_images_download import google_images_download
 import base64, binascii
 import random
 CARBONLANG = "auto"
-TTS_LANG = "tr"
+TTS_LANG = "az"
 TRT_LANG = "tr"
 
 
