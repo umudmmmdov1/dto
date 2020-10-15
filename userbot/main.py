@@ -156,7 +156,7 @@ for module_name in ALL_MODULES:
 
 LOGS.info("Botunuz işleyir! Her hansı bir söhbetde .alive yazaraq Test edin."
           " Kömeye ehtiyacınız varsa, Destek qrupumuza gelin t.me/DTOSupport")
-LOGS.info("Bot versiyası DTÖUserBot v1.1")
+LOGS.info("Bot versiyası DTÖUserBot v1.4")
 
 """
 if len(argv) not in (1, 3, 4):
