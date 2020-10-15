@@ -88,43 +88,6 @@ async def tts2(query):
     os.remove("h.mp3")
     await query.delete()
 
-@register(pattern="^.reddit ?(.*)", outgoing=True)
-async def reddit(event):
-    sub = event.pattern_match.group(1)
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36 Avast/77.2.2153.120',
-    }       
-
-    if len(sub) < 1:
-        await event.edit("`Zəhmət olmasa bir Subreddit daxil edin. İstifadə: ``.reddit kopyamakarna`")
-        return
-
-    kaynak = get(f"https://www.reddit.com/r/{sub}/hot.json?limit=1", headers=headers).json()
-
-    if not "kind" in kaynak:
-        if kaynak["error"] == 404:
-            await event.edit("`Belə bir Subreddit tapılmadı.`")
-        elif kaynak["error"] == 429:
-            await event.edit("`Reddit yavaşlamağın üçün xəbərdarlıq edir.`")
-        else:
-            await event.edit("Nəsə baş verdi... Niyə oldu bilmirəm :/.`")     
-        return
-    else:
-        await event.edit("`Məlumatlar gətirilir...`")
-
-        veri = kaynak["data"]["children"][0]["data"]
-        mesaj = f"**{veri['title']}**\n⬆️{veri['score']}\n\nBy: __u/{veri['author']}__\n\n[Link](https://reddit.com{veri['permalink']})"
-        try:
-            resim = veri["url"]
-            with open(f"reddit.jpg", 'wb') as load:
-                load.write(get(resim).content)
-
-            await event.client.send_file(event.chat_id, "reddit.jpg", caption=mesaj)
-            os.remove("reddit.jpg")
-        except Exception as e:
-            print(e)
-            await event.edit(mesaj + "\n\n`" + veri["selftext"] + "`")
-.edit(f"**Son Dəqiqə xəbərlər {cmd.title()}**" + HABERLER)
 
 @register(outgoing=True, pattern="^.karbon ?(.*)")
 async def karbon(e):
