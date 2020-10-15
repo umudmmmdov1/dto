@@ -25,8 +25,8 @@ async def durums(event):
 
     await event.edit(f"""
 **Python Versiya:** `{python_version()}`
-**TeleThon Vərsiya:** `{version.__version__}` 
-**DTÖUserBot Versiya:** `1.1`
+**TeleThon Versiya:** `{version.__version__}` 
+**DTÖUserBot Versiya:** `1.4`
 
 **Plugin Sayı:** `{len(CMD_HELP)}`
 
