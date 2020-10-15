@@ -98,6 +98,16 @@
       "description": "Toxunmayın bura.",
       "required": false      
     },
+    "WARN_LIMIT": {
+      "description": "Kişiyi gmutelemek/gbanlamak için gerekli uyarı sayısı. Genellikle 3 kullanılır.",
+      "value": "3",
+      "required": false
+    },
+    "WARN_MODE": {
+      "description": "3 uyarıdan sonra gerçekleşecek olay. Sadece gmute ya da gban yazabilirsiniz. Aksi takdirde bot çalışmayabilir.",
+      "value": "gmute",
+      "required": false
+    },
     "BOTLOG_CHATID": {
       "description": "Toxunmayın bura.",
       "value": "0"
