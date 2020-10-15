@@ -137,6 +137,13 @@ REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
 # AUTO PP
 AUTO_PP = os.environ.get("AUTO_PP", None)
 
+# Warn modül
+WARN_LIMIT = int(os.environ.get("WARN_LIMIT", 3))
+WARN_MODE = os.environ.get("WARN_MODE", "gmute")
+
+if not WARN_MODE in ["gmute", "gban"]:
+    WARN_MODE = "gmute"
+
 # Chrome sürücüsü ve Google Chrome dosyaları
 CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
 GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
