@@ -28,15 +28,16 @@ from telethon.errors.rpcerrorlist import (UserIdInvalidError,
                                           MessageTooLongError)
 from telethon.tl.functions.channels import (EditAdminRequest,
                                             EditBannedRequest,
-                                            EditPhotoRequest)
-from telethon.tl.functions.messages import UpdatePinnedMessageRequest
+                                            EditPhotoRequest, InviteToChannelRequest)
+from telethon.tl.functions.messages import (UpdatePinnedMessageRequest, AddChatUserRequest)
 from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
                                ChatAdminRights, ChatBannedRights,
                                MessageEntityMentionName, MessageMediaPhoto,
-                               ChannelParticipantsBots)
-
-from userbot import BOTLOG, BOTLOG_CHATID, BRAIN_CHECKER, CMD_HELP, bot
+                               ChannelParticipantsBots, User, InputPeerChat)
+from telethon.events import ChatAction
+from userbot import BOTLOG, BOTLOG_CHATID, BRAIN_CHECKER, CMD_HELP, bot, WARN_MODE, WARN_LIMIT
 from userbot.events import register
+from userbot.main import PLUGIN_MESAJLAR
 
 # =================== CONSTANT ===================
 PP_TOO_SMOL = "`Şəkil çox balacadır`"
@@ -79,6 +80,153 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
 
+@register(outgoing=True, pattern="^.elave ?(.*)")
+async def ekle(event):
+    if event.fwd_from:
+        return
+    to_add_users = event.pattern_match.group(1)
+    if event.is_private:
+        await event.edit("`Əlavə əmri istifadəçiləri söhbətə əlavə edər, özəl mesaja yox!`")
+    else:
+        if not event.is_channel and event.is_group:
+            # https://lonamiwebs.github.io/Telethon/methods/messages/add_chat_user.html
+            for user_id in to_add_users.split(" "):
+                try:
+                    await event.client(AddChatUserRequest(
+                        chat_id=event.chat_id,
+                        user_id=user_id,
+                        fwd_limit=1000000
+                    ))
+                except Exception as e:
+                    await event.reply(str(e))
+            await event.edit("`Uğurla əlavə edildi.`")
+        else:
+            # https://lonamiwebs.github.io/Telethon/methods/channels/invite_to_channel.html
+            for user_id in to_add_users.split(" "):
+                try:
+                    await event.client(InviteToChannelRequest(
+                        channel=event.chat_id,
+                        users=[user_id]
+                    ))
+                except Exception as e:
+                    await event.reply(str(e))
+            await event.edit("`Uğurla əlavə edildi.`")
+
+@register(outgoing=True, pattern="^.gban(?: |$)(.*)")
+async def gbanspider(gspdr):
+    """ .gban komutu belirlenen kişiyi küresel olarak yasaklar """
+    # Yetki kontrolü
+    chat = await gspdr.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # Yönetici değil ise geri dön
+    if not admin and not creator:
+        await gspdr.edit(NO_ADMIN)
+        return
+
+    # Fonksiyonun SQL modu altında çalışıp çalışmadığını kontrol et
+    try:
+        from userbot.modules.sql_helper.gban_sql import gban
+    except:
+        await gspdr.edit(NO_SQL)
+        return
+
+    user, reason = await get_user_from_event(gspdr)
+    if user:
+        pass
+    else:
+        return
+
+    # Eğer kullanıcı sudo ise
+    if user.id in BRAIN_CHECKER:
+        await gspdr.edit("`Gban Xətası! DTÖUserBot adminini qlobal olaraq banlaya bilmərəm.`")
+        return
+
+    # Başarı olursa bilgi ver
+    await gspdr.edit("`Banlanır...`")
+    if gban(user.id) == False:
+        await gspdr.edit(
+            '`Xəta! İstifadəçi onsuz qlobal olaraq banlanıb.`')
+    else:
+        if reason:
+            await gspdr.edit(f"`İstifadəçi qlobal olaraq banlandı!`Səbəbi: {reason}")
+        else:
+            await gspdr.edit("`İstifadəçi qlobal olaraq banlandı!`")
+
+        if BOTLOG:
+            await gspdr.client.send_message(
+                BOTLOG_CHATID, "#GBAN\n"
+                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
+
+
+@register(incoming=True)
+async def gbanmsg(moot):
+    """ Küresel banlanan kullanıcı mesaj gelirse """
+    try:
+        from userbot.modules.sql_helper.gban_sql import is_gbanned
+    except:
+        return
+
+    chat = await moot.get_chat()
+    if (type(chat) == User):
+        return 
+
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    if not admin and not creator:
+        return
+
+    gbanned = is_gbanned(str(moot.sender_id))
+    if gbanned == str(moot.sender_id):
+        try:
+            await moot.client(EditBannedRequest(moot.chat_id, moot.sender_id,
+                                           BANNED_RIGHTS))
+            await moot.reply("```Sən pis birisən! Daha çox səni burda tutmayacağam Bye 😎```")
+        except:
+            return
+@register(outgoing=True, pattern="^.ungban(?: |$)(.*)")
+async def ungban(un_gban):
+    """ .ungban komutu belirlenen kişinin küresel susturulmasını kaldırır """
+    # Yetki kontrolü
+    chat = await un_gban.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # Yönetici değil ise geri dön
+    if not admin and not creator:
+        await un_gban.edit(NO_ADMIN)
+        return
+
+    # Fonksiyonun SQL modu altında çalışıp çalışmadığını kontrol et
+    try:
+        from userbot.modules.sql_helper.gban_sql import ungban
+    except:
+        await un_gban.edit(NO_SQL)
+        return
+
+    user = await get_user_from_event(un_gban)
+    user = user[0]
+    if user:
+        pass
+    else:
+        return
+
+    await un_gban.edit('```Qlobal bandan çıxarılır...```')
+
+    if ungban(user.id) is False:
+        await un_gban.edit("`Xəta! Deyəsən istifadəçinin banlanması yoxdur.`")
+    else:
+        # Başarı olursa bilgi ver
+        await un_gban.edit("```İstifadəçinin qlobal banı qaldırıldı.```")
+
+        if BOTLOG:
+            await un_gban.client.send_message(
+                BOTLOG_CHATID, "#UNGBAN\n"
+                f"İSTİFADECİ: [{user.first_name}](tg://user?id={user.id})\n"
+                f"QRUP: {un_gban.chat.title}(`{un_gban.chat_id}`)")
 
 @register(outgoing=True, pattern="^.setgpic$")
 async def set_group_photo(gpic):
@@ -309,6 +457,110 @@ async def nothanos(unbon):
     except:
         await unbon.edit("`Deyəsən bu istifadəçi banlama məntiqim ilə uyuşmur`")
 
+@register(outgoing=True, pattern="^.warn ?(.*)")
+async def warn(event):
+    """ .warn kullanıcıyı uyarmaya işe yarar """
+    # Yetki kontrolü
+    chat = await event.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # Yönetici değil ise geri dön
+    if not admin and not creator:
+        await event.edit(NO_ADMIN)
+        return
+
+    # Fonksiyonun SQL modu altında çalışıp çalışmadığını kontrol et
+    try:
+        import userbot.modules.sql_helper.warn_sql as warn
+    except:
+        await event.edit(NO_SQL)
+        return
+
+    user, reason = await get_user_from_event(event)
+    if user:
+        pass
+    else:
+        return
+
+    # Eğer kullanıcı sudo ise
+    if user.id in BRAIN_CHECKER:
+        await event.edit("`Warn Xətası! DTÖUserBot adminininə xəbərdarlıq edə bilmərəm.`")
+        return
+
+    # Başarı olursa bilgi ver
+    await event.edit("`Xəbərdarlıq edilir...`")
+    warn.ekle_warn(user.id)
+    warnsayi = warn.getir_warn(user.id)
+    if warnsayi >= WARN_LIMIT:
+        if WARN_MODE == "gban":
+            await Warn_Gban(event, warn, user)
+        else:
+            await Warn_Gmute(event, warn, user)
+        return
+    await event.edit(f"[{user.first_name}](tg://user?id={user.id})`, {warnsayi}/{WARN_LIMIT} dəfə xəbərdarlıq edildi; diqqətli ol xaiş!`")
+
+    if BOTLOG:
+        await event.client.send_message(
+            BOTLOG_CHATID, "#WARN\n"
+            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+            f"CHAT: {event.chat.title}(`{event.chat_id}`)")
+
+async def Warn_Gmute(event, warn, user, reason = None):
+    await event.delete()
+    yeni = await event.reply(f"`Səni yetəri qədər xəbərdarlıq elədim` [{user.first_name}](tg://user?id={user.id})`, qlobal olaraq susduruldun!`")
+
+    try:
+        from userbot.modules.sql_helper.gmute_sql import gmute
+    except:
+        await yeni.edit(NO_SQL)
+        return
+        
+    yeni2 = await yeni.reply("`Susdurulur...`")
+        
+    if gmute(user.id) == False:
+        await yeni2.edit(
+            '`Xəta! İstifadəçi onsuz qlobal olaraq susduruldu.`')
+    else:
+        if reason != None:
+            await yeni2.edit(f"`İstifadəçi qlobal olaraq susduruldu!`Səbəbi: {reason}")
+        else:
+            await yeni2.edit("`İstifadəçi qlobal olaraq susduruldu!`")
+
+        if BOTLOG:
+            await event.client.send_message(
+                BOTLOG_CHATID, "#GMUTE\n"
+                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                f"CHAT: {event.chat.title}(`{event.chat_id}`)")
+    warn.toplu_sil_warn(user.id)
+
+async def Warn_Gban(event, warn, user, reason = None):
+    await event.delete()
+    yeni = await event.reply(f"`Səni yetəri qədər xəbərdarlıq elədim` [{user.first_name}](tg://user?id={user.id})`, qlobal olaraq banlandın!`")
+
+    try:
+        from userbot.modules.sql_helper.gban_sql import gban
+    except:
+        await yeni.edit(NO_SQL)
+        return
+        
+    yeni2 = await yeni.reply("`Banlanır...`")
+        
+    if gban(user.id) == False:
+        await yeni2.edit(
+            '`Xəta! İstifadəçi onsuz qlobal olaraq banlanıb.`')
+    else:
+        if reason != None:
+            await yeni2.edit(f"`İstifadəçi qlobal olaraq banlandı!`Səbəbi: {reason}")
+        else:
+            await yeni2.edit("`İstifadəçi qlobal olaraq banlandı!`")
+
+        if BOTLOG:
+            await event.client.send_message(
+                BOTLOG_CHATID, "#GBAN\n"
+                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                f"CHAT: {event.chat.title}(`{event.chat_id}`)")
+    warn.toplu_sil_warn(user.id)
 
 @register(outgoing=True, pattern="^.mute(?: |$)(.*)")
 async def spider(spdr):
