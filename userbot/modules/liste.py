@@ -57,7 +57,7 @@ async def liste(event):
             await event.edit("`Wow! Çox istifadəçini susdurmusuz. Fayl olaraq göndərirəm...`")
             open("gmute_liste.txt", "w+").write(mesaj)
             await event.client.send_message(event.chat_id, f"**Qlobal olaraq susdurulan istifdəçilər**\n\n**Məlumat:** Susdurduğunuz istifadəçilər haqqında daha çox məlumat almaq üçün `.whois id` işlədə bilərsiz.", file="gmute_liste.txt")
-            os.remove("gmute_liste.
+            os.remove("gmute_liste.txt")
         else:
             await event.edit(f"**Qlobal olaraq susdurduğunuz istifadəçilər:**\n{mesaj}\n\n**Məlumat:** Susdurduğunuz istifadəçilər haqqında daha çox məlumat almaq üçün `.whois id` işlədə bilərsiz.")
 
