@@ -1,18 +1,11 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# DTÖUserBot - @umudmmmdov1
+
 
 """ Diğer kategorilere uymayan fazlalık komutların yer aldığı modül. """
 
@@ -30,6 +23,9 @@ from urllib.parse import quote_plus
 from urllib.error import HTTPError
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from urbandict import define
@@ -51,24 +47,116 @@ from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRI
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.modules.upload_download import progress, humanbytes, time_formatter
-from userbot.google_images_download import googleimagesdownload
-
+from google_images_download import google_images_download
+import base64, binascii
+import random
 CARBONLANG = "auto"
 TTS_LANG = "tr"
 TRT_LANG = "tr"
 
 
+from telethon import events
+import subprocess
+from telethon.errors import MessageEmptyError, MessageTooLongError, MessageNotModifiedError
+import io
+import glob
+
+@register(pattern="^.tts2 (.*)", outgoing=True)
+async def tts2(query):
+    textx = await query.get_reply_message()
+    mesj = query.pattern_match.group(1)
+    parca = mesj.split(" ")[0]
+    if parca == "qadin":
+        cins = "female"
+    else:
+        cins = "male"
+
+    message = mesj.replace(parca, "")
+    if message:
+        pass
+    elif textx:
+        message = textx.text
+    else:
+        await query.edit(
+            "`Yazıdan səsə çevirmək üçün bir mətn daxil edin. İstifadə: .tts2 kisi/qadin salam`")
+        return
+
+    mp3 = get(f"https://texttospeech.responsivevoice.org/v1/text:synthesize?text={message}&lang={TTS_LANG}&engine=g3&name=&pitch=0.5&rate=0.5&volume=1&key=AsenaUserbot&gender={cins}").content
+    with open("h.mp3", "wb") as audio:
+        audio.write(mp3)
+    await query.client.send_file(query.chat_id, "h.mp3", voice_note=True)
+    os.remove("h.mp3")
+    await query.delete()
+
+@register(pattern="^.reddit ?(.*)", outgoing=True)
+async def reddit(event):
+    sub = event.pattern_match.group(1)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36 Avast/77.2.2153.120',
+    }       
+
+    if len(sub) < 1:
+        await event.edit("`Zəhmət olmasa bir Subreddit daxil edin. İstifadə: ``.reddit kopyamakarna`")
+        return
+
+    kaynak = get(f"https://www.reddit.com/r/{sub}/hot.json?limit=1", headers=headers).json()
+
+    if not "kind" in kaynak:
+        if kaynak["error"] == 404:
+            await event.edit("`Belə bir Subreddit tapılmadı.`")
+        elif kaynak["error"] == 429:
+            await event.edit("`Reddit yavaşlamağın üçün xəbərdarlıq edir.`")
+        else:
+            await event.edit("Nəsə baş verdi... Niyə oldu bilmirəm :/.`")     
+        return
+    else:
+        await event.edit("`Məlumatlar gətirilir...`")
+
+        veri = kaynak["data"]["children"][0]["data"]
+        mesaj = f"**{veri['title']}**\n⬆️{veri['score']}\n\nBy: __u/{veri['author']}__\n\n[Link](https://reddit.com{veri['permalink']})"
+        try:
+            resim = veri["url"]
+            with open(f"reddit.jpg", 'wb') as load:
+                load.write(get(resim).content)
+
+            await event.client.send_file(event.chat_id, "reddit.jpg", caption=mesaj)
+            os.remove("reddit.jpg")
+        except Exception as e:
+            print(e)
+            await event.edit(mesaj + "\n\n`" + veri["selftext"] + "`")
+.edit(f"**Son Dəqiqə xəbərlər {cmd.title()}**" + HABERLER)
+
+@register(outgoing=True, pattern="^.karbon ?(.*)")
+async def karbon(e):
+    cmd = e.pattern_match.group(1)
+    if os.path.exists("@DTOUserBot-Karbon.jpg"):
+        os.remove("@DTOUserBot-Karbon.jpg")
+
+    if len(cmd) < 1:
+        await e.edit("İstifadə: .karbon mesaj")    
+    yanit = await e.get_reply_message()
+    if yanit:
+        cmd = yanit.message
+    await e.edit("`Gözləyin...`")    
+
+    r = get(f"https://carbonnowsh.herokuapp.com/?code={cmd}")
+
+    with open("@DTOUserBot-Karbon.jpg", 'wb') as f:
+        f.write(r.content)    
+
+    await e.client.send_file(e.chat_id, file="@DTOUserBot-Karbon.jpg", force_document=True, caption="[DTOUserBot](https://t.me/dtouserbot) ilə hazırlandı.")
+    await e.delete()
+
 @register(outgoing=True, pattern="^.crblang (.*)")
 async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
-    await prog.edit(f"Karbon modülü için varsayılan dil {CARBONLANG} olarak ayarlandı.")
-
+    await prog.edit(f"Carbon modulu üçün hazırki dil {CARBONLANG} olaraq dəyişdirildi.")
 
 @register(outgoing=True, pattern="^.carbon")
 async def carbon_api(e):
     """ carbon.now.sh için bir çeşit wrapper """
-    await e.edit("`İşleniyor...`")
+    await e.edit("`Hazırlanır...`")
     CARBON = 'https://carbon.now.sh/?l={lang}&code={code}'
     global CARBONLANG
     textx = await e.get_reply_message()
@@ -78,23 +166,21 @@ async def carbon_api(e):
     elif textx:
         pcode = str(textx.message)  # Girilen metin, modüle aktarılıyor.
     code = quote_plus(pcode)  # Çözülmüş url'ye dönüştürülüyor.
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 25%`")
+    await e.edit("`Hazırlanır...\nTamamlanmış hissə: 25%`")
     if os.path.isfile("./carbon.png"):
         os.remove("./carbon.png")
     url = CARBON.format(code=code, lang=CARBONLANG)
     chrome_options = Options()
     chrome_options.add_argument("--headless")
-    chrome_options.binary_location = GOOGLE_CHROME_BIN
     chrome_options.add_argument("--window-size=1920x1080")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-gpu")
     prefs = {'download.default_directory': './'}
     chrome_options.add_experimental_option('prefs', prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
-                              options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.get(url)
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 50%`")
+    await e.edit("`Hazırlanır...\nTamamlanmış hissə: 50%`")
     download_path = './'
     driver.command_executor._commands["send_command"] = (
         "POST", '/session/$sessionId/chromium/send_command')
@@ -109,18 +195,18 @@ async def carbon_api(e):
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 75%`")
+    await e.edit("`Hazırlanır...\nTamamlanan hissə: 75%`")
     # İndirme için bekleniyor
     while not os.path.isfile("./carbon.png"):
         await sleep(0.5)
-    await e.edit("`İşleniyor...\nTamamlanma Oranı: 100%`")
+    await e.edit("`Hazırlanır...\nTamamlanmış hissə: 100%`")
     file = './carbon.png'
-    await e.edit("`Resim karşıya yükleniyor...`")
+    await e.edit("`Şəkil yüklənir...`")
     await e.client.send_file(
         e.chat_id,
         file,
-        caption="Bu resim [Carbon](https://carbon.now.sh/about/) kullanılarak yapıldı,\
-        \nbir [Dawn Labs](https://dawnlabs.io/) projesi.",
+        caption="Bu şəkil [Carbon](https://carbon.now.sh/about/) vasitəsilə yaradıldı,\
+        \nbir [Dawn Labs](https://dawnlabs.io/) proyekti.",
         force_document=True,
         reply_to=e.message.reply_to_msg_id,
     )
@@ -130,37 +216,11 @@ async def carbon_api(e):
     # Karşıya yüklemenin ardından carbon.png kaldırılıyor
     await e.delete()  # Mesaj siliniyor
 
-@register(outgoing=True, pattern="^.ceviri")
-async def ceviri(e):
-    # http://www.tamga.org/2016/01/web-tabanl-gokturkce-cevirici-e.html #
-    await e.edit("`Çeviriliyor...`")
-    textx = await e.get_reply_message()
-    pcode = e.text
-    if pcode[8:]:
-        pcode = str(pcode[8:])
-    elif textx:
-        pcode = str(textx.message)  # Girilen metin, modüle aktarılıyor.
-    code = quote_plus(pcode)  # Çözülmüş url'ye dönüştürülüyor.
-    url = "http://www.tamga.org/2016/01/web-tabanl-gokturkce-cevirici-e.html"
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.binary_location = GOOGLE_CHROME_BIN
-    chrome_options.add_argument("--window-size=1920x1080")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-gpu")
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
-                              options=chrome_options)
-    driver.get(url)
-    Latin = driver.find_element_by_name("Latin_Metin").send_keys(pcode)
-    Turk = driver.find_element_by_name("Göktürk_Metin").get_attribute("value")
-    e.edit(Turk)
-
 
 @register(outgoing=True, pattern="^.img (.*)")
 async def img_sampler(event):
-    """ .img komutu Google'da resim araması yapar. """
-    await event.edit("İşleniyor...")
+    """ .img modulu Google'da şəkil axtarışı edər. """
+    await event.edit("Hazırlanır...")
     query = event.pattern_match.group(1)
     lim = findall(r"lim=\d+", query)
     try:
@@ -169,22 +229,18 @@ async def img_sampler(event):
         query = query.replace("lim=" + lim[0], "")
     except IndexError:
         lim = 5
-    response = googleimagesdownload()
 
-    # creating list of arguments
-    arguments = {
-        "keywords": query,
-        "limit": lim,
-        "format": "jpg",
-        "no_directory": "no_directory"
-    }
+    URL = "https://www.google.com.tr/search?q=%s&source=lnms&tbm=isch" % query
+    page = get(URL)
 
-    # passing the arguments to the function
-    paths = response.download(arguments)
-    lst = paths[0][query]
-    await event.client.send_file(
-        await event.client.get_input_entity(event.chat_id), lst)
-    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
+    soup = BeautifulSoup(page.content, 'html.parser')
+    imgclass = soup.find_all("img", {"class": "t0fcAb"})
+    i = 0
+    resimler = []
+    while i < lim:
+        resimler.append(imgclass[i]['src'])
+        i += 1
+    await event.client.send_file(await event.client.get_input_entity(event.chat_id), file=resimler, force_document=True)
     await event.delete()
 
 
@@ -207,18 +263,18 @@ async def moni(event):
                     number, currency_from, rebmun, currency_to))
             else:
                 await event.edit(
-                    "`Yazdığın şey uzaylıların kullandığı bir para birimine benziyor, bu yüzden dönüştüremiyorum.`"
+                    "`Belə bir valyuta tapılmadı!`"
                 )
         except Exception as e:
             await event.edit(str(e))
     else:
-        await event.edit("`Sözdizimi hatası.`")
+        await event.edit("`Yazı xətası.`")
         return
 
 
 @register(outgoing=True, pattern=r"^.google (.*)")
 async def gsearch(q_event):
-    """ .google komutu ile basit Google aramaları gerçekleştirilebilir """
+    """ .google modulu ilə sadə Google axtarışları həyata keçirə bilərsiz """
     match = q_event.pattern_match.group(1)
     page = findall(r"page=\d+", match)
     try:
@@ -239,28 +295,28 @@ async def gsearch(q_event):
             msg += f"[{title}]({link})\n`{desc}`\n\n"
         except IndexError:
             break
-    await q_event.edit("**Arama Sorgusu:**\n`" + match + "`\n\n**Sonuçlar:**\n" +
+    await q_event.edit("**Axtarılır:**\n`" + match + "`\n\n**Nəticələr:**\n" +
                        msg,
                        link_preview=False)
 
     if BOTLOG:
         await q_event.client.send_message(
             BOTLOG_CHATID,
-            match + "`sözcüğü başarıyla Google'da aratıldı!`",
+            match + "`sözü  Google'da axtarıldı !`",
         )
 
 
 @register(outgoing=True, pattern=r"^.wiki (.*)")
 async def wiki(wiki_q):
-    """ .wiki komutu Vikipedi üzerinden bilgi çeker. """
+    """ .wiki modulu Vikipediya üzərindən məlumat toplayar. """
     match = wiki_q.pattern_match.group(1)
     try:
         summary(match)
     except DisambiguationError as error:
-        await wiki_q.edit(f"Belirsiz bir sayfa bulundu.\n\n{error}")
+        await wiki_q.edit(f"Qeyri-müəyyən bir səhifə...\n\n{error}")
         return
     except PageError as pageerror:
-        await wiki_q.edit(f"Aradığınız sayfa bulunamadı.\n\n{pageerror}")
+        await wiki_q.edit(f"Axtardığınız səhifə tapılmadı.\n\n{pageerror}")
         return
     result = summary(match)
     if len(result) >= 4096:
@@ -271,26 +327,26 @@ async def wiki(wiki_q):
             wiki_q.chat_id,
             "wiki.txt",
             reply_to=wiki_q.id,
-            caption="`Sonuç çok uzun, dosya yoluyla gönderiliyor...`",
+            caption="`Nəticə çox uzun olduğundan fayl kimi göndərilir...`",
         )
         if os.path.exists("wiki.txt"):
             os.remove("wiki.txt")
         return
-    await wiki_q.edit("**Arama:**\n`" + match + "`\n\n**Sonuç:**\n" + result)
+    await wiki_q.edit("**Axtarılır:**\n`" + match + "`\n\n**Nəticə:**\n" + result)
     if BOTLOG:
         await wiki_q.client.send_message(
-            BOTLOG_CHATID, f"{match}` teriminin Wikipedia sorgusu başarıyla gerçekleştirildi!`")
+            BOTLOG_CHATID, f"{match}` sözünün Wikipedia sorğusu uğurla həyata keçirildi!`")
 
 
 @register(outgoing=True, pattern="^.ud (.*)")
 async def urban_dict(ud_e):
-    """ .ud komutu Urban Dictionary'den bilgi çeker. """
-    await ud_e.edit("İşleniyor...")
+    """ .ud modulu Urban Dictionary'dən məlumat toplayar. """
+    await ud_e.edit("Hazırlanır...")
     query = ud_e.pattern_match.group(1)
     try:
         define(query)
     except HTTPError:
-        await ud_e.edit(f"Üzgünüm, {query} için hiçbir sonuç bulunamadı.")
+        await ud_e.edit(f"Təəssüfki {query} üçün heçbir nəticə tapılmadı.")
         return
     mean = define(query)
     deflen = sum(len(i) for i in mean[0]["def"])
@@ -298,33 +354,33 @@ async def urban_dict(ud_e):
     meanlen = deflen + exalen
     if int(meanlen) >= 0:
         if int(meanlen) >= 4096:
-            await ud_e.edit("`Sonuç çok uzun, dosya yoluyla gönderiliyor...`")
+            await ud_e.edit("`Nəticə çox uzun olduğundan fayl kimi göndərilir...`")
             file = open("urbandictionary.txt", "w+")
-            file.write("Sorgu: " + query + "\n\nAnlamı: " + mean[0]["def"] +
-                       "\n\n" + "Örnek: \n" + mean[0]["example"])
+            file.write("Sorğu: " + query + "\n\nMənası: " + mean[0]["def"] +
+                       "\n\n" + "Nümunə: \n" + mean[0]["example"])
             file.close()
             await ud_e.client.send_file(
                 ud_e.chat_id,
                 "urbandictionary.txt",
-                caption="`Sonuç çok uzun, dosya yoluyla gönderiliyor...`")
+                caption="`Nəticə çox uzun olduğundan fayl kimi göndərilir...`")
             if os.path.exists("urbandictionary.txt"):
                 os.remove("urbandictionary.txt")
             await ud_e.delete()
             return
-        await ud_e.edit("Sorgu: **" + query + "**\n\nAnlamı: **" +
-                        mean[0]["def"] + "**\n\n" + "Örnek: \n__" +
+        await ud_e.edit("Sorğu: **" + query + "**\n\nMənası: **" +
+                        mean[0]["def"] + "**\n\n" + "Nümunə: \n__" +
                         mean[0]["example"] + "__")
         if BOTLOG:
             await ud_e.client.send_message(
                 BOTLOG_CHATID,
-                query + "`sözcüğünün UrbanDictionary sorgusu başarıyla gerçekleştirildi!`")
+                query + "`sözün UrbanDictionary sorğusu uğurla həyata keçirildi!`")
     else:
-        await ud_e.edit(query + "**için hiçbir sonuç bulunamadı**")
+        await ud_e.edit(query + "**üçün nəticə tapılmadı**")
 
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
-    """ .tts komutu ile Google'ın metinden yazıya dönüştürme servisi kullanılabilir. """
+    """ .tts modulu ilə Google'un mətndən yazıya çevirmək servisi istifadə edilə bilər. """
     textx = await query.get_reply_message()
     message = query.pattern_match.group(1)
     if message:
@@ -333,22 +389,22 @@ async def text_to_speech(query):
         message = textx.text
     else:
         await query.edit(
-            "`Yazıdan sese çevirmek için bir metin gir.`")
+            "`Yazıdan səsə çevirmək üçün bir mətn daxil edin.`")
         return
 
     try:
         gTTS(message, lang=TTS_LANG)
     except AssertionError:
         await query.edit(
-            'Metin boş.\n'
-            'Ön işleme, tokenizasyon ve temizlikten sonra konuşacak hiçbir şey kalmadı.'
+            'Mətn boşdu.\n'
+            'İlkin emal, tokenizasiya və təmizlikdən sonra deyiləcək heçbir şey qalmadı.'
         )
         return
     except ValueError:
-        await query.edit('Bu dil henüz desteklenmiyor.')
+        await query.edit('Hazırda bu dil dəstəklənmir.')
         return
     except RuntimeError:
-        await query.edit('Dilin sözlüğünü görüntülemede bir hata gerçekleşti.')
+        await query.edit('Dilin lüğətini görüntüləmədə bir xəta baş verdi.')
         return
     tts = gTTS(message, lang=TTS_LANG)
     tts.save("h.mp3")
@@ -363,7 +419,7 @@ async def text_to_speech(query):
         os.remove("h.mp3")
         if BOTLOG:
             await query.client.send_message(
-                BOTLOG_CHATID, "Metin başarıyla sese dönüştürüldü!")
+                BOTLOG_CHATID, "Mətn uğurla səsə çevirildi!")
         await query.delete()
 
 
@@ -435,24 +491,24 @@ async def imdb(e):
         else:
             mov_rating = 'Not available'
         await e.edit('<a href=' + poster + '>&#8203;</a>'
-                     '<b>Başlık : </b><code>' + mov_title + '</code>\n<code>' +
-                     mov_details + '</code>\n<b>Reyting : </b><code>' +
-                     mov_rating + '</code>\n<b>Ülke : </b><code>' +
+                     '<b>Başlıq : </b><code>' + mov_title + '</code>\n<code>' +
+                     mov_details + '</code>\n<b>Reytinq : </b><code>' +
+                     mov_rating + '</code>\n<b>Ölkə: </b><code>' +
                      mov_country[0] + '</code>\n<b>Dil : </b><code>' +
-                     mov_language[0] + '</code>\n<b>Yönetmen : </b><code>' +
-                     director + '</code>\n<b>Yazar : </b><code>' + writer +
-                     '</code>\n<b>Yıldızlar : </b><code>' + stars +
+                     mov_language[0] + '</code>\n<b>Rejissor : </b><code>' +
+                     director + '</code>\n<b>Yazıçı : </b><code>' + writer +
+                     '</code>\n<b>Oyunçular : </b><code>' + stars +
                      '</code>\n<b>IMDB Url : </b>' + mov_link +
-                     '\n<b>Konusu : </b>' + story_line,
+                     '\n<b>Mövzusu : </b>' + story_line,
                      link_preview=True,
                      parse_mode='HTML')
     except IndexError:
-        await e.edit("Geçerli bir film ismi gir.")
+        await e.edit("Zəhmət olmasa düzgün bir film adı daxil edin.")
 
 
 @register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
 async def translateme(trans):
-    """ .trt komutu verilen metni Google Çeviri kullanarak çevirir. """
+    """ .trt modulu verilmiş mətni Google Translate vasitəsilə tərcümə edər. """
     translator = Translator()
     textx = await trans.get_reply_message()
     message = trans.pattern_match.group(1)
@@ -461,30 +517,30 @@ async def translateme(trans):
     elif textx:
         message = textx.text
     else:
-        await trans.edit("`Bana çevirilecek bir metin wer!`")
+        await trans.edit("`Tərcümə olunacaq bir mətn daxil edin!`")
         return
 
     try:
         reply_text = translator.translate(deEmojify(message), dest=TRT_LANG)
     except ValueError:
-        await trans.edit("Ayarlanan hedef dil geçersiz.")
+        await trans.edit("Seçdiyiniz dil keçərsizdi.")
         return
 
     source_lan = LANGUAGES[f'{reply_text.src.lower()}']
     transl_lan = LANGUAGES[f'{reply_text.dest.lower()}']
-    reply_text = f"Şu dilden:**{source_lan.title()}**\nŞu dile:**{transl_lan.title()}:**\n\n{reply_text.text}"
+    reply_text = f"Bu dildən:**{source_lan.title()}**\nBu dilə:**{transl_lan.title()}:**\n\n{reply_text.text}"
 
     await trans.edit(reply_text)
     if BOTLOG:
         await trans.client.send_message(
             BOTLOG_CHATID,
-            f"Biraz {source_lan.title()} kelime az önce {transl_lan.title()} diline çevirildi.",
+            f"Bir neçə {source_lan.title()} söz az öncə {transl_lan.title()} dilinə tərcümə edildi.",
         )
 
 
 @register(pattern=".lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
-    """ .lang komutu birkaç modül için varsayılan dili değiştirir. """
+    """ .lang modulu bir neçə modul üçün seçilmiş dili dəyişdirər. """
     util = value.pattern_match.group(1).lower()
     if util == "trt":
         scraper = "Translator"
@@ -495,11 +551,11 @@ async def lang(value):
             LANG = LANGUAGES[arg]
         else:
             await value.edit(
-                f"`Geçersiz dil kodu!`\n`Geçerli dil kodları`:\n\n`{LANGUAGES}`"
+                f"`Uyğun olmayan dil kodu!`\n`Uyğun olan dil kodları`:\n\n`{LANGUAGES}`"
             )
             return
     elif util == "tts":
-        scraper = "Yazıdan Sese"
+        scraper = "Yazıdan səsə"
         global TTS_LANG
         arg = value.pattern_match.group(2).lower()
         if arg in tts_langs():
@@ -507,29 +563,29 @@ async def lang(value):
             LANG = tts_langs()[arg]
         else:
             await value.edit(
-                f"`Geçersiz dil kodu!`\n`Geçerli dil kodları`:\n\n`{LANGUAGES}`"
+                f"`Uyğun olmayan dil kodu!`\n`Uyğun olan dil kodları`:\n\n`{LANGUAGES}`"
             )
             return
-    await value.edit(f"`{scraper} modülü için varsayılan dil {LANG.title()} diline çevirildi.`")
+    await value.edit(f"`{scraper} modulu üçün hazırki dil {LANG.title()} olaraq dəyişdirildi.`")
     if BOTLOG:
         await value.client.send_message(
             BOTLOG_CHATID,
-            f"`{scraper} modülü için varsayılan dil {LANG.title()} diline çevirildi.`")
+            f"`{scraper} modulu üçün hazırki dil {LANG.title()} olaraq dəyişdirildi.`")
 
 
 @register(outgoing=True, pattern="^.yt (.*)")
 async def yt_search(video_q):
-    """ .yt komutu YouTube üzerinde arama yapar. """
+    """ .yt modulu YouTube üzərindən axtarış edər. """
     query = video_q.pattern_match.group(1)
     result = ''
 
     if not YOUTUBE_API_KEY:
         await video_q.edit(
-            "`Hata: YouTube API anahtarı tanımlanmamış!`"
+            "`Xəta: YouTube API key daxil edilməyib!`"
         )
         return
 
-    await video_q.edit("```İşleniyor...```")
+    await video_q.edit("```Hazırlanır...```")
 
     full_response = await youtube_search(query)
     videos_json = full_response[1]
@@ -539,7 +595,7 @@ async def yt_search(video_q):
         link = f"https://youtu.be/{video['id']['videoId']}"
         result += f"{title}\n{link}\n\n"
 
-    reply_text = f"**Arama Sorgusu:**\n`{query}`\n\n**Sonuçlar:**\n\n{result}"
+    reply_text = f"**Axtarılır:**\n`{query}`\n\n**Nəticə:**\n\n{result}"
 
     await video_q.edit(reply_text)
 
@@ -549,7 +605,7 @@ async def youtube_search(query,
                          token=None,
                          location=None,
                          location_radius=None):
-    """ Bir YouTube araması yap. """
+    """ YouTube'da axtarış edər. """
     youtube = build('youtube',
                     'v3',
                     developerKey=YOUTUBE_API_KEY,
@@ -576,17 +632,17 @@ async def youtube_search(query,
         nexttok = "last_page"
         return (nexttok, videos)
     except KeyError:
-        nexttok = "API anahtarı hatası, lütfen yeniden dene."
+        nexttok = "API key xətası, zəhmət olmasa yenidən yoxlayın."
         return (nexttok, videos)
 
 
 @register(outgoing=True, pattern=r".rip(audio|video) (.*)")
 async def download_video(v_url):
-    """ .rip komutu ile YouTube ve birkaç farklı siteden medya çekebilirsin. """
+    """ .rip modulu ilə YouTube və bir neçə digər saytdan mediya yükləyə bilərsiz. """
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
 
-    await v_url.edit("`İndirmeye hazırlanıyor...`")
+    await v_url.edit("`Yüklənməyə başlanır...`")
 
     if type == "audio":
         opts = {
@@ -648,40 +704,40 @@ async def download_video(v_url):
         video = True
 
     try:
-        await v_url.edit("`Veri çekiliyor, lütfen bekleyin...`")
+        await v_url.edit("`Fayl gətirilir...`")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
         await v_url.edit(f"`{str(DE)}`")
         return
     except ContentTooShortError:
-        await v_url.edit("`İndirilecek içerik fazla kısa.`")
+        await v_url.edit("`Yüklənəcək fayl çox kiçikdi.`")
         return
     except GeoRestrictedError:
         await v_url.edit(
-            "`Maalesef coğrafi kısıtlamalar sebebiyle bu videoyla işlem yapamazsın.`")
+            "`Bəzi qadağalar səbəbiylə bu videodan istifadə edilə bilməz.`")
         return
     except MaxDownloadsReached:
-        await v_url.edit("`Maksimum indirme limitini aştın.`")
+        await v_url.edit("`Maksimum yükləmə limitini keçdin.`")
         return
     except PostProcessingError:
-        await v_url.edit("`İstek işlenirken bir hata oluştu.`")
+        await v_url.edit("`Bir şeylər tərs getdi və xəta baş verdi...`")
         return
     except UnavailableVideoError:
-        await v_url.edit("`Medya belirtilen dosya formatında mevcut değil.`")
+        await v_url.edit("`Mediya seçilmiş fayl formatında mövcüd deyil.`")
         return
     except XAttrMetadataError as XAME:
         await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
         return
     except ExtractorError:
-        await v_url.edit("`Bilgi çıkarılırken bir hata gerçekleşti.`")
+        await v_url.edit("`Bir şeylər tərs getdi və xəta baş verdi...`")
         return
     except Exception as e:
         await v_url.edit(f"{str(type(e)): {str(e)}}")
         return
     c_time = time.time()
     if song:
-        await v_url.edit(f"`Şarkı yüklenmeye hazırlanıyor:`\
+        await v_url.edit(f"`Musiqi yüklənməyə başlanır:`\
         \n**{rip_data['title']}**\
         \nby *{rip_data['uploader']}*")
         await v_url.client.send_file(
@@ -695,12 +751,12 @@ async def download_video(v_url):
             ],
             progress_callback=lambda d, t: asyncio.get_event_loop(
             ).create_task(
-                progress(d, t, v_url, c_time, "Karşıya yükleniyor...",
+                progress(d, t, v_url, c_time, "Endirilir...",
                          f"{rip_data['title']}.mp3")))
         os.remove(f"{rip_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await v_url.edit(f"`Şarkı yüklenmeye hazırlanıyor:`\
+        await v_url.edit(f"`Video yüklənməyə başlanır:`\
         \n**{rip_data['title']}**\
         \nby *{rip_data['uploader']}*")
         await v_url.client.send_file(
@@ -710,57 +766,60 @@ async def download_video(v_url):
             caption=rip_data['title'],
             progress_callback=lambda d, t: asyncio.get_event_loop(
             ).create_task(
-                progress(d, t, v_url, c_time, "Karşıya yükleniyor...",
+                progress(d, t, v_url, c_time, "Endirilir...",
                          f"{rip_data['title']}.mp4")))
         os.remove(f"{rip_data['id']}.mp4")
         await v_url.delete()
 
 
 def deEmojify(inputString):
-    """ Emojileri ve diğer güvenli olmayan karakterleri metinden kaldırır. """
+    """ Emoji ve diğer uyğun olmayan şeylər mətndən çıxarılır. """
     return get_emoji_regexp().sub(u'', inputString)
 
 
 CMD_HELP.update({
     'img':
-    '.img <kelime>\
-        \nKullanım: Google üzerinde hızlı bir resim araması yapar ve ilk 5 resmi gösterir.'
+    '.img <söz>\
+        \nİşlədilişi: Google üzərindən şəkil axtarışı edər və ilk 5 şəkili göstərər.'
 })
 CMD_HELP.update({
     'currency':
-    '.currency <miktar> <dönüştürülecek birim> <dönüşecek birim>\
-        \nKullanım: Yusufun Türk Lirası Botu gibi, ama boş kaldığında kızlara yazmıyor.'
+    '.currency <miqdar> <çevrilmək üçün valyuta> <çevriləcək valyuta>\
+        \nİşlədilişi: Valyutaların bir-birinə nisbətini və dəyərini göstərər.'
 })
+
 CMD_HELP.update({
     'carbon':
-    '.carbon <metin>\
-        \nKullanım: carbon.now.sh sitesini kullanarak yazdıklarının aşşşşşşırı şekil görünmesini sağlar.\n.crblang <dil> komutuyla varsayılan dilini ayarlayabilirsin.'
+    '.carbon <mətn>\
+        \nİşlədilişi: carbon.now.sh saytə vasitəsilə yazdığlarınızı daha maraqlı hala gətirər.\n.crblang <dil> modulu ilə modulun hazırki dilini dəyişdirə bilərsiz.'
 })
 CMD_HELP.update(
-    {'google': '.google <kelime>\
-        \nKullanım: Hızlı bir Google araması yapar.'})
+    {'google': '.google <söz>\
+        \nİşlədilişi: Sürətli bir Google axtarışı edər.'})
 CMD_HELP.update(
-    {'wiki': '.wiki <terim>\
-        \nKullanım: Bir Vikipedi araması gerçekleştirir.'})
+    {'wiki': '.wiki <söz>\
+        \nİşlədilişi: Bir Vikipediya axtarışı edər.'})
 CMD_HELP.update(
-    {'ud': '.ud <terim>\
-        \nKullanım: Urban Dictionary araması yapmanın kolay yolu?'})
+    {'ud': '.ud <söz>\
+        \nİşlədilişi: Urban Dictionary axtarışı etmənin daha asan yolu'})
 CMD_HELP.update({
     'tts':
-    '.tts <metin>\
-        \nKullanım: Metni sese dönüştürür.\n.lang tts komutuyla varsayılan dili ayarlayabilirsin. (Türkçe ayarlı geliyor merak etme.)'
+    '.tts <mətn>\
+        \nİstifadə: Mətni səsə çevirir.\n.lang tts modulu ilə hazırki dili dəyişdirə bilərsiz. (Türkçe olaraq gəlir.)\
+    .tts2 <cinsiyyət> <mətn>\
+        \nİşlədilişi: Mətni səsə çevirir.\n.lang tts modulu ilə hazırki dili dəyişdirə bilərsiz.'
 })
 CMD_HELP.update({
     'trt':
-    '.trt <metin>\
-        \nKullanım: Basit bir çeviri modülü.\n.lang trt komutuyla varsayılan dili ayarlayabilirsin. (Türkçe ayarlı geliyor merak etme.)'
+    '.trt <mətn>\
+        \nİşlədilişi: Sadə bir tərcümə modulu.\n.lang trt modulu ilə hazırki dili dəyişdirə bilərsiz. (Türkçe olaraq gəlir.)'
 })
-CMD_HELP.update({'yt': '.yt <metin>\
-        \nKullanım: YouTube üzerinde bir arama yapar.'})
+CMD_HELP.update({'yt': '.yt <mətn>\
+        \nİşlədilişi: YouTube üzərinden axtarış edər.'})
 CMD_HELP.update(
-    {"imdb": ".imdb <film>\nKullanım: Film hakkında bilgi verir."})
+    {"imdb": ".imdb <film>\nİstifadə: Seçilmiş film haqqında məlumat verər."})
 CMD_HELP.update({
     'rip':
-    '.ripaudio <bağlantı> veya .ripvideo <bağlantı>\
-        \nKullanım: YouTube üzerinden (veya [başka sitelerden](https://ytdl-org.github.io/youtube-dl/supportedsites.html)) video veya ses indirir.'
+    '.ripaudio <link> və ya .ripvideo <link>\
+        \nİşlədilişi: YouTube üzərindən (və ya [digər saytlardan](https://ytdl-org.github.io/youtube-dl/supportedsites.html)) video və ya səs yükləyər.'
 })
