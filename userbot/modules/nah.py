@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# @BristolMyers tarafından portlanmıştır.
+# @umudmmmdov1
 
 from userbot.events import register 
 from userbot import CMD_HELP, bot
@@ -28,7 +28,7 @@ PENIS_TEMPLATE = """
 async def emoji_nah(e):
     emoji = e.pattern_match.group(1)
 
-    await e.edit("Nah...")
+    await e.edit("Gala ba...")
     message = PENIS_TEMPLATE
     if emoji:
         message = message.replace('🍆', emoji)
@@ -38,5 +38,5 @@ async def emoji_nah(e):
 CMD_HELP.update({
     "nah": 
     ".nah \
-    \nKullanım: nah yaratır :o\n"
+    \nİşlədilişi: Nah göstərər \n"
 })
