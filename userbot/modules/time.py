@@ -14,7 +14,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Bir konumun ya da UserBot sunucusunun tarih/saatini gösterebilecek modüldür. """
 
 from datetime import datetime as dt
 
@@ -27,7 +26,6 @@ from userbot.events import register
 
 
 async def get_tz(con):
-    """ Seçilen bölgenin saat dilimini elde etmek içindir. """
     if "(Uk)" in con:
         con = con.replace("Uk", "UK")
     if "(Us)" in con:
@@ -53,11 +51,6 @@ async def get_tz(con):
 
 @register(outgoing=True, pattern="^.time(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
 async def time_func(tdata):
-    """ .time komutu şu şekilde kullanılabilir
-        1- Bölge belirtilerek.
-        2. Varsayılan userbot bölgesi (.settime komutuyla ayarlanabilir)
-        3. UserBot'un barındığı sunucunun tarihi.
-    """
     con = tdata.pattern_match.group(1).title()
     tz_num = tdata.pattern_match.group(2)
 
@@ -75,11 +68,11 @@ async def time_func(tdata):
         tz_num = TZ_NUMBER
         timezones = await get_tz(COUNTRY)
     else:
-        await tdata.edit(f"Burada saat  **{dt.now().strftime(t_form)}** ")
+        await tdata.edit(f"Burda saat  **{dt.now().strftime(t_form)}** ")
         return
 
     if not timezones:
-        await tdata.edit("`Geçersiz ülke.`")
+        await tdata.edit("`Xəta. Ölkəni doğru verdiyinizdən əmin olun.`")
         return
 
     if len(timezones) == 1:
@@ -89,13 +82,13 @@ async def time_func(tdata):
             tz_num = int(tz_num)
             time_zone = timezones[tz_num - 1]
         else:
-            return_str = f"`{c_name} ülkesi birden fazla saat dilimine sahip:`\n\n"
+            return_str = f"`{c_name} ölkəsinin 1'dən çox saat diliminə sahibdir:`\n\n"
 
             for i, item in enumerate(timezones):
                 return_str += f"`{i+1}. {item}`\n"
 
-            return_str += "\n`Şunlardan birini numara belirterek seçin."
-            return_str += f"`Örnek: .time {c_name} 2`"
+            return_str += "\n`bunlardan birini rəqəm yazaraq seçin."
+            return_str += f"`Məsəıən: .time {c_name} 2`"
 
             await tdata.edit(return_str)
             return
@@ -104,22 +97,18 @@ async def time_func(tdata):
 
     if c_name != COUNTRY:
         await tdata.edit(
-            f"{c_name} ülkesinde saat  **{dtnow}**  ({time_zone} saat diliminde).")
+            f"{c_name} ölkəsində saat  **{dtnow}**  ({time_zone} saat dilimində).")
         return
 
     elif COUNTRY:
-        await tdata.edit(f"{COUNTRY} ülkesinde saat **{dtnow}**  "
-                         f"({time_zone} saat diliminde).")
+        await tdata.edit(f"{COUNTRY} ölkəsində saat **{dtnow}**  "
+                         f"({time_zone} saat dilimində).")
         return
 
 
 @register(outgoing=True, pattern="^.date(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
 async def date_func(dat):
-    """ .date komutu şu şekilde kullanılabilir
-        1- Bölge belirtilerek.
-        2. Varsayılan userbot bölgesi (.settime komutuyla ayarlanabilir)
-        3. UserBot'un barındığı sunucunun tarihi.
-    """
+
     con = dat.pattern_match.group(1).title()
     tz_num = dat.pattern_match.group(2)
 
@@ -137,11 +126,11 @@ async def date_func(dat):
         tz_num = TZ_NUMBER
         timezones = await get_tz(COUNTRY)
     else:
-        await dat.edit(f"Burada tarih: **{dt.now().strftime(d_form)}** ")
+        await dat.edit(f"Burda tarix: **{dt.now().strftime(d_form)}** ")
         return
 
     if not timezones:
-        await dat.edit("`Geçersiz ülke`")
+        await dat.edit("`Xəta. Ölkəni doğru verdiyinizdən əmin olun.`")
         return
 
     if len(timezones) == 1:
@@ -151,13 +140,13 @@ async def date_func(dat):
             tz_num = int(tz_num)
             time_zone = timezones[tz_num - 1]
         else:
-            return_str = f"`{c_name} ülkesi birden fazla saat dilimine sahip:`\n"
+            return_str = f"`{c_name} ölkəsinin 1'dən çox saat diliminə sahibdir:`\n"
 
             for i, item in enumerate(timezones):
                 return_str += f"`{i+1}. {item}`\n"
 
-            return_str += "\n`Şunlardan birini numara belirterek seçin"
-            return_str += f"Örnek: .date {c_name} 2"
+            return_str += "\n`Bunlardan birini rəqəm yazaraq seçin"
+            return_str += f"Məsələn: .date {c_name} 2"
 
             await dat.edit(return_str)
             return
@@ -166,26 +155,26 @@ async def date_func(dat):
 
     if c_name != COUNTRY:
         await dat.edit(
-            f"{c_name} ülkesinde tarih  **{dtnow}**  ({time_zone} saat diliminde).`")
+            f"{c_name} ölkəsində tarix  **{dtnow}**  ({time_zone} saat dilimində).`")
         return
 
     elif COUNTRY:
-        await dat.edit(f"{COUNTRY} ülkesinde tarih **{dtnow}**"
-                       f"({time_zone} saat diliminde).")
+        await dat.edit(f"{COUNTRY} ölkəsində tarix **{dtnow}**"
+                       f"({time_zone} saat dilimində).")
         return
 
 
 CMD_HELP.update({
     "time":
-    ".time <ülke ismi/kodu> <saat dilimi numarası>"
-    "\nKullanım: Bir ülkenin saatini gösterir. Eğer bir ülke "
-    "birden fazla saat dilimine sahipse, tümü birden gösterilir "
-    "ve seçim sana bırakılır."
+    ".time <ölkə adı/kodu> <saat dilimi nömrəsi>"
+    "\nİşlədilişi: Bir ölkənkn saatını göstərir. Əgər bir ölkə "
+    "birdən çox saat diliminə sahibdirsə, hamısı birgə göstərilir "
+    "ve seçim sənə qalır."
 })
 CMD_HELP.update({
     "date":
-    ".date <ülke ismi/kodu> <saat dilimi numarası>"
-    "\nKullanım: Bir ülkenin tarihini gösterir. Eğer bir ülke"
-    "birden fazla saat dilimine sahipse, tümü birden gösterilir."
-    "ve seçim sana bırakılır."
+    ".date <ölkə adı/kodu> <saat dilimi nömrəsi>"
+    "\nİşlədilişi: Bir ölkənin tarixini göstərir. Əgər ölkə"
+    "birdən çox saat diliminə sahibdirsən, hamısı birgə göstərilir."
+    "və seçim sənə qalır."
 })
