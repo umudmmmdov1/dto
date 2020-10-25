@@ -26,7 +26,6 @@ from userbot import GOOGLE_CHROME_BIN, CHROME_DRIVER, CMD_HELP
 
 @register(pattern=r".ss (.*)", outgoing=True)
 async def capture(url):
-    """ .ss komutu, belirttiğin herhangi bir siteden ekran görüntüsü alır ve sohbete gönderir. """
     await url.edit("`İşleniyor...`")
     chrome_options = Options()
     chrome_options.add_argument("--headless")
@@ -43,7 +42,7 @@ async def capture(url):
     if link_match:
         link = link_match.group()
     else:
-        await url.edit("`Ekran görüntüsü alabilmem için geçerli bir bağlantı vermelisin.`")
+        await url.edit("`Ekran görüntüsü almağım üçün mənə düzgün link verməlisən.`")
         return
     driver.get(link)
     height = driver.execute_script(
@@ -54,10 +53,10 @@ async def capture(url):
     )
     driver.set_window_size(width + 125, height + 125)
     wait_for = height / 1000
-    await url.edit(f"`Sayfanın ekran görüntüsü oluşturuluyor...`\
-    \n`Sayfanın yüksekliği: {height} piksel`\
-    \n`Sayfanın genişliği: {width} piksel`\
-    \n`Sayfanın yüklenmesi için {int(wait_for)} saniye beklendi.`")
+    await url.edit(f"`Səhifənin ekran görüntüsü yaradılır...`\
+    \n`Səhifənin yüksəkliyi: {height} piksel`\
+    \n`Sayfanın genişliyi: {width} piksel`\
+    \n`Sayfanın yüklənməsi üçün {int(wait_for)} saniye gözlədim.`")
     await sleep(int(wait_for))
     im_png = driver.get_screenshot_as_png()
     # Sayfanın ekran görüntüsü kaydedilir.
@@ -67,7 +66,7 @@ async def capture(url):
         message_id = url.reply_to_msg_id
     with io.BytesIO(im_png) as out_file:
         out_file.name = "ekran_goruntusu.png"
-        await url.edit("`Ekran görüntüsü karşıya yükleniyor...`")
+        await url.edit("`Ekran görüntüsü qarşıya yüklənir...`")
         await url.client.send_file(url.chat_id,
                                    out_file,
                                    caption=input_str,
@@ -78,6 +77,6 @@ async def capture(url):
 CMD_HELP.update({
     "ss":
     ".ss <url>\
-    \nKullanım: Belirtilen web sitesinden bir ekran görüntüsü alır ve gönderir.\
-    \nGeçerli bir site bağlantısı örneği: `https://devotag.com`"
+    \nİşlədilişi: Yazdığınız saytdan ekran görüntüsü alıb göndərər.\
+    \nDüzgün link olmalııdr. Məsələn: `https://devotag.com`"
 })
