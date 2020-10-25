@@ -97,7 +97,7 @@ async def save_welcome(event):
     try:
         from userbot.modules.sql_helper.welcome_sql import add_welcome_setting
     except:
-        await event.edit("`SQL dışı modda çalışıyor!`")
+        await event.edit("`SQL xarici modda işləyir!`")
         return
     msg = await event.get_reply_message()
     string = event.pattern_match.group(1)
@@ -105,9 +105,9 @@ async def save_welcome(event):
     if msg and msg.media and not string:
         if BOTLOG_CHATID:
             await event.client.send_message(
-                BOTLOG_CHATID, f"#KARSILAMA_NOTU\
+                BOTLOG_CHATID, f"#XOŞGƏLDİN_NOTU\
             \nGRUP ID: {event.chat_id}\
-            \nAşağıdaki mesaj sohbet için yeni Karşılama notu olarak kaydedildi, lütfen silmeyin !!"
+            \nAşağıdakı mesaj Xoşgəldin mesajı olaraq qeyd edildi. Zəhmət olmasa silməyin!!"
             )
             msg_o = await event.client.forward_messages(
                 entity=BOTLOG_CHATID,
@@ -117,17 +117,17 @@ async def save_welcome(event):
             msg_id = msg_o.id
         else:
             await event.edit(
-                "`Karşılama notunu kaydetmek için BOTLOG_CHATID ayarlanması gerekir.`"
+                "`Xoşgəldin mesajı ayarlamaq üçün BOTLOG_CHATID lazımdır.`"
             )
             return
     elif event.reply_to_msg_id and not string:
         rep_msg = await event.get_reply_message()
         string = rep_msg.text
-    success = "`Karşılama mesajı bu sohbet için {} `"
+    success = "`Xoşgəldin mesajı bu söhbət üçün {} `"
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
-        await event.edit(success.format('kaydedildi'))
+        await event.edit(success.format('yaddaşda saxlanıldı'))
     else:
-        await event.edit(success.format('güncellendi'))
+        await event.edit(success.format('güncəlləndi'))
 
 
 @register(outgoing=True, pattern="^.checkwelcome$")
@@ -135,21 +135,21 @@ async def show_welcome(event):
     try:
         from userbot.modules.sql_helper.welcome_sql import get_current_welcome_settings
     except:
-        await event.edit("`SQL dışı modda çalışıyor!`")
+        await event.edit("`SQL xarici modda işləyir!`")
         return
     cws = get_current_welcome_settings(event.chat_id)
     if not cws:
-        await event.edit("`Burada kayıtlı karşılama mesajı yok.`")
+        await event.edit("`Burada Xoşgəldin mesajı yoxdur.`")
         return
     elif cws and cws.f_mesg_id:
         msg_o = await event.client.get_messages(entity=BOTLOG_CHATID,
                                                 ids=int(cws.f_mesg_id))
         await event.edit(
-            "`Şu anda bu karşılama notu ile yeni kullanıcıları ağırlıyorum.`")
+            "`Hal hazırda bu Xoşgəldin mesajı ilə yeni istifadəçiləri qarşılayıram.`")
         await event.reply(msg_o.message, file=msg_o.media)
     elif cws and cws.reply:
         await event.edit(
-            "`Şu anda bu karşılama notu ile yeni kullanıcıları ağırlıyorum.`")
+            "`Hal hazırda bu Xoşgəldin mesajı ilə yeni istifadəçiləri qarşılayıram.`")
         await event.reply(cws.reply)
 
 
@@ -158,24 +158,24 @@ async def del_welcome(event):
     try:
         from userbot.modules.sql_helper.welcome_sql import rm_welcome_setting
     except:
-        await event.edit("`SQL dışı modda çalışıyor!`")
+        await event.edit("`SQL xarici modda işləyir!`")
         return
     if rm_welcome_setting(event.chat_id) is True:
-        await event.edit("`Karşılama mesajı bu sohbet için silindi.`")
+        await event.edit("`Xoşgəldin mesajı bu söhbət üçün silindi.`")
     else:
-        await event.edit("`Burada karşılama notu var mı ?`")
+        await event.edit("`Burda Xoşgəldin mesajı var ?`")
 
 
 CMD_HELP.update({
     "welcome":
     "\
-.setwelcome <karışlama mesajı> veya .setwelcome ile bir mesaja cevap verin\
-\nKullanım: Mesajı sohbete karşılama notu olarak kaydeder.\
-\n\nKarşılama mesajlarını biçimlendirmek için kullanılabilir değişkenler :\
+.setwelcome <xoşgəldin mesajı> və ya .setwelcome ilə bir mesaja cavab verin\
+\nİşlədilişi: Mesajı söhbətdə Xoşgəldin mesajı olaraq yadda saxlayar.\
+\n\nXoşgəldin mesajını aşağıdakı dəyişənlər ilə daha gözəl edə bilərsiniz. :\
 \n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
 \n\n.checkwelcome\
-\nKullanım: Sohbette karşılama notu olup olmadığını kontrol edin.\
+\nİşlədilişi: Söhbətdə Xoşgəldin mesajının olub olmadığını yoxluyar.\
 \n\n.rmwelcome\
-\nKullanım: Geçerli sohbet için karşılama notunu siler.\
+\nİşlədilişi: Söhbətdəki Xoşgəldin mesajını silər.\
 "
 })
