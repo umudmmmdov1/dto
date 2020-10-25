@@ -24,18 +24,7 @@ async def ocr_space_file(filename,
                          overlay=False,
                          api_key=OCR_SPACE_API_KEY,
                          language='tur'):
-    """ OCR.space API yerel dosya ister.
-        Python3.5 ve üzeri için - 2.7 üzerinde test edilmedi.
-    :param filename: Dosya yolu ve adı.
-    :param overlay: Cevabınızda OCR.space yerleşimi gerekli mi?
-                    Varsayılan olarak Hayır.
-    :param api_key: OCR.space API key.
-                    varsayılan olarak 'merhabadünya'.
-    :param language: OCR'de kullanılacak dil kodu.
-                    Mevcut dil kodlarının listesi burudan bulunabilir https://ocr.space/OCRAPI
-                    Varsayılan olarak 'tr'.
-    :return: Sonuçlar JSON formatında gelir.
-    """
+
 
     payload = {
         'isOverlayRequired': overlay,
@@ -53,7 +42,7 @@ async def ocr_space_file(filename,
 
 @register(pattern=r".ocr (.*)", outgoing=True)
 async def ocr(event):
-    await event.edit("`Okunuyor...`")
+    await event.edit("`Oxunur...`")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     lang_code = event.pattern_match.group(1)
@@ -64,14 +53,14 @@ async def ocr(event):
     try:
         ParsedText = test_file["ParsedResults"][0]["ParsedText"]
     except BaseException:
-        await event.edit("`Bunu okuyamadım.`\n`Sanırım yeni gözlüklere ihtiyacım var.`")
+        await event.edit("`Bunu oxuya bilmədim.`\n`Deyəsən təzə eynəklərə ehtiyacım var.`")
     else:
-        await event.edit(f"`İşte okuyabildiğim şey:`\n\n{ParsedText}"
+        await event.edit(f"`Aha, Oxuya bildiyim:`\n\n{ParsedText}"
                          )
     os.remove(downloaded_file_name)
 
 
 CMD_HELP.update({
     'ocr':
-    ".ocr <dil>\nKullanım: Metin ayıklamak için bir resme veya çıkartmaya cevap verin.\n\nDil kodlarını [buradan](https://ocr.space/ocrapi) alın."
+    ".ocr <dil>\nİşlədilişi: Yazını ayırmaq üçün şəklə və ya stikerə cavab verin.\n\nDil kodlarını [buradan](https://ocr.space/ocrapi) alın."
 })
