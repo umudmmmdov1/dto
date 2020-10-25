@@ -14,7 +14,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-""" QR kodları ile ilgili komutları içeren UserBot modülü. """
 
 import os
 import asyncio
@@ -32,7 +31,6 @@ from userbot.events import register
 
 @register(pattern=r"^.decode$", outgoing=True)
 async def parseqr(qr_e):
-    """ .decode komutu cevap verilen fotoğraftan QR kodu / Barkod içeriğini alır """
     downloaded_file_name = await qr_e.client.download_media(
         await qr_e.get_reply_message())
 
@@ -51,7 +49,7 @@ async def parseqr(qr_e):
 
     os.remove(downloaded_file_name)
     if not t_response:
-        await qr_e.edit("decode başarısız oldu.")
+        await qr_e.edit("decode uğursuz oldu.")
         return
     soup = BeautifulSoup(t_response, "html.parser")
     qr_contents = soup.find_all("pre")[0].text
@@ -60,10 +58,9 @@ async def parseqr(qr_e):
 
 @register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
 async def barcode_read(event):
-    """ .barcode komutu verilen içeriği içeren bir barkod oluşturur. """
-    await event.edit("`İşleniyor..`")
+    await event.edit("`Hazırlanır..`")
     input_str = event.pattern_match.group(1)
-    message = "SÖZDİZİMİ: `.barcode <eklenecek uzun metin>`"
+    message = "SÖZDİZİMİ: `.barcode <əlavə olunacaq uzun mətn>`"
     reply_msg_id = event.message.id
     if input_str:
         message = input_str
@@ -83,7 +80,7 @@ async def barcode_read(event):
         else:
             message = previous_message.message
     else:
-        event.edit("SÖZDİZİMİ: `.barcode <eklenecek uzun metin>`")
+        event.edit("SÖZDİZİMİ: `.barcode <əlavə olunacaq uzun mətn>`")
         return
 
     bar_code_type = "code128"
@@ -104,9 +101,8 @@ async def barcode_read(event):
 
 @register(pattern=r".makeqr(?: |$)([\s\S]*)", outgoing=True)
 async def make_qr(makeqr):
-    """ .makeqr komutu verilen içeriği içeren bir QR kodu yapar. """
     input_str = makeqr.pattern_match.group(1)
-    message = "SÖZDİZİMİ: `.makeqr <eklenecek uzun metin>`"
+    message = "SÖZDİZİMİ: `.makeqr <əlavə olunacaq uzun mətn>`"
     reply_msg_id = None
     if input_str:
         message = input_str
@@ -145,16 +141,16 @@ async def make_qr(makeqr):
 
 CMD_HELP.update({
     'qrcode':
-    ".makeqr <içerik>\
-\nKullanım: Verilen içerikten bir QR kodu yapın.\
-\nÖrnek: .makeqr www.google.com\
-\nNot: çözülmüş içerik almak için .decode komutunu kullanın."
+    ".makeqr <mövzu>\
+\nİşlədilişi: Verilən mövzudan bir QR kodu düzəldin.\
+\nMəsələn: .makeqr www.google.com\
+\nNot: çevrilmiş mövzu almaq üçün .decode komutunu işlədin."
 })
 
 CMD_HELP.update({
     'barcode':
-    ".barcode <içerik>\
-\nKullanım: Verilen içerikten bir barkod yapın.\
-\nÖrnek: .barcode www.google.com\
-\nNot: çözülmüş içerik almak için .decode komutunu kullanın."
+    ".barcode <mövzu>\
+\nİşlədilişi: Verilən mövzudan bir barkod düzəldin.\
+\nMəsələn: .barcode www.google.com\
+\nNot: çevrilmiş mövzu almaq üçün .decode komutunu işlədin."
 })
