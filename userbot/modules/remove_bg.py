@@ -26,10 +26,9 @@ from userbot import CMD_HELP, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
 
 @register(outgoing=True, pattern="^.rbg(?: |$)(.*)")
 async def kbg(remob):
-    """ .rbg komutu ile görüntünün arka planını kaldırın """
     if REM_BG_API_KEY is None:
         await remob.edit(
-            "`Hata: Remove.BG API key eksik! Lütfen ekleyin.`"
+            "`Xəta: Remove.BG API key əksikdir. Xahiş olunur əlavə edəsiniz.`"
         )
         return
     input_str = remob.pattern_match.group(1)
@@ -37,28 +36,28 @@ async def kbg(remob):
     if remob.reply_to_msg_id:
         message_id = remob.reply_to_msg_id
         reply_message = await remob.get_reply_message()
-        await remob.edit("`İşleniyor..`")
+        await remob.edit("`Hazırlanır..`")
         try:
             if isinstance(
                     reply_message.media, MessageMediaPhoto
             ) or "image" in reply_message.media.document.mime_type.split('/'):
                 downloaded_file_name = await remob.client.download_media(
                     reply_message, TEMP_DOWNLOAD_DIRECTORY)
-                await remob.edit("`Bu görüntüden arka plan kaldırılıyor..`")
+                await remob.edit("`Bu görüntüden arxa plan silinir..`")
                 output_file_name = await ReTrieveFile(downloaded_file_name)
                 os.remove(downloaded_file_name)
             else:
-                await remob.edit("`Bunun arka planını nasıl kaldırabilirim ?`"
+                await remob.edit("`Bunun arxa planını necə silə bilərəm ?`"
                                  )
         except Exception as e:
             await remob.edit(str(e))
             return
     elif input_str:
         await remob.edit(
-            f"`Çevrimiçi görüntüden arka planı kaldırma`\n{input_str}")
+            f"`Onlayn görüntüden arxa planı silmək`\n{input_str}")
         output_file_name = await ReTrieveURL(input_str)
     else:
-        await remob.edit("`Arka planı kaldırmak için bir şeye ihtiyacım var.`")
+        await remob.edit("`Arxa planı silmək üçün birşeyə ehtiyacım vat.`")
         return
     contentType = output_file_name.headers.get("content-type")
     if "image" in contentType:
@@ -67,12 +66,12 @@ async def kbg(remob):
             await remob.client.send_file(
                 remob.chat_id,
                 remove_bg_image,
-                caption="Remove.bg kullanılarak arka plan kaldırıldı",
+                caption="Remove.bg `vasitəsilə arxa plan silindi.`",
                 force_document=True,
                 reply_to=message_id)
             await remob.delete()
     else:
-        await remob.edit("**Hata (Geçersiz API key olduğunu tamhin ediyorum..)**\n`{}`".format(
+        await remob.edit("**Xəta (Böyük ehtimal API key səhvdir və ya əksikdir..)**\n`{}`".format(
             output_file_name.content.decode("UTF-8")))
 
 
@@ -106,6 +105,6 @@ async def ReTrieveURL(input_url):
 
 CMD_HELP.update({
     "rbg":
-    ".rbg <Resim bağlantısı> veya herhangi bir görüntüye cevap verin (Uyarı: çıkartmalar üzerinde çalışmaz.)\
-\nKullanım: remove.bg API kullanarak görüntülerin arka planını kaldırır."
+    ".rbg <Şəkil linki> vəya şəklə yanıt verin (Bildirş: Stikerlər üzərində işləmir.)\
+\nİşlədilişi: remove.bg API vasitəsilə görüntülərin arxa planını silir."
 })
