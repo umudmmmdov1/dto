@@ -13,10 +13,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
-# Teşekkürler @kandnub
+# TeÅŸekkÃ¼rler @kandnub
 #
 
-""" Google'da görsel aramak için kullanılabilen UserBot modülü """
 
 import io
 import os
@@ -38,7 +37,6 @@ opener.addheaders = [('User-agent', useragent)]
 
 @register(outgoing=True, pattern=r"^.reverse(?: |$)(\d*)")
 async def okgoogle(img):
-    """ .reverse komutu Google'da görsel araması yapar """
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
@@ -47,15 +45,15 @@ async def okgoogle(img):
         photo = io.BytesIO()
         await bot.download_media(message, photo)
     else:
-        await img.edit("`Lütfen bir fotoğrafa veya çıkartmaya yanıt verin.`")
+        await img.edit("`Zəhmət olmasa bir şəkilə və ya stikerə cavab olaraq yazın.`")
         return
 
     if photo:
-        await img.edit("`İşleniyor...`")
+        await img.edit("`Hazırlanır...`")
         try:
             image = Image.open(photo)
         except OSError:
-            await img.edit('`Desteklenmeyen tür`')
+            await img.edit('`Dəstəklənməyən fayl`')
             return
         name = "okgoogle.png"
         image.save(name, "PNG")
@@ -72,10 +70,10 @@ async def okgoogle(img):
         fetchUrl = response.headers['Location']
 
         if response != 400:
-            await img.edit("`Görüntü başarıyla Google'a yüklendi.`"
-                           "\n`Şimdi kaynak ayrıştırılıyor.`")
+            await img.edit("`Görüntü uğurla Google'a yükləndi.`"
+                           "\n`Lazımlı mənbə axtarılır.`")
         else:
-            await img.edit("`Google siktirip gitmemi söyledi.`")
+            await img.edit("`Googleya getməyim söyləndi.`")
             return
 
         os.remove(name)
@@ -85,9 +83,9 @@ async def okgoogle(img):
         imgspage = match['similar_images']
 
         if guess and imgspage:
-            await img.edit(f"[{guess}]({fetchUrl})\n\n`Resim arıyorum...`")
+            await img.edit(f"[{guess}]({fetchUrl})\n\n`ÅžÉ™kil axtarÄ±ram...`")
         else:
-            await img.edit("`Çirkin kıçın için bir şey bulamadım.`")
+            await img.edit("`Təəsüfki heçnə tapa bilmədim.`")
             return
 
         if img.pattern_match.group(1):
@@ -108,11 +106,10 @@ async def okgoogle(img):
         except TypeError:
             pass
         await img.edit(
-            f"[{guess}]({fetchUrl})\n\n[Benzer görüntüler]({imgspage})")
+            f"[{guess}]({fetchUrl})\n\n[Görüntü oxunur.]({imgspage})")
 
 
 async def ParseSauce(googleurl):
-    """ İstediğiniz bilgi için HTML kodunu ayrıştırın / kazıyın. """
 
     source = opener.open(googleurl).read()
     soup = BeautifulSoup(source, 'html.parser')
@@ -156,6 +153,6 @@ async def scam(results, lim):
 
 CMD_HELP.update({
     'reverse':
-    '.reverse\
-        \nKullanım: Fotoğraf veya çıkartmaya yanıt vererek görüntüyü Google üzerniden arayabilirsiniz'
+    ".reverse\
+        \nİşlədilişi: Şəkili və ya stikerə cavab olaraq yazaraq görüntüləri üzərindən Google'da axtarar"
 })
