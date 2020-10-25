@@ -14,7 +14,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Küresel notlar tutmak için yapılmış olan UserBot modülü. """
+""" Global notlar tutmaq üçün UserBot modulu """
 
 from userbot.events import register
 from userbot import CMD_HELP, BOTLOG_CHATID
@@ -25,7 +25,6 @@ from userbot import CMD_HELP, BOTLOG_CHATID
           ignore_unsafe=True,
           disable_errors=True)
 async def on_snip(event):
-    """ Snip mantığı. """
     try:
         from userbot.modules.sql_helper.snips_sql import get_snip
     except AttributeError:
@@ -50,11 +49,10 @@ async def on_snip(event):
 
 @register(outgoing=True, pattern="^.snip (\w*)")
 async def on_snip_save(event):
-    """ .snip komutu gelecekte kullanılmak üzere snips kaydeder. """
     try:
         from userbot.modules.sql_helper.snips_sql import add_snip
     except AtrributeError:
-        await event.edit("`SQL dışı modda çalışıyor!`")
+        await event.edit("`SQL xarici modda işləyir!`")
         return
     keyword = event.pattern_match.group(1)
     string = event.text.partition(keyword)[2]
@@ -64,8 +62,8 @@ async def on_snip_save(event):
         if BOTLOG_CHATID:
             await event.client.send_message(
                 BOTLOG_CHATID, f"#SNIP\
-            \nKELIME: {keyword}\
-            \n\nAşağıdaki mesaj snip için veri olarak kaydedilir, lütfen silmeyin !!"
+            \nKSÖZ: {keyword}\
+            \n\nAşağıdakı mesaj snip üçün saxlanılır, Zəhmət olmasa silməyin !!"
             )
             msg_o = await event.client.forward_messages(
                 entity=BOTLOG_CHATID,
@@ -75,33 +73,32 @@ async def on_snip_save(event):
             msg_id = msg_o.id
         else:
             await event.edit(
-                "`Snip'leri medya ile kaydetmek için BOTLOG_CHATID ayarlanması gerekir.`"
+                "`Snip'ləri medya ilə yaddaşda saxlamaq üçün BOTLOG_CHATID lazımdır.`"
             )
             return
     elif event.reply_to_msg_id and not string:
         rep_msg = await event.get_reply_message()
         string = rep_msg.text
-    success = "`Snip {}. Kullanım:` **${}** `"
+    success = "`Snip {}. İşlədilişi:` **${}** `"
     if add_snip(keyword, string, msg_id) is False:
-        await event.edit(success.format('güncellendi', keyword))
+        await event.edit(success.format('güncəlləndi', keyword))
     else:
-        await event.edit(success.format('kaydedildi', keyword))
+        await event.edit(success.format('yaddaşda saxlanıldı', keyword))
 
 
 @register(outgoing=True, pattern="^.snips$")
 async def on_snip_list(event):
-    """ .snips komutu sizin tarafınızdan kaydedilen snip'leri listeler. """
     try:
         from userbot.modules.sql_helper.snips_sql import get_snips
     except AttributeError:
-        await event.edit("`SQL dışı modda çalışıyor!`")
+        await event.edit("`SQL xarici modda işləyir!`")
         return
 
-    message = "`Şu anda hiçbir snip mevcut değil.`"
+    message = "`Hal hazırda heç bir snip mövcud deyil`"
     all_snips = get_snips()
     for a_snip in all_snips:
-        if message == "`Şu anda hiçbir snip mevcut değil.`":
-            message = "Mevcut snipler:\n"
+        if message == "`Hal hazırda heç bir snip mövcud deyil`":
+            message = "Mövcud snipler:\n"
             message += f"`${a_snip.snip}`\n"
         else:
             message += f"`${a_snip.snip}`\n"
@@ -111,29 +108,28 @@ async def on_snip_list(event):
 
 @register(outgoing=True, pattern="^.remsnip (\w*)")
 async def on_snip_delete(event):
-    """ .remsnip komutu belirlenini snipi siler. """
     try:
         from userbot.modules.sql_helper.snips_sql import remove_snip
     except AttributeError:
-        await event.edit("`SQL dışı modda çalışıyor!`")
+        await event.edit("`SQL xarici modda işləyir!`")
         return
     name = event.pattern_match.group(1)
     if remove_snip(name) is True:
-        await event.edit(f"`snip:` **{name}** `Başarıyla silindi`")
+        await event.edit(f"`snip:` **{name}** `Uğurla silindi`")
     else:
-        await event.edit(f"`snip:` **{name}** `Bulunamadı` ")
+        await event.edit(f"`snip:` **{name}** `tapılmadı` ")
 
 
 CMD_HELP.update({
     "snips":
     "\
 $<snip_adı>\
-\nKullanım: Belirtilen snipi kullanır.\
-\n\n.snip <isim> <veri> veya .snip <isim> ile bir iletiyi yanıtlayın.\
-\nKullanım: Bir snip (küresel not) olarak kaydeder. (Resimler, dokümanlar ve çıkartmalar ile çalışır !)\
+\nİşlədilişi: Mövcud snipi istifadə edər.\
+\n\n.snip <ad> veri> veya .snip <ad> ilə bir mesajı yanıtlayın.\
+\nİşlədilişi: Bir snip olaraq yaddaşda saxlıyar. (Şəkillər, Fayllar və Stikerlər ilə İşləyir !)\
 \n\n.snips\
-\nKullanım: Kaydedilen tüm snip'leri listeler.\
+\nİşlədilişi: Yaddaşdakı bütün snipləri göstərər.\
 \n\n.remsnip <snip_adı>\
-\nKullanım: Belirtilen snip'i siler.\
+\nİşlədilişi: Seçdiyiniz snip'i silər.\
 "
 })
