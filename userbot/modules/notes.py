@@ -28,11 +28,11 @@ async def notes_active(svd):
     except AttributeError:
         await svd.edit("`Bot Non-SQL modunda işləyir!!`")
         return
-    message = "`Bu söhbətdə heç bir not tapılmadı."
+    message = "`Bu söhbətdə heç bir not tapılmadı.`"
     notes = get_notes(svd.chat_id)
     for note in notes:
         if message == "`Bu söhbətdə heç bir not tapılmadı.`":
-            message = "Bu söhbətdəki notlar:\n"
+            message = "`Bu söhbətdəki notlar:`\n"
             message += "`#{}`\n".format(note.keyword)
         else:
             message += "`#{}`\n".format(note.keyword)
@@ -157,7 +157,7 @@ async def kick_marie_notes(kick):
 CMD_HELP.update({
     "notes":
     "\
-#<notadı>\
+<notadı>\
 \nİşlədilişi: Verilən notu çağırır.\
 \n\n.save <not adı> <not olaraq yadda saxlanılacaq şey> ya da bir mesajı .save <not adı> şəklində yanıtlayaraq istifadə edilir. \
 \nİşlədilişi: Yanıtlanan mesajı adıyla birlikdə bir not olaraq yadda saxlayır. (Şəkillər, fayllar və stikerlər də işləyir.)\
