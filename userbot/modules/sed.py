@@ -14,7 +14,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Sed için UserBot modülü """
 
 import re
 from sre_constants import error as sre_err
@@ -26,7 +25,7 @@ DELIMITERS = ("/", ":", "|", "_")
 
 
 async def separate_sed(sed_string):
-    """ Sed argümanları. """
+    """ Sed arqumentləri. """
 
     if len(sed_string) < 2:
         return
@@ -73,7 +72,6 @@ async def separate_sed(sed_string):
 
 @register(outgoing=True, pattern="^.s")
 async def sed(command):
-    """ Sed komutu için Telegram'da sed kullanın. """
     sed_result = await separate_sed(command.text)
     textx = await command.get_reply_message()
     if sed_result:
@@ -81,20 +79,20 @@ async def sed(command):
             to_fix = textx.text
         else:
             await command.edit(
-                "`Bunun için yeterli zekâya sahip değilim.`")
+                "`Bunun üçün lazımi zəkaya sahib deyiləm.`")
             return
 
         repl, repl_with, flags = sed_result
 
         if not repl:
             await command.edit(
-                "`Bunun için yeterli zekâya sahip değilim.`")
+                "`Bunun üçün lazımi zəkaya sahib deyiləm.`")
             return
 
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
             if check and check.group(0).lower() == to_fix.lower():
-                await command.edit("`Bu bir yanıtlama. Sed kullanma`")
+                await command.edit("`Bu bir yanıtlamadır. Sed istifadə etmə.`")
                 return
 
             if "i" in flags and "g" in flags:
@@ -107,15 +105,15 @@ async def sed(command):
             else:
                 text = re.sub(repl, repl_with, to_fix, count=1).strip()
         except sre_err:
-            await command.edit("Dostum lütfen [regex](https://regexone.com) öğren!")
+            await command.edit("Dostum xahiş [regex](https://regexone.com) öyrən!")
             return
         if text:
-            await command.edit(f"Bunu mu demek istedin ? \n\n{text}")
+            await command.edit(f"Bunu demək istədin ? \n\n{text}")
 
 
 CMD_HELP.update({
     "sed":
-    ".s<sınırlayıcı><eski kelime(ler)><sınırlayıcı><yeni kelime(ler)>\
-    \nKullanım: Sed kullanarak bir kelimeyi veya kelimeleri değiştirir.\
-    \nSınırlayıcılar: `/, :, |, _`"
+    ".s<limit><köhnə söz(lər)><limit><yeni söz(lər)>\
+    \nİşlədilişi: Sed istifadə edərək bir söz və ya sözləri dəyişdir.\
+    \nLimitlər: `/, :, |, _`"
 })
