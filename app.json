@@ -173,6 +173,11 @@
       "description": "Toxunmayın bura.",
       "required": false
     },
+    "LANGUAGE": {
+      "description": "Botun dili. EN/TR/AZ yazabilirsiniz.",
+      "value": "AZ",
+      "required": true
+    }
     "BIO_PREFIX": {
       "description": "Toxunmayın bura.",
       "required": false
