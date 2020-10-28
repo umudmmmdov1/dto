@@ -69,6 +69,12 @@ try:
     if idim in dtobl:
         bot.disconnect()
 
+    # ChromeDriver'ı Ayarlayalım #
+    try:
+        chromedriver_autoinstaller.install()
+    except:
+        pass
+
     # Galeri için değerler
     GALERI = {}
 
