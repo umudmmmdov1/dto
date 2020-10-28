@@ -8,13 +8,16 @@ import requests
 from telethon.tl.types import InputMessagesFilterDocument
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from telethon.tl.functions.channels import GetMessagesRequest
-from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP
+from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP, LANGUAGE, DTO_VERSION
 from .modules import ALL_MODULES
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
 import userbot.modules.sql_helper.galeri_sql as GALERI_SQL
 from pySmartDL import SmartDL
 from telethon.tl import functions
 
+from random import choice
+import chromedriver_autoinstaller
+from json import loads, JSONDecodeError
 from random import choice
 
 
@@ -156,7 +159,7 @@ for module_name in ALL_MODULES:
 
 LOGS.info("Botunuz işleyir! Her hansı bir söhbetde .alive yazaraq Test edin."
           " Kömeye ehtiyacınız varsa, Destek qrupumuza gelin t.me/DTOSupport")
-LOGS.info("Bot versiyası DTÖUserBot v1.4")
+LOGS.info("Bot versiyası DTÖUserBot  {DTO_VERSION}")
 
 """
 if len(argv) not in (1, 3, 4):
