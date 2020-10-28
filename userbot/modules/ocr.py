@@ -1,30 +1,40 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Asena UserBot - Yusuf Usta
+
 
 import os
 from requests import post
 from userbot import bot, OCR_SPACE_API_KEY, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("ocr")
+
+# ████████████████████████████████ #
 
 async def ocr_space_file(filename,
                          overlay=False,
                          api_key=OCR_SPACE_API_KEY,
                          language='tur'):
-
+    """ OCR.space API yerel dosya ister.
+        Python3.5 ve üzeri için - 2.7 üzerinde test edilmedi.
+    :param filename: Dosya yolu ve adı.
+    :param overlay: Cevabınızda OCR.space yerleşimi gerekli mi?
+                    Varsayılan olarak Hayır.
+    :param api_key: OCR.space API key.
+                    varsayılan olarak 'merhabadünya'.
+    :param language: OCR'de kullanılacak dil kodu.
+                    Mevcut dil kodlarının listesi burudan bulunabilir https://ocr.space/OCRAPI
+                    Varsayılan olarak 'tr'.
+    :return: Sonuçlar JSON formatında gelir.
+    """
 
     payload = {
         'isOverlayRequired': overlay,
@@ -42,7 +52,7 @@ async def ocr_space_file(filename,
 
 @register(pattern=r".ocr (.*)", outgoing=True)
 async def ocr(event):
-    await event.edit("`Oxunur...`")
+    await event.edit(LANG['READING'])
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     lang_code = event.pattern_match.group(1)
@@ -53,14 +63,14 @@ async def ocr(event):
     try:
         ParsedText = test_file["ParsedResults"][0]["ParsedText"]
     except BaseException:
-        await event.edit("`Bunu oxuya bilmədim.`\n`Deyəsən təzə eynəklərə ehtiyacım var.`")
+        await event.edit(LANG['CANT_READ'])
     else:
-        await event.edit(f"`Aha, Oxuya bildiyim:`\n\n{ParsedText}"
+        await event.edit(f"`{LANG['READ']}`\n\n{ParsedText}"
                          )
     os.remove(downloaded_file_name)
 
 
 CMD_HELP.update({
     'ocr':
-    ".ocr <dil>\nİşlədilişi: Yazını ayırmaq üçün şəklə və ya stikerə cavab verin.\n\nDil kodlarını [buradan](https://ocr.space/ocrapi) alın."
+    ".ocr <dil>\nKullanım: Metin ayıklamak için bir resme veya çıkartmaya cevap verin.\n\nDil kodlarını [buradan](https://ocr.space/ocrapi) alın."
 })
