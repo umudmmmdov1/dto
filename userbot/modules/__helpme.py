@@ -1,32 +1,20 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2020 
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# Licensed under the GPL-3.0 License;
+# you may not use this file except in compliance with the License.
 #
 
-import asyncio
-import json
-import logging
-import requests
-import userbot
-
-from userbot import CMD_HELP, BOT_USERNAME
+from userbot import BOT_USERNAME
 from userbot.events import register
 
-logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
-                    level=logging.WARNING)
+# ██████ LANGUAGE CONSTANTS ██████ #
 
-@register(outgoing=True, pattern="^.komek")
+from userbot.language import get_value
+LANG = get_value("__helpme")
+
+# ████████████████████████████████ #
+
+@register(outgoing=True, pattern="^.komek|^.help")
 async def yardim(event):
     tgbotusername = BOT_USERNAME
     if tgbotusername is not None:
@@ -41,4 +29,4 @@ async def yardim(event):
         )
         await event.delete()
     else:
-        await event.edit("`Bot işləmir! Zəhmət olmasa Bot Tokeni və istifadəçi adını düzgün düzəldin. Modul dayandırıldı.`")
+        await event.edit(LANG["NO_BOT"])
