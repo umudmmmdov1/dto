@@ -16,7 +16,6 @@ from pySmartDL import SmartDL
 from telethon.tl import functions
 
 from random import choice
-import chromedriver_autoinstaller
 from json import loads, JSONDecodeError
 from random import choice
 
@@ -68,12 +67,6 @@ try:
     dtobl = requests.get('https://raw.githubusercontent.com/umudmmmdov1/DunyaTurkOrgutu/master/dtox.json').json()
     if idim in dtobl:
         bot.disconnect()
-
-    # ChromeDriver'ı Ayarlayalım #
-    try:
-        chromedriver_autoinstaller.install()
-    except:
-        pass
 
     # Galeri için değerler
     GALERI = {}
