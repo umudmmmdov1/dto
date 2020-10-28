@@ -13,6 +13,12 @@
             "NO_BOT": "`Bot işləmir! Zəhmət olmasa Bot Tokeni və İstifadəçi adını düzgün yazın. Modul dayandırıldı.`"
         },
 
+        "ocr": {
+            "READING": "`Oxunur...`",
+            "CANT_READ": "`Bunu oxuya bilmədim.`\n`Deyəsən yeni eynəklərə ehtiyacım var.`",
+            "READ": "Əla bax budur oxuya bildiyim şey:"
+        },
+
         "status": {
             "VERSION": "Versiya",
             "PLUGIN_COUNT": "Plugin Sayı",
