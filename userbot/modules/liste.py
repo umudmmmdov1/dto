@@ -1,10 +1,10 @@
-# Copyright (C) 2020 Ümüd
+# Copyright (C) 2020 
 #
-# Licensed under the Ümüd Public License, Version 1.c (the "License");
+# Licensed under the GPL-3.0 License;
 # you may not use this file except in compliance with the License.
 #
 
-# DTÖUserBot - @umudmmmdov1
+# 
 
 from userbot import CMD_HELP
 from userbot.events import register
@@ -13,52 +13,59 @@ import io
 import os
 import asyncio
 
-@register(outgoing=True, pattern="^.list ?(gmute|gban)?")
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("liste")
+
+# ████████████████████████████████ #
+
+@register(outgoing=True, pattern="^.liste ?(gmute|gban)?")
 async def liste(event):
     liste = event.pattern_match.group(1)
     try:
         if len(liste) < 1:
-            await event.edit("**Bilinməyən əmr!** `İşlədilişi: .list gmute/gban`")
+            await event.edit(LANG['WRONG_INPUT'])
             return
     except:
-        await event.edit("**Bilinməyən əmr!** `İşlədilişi: .list gmute/gban`")
+        await event.edit(LANG['WRONG_INPUT'])
         return
     
     if liste == "gban":
         try:
             from userbot.modules.sql_helper.gban_sql import gbanlist
         except:
-            await event.edit("`Sql xarici mod'da bu özəlliy işləyə bilməz!`")
+            await event.edit(LANG['NEED_SQL_MODE'])
             return
-        await event.edit("`Qlobal olaraq banlanan istifadəçilər göstərilir...`")
+        await event.edit(LANG['GBANNED_USERS'])
         mesaj = ""
         for user in gbanlist():
             mesaj += f"**ID: **`{user.sender}`\n"
 
         if len(mesaj) > 4000:
-            await event.edit("`Wow! Çox istifadəçini banlamısız. Fayl olaraq göndərirəm...`")
+            await event.edit(LANG['TOO_MANY_GBANNED'])
             open("gban_liste.txt", "w+").write(mesaj)
-            await event.client.send_message(event.chat_id, f"**Qlobal olaraq banladığınız istifadəçilər**\n\n**Məlumat:** Banladığınız istifadəçiər haqqında daha çox məlumat almaq üçün `.whois id` işlədə bilərsiz.", file="gban_liste.txt")
+            await event.client.send_message(event.chat_id, LANG['GBAN_TXT'], file="gban_liste.txt")
             os.remove("gban_liste.txt")
         else:
-            await event.edit(f"**Qlobal olaraq banladığınız istifadəçilər:**\n{mesaj}\n\n**Məlumat:** Banladığınız istifadəçilər haqqında daha çox məlumat almaq üçün `.whois id` işlədə bilərsiz.")
+            await event.edit(LANG['GBAN_LIST'] % mesaj)
     elif liste == "gmute":
         try:
             from userbot.modules.sql_helper.gmute_sql import gmutelist
         except:
-            await event.edit("`Sql xarici mod'da bu özəlliy işləyə bilməz!`")
+            await event.edit(LANG['NEED_SQL_MODE'])
             return
-        await event.edit("`Qlobal olaraq susdurulan istifadəçilər göstərilir...`")
+        await event.edit(LANG['GMUTE_DATA'])
         mesaj = ""
         for user in gmutelist():
             mesaj += f"**ID: **`{user.sender}`\n"
 
         if len(mesaj) > 4000:
-            await event.edit("`Wow! Çox istifadəçini susdurmusuz. Fayl olaraq göndərirəm...`")
+            await event.edit(LANG['TOO_MANY_GMUTED'])
             open("gmute_liste.txt", "w+").write(mesaj)
-            await event.client.send_message(event.chat_id, f"**Qlobal olaraq susdurulan istifdəçilər**\n\n**Məlumat:** Susdurduğunuz istifadəçilər haqqında daha çox məlumat almaq üçün `.whois id` işlədə bilərsiz.", file="gmute_liste.txt")
+            await event.client.send_message(event.chat_id, LANG['GMUTE_TXT'], file="gmute_liste.txt")
             os.remove("gmute_liste.txt")
         else:
-            await event.edit(f"**Qlobal olaraq susdurduğunuz istifadəçilər:**\n{mesaj}\n\n**Məlumat:** Susdurduğunuz istifadəçilər haqqında daha çox məlumat almaq üçün `.whois id` işlədə bilərsiz.")
+            await event.edit(LANG['GMUTE_TXT'] % mesaj)
 
-CMD_HELP["list"] = ".list gban/gmute\nGbanladığınız ya da Gmuteləyiniz istifadəçiləri göstərir."
+CMD_HELP["liste"] = ".liste gban/gmute\nGbanladığınız ya da Gmutelediğiniz kişileri getirir."
