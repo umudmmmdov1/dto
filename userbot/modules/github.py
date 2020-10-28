@@ -1,23 +1,22 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+
+
 
 import aiohttp
 from userbot.events import register
 from userbot import CMD_HELP
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("github")
+
+# ████████████████████████████████ #
 
 @register(pattern=r".git (.*)", outgoing=True)
 async def github(event):
@@ -27,7 +26,7 @@ async def github(event):
         async with session.get(URL) as request:
             if request.status == 404:
                 await event.reply("`" + event.pattern_match.group(1) +
-                                  " bulunamadı`")
+                                  LANG['NOT_FOUND'])
                 return
 
             result = await request.json()
@@ -38,12 +37,12 @@ async def github(event):
             bio = result.get("bio", None)
             created_at = result.get("created_at", "Not Found")
 
-            REPLY = f"`{event.pattern_match.group(1)} adlı kullanıcının GitHub bilgileri:`\
-            \nİsim: `{name}`\
-            \nBiyografi: `{bio}`\
+            REPLY = f"`{event.pattern_match.group(1)} {LANG['INFO']}:`\
+            \n{LANG['NAME']}: `{name}`\
+            \nBio: `{bio}`\
             \nURL: {url}\
-            \nŞirket: `{company}`\
-            \nHesap oluşturulma tarihi: `{created_at}`"
+            \n{LANG['COMPANY']}: `{company}`\
+            \n{LANG['CREATED']}: `{created_at}`"
 
             if not result.get("repos_url", None):
                 await event.edit(REPLY)
@@ -56,7 +55,7 @@ async def github(event):
 
                 result = await request.json()
 
-                REPLY += "\nRepolar:\n"
+                REPLY += f"\n{LANG['REPOS']}\n"
 
                 for nr in range(len(result)):
                     REPLY += f"[{result[nr].get('name', None)}]({result[nr].get('html_url', None)})\n"
