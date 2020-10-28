@@ -42,7 +42,6 @@
             "TOO_MANY_GMUTED": "`Vay! Vay! Bir çox insana susdurulma vermisiniz. Fayl kimi göndərirəm...`",
             "GMUTE_LIST": "**Qlobal olaraq səssizləşdirdiyiniz istifadəçilər:**\n%s\n\n**Kömək:** Susdurduğunuz istifadəçilər haqqında daha çox məlumat əldə etmək üçün `.whois id` istifadə edə bilərsiniz.",
             "GMUTE_TXT": "**Qlobal olaraq səssizləşdirdiyiniz istifadəçilər**\n\n**Kömək:** Susdurduğunuz istifadəçilər haqqında daha çox məlumat əldə etmək üçün `.whois id` istifadə edə bilərsiniz."
-        },
         }
     }
 }
