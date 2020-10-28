@@ -1,35 +1,33 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-""" UserBot kömək əmri """
+""" UserBot yardım komutu """
 
 from userbot import CMD_HELP
 from userbot.events import register
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("__dto")
+
+# ████████████████████████████████ #
+
 @register(outgoing=True, pattern="^.dto(?: |$)(.*)")
-async def dto(event):
-    """ .dto əmri üçün """
+async def asena(event):
+    """ .asena komutu için """
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
             await event.edit(str(CMD_HELP[args]))
         else:
-            await event.edit("Zəhmət olmasa bir DTÖUserBot modulu yazın ✏️")
+            await event.edit(LANG["NEED_PLUGIN"])
     else:
-        await event.edit("Zəhmət olmasa hər hansısa DTÖUserBot modulunu yazın ✏️\
-            \n🔰**İşlədilişi:** .dto <modul adı>")
+        await event.edit(LANG["NEED_MODULE"])
         string = ""
         for i in CMD_HELP:
             string += "`" + str(i)
