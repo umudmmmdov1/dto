@@ -34,7 +34,7 @@ async def durums(event):
     await event.edit(f"""
 **Python {LANG['VERSION']}:** `{python_version()}`
 **TeleThon {LANG['VERSION']}:** `{version.__version__}` 
-**Asena {LANG['VERSION']}:** `{ASENA_VERSION}`
+**Asena {LANG['VERSION']}:** `{DTO_VERSION}`
 
 **{LANG['PLUGIN_COUNT']}:** `{len(CMD_HELP)}`
 
