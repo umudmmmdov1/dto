@@ -1,29 +1,28 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Asena UserBot - Yusuf Usta
+
 
 """ Dogbin ile etkileşim için komutlar içeren UserBot modülü(https://del.dog)"""
 
 from requests import get, post, exceptions
-import asyncio
 import os
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
 
 DOGBIN_URL = "https://del.dog/"
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("dogbin")
+
+# ████████████████████████████████ #
 
 @register(outgoing=True, pattern=r"^.paste(?: |$)([\s\S]*)")
 async def paste(pstl):
@@ -33,7 +32,7 @@ async def paste(pstl):
     reply_id = pstl.reply_to_msg_id
 
     if not match and not reply_id:
-        await pstl.edit("`Elon Musk boşluğu yapıştıramayacağımı söyledi.`")
+        await pstl.edit(LANG['ELON_SAYS'])
         return
 
     if match:
@@ -56,7 +55,7 @@ async def paste(pstl):
             message = message.message
 
     # Dogbin
-    await pstl.edit("`Metin yapıştırılıyor . . .`")
+    await pstl.edit(LANG['PASTING'])
     resp = post(DOGBIN_URL + "documents", data=message.encode('utf-8'))
 
     if resp.status_code == 200:
@@ -65,15 +64,15 @@ async def paste(pstl):
         dogbin_final_url = DOGBIN_URL + key
 
         if response['isUrl']:
-            reply_text = ("`Başarıyla yapıştırıldı!`\n\n"
-                          f"`Kısaltılmış URL:` {dogbin_final_url}\n\n"
-                          "`Orijinal (kısaltılmamış) URL`\n"
-                          f"`Dogbin URL`: {DOGBIN_URL}v/{key}\n")
+            reply_text = (f"{LANG['PASTED']}\n\n"
+                          f"`{LANG['URL']}` {dogbin_final_url}\n\n"
+                          f"`{LANG['ORG_URL']}`\n"
+                          f"`{LANG['DOGBIN_URL']}`: {DOGBIN_URL}v/{key}\n")
         else:
-            reply_text = ("`Pasted successfully!`\n\n"
-                          f"`Dogbin URL`: {dogbin_final_url}")
+            reply_text = (f"`{LANG['URL_BUT_ENG']}`\n\n"
+                          f"`{LANG['DOGBIN_URL']}`: {dogbin_final_url}")
     else:
-        reply_text = ("`Dogbine ulaşılamadı`")
+        reply_text = (f"`{LANG['DOGBIN_NOT_RESPOND']}`")
 
     await pstl.edit(reply_text)
     if BOTLOG:
@@ -88,7 +87,7 @@ async def get_dogbin_content(dog_url):
     """ .getpaste komutu dogbin url içeriğini aktarır """
     textx = await dog_url.get_reply_message()
     message = dog_url.pattern_match.group(1)
-    await dog_url.edit("`Dogbin içeriği alınıyor...`")
+    await dog_url.edit(LANG['DATA_CHECKING'])
 
     if textx:
         message = str(textx.message)
@@ -103,7 +102,7 @@ async def get_dogbin_content(dog_url):
     elif message.startswith("del.dog/"):
         message = message[len("del.dog/"):]
     else:
-        await dog_url.edit("`Bu bir dogbin URL'si mi?`")
+        await dog_url.edit(LANG['UNSUPPORTED_URL'])
         return
 
     resp = get(f'{DOGBIN_URL}raw/{message}')
@@ -112,31 +111,28 @@ async def get_dogbin_content(dog_url):
         resp.raise_for_status()
     except exceptions.HTTPError as HTTPErr:
         await dog_url.edit(
-            "İstek başarısız bir durum kodu döndürdü.\n\n" + str(HTTPErr))
+            LANG['HTTP_ERROR'] + "\n\n" + str(HTTPErr))
         return
     except exceptions.Timeout as TimeoutErr:
-        await dog_url.edit("İstek zaman aşımına uğradı." + str(TimeoutErr))
+        await dog_url.edit(LANG['TIMEOUT'] + str(TimeoutErr))
         return
     except exceptions.TooManyRedirects as RedirectsErr:
         await dog_url.edit(
-            "İstek, yapılandırılmış en fazla yönlendirme sayısını aştı." +
+            LANG['TOO_MANY_REDIRECTS'] +
             str(RedirectsErr))
         return
 
-    reply_text = "`Dogbin URL içeriği başarıyla getirildi!`\n\n`İçerik:` " + resp.text
+    reply_text = LANG['DOGBIN_DATA'] + resp.text
 
     await dog_url.edit(reply_text)
     if BOTLOG:
         await dog_url.client.send_message(
             BOTLOG_CHATID,
-            "Dogbin içerik aktarma başarıyla yürütüldü",
+            LANG['DOGBIN_ENDED'],
         )
 
-
-CMD_HELP.update({
-    "dogbin":
-    ".paste <metin/yanıtlama>\
-\nKullanım: Dogbin kullanarak yapıştırılmış veya kısaltılmış url oluşturma (https://del.dog/)\
-\n\n.getpaste\
-\nKullanım: Dogbin url içeriğini metne aktarır (https://del.dog/)"
-})
+CmdHelp('dogbin').add_command(
+    'paste', '<metin/yanıtlama>', 'Dogbin kullanarak yapıştırılmış veya kısaltılmış url oluşturma (https://del.dog/)'
+).add_command(
+    'getpaste', None, 'Dogbin url içeriğini metne aktarır (https://del.dog/)'
+).add()
