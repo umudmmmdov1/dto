@@ -1,20 +1,13 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
 
-"""Bir bölgenin hava durumunu gösterir."""
+# DTÖUserBot - Ümüd
+
+
+""" Hava proqnozu """
 
 import json
 from requests import get
@@ -26,8 +19,16 @@ from pytz import country_names as c_n
 from userbot import CMD_HELP, WEATHER_DEFCITY
 from userbot import OPEN_WEATHER_MAP_APPID as OWM_API
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
 
 # ===== CONSTANT =====
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("weather")
+
+# ████████████████████████████████ #
+
 if WEATHER_DEFCITY:
     DEFCITY = WEATHER_DEFCITY
 else:
@@ -36,8 +37,8 @@ else:
 
 
 async def get_tz(con):
-    """ Verilen ülkenin zaman dilimini alır. """
-    """ @aragon12 ve @zakaryan2004'e teşekkürler. """
+    """ Verilən ölkənin hava proqnozunu göstərər. """
+    """ @aragon12 və @zakaryan2004'a təşəkkürlər. """
     for c_code in c_n:
         if con == c_n[c_code]:
             return tz(c_tz[c_code][0])
@@ -50,11 +51,11 @@ async def get_tz(con):
 
 @register(outgoing=True, pattern="^.weather(?: |$)(.*)")
 async def get_weather(weather):
-    """ .weather komutu bir bölgenin hava durumunu OpenWeatherMap üzerinden alır. """
+    """  """
 
     if not OWM_API:
         await weather.edit(
-            "`Əvvəlcə` https://openweathermap.org/ `saytından bir API key almalısan.`")
+            LANG['NEED_API_KEY'])
         return
 
     APPID = OWM_API
@@ -63,7 +64,7 @@ async def get_weather(weather):
         CITY = DEFCITY
         if not CITY:
             await weather.edit(
-                "`WEATHER_DEFCITY dəyişkəniylənə bir şəhər həmişəlik olaraq düzəlt, ya da əmri yazarkən hansı şəhərin hava proqnozunu istədiyinidə orada yaz.`"
+                LANG['NO_CITY']
             )
             return
     else:
@@ -83,7 +84,7 @@ async def get_weather(weather):
             try:
                 countrycode = timezone_countries[f'{country}']
             except KeyError:
-                await weather.edit("`Səhv ölkə.`")
+                await weather.edit(LANG['INVALID_COUNTRY'])
                 return
             CITY = newcity[0].strip() + "," + countrycode.strip()
 
@@ -92,7 +93,7 @@ async def get_weather(weather):
     result = json.loads(request.text)
 
     if request.status_code != 200:
-        await weather.edit(f"`Səhv ölkə.`")
+        await weather.edit(LANG['INVALID_COUNTRY'])
         return
 
     cityname = result['name']
@@ -133,20 +134,17 @@ async def get_weather(weather):
         return xx
 
     await weather.edit(
-        f"**İstilik:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
+        f"**{LANG['TEMP']}:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
         +
-        f"**Ən az istilik:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
+        f"**{LANG['MIN_TEMP']}:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
         +
-        f"**Ən yüksək istilik:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
-        + f"**Nəm:** `{humidity}%`\n" +
-        f"**Külək sürəti:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
-        f"**Gündoğuşu:** `{sun(sunrise)}`\n" +
-        f"**Günbatımı:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
+        f"**{LANG['MAX_TEMP']}:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
+        + f"**{LANG['HUMIDITY']}:** `{humidity}%`\n" +
+        f"**{LANG['WIND_SPEED']}:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
+        f"**{LANG['SUNRISE']}:** `{sun(sunrise)}`\n" +
+        f"**{LANG['SUNSET']}:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
         f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
 
-
-CMD_HELP.update({
-    "weather":
-    "İşlədilişi: .weather şəhər adı vəya .weather ölkə adı/ölkə kodu\
-    \nBölgənin hava proqnozunu göstərir."
-})
+CmdHelp('weather').add_command(
+    'weather', '<şəhər>', 'Bir bölgənin hava proqnozunu göstərər.'
+).add()
