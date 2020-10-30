@@ -1,36 +1,33 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Asena UserBot - Yusuf Usta
+
 # credit goes to @snapdragon and @devpatel_73 for making it work on this userbot.
 #
 
 from userbot.events import register
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import CMD_HELP
 from userbot import LYDIA_API_KEY
-import coffeehouse
-from time import time
-import io
 import coffeehouse as cf
 from coffeehouse.lydia import LydiaAI
 from coffeehouse.api import API
 import asyncio
-from telethon import events
 import logging
+from userbot.cmdhelp import CmdHelp
+
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.WARNING)
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("lydia")
+
+# ████████████████████████████████ #
 
 try:
     from userbot.modules.sql_helper.lydia_sql import get_s, get_all_s, add_s, remove_s
@@ -51,13 +48,13 @@ if LYDIA_API_KEY:
 async def repcf(event):
     if event.fwd_from:
         return
-    await event.edit("İşleniyor...")
+    await event.edit(LANG['WORKING'])
     try:
         session = lydia.create_session()
         reply = await event.get_reply_message()
         msg = reply.text
         text_rep = session.think_thought(msg)
-        await event.edit("**Lydia diyor ki**: {0}".format(text_rep))
+        await event.edit(LANG['LYDIA_SAYS'].format(text_rep))
     except Exception as e:
         await event.edit(str(e))
 
@@ -65,33 +62,33 @@ async def repcf(event):
 async def addcf(event):
     if event.fwd_from:
         return
-    await event.edit("Şimdilik SQL dışı modda çalışıyor...")
+    await event.edit(LANG['SQL_OFF'])
     await asyncio.sleep(3)
-    await event.edit("İşleniyor...")
+    await event.edit(LANG['WORKING'])
     reply_msg = await event.get_reply_message()
     if reply_msg:
         session = lydia.create_session()
         session_id = session.id
         if reply_msg.from_id is None:
-            return await event.edit("Geçersiz kullanıcı türü.")
+            return await event.edit(LANG['REPLY_USER_ERR'])
         ACC_LYDIA.update({(event.chat_id & reply_msg.from_id): session})
-        await event.edit("Lydia, {} kullanıcısı için {} sohbetinde başarıyla etkinleştirildi!".format(str(reply_msg.from_id), str(event.chat_id)))
+        await event.edit(LANG['LYDIA_ACTIVATED'].format(str(reply_msg.from_id), str(event.chat_id)))
     else:
-        await event.edit("Lydia AI'yı etkinleştirmek için bir kullanıcıyı yanıtlayın")
+        await event.edit(LANG['REPLY_FOR_ACTIVATE'])
 
 @register(outgoing=True, pattern="^.remcf$")
 async def remcf(event):
     if event.fwd_from:
         return
-    await event.edit("Şimdilik SQL dışı modda çalışıyor...")
+    await event.edit(LANG['SQL_OFF'])
     await asyncio.sleep(3)
     await event.edit("İşleniyor...")
     reply_msg = await event.get_reply_message()
     try:
         del ACC_LYDIA[event.chat_id & reply_msg.from_id]
-        await event.edit("Lydia, {} kullanıcısı için {} sohbetinde başarıyla devre dışı bırakıldı!".format(str(reply_msg.from_id), str(event.chat_id)))
+        await event.edit(LANG['LYDIA_DEACTIVATED'].format(str(reply_msg.from_id), str(event.chat_id)))
     except Exception:
-        await event.edit("Bu kullanıcıda Lydia aktif değil.")
+        await event.edit(LANG['LYDIA_OFF_FOR_USER'])
 
 
 @register(incoming=True, disable_edited=True)
@@ -110,12 +107,10 @@ async def user(event):
     except (KeyError, TypeError):
         return
 
-CMD_HELP.update({
-    "lydia":
-    ".addcf <kullanıcı adı/yanıtlayarak>\
-\nKullanım: Lydia'nın otomatik sohbetini etkinleştirir. \
-\n\n.remcf <kullanıcı adı/yanıtlayarak>\
-\nKullanım: Lydia'nın otomatik sohbetini devre dışı bırakır. \
-\n\n.repcf <kullanıcı adı/yanıtlayarak>\
-\nKullanım: Lydia'nın otomatik sohbetiini belli bir kişi için etkinleştirir."
-})
+CmdHelp('lydia').add_command(
+    'addcf', '<kullanıcı adı/yanıtlayarak>', 'Lydia\'nın otomatik sohbetini etkinleştirir.'
+).add_command(
+    'remcf', '<kullanıcı adı/yanıtlayarak>', 'Lydia\'nın otomatik sohbetini devre dışı bırakır.'
+).add_command(
+    'repcf', '<kullanıcı adı/yanıtlayarak>', 'Lydia\'nın otomatik sohbetiini belli bir kişi için etkinleştirir.'
+).add()
