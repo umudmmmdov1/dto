@@ -1,20 +1,13 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
 
-""" DTÖUserBot Telegram whois modul """
+# DTÖUserBot - Ümüd
+
+
+"""  """
 
 import os
 
@@ -24,13 +17,19 @@ from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("whois")
+
+# ████████████████████████████████ #
 
 @register(pattern=".whois(?: |$)(.*)", outgoing=True)
 async def who(event):
-
     await event.edit(
-        "`*DTÖUserBot istifadəçinin məlumatlarımı araşdırmağa başladı*`")
+        LANG['GETTING_DATA'])
 
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -40,9 +39,8 @@ async def who(event):
     try:
         photo, caption = await fetch_info(replied_user, event)
     except AttributeError:
-        event.edit("`Bu istifadəçinin məlumatlarına baxa bilmədim.`")
-        return
-
+        return event.edit(LANG['FAILED_GETTING_DATA'])
+        
     message_id_to_reply = event.message.reply_to_msg_id
 
     if not message_id_to_reply:
@@ -66,7 +64,7 @@ async def who(event):
 
 
 async def get_user(event):
-    """ . """
+    """  """
     if event.reply_to_msg_id and not event.pattern_match.group(1):
         previous_message = await event.get_reply_message()
         replied_user = await event.client(
@@ -101,12 +99,13 @@ async def get_user(event):
 
 
 async def fetch_info(replied_user, event):
+""" . """
     replied_user_profile_photos = await event.client(
         GetUserPhotosRequest(user_id=replied_user.user.id,
                              offset=42,
                              max_id=0,
                              limit=80))
-    replied_user_profile_photos_count = "İstifadəçinin profil şəkili yoxdur."
+    replied_user_profile_photos_count = LANG['NO_PROFILE_PHOTO']
     try:
         replied_user_profile_photos_count = replied_user_profile_photos.count
     except AttributeError as e:
@@ -117,7 +116,7 @@ async def fetch_info(replied_user, event):
     try:
         dc_id, location = get_input_location(replied_user.profile_photo)
     except Exception as e:
-        dc_id = "DC ID ala bilmədim!"
+        dc_id = LANG['NO_DC_ID']
         location = str(e)
     common_chat = replied_user.common_chats_count
     username = replied_user.user.username
@@ -130,33 +129,30 @@ async def fetch_info(replied_user, event):
                                                       str(user_id) + ".jpg",
                                                       download_big=True)
     first_name = first_name.replace(
-        "\u2060", "") if first_name else ("Bu istifadəçinin adı yoxdur")
+        "\u2060", "") if first_name else (LANG['NO_FIRST_NAME'])
     last_name = last_name.replace(
-        "\u2060", "") if last_name else ("Bu istifadəçinin soyadı yoxdur")
+        "\u2060", "") if last_name else (LANG['NO_LAST_NAME'])
     username = "@{}".format(username) if username else (
-        "Bu istifadəçinin istifadəçi adı yoxdur")
-    user_bio = "Bu istifadəçi haqqında heç bir şey yoxdur" if not user_bio else user_bio
+        LANG['NO_USERNAME'])
+    user_bio = LANG['NO_BIO'] if not user_bio else user_bio
 
-    caption = "<b>İstifadəçi haqqında:</b>\n\n"
-    caption += f"Ad: {first_name}\n"
-    caption += f"Soyad: {last_name}\n"
-    caption += f"İstifadəçi Adı: {username}\n"
-    caption += f"Veri mərkəzi ID: {dc_id}\n"
-    caption += f"Profil şəkil sayı: {replied_user_profile_photos_count}\n"
-    caption += f"Botdur: {is_bot}\n"
-    caption += f"Cəzalıdırmı: {restricted}\n"
-    caption += f"Telegram tərəfindən doğruulanıbmı: {verified}\n"
+    caption = f"<b>{LANG['USER_INFO']}:</b>\n\n"
+    caption += f"{LANG['NAME']}: {first_name}\n"
+    caption += f"{LANG['LASTNAME']}: {last_name}\n"
+    caption += f"{LANG['NICKNAME']}: {username}\n"
+    caption += f"{LANG['DC_ID']}: {dc_id}\n"
+    caption += f"{LANG['PROFILE_PHOTO_COUNT']}: {replied_user_profile_photos_count}\n"
+    caption += f"{LANG['IS_BOT']}: {is_bot}\n"
+    caption += f"{LANG['IS_RESTRICTED']}: {restricted}\n"
+    caption += f"{LANG['IS_VERIFIED']}: {verified}\n"
     caption += f"ID: <code>{user_id}</code>\n\n"
-    caption += f"Bioqrafiya: \n<code>{user_bio}</code>\n\n"
-    caption += f"Ortaq qruplar: {common_chat}\n"
-    caption += f"İstifadəçinin profil linki: "
+    caption += f"{LANG['BIO']}: \n<code>{user_bio}</code>\n\n"
+    caption += f"{LANG['COMMON_CHAT']}: {common_chat}\n"
+    caption += f"{LANG['LINK']}: "
     caption += f"<a href=\"tg://user?id={user_id}\">{first_name}</a>"
 
     return photo, caption
 
-
-CMD_HELP.update({
-    "whois":
-    ".whois <istifadəçj adı> vəya .whois əmri ile birinin mətninə cavab verin.\
-    \nİşlədilişi: İstifadəçi haqqında məlumat alır."
-})
+CmdHelp('whois').add_command(
+    'whois', ' <istifadəçi adı/cavab/id>', 'İstifadəçinin məlumatlarını göstərər.'
+).add()
