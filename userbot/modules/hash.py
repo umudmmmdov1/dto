@@ -1,18 +1,11 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Asena UserBot - Yusuf Usta
+
 
 """ Hash ve encode/decode çözme komutlarını içeren UserBot modülü. """
 
@@ -21,7 +14,7 @@ from subprocess import run as runapp
 import pybase64
 from userbot import CMD_HELP
 from userbot.events import register
-
+from userbot.cmdhelp import CmdHelp
 
 @register(outgoing=True, pattern="^.hash (.*)")
 async def gethash(hash_q):
@@ -69,10 +62,8 @@ async def endecrypt(query):
                                validate=True))[2:]
         await query.reply("Decoded: `" + lething[:-1] + "`")
 
-
-CMD_HELP.update({"base64": "Verilen dizenin base64 kodlamasını bulun"})
-
-CMD_HELP.update({
-    "hash":
-    "Bir txt dosyası yazıldığında md5, sha1, sha256, sha512 dizelerini bulun."
-})
+CmdHelp('hash').add_command(
+    'base64', None, 'Verilen dizenin base64 kodlamasını bulun'
+).add_command(
+    'hash', None, 'Bir txt dosyası yazıldığında md5, sha1, sha256, sha512 dizelerini bulun.'
+).add()
