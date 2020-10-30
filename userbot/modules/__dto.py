@@ -3,10 +3,13 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
+
+# DTÖUserBot - Ümüd
 #
 
-""" UserBot yardım komutu """
 
+from userbot.cmdhelp import CmdHelp
+from userbot import cmdhelp
 from userbot import CMD_HELP
 from userbot.events import register
 
@@ -18,8 +21,8 @@ LANG = get_value("__dto")
 # ████████████████████████████████ #
 
 @register(outgoing=True, pattern="^.dto(?: |$)(.*)")
-async def asena(event):
-    """ .asena komutu için """
+async def dto(event):
+
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
@@ -27,9 +30,16 @@ async def asena(event):
         else:
             await event.edit(LANG["NEED_PLUGIN"])
     else:
-        await event.edit(LANG["NEED_MODULE"])
         string = ""
-        for i in CMD_HELP:
-            string += "`" + str(i)
-            string += "`\n"
-        await event.reply(string)
+        sayfa = [list(CMD_HELP)[i:i + 5] for i in range(0, len(list(CMD_HELP)), 5)]
+        
+        for i in sayfa:
+            string += f'`▶️ `'
+            for sira, a in enumerate(i):
+                string += "`" + str(a)
+                if sira == i.index(i[-1]):
+                    string += "`"
+                else:
+                    string += "`, "
+            string += "\n"
+        await event.edit(LANG["NEED_MODULE"] + '\n\n' + string)
