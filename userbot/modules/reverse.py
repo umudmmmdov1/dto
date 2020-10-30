@@ -1,34 +1,34 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
-# TeÅŸekkÃ¼rler @kandnub
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
 
+# Asena UserBot - Yusuf Usta
+
+# Teşekkürler @kandnub
+#
+
+""" Google'da görsel aramak için kullanılabilen UserBot modülü """
 
 import io
 import os
 import urllib
-from urllib.request import urlopen
 import requests
 from bs4 import BeautifulSoup
 import re
-from telethon.tl.types import MessageMediaPhoto
 from PIL import Image
 
 from userbot import bot, CMD_HELP
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
+
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("reverse")
+
+# ████████████████████████████████ #
 
 opener = urllib.request.build_opener()
 useragent = 'Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.70 Mobile Safari/537.36'
@@ -37,6 +37,7 @@ opener.addheaders = [('User-agent', useragent)]
 
 @register(outgoing=True, pattern=r"^.reverse(?: |$)(\d*)")
 async def okgoogle(img):
+    """ .reverse komutu Google'da görsel araması yapar """
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
@@ -45,15 +46,15 @@ async def okgoogle(img):
         photo = io.BytesIO()
         await bot.download_media(message, photo)
     else:
-        await img.edit("`Zəhmət olmasa bir şəkilə və ya stikerə cavab olaraq yazın.`")
+        await img.edit(LANG['NEED_REPLY'])
         return
 
     if photo:
-        await img.edit("`Hazırlanır...`")
+        await img.edit(LANG['TRYING'])
         try:
             image = Image.open(photo)
         except OSError:
-            await img.edit('`Dəstəklənməyən fayl`')
+            await img.edit(LANG['INVALID_TYPE'])
             return
         name = "okgoogle.png"
         image.save(name, "PNG")
@@ -70,10 +71,9 @@ async def okgoogle(img):
         fetchUrl = response.headers['Location']
 
         if response != 400:
-            await img.edit("`Görüntü uğurla Google'a yükləndi.`"
-                           "\n`Lazımlı mənbə axtarılır.`")
+            await img.edit(LANG['UPLOADED_TO_GOOGLE'])
         else:
-            await img.edit("`Googleya getməyim söyləndi.`")
+            await img.edit(LANG['FUCKOFF'])
             return
 
         os.remove(name)
@@ -83,9 +83,9 @@ async def okgoogle(img):
         imgspage = match['similar_images']
 
         if guess and imgspage:
-            await img.edit(f"[{guess}]({fetchUrl})\n\n`ÅžÉ™kil axtarÄ±ram...`")
+            await img.edit(f"[{guess}]({fetchUrl})\n\n`{LANG['SEARCHING_PHOTO']}...`")
         else:
-            await img.edit("`Təəsüfki heçnə tapa bilmədim.`")
+            await img.edit(LANG['NOT_FOUND'])
             return
 
         if img.pattern_match.group(1):
@@ -106,10 +106,11 @@ async def okgoogle(img):
         except TypeError:
             pass
         await img.edit(
-            f"[{guess}]({fetchUrl})\n\n[Görüntü oxunur.]({imgspage})")
+            f"[{guess}]({fetchUrl})\n\n[{LANG['NOT_FOUND']}]({imgspage})")
 
 
 async def ParseSauce(googleurl):
+    """ İstediğiniz bilgi için HTML kodunu ayrıştırın / kazıyın. """
 
     source = opener.open(googleurl).read()
     soup = BeautifulSoup(source, 'html.parser')
@@ -150,9 +151,6 @@ async def scam(results, lim):
 
     return imglinks
 
-
-CMD_HELP.update({
-    'reverse':
-    ".reverse\
-        \nİşlədilişi: Şəkili və ya stikerə cavab olaraq yazaraq görüntüləri üzərindən Google'da axtarar"
-})
+CmdHelp('reverse').add_command(
+    'reverse', '<yanıt>', 'Fotoğraf veya çıkartmaya yanıt vererek görüntüyü Google üzerniden arayabilirsiniz.'
+).add()
