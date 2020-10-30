@@ -1,8 +1,10 @@
-# Copyright (C) 2020 
+# Copyright (C) 2020
 #
 # Licensed under the GPL-3.0 License;
 # you may not use this file except in compliance with the License.
 #
+
+# DTÖUserBot - Ümüd
 
 from userbot import BOT_USERNAME
 from userbot.events import register
@@ -14,7 +16,7 @@ LANG = get_value("__helpme")
 
 # ████████████████████████████████ #
 
-@register(outgoing=True, pattern="^.komek|^.help")
+@register(outgoing=True, pattern="^.yard[iı]m|^.help")
 async def yardim(event):
     tgbotusername = BOT_USERNAME
     if tgbotusername is not None:
