@@ -1,24 +1,25 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Asena UserBot - Yusuf Usta
+
 
 """ Not tutma komutlarını içeren UserBot modülüdür. """
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 from asyncio import sleep
+from userbot.cmdhelp import CmdHelp
+
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("notes")
+
+# ████████████████████████████████ #
 
 @register(outgoing=True, pattern="^.notes$")
 async def notes_active(svd):
@@ -26,13 +27,13 @@ async def notes_active(svd):
     try:
         from userbot.modules.sql_helper.notes_sql import get_notes
     except AttributeError:
-        await svd.edit("`Bot Non-SQL modunda işləyir!!`")
+        await svd.edit("`Bot Non-SQL modunda çalışıyor!!`")
         return
-    message = "`Bu söhbətdə heç bir not tapılmadı.`"
+    message = LANG['NOT_FOUND']
     notes = get_notes(svd.chat_id)
     for note in notes:
-        if message == "`Bu söhbətdə heç bir not tapılmadı.`":
-            message = "`Bu söhbətdəki notlar:`\n"
+        if message == LANG['NOT_FOUND']:
+            message = f"{LANG['NOTES']}:\n"
             message += "`#{}`\n".format(note.keyword)
         else:
             message += "`#{}`\n".format(note.keyword)
@@ -45,14 +46,14 @@ async def remove_notes(clr):
     try:
         from userbot.modules.sql_helper.notes_sql import rm_note
     except AttributeError:
-        await clr.edit("`Bot Non-SQL modunda işləyir!!`")
+        await clr.edit("`Bot Non-SQL modunda çalışıyor!!`")
         return
     notename = clr.pattern_match.group(1)
     if rm_note(clr.chat_id, notename) is False:
-        return await clr.edit(" **{}** `notu tapılmadı`".format(notename))
+        return await clr.edit(" **{}** `{}`".format(notename, LANG['CLEAR_NOT_FOUND']))
     else:
         return await clr.edit(
-            "**{}** `notu uğurla silindi`".format(notename))
+            "**{}** `{}`".format(notename, LANG['CLEAR']))
 
 
 @register(outgoing=True, pattern=r"^.save (\w*)")
@@ -61,7 +62,7 @@ async def add_note(fltr):
     try:
         from userbot.modules.sql_helper.notes_sql import add_note
     except AttributeError:
-        await fltr.edit("`Bot Non-SQL modunda işləyir!!`")
+        await fltr.edit("`Bot Non-SQL modunda çalışıyor!!`")
         return
     keyword = fltr.pattern_match.group(1)
     string = fltr.text.partition(keyword)[2]
@@ -72,8 +73,8 @@ async def add_note(fltr):
             await fltr.client.send_message(
                 BOTLOG_CHATID, f"#NOTE\
             \nGrup ID: {fltr.chat_id}\
-            \nAçar söz: {keyword}\
-            \n\nBu mesaj söhbətdə not olaraq yadda saxlanıldı. Zəhmət olmasa silməyin!"
+            \nAnahtar kelime: {keyword}\
+            \n\nBu mesaj sohbette notu cevaplamak için kaydedildi, lütfen bu mesajı silmeyin!"
             )
             msg_o = await fltr.client.forward_messages(entity=BOTLOG_CHATID,
                                                        messages=msg,
@@ -82,17 +83,17 @@ async def add_note(fltr):
             msg_id = msg_o.id
         else:
             await fltr.edit(
-                "`Bir medyanı not olaraq yadda saxlamaq üçün BOTLOG_CHATID lazımdır.`"
+                "`Bir medyayı not olarak kaydetmek için BOTLOG_CHATID değerinin ayarlanmış olması gereklidir.`"
             )
             return
     elif fltr.reply_to_msg_id and not string:
         rep_msg = await fltr.get_reply_message()
         string = rep_msg.text
-    success = "`Not uğurla {}. ` #{} `əmri ilə notu çağıra bilərsiniz`"
+    success = "`{} {}. ` #{} `{}`"
     if add_note(str(fltr.chat_id), keyword, string, msg_id) is False:
-        return await fltr.edit(success.format('yeniləndi', keyword))
+        return await fltr.edit(success.format(LANG['SUCCESS'], 'güncellendi', keyword, LANG['CALL']))
     else:
-        return await fltr.edit(success.format('əlavə olundu', keyword))
+        return await fltr.edit(success.format(LANG['SUCCESS'], 'eklendi', keyword, LANG['CALL']))
 
 
 @register(pattern=r"#\w*",
@@ -127,44 +128,12 @@ async def incom_note(getnt):
     except AttributeError:
         pass
 
-
-@register(outgoing=True, pattern="^.rmbotnotes (.*)")
-async def kick_marie_notes(kick):
-    """ .rmbotnotes komutu Marie'de (ya da onun tabanındaki botlarda) \
-        kayıtlı olan notları silmeye yarar. """
-    bot_type = kick.pattern_match.group(1).lower()
-    if bot_type not in ["marie", "rose"]:
-        await kick.edit("`Bu bot hələ dəstəklənmir.`")
-        return
-    await kick.edit("```Bütün notlar silinir...```")
-    await sleep(3)
-    resp = await kick.get_reply_message()
-    filters = resp.text.split("-")[1:]
-    for i in filters:
-        if bot_type == "marie":
-            await kick.reply("/clear %s" % (i.strip()))
-        if bot_type == "rose":
-            i = i.replace('`', '')
-            await kick.reply("/clear %s" % (i.strip()))
-        await sleep(0.3)
-    await kick.respond(
-        "```Botlardakı notlar uğurla silindi.```")
-    if BOTLOG:
-        await kick.client.send_message(
-            BOTLOG_CHATID, "Bu söhbətdəki bütün notları təmizlədim: " + str(kick.chat_id))
-
-
-CMD_HELP.update({
-    "notes":
-    "\
-<notadı>\
-\nİşlədilişi: Verilən notu çağırır.\
-\n\n.save <not adı> <not olaraq yadda saxlanılacaq şey> ya da bir mesajı .save <not adı> şəklində yanıtlayaraq istifadə edilir. \
-\nİşlədilişi: Yanıtlanan mesajı adıyla birlikdə bir not olaraq yadda saxlayır. (Şəkillər, fayllar və stikerlər də işləyir.)\
-\n\n.notes\
-\nİşlədilişi: Bir söhbətdəki bütün notları çağırır.\
-\n\n.clear <not adı>\
-\nİşlədilişi: Verilən notu silər.\
-\n\n.rmbotnotes <marie/rose>\
-\nİşlədilişi: Grup nəzarəti botlarındakı bütün notları temizlər. (Hələlik Rose, Marie ve Marie klonları dəstəklənir.)"
-})
+CmdHelp('notes').add_command(
+    '#<notismi>', None, 'Belirtilen notu çağırır.'
+).add_command(
+    'save', '<not adı> <not olarak kaydedilecek şey> ya da bir mesajı .save <not adı> şeklinde yanıtlayarak kullanılır', 'Yanıtlanan mesajı ismiyle birlikte bir not olarak kaydeder. (Resimler, belgeler ve çıkartmalarda da çalışır.)'
+).add_command(
+    'notes', None, 'Bir sohbetteki tüm notları çağırır.'
+).add_command(
+    'clear', '<not adı>', 'Belirtilen notu siler.'
+).add()
