@@ -190,6 +190,9 @@ SPOTIFY_KEY = os.environ.get("SPOTIFY_KEY", None)
 
 PAKET_ISMI = os.environ.get("PAKET_ISMI", "@DTOUserBot Paketi")
 
+# Otomatik Katılma
+OTOMATIK_KATILMA = sb(os.environ.get("OTOMATIK_KATILMA", "True"))
+
 # Özel Pattern'ler
 PATTERNS = os.environ.get("PATTERNS", ".;!,")
 WHITELIST = get('https://gitlab.com/Quiec/asen/-/raw/master/whitelist.json').json()
