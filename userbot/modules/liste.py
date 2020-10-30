@@ -1,10 +1,10 @@
-# Copyright (C) 2020 
+# Copyright (C) 2020 Yusuf Usta.
 #
 # Licensed under the GPL-3.0 License;
 # you may not use this file except in compliance with the License.
 #
 
-# 
+# Asena UserBot - Yusuf Usta
 
 from userbot import CMD_HELP
 from userbot.events import register
@@ -12,6 +12,7 @@ from PIL import Image
 import io
 import os
 import asyncio
+from userbot.cmdhelp import CmdHelp
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -66,6 +67,8 @@ async def liste(event):
             await event.client.send_message(event.chat_id, LANG['GMUTE_TXT'], file="gmute_liste.txt")
             os.remove("gmute_liste.txt")
         else:
-            await event.edit(LANG['GMUTE_TXT'] % mesaj)
+            await event.edit(LANG['GMUTE_LIST'] % mesaj)
 
-CMD_HELP["liste"] = ".liste gban/gmute\nGbanladığınız ya da Gmutelediğiniz kişileri getirir."
+CmdHelp('liste').add_command(
+    'liste', '<gmute/gban>', 'Gbanladığınız ya da Gmutelediğiniz kişileri getirir.'
+).add()
