@@ -1,5 +1,12 @@
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
+#
+
 # DTÖUserBot - Ümüd
 
+"""  """
 import importlib
 from importlib import import_module
 from sqlite3 import connect
@@ -8,7 +15,7 @@ import requests
 from telethon.tl.types import InputMessagesFilterDocument
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from telethon.tl.functions.channels import GetMessagesRequest
-from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP, LANGUAGE, DTO_VERSION
+from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP, LANGUAGE, ASENA_VERSION
 from .modules import ALL_MODULES
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
 import userbot.modules.sql_helper.galeri_sql as GALERI_SQL
@@ -16,9 +23,21 @@ from pySmartDL import SmartDL
 from telethon.tl import functions
 
 from random import choice
+import chromedriver_autoinstaller
 from json import loads, JSONDecodeError
-from random import choice
 
+DIZCILIK_STR = [
+    "Stikeri fırladıram...",
+    "Yaşaşın fırlatmaq...",
+    "Bu stikeri öz paketimə dəvət edirəm...",
+    "Bunu fırlatmalıyam...",
+    "Gözəl stikerdi!\nTəcili fırlatmalıyam..",
+    "Stikerini fırladıram!\nhahaha.",
+    "Buna ba (☉｡☉)!→\nMən bunu fırladarkən...",
+    "Stikerivi oğurladım...",
+    "Stiker qəfəsə salınır...",
+    "Lotu totu stikerivi oğurladı... ",
+]
 
 AFKSTR = [
     "İndi təcili işim var, daha sonra mesaj atsan olar? Onsuz yenidən gələcəm.",
@@ -44,23 +63,23 @@ AFKSTR = [
     "Həyat qısa, dəyməz qıza...\nNətər zarafat elədim?",
     "İndi burada deiləm....\nama burda olsaydım...\n\nbu möhtəşəm olardı eləmi qadan alım ?",
 ]
+UNAPPROVED_MSG = ("`Hey salam!` {mention}`! Bu bir bot. Qorxma.\n\n`"
+                  "`Sahibim sənə PM atma icazəsi verməyib. `"
+                  "`Xaiş sahibimin aktiv olmasını gözlə, o adətən PM'ləri təsdiqləyir.\n\n`"
+                  "`Təşəkkürlər ❤️`")
 
-UNAPPROVED_MSG = ("`Salam mən DTÖUserBot.\n\n`"
-                  "`Sahibim sənə mesaj atma icazəsi verməyib. `"
-                  "`Zəhmət olmasa sahibimin aktiv olmasını gözləyin, o ancaq mesajlara icazə verir.\n\n`"
-                  "`Əgər çox mesaj yazsanız sizi bloka atmağa məcbur qalacam.`")
-
-DB = connect("dtobrain")
+DB = connect("learning-data-root.check")
 CURSOR = DB.cursor()
 CURSOR.execute("""SELECT * FROM BRAIN1""")
 ALL_ROWS = CURSOR.fetchall()
-INVALID_PH = '\nXƏTA: Girilən telefon nömrəsi yanlışdır' \
-             '\n  Məlumat: Ölkə kodunu işlədərək nömrənk yaz' \
-             '\n       Telefon nömrənizi təkrar yoxlayın.'
+INVALID_PH = '\nHATA: Girilen telefon numarası geçersiz' \
+             '\n  Ipucu: Ülke kodunu kullanarak numaranı gir' \
+             '\n       Telefon numaranızı tekrar kontrol edin'
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
 connect("dtobrain").close()
+
 try:
     bot.start()
     idim = bot.get_me().id
@@ -68,14 +87,20 @@ try:
     if idim in dtobl:
         bot.disconnect()
 
-    # Galeri için değerler
+    # ChrommDriver
+    try:
+        chromedriver_autoinstaller.install()
+    except:
+        pass
+    
+    # Qaleri
     GALERI = {}
 
-    # PLUGIN MESAJLARI AYARLIYORUZ
+    # PLUGIN MESAJLARI
     PLUGIN_MESAJLAR = {}
-    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanlıları qorusun\nDTÖUserBot əla işdəyir ⚡`", "afk": f"`{str(choice(AFKSTR))}`", "pm": UNAPPROVED_MSG}
+    ORJ_PLUGIN_MESAJLAR = {"alive": "`DTÖUserBotunuz əla işləyir ⚡.`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Bye bye mən getdim `🤠", "pm": UNAPPROVED_MSG, "dızcı": str(choice(DIZCILIK_STR)), "ban": "{mention}`, banlandı!`", "mute": "{mention}`, səssizə alındı!`", "approve": "{mention}`, mənə mesaj göndərə bilərsən!`", "disapprove": "{mention}`, artıq mənə mesaj göndərə bilmərsən!`", "block": "{mention}`, bloklandın!`"}
 
-    PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "pm"]
+    PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "kickme", "pm", "dızcı", "ban", "mute", "approve", "disapprove", "block"]
     for mesaj in PLUGIN_MESAJLAR_TURLER:
         dmsj = MSJ_SQL.getir_mesaj(mesaj)
         if dmsj == False:
@@ -84,18 +109,18 @@ try:
             if dmsj.startswith("MEDYA_"):
                 medya = int(dmsj.split("MEDYA_")[1])
                 medya = bot.get_messages(PLUGIN_CHANNEL_ID, ids=medya)
-                print(medya)
+
                 PLUGIN_MESAJLAR[mesaj] = medya
             else:
                 PLUGIN_MESAJLAR[mesaj] = dmsj
     if PLUGIN_CHANNEL_ID != None:
-        LOGS.info("Pluginler yüklenir")
+        LOGS.info("Pluginlər yüklənir")
         try:
             KanalId = bot.get_entity(PLUGIN_CHANNEL_ID)
             DOGRU = 1
         except:
             KanalId = "me"
-            bot.send_message("me", f"`Plugin_Channel_Id'iniz keçərsizdi. Pluginlər qalıcı olmuyacaq.`")
+            bot.send_message("me", f"`Plugin_Channel_Id'iniz keçərsiz. Pluginler qalıcı olmuyacaq.`")
             DOGRU = 0
 
         for plugin in bot.iter_messages(KanalId, filter=InputMessagesFilterDocument):
@@ -124,16 +149,16 @@ try:
 
                 spec.loader.exec_module(mod)
             except Exception as e:
-                LOGS.info(f"`Yüklənmə alınmadı! Plugin xətalıdı.\n\nXəta: {e}`")
+                LOGS.info(f"`Yükləmə uğursuz! Plugin xətalı.\n\nXəta: {e}`")
 
                 if os.path.exists("./userbot/modules/" + dosyaa):
                     os.remove("./userbot/modules/" + dosyaa)
                 continue
             
             ndosya = dosyaismi[0]
-            CMD_HELP[ndosya] = "Bu plugin qırağdan yüklənib"
+            CMD_HELP[ndosya] = "Bu Plugin Qırağdan Yüklənmişdir"
     else:
-        bot.send_message("me", f"`Zəhmət olmasa pluginlərin qalıcı olması üçün PLUGIN_CHANNEL_ID'i düzəldin.`")
+        bot.send_message("me", f"`Xaiş pluginlərin qalıcı olması üçün PLUGIN_CHANNEL_ID'i düzəldin.`")
 except PhoneNumberInvalidError:
     print(INVALID_PH)
     exit(1)
@@ -157,8 +182,8 @@ for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
 LOGS.info("Botunuz işleyir! Her hansı bir söhbetde .alive yazaraq Test edin."
-          " Kömeye ehtiyacınız varsa, Destek qrupumuza gelin t.me/DTOSupport")
-LOGS.info("Bot versiyası DTÖUserBot  {DTO_VERSION}")
+          " Köməyə ehtiyacınız varsa, Destek qrupumuza gelin t.me/DTOSupport")
+LOGS.info(f"Bot vərsiya: {DTO_VERSION}")
 
 """
 if len(argv) not in (1, 3, 4):
