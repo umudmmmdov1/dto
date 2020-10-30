@@ -220,6 +220,11 @@
       "value": "@DTOUserBot Paketi",
       "required": false
     },
+    "AVTO_Q": {
+      "description": "Support grubuna ve Kanal'a otomatik katılmak istemiyorsanız False yazın.",
+      "value": "True",
+      "required": true
+    },
     "LANGUAGE": {
       "description": "Botun dili. EN/TR/AZ yazabilirsiniz.",
       "value": "AZ",
