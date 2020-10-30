@@ -1,10 +1,11 @@
-# Copyright (C) 2020 BristolMyers z2sofwares.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
 
-# DTÖUserBot - Ümüd
+# Asena UserBot - Yusuf Usta
+
 
 """ Kimin size özel mesaj gönderebileceğini kontrol altına almanızı sağlayan UserBot modülüdür. """
 
@@ -14,14 +15,17 @@ from telethon.tl.types import User
 from sqlalchemy.exc import IntegrityError
 
 from userbot import (COUNT_PM, CMD_HELP, BOTLOG, BOTLOG_CHATID,
-                     PM_AUTO_BAN, LASTMSG, LOGS)
+                     PM_AUTO_BAN, PM_AUTO_BAN_LIMIT, LASTMSG, LOGS, BRAIN_CHECKER, WHITELIST)
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
+from userbot.cmdhelp import CmdHelp
 
-# ========================= CONSTANTS ============================
+# ██████ LANGUAGE CONSTANTS ██████ #
 
-# =================================================================
+from userbot.language import get_value
+LANG = get_value("pmpermit")
 
+# ████████████████████████████████ #
 
 @register(incoming=True, disable_edited=True, disable_errors=True)
 async def permitpm(event):
@@ -39,6 +43,17 @@ async def permitpm(event):
             apprv = is_approved(event.chat_id)
             notifsoff = gvarstatus("NOTIF_OFF")
 
+            reply_user = await event.get_sender()
+            id = reply_user.id
+            first_name = str(reply_user.first_name)
+            if reply_user.last_name:
+                last_name = str(reply_user.last_name)
+            else:
+                last_name = ''
+
+            username = '@' + reply_user.username if reply_user.username else f'[{first_name} {last_name}](tg://user?id={id})'
+            mention = f'[{first_name} {last_name}](tg://user?id={id})'
+
             # Bu bölüm basitçe akıl sağlığı kontrolüdür.
             # Eğer mesaj daha önceden onaylanmamış olarak gönderildiyse
             # flood yapmayı önlemek için unapprove mesajı göndermeyi durdurur.
@@ -47,15 +62,51 @@ async def permitpm(event):
                     prevmsg = LASTMSG[event.chat_id]
                     # Eğer önceden gönderilmiş mesaj farklıysa unapprove mesajı tekrardan gönderilir.
                     if event.text != prevmsg:
-                        async for message in event.client.iter_messages(
+                        if type(PLUGIN_MESAJLAR['afk']) is str:
+                            async for message in event.client.iter_messages(
                                 event.chat_id,
                                 from_user='me',
-                                search=PLUGIN_MESAJLAR['pm']):
-                            await message.delete()
-                        await event.reply(PLUGIN_MESAJLAR['pm'])
+                                search=PLUGIN_MESAJLAR['pm'].format(
+                                    id=id,
+                                    username=username,
+                                    mention=first_name,
+                                    first_name=first_name,
+                                    last_name=last_name
+                                )
+                            ):
+                                await message.delete()
+                            await event.reply(PLUGIN_MESAJLAR['pm'].format(
+                                id=id,
+                                username=username,
+                                mention=mention,
+                                first_name=first_name,
+                                last_name=last_name
+                            ))
+                        else:
+                            async for message in event.client.iter_messages(
+                                event.chat_id,
+                                from_user='me',
+                                limit=PM_AUTO_BAN_LIMIT + 1):
+                                    await message.delete()
+                            if not PLUGIN_MESAJLAR['pm'].text == '':
+                                PLUGIN_MESAJLAR['pm'].text = PLUGIN_MESAJLAR['pm'].text.format(
+                                    id=id,
+                                    username=username,
+                                    mention=mention,
+                                    first_name=first_name,
+                                    last_name=last_name
+                                )
+
+                            await event.reply(PLUGIN_MESAJLAR['pm'])
                     LASTMSG.update({event.chat_id: event.text})
                 else:
-                    await event.reply(PLUGIN_MESAJLAR['pm'])
+                    await event.reply(PLUGIN_MESAJLAR['pm'].format(
+                                    id=id,
+                                    username=username,
+                                    mention=mention,
+                                    first_name=first_name,
+                                    last_name=last_name
+                                ))
                     LASTMSG.update({event.chat_id: event.text})
 
                 if notifsoff:
@@ -65,10 +116,9 @@ async def permitpm(event):
                 else:
                     COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
 
-                if COUNT_PM[event.chat_id] > 4:
+                if COUNT_PM[event.chat_id] > PM_AUTO_BAN_LIMIT:
                     await event.respond(
-                        "`Sən mənim sahibimin özəl mesajını spamlayırsan, buda mənim xoşuma getmir.`\n"
-                        "`Sizi indi BLOKLADIM və SPAM olaraq bildirildin, irəlidə dəyişiklik olmayana qədər..`"
+                        LANG['BLOCKED']
                     )
 
                     try:
@@ -78,10 +128,10 @@ async def permitpm(event):
                         if BOTLOG:
                             await event.client.send_message(
                                 BOTLOG_CHATID,
-                                "`PM sayğacı beyni gic olub, botu yenidən başladın.`",
+                                LANG['ERROR'],
                             )
                         LOGS.info(
-                            "PM sayğacı beyni gic olub, botu yenidən başladın.`")
+                            LANG['ERROR'])
                         return
 
                     await event.client(BlockRequest(event.chat_id))
@@ -94,9 +144,8 @@ async def permitpm(event):
                             BOTLOG_CHATID,
                             "[" + name0 + "](tg://user?id=" +
                             str(event.chat_id) + ")" +
-                            " isticadəçi sadəcə mənə xəcalət verdi. PM'ni məşğul etdiyi üçün bloklandı.",
+                            LANG['BOTLOG_BLOCKED'],
                         )
-
 
 @register(disable_edited=True, outgoing=True, disable_errors=True)
 async def auto_accept(event):
@@ -113,17 +162,41 @@ async def auto_accept(event):
             return
 
         chat = await event.get_chat()
+        id = chat.id
+        first_name = str(chat.first_name)
+        if chat.last_name:
+            last_name = str(chat.last_name)
+        else:
+            last_name = ''
+
+        username = '@' + chat.username if chat.username else f'[{first_name} {last_name}](tg://user?id={id})'
+        mention = f'[{first_name} {last_name}](tg://user?id={id})'
+
         if isinstance(chat, User):
             if is_approved(event.chat_id) or chat.bot:
                 return
             async for message in event.client.iter_messages(event.chat_id,
                                                             reverse=True,
                                                             limit=1):
-                if message.message is not PLUGIN_MESAJLAR['pm'] and message.from_id == self_user.id:
-                    try:
-                        approve(event.chat_id)
-                    except IntegrityError:
-                        return
+                if type(PLUGIN_MESAJLAR['afk']) is str:
+                    if message.message is not PLUGIN_MESAJLAR['pm'].format(
+                                    id=id,
+                                    username=username,
+                                    mention=mention,
+                                    first_name=first_name,
+                                    last_name=last_name
+                                ) and message.from_id == self_user.id:
+                        try:
+                            approve(event.chat_id)
+                        except IntegrityError:
+                            return
+                else:
+                    if message is not PLUGIN_MESAJLAR['pm'] and message.from_id == self_user.id:
+                        try:
+                            approve(event.chat_id)
+                        except IntegrityError:
+                            return
+
 
                 if is_approved(event.chat_id) and BOTLOG:
                     await event.client.send_message(
@@ -142,7 +215,7 @@ async def notifoff(noff_event):
         await noff_event.edit("`Bot Non-SQL modunda çalışıyor!!`")
         return
     addgvar("NOTIF_OFF", True)
-    await noff_event.edit("`PM icazəsi olmayan istifadəçilər üçün bildirişlər deaktiv edildi!`")
+    await noff_event.edit(LANG['NOTIFOFF'])
 
 
 @register(outgoing=True, pattern="^.notifon$")
@@ -151,10 +224,10 @@ async def notifon(non_event):
     try:
         from userbot.modules.sql_helper.globals import delgvar
     except:
-        await non_event.edit("`Bot Non-SQL modunda işdəyir!!`")
+        await non_event.edit("`Bot Non-SQL modunda çalışıyor!!`")
         return
     delgvar("NOTIF_OFF")
-    await non_event.edit("`PM icazəsi olmayan istifadəçilər üçün bildirişlər aktiv edildi!`")
+    await non_event.edit(LANG['NOTIFON'])
 
 
 @register(outgoing=True, pattern="^.approve$")
@@ -163,38 +236,53 @@ async def approvepm(apprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import approve
     except:
-        await apprvpm.edit("`Bot Non-SQL modunda işdəyir!!`")
+        await apprvpm.edit("`Bot Non-SQL modunda çalışıyor!!`")
         return
 
     if apprvpm.reply_to_msg_id:
         reply = await apprvpm.get_reply_message()
-        replied_user = await apprvpm.client.get_entity(reply.from_id)
-        aname = replied_user.id
-        name0 = str(replied_user.first_name)
-        uid = replied_user.id
-
+        reply_user = await apprvpm.client.get_entity(reply.from_id)
     else:
-        aname = await apprvpm.client.get_entity(apprvpm.chat_id)
-        name0 = str(aname.first_name)
-        uid = apprvpm.chat_id
+        reply_user = await apprvpm.client.get_entity(apprvpm.chat_id)
+
+    id = reply_user.id
+    first_name = str(reply_user.first_name)
+    if reply_user.last_name:
+        last_name = str(reply_user.last_name)
+    else:
+        last_name = ''
+
+    username = '@' + reply_user.username if reply_user.username else f'[{first_name} {last_name}](tg://user?id={id})'
+    mention = f'[{first_name} {last_name}](tg://user?id={id})'
 
     try:
-        approve(uid)
+        approve(id)
     except IntegrityError:
-        await apprvpm.edit("`İstifadəçi sizə hal-hazırda yaza bilir.`")
+        await apprvpm.edit(LANG['ALREADY'])
         return
 
-    await apprvpm.edit(f"[{name0}](tg://user?id={uid}) `istifadəçisi mesaj göndərə bilər!`")
-
+    await apprvpm.edit(PLUGIN_MESAJLAR['approve'].format(
+        id=id,
+        username=username,
+        mention=mention,
+        first_name=first_name,
+        last_name=last_name
+    ))
     async for message in apprvpm.client.iter_messages(apprvpm.chat_id,
                                                       from_user='me',
-                                                      search=PLUGIN_MESAJLAR['pm']):
+                                                      search=PLUGIN_MESAJLAR['pm'].format(
+        id=id,
+        username=username,
+        mention=first_name,
+        first_name=first_name,
+        last_name=last_name
+    )):
         await message.delete()
 
     if BOTLOG:
         await apprvpm.client.send_message(
             BOTLOG_CHATID,
-            "#İCAZEVERİLDİ\n" + "İstifadəçi: " + f"[{name0}](tg://user?id={uid})",
+            "#ONAYLANDI\n" + "Kullanıcı: " + mention,
         )
 
 
@@ -203,7 +291,7 @@ async def disapprovepm(disapprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import dissprove
     except:
-        await disapprvpm.edit("`Bot Non-SQL modunda işdəyir!!`")
+        await disapprvpm.edit("`Bot Non-SQL modunda çalışıyor!!`")
         return
 
     if disapprvpm.reply_to_msg_id:
@@ -217,14 +305,13 @@ async def disapprovepm(disapprvpm):
         aname = await disapprvpm.client.get_entity(disapprvpm.chat_id)
         name0 = str(aname.first_name)
 
-    await disapprvpm.edit(
-        f"[{name0}](tg://user?id={disapprvpm.chat_id}) `istifadəçisinin mesaj göndərilməsinə icazə verilmir.`")
+    await disapprvpm.edit(PLUGIN_MESAJLAR['disapprove'].format(mention = f"[{name0}](tg://user?id={disapprvpm.chat_id})"))
 
     if BOTLOG:
         await disapprvpm.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={disapprvpm.chat_id})"
-            " istifadəçisinin mesaj atma icazəsi verilmədi.",
+            " kişisinin PM atma izni kaldırıldı.",
         )
 
 
@@ -234,28 +321,65 @@ async def blockpm(block):
     if block.reply_to_msg_id:
         reply = await block.get_reply_message()
         replied_user = await block.client.get_entity(reply.from_id)
-        aname = replied_user.id
-        name0 = str(replied_user.first_name)
-        await block.client(BlockRequest(replied_user.id))
-        await block.edit("`Bloklandın!`")
-        uid = replied_user.id
-    else:
-        await block.client(BlockRequest(block.chat_id))
-        aname = await block.client.get_entity(block.chat_id)
-        await block.edit("`Bloklandın!`")
-        name0 = str(aname.first_name)
-        uid = block.chat_id
+        if replied_user.id in BRAIN_CHECKER or replied_user.id in WHITELIST:
+            await block.edit(
+                "`Hayır dostum! Asena yöneticisini engellemeyeceğim!!`"
+            )
+            return
 
+        id = replied_user.id
+        first_name = str(replied_user.first_name)
+        if replied_user.last_name:
+            last_name = str(replied_user.last_name)
+        else:
+            last_name = ''
+
+        username = '@' + replied_user.username if replied_user.username else f'[{first_name} {last_name}](tg://user?id={id})'
+        mention = f'[{first_name} {last_name}](tg://user?id={id})'
+        await block.client(BlockRequest(replied_user.id))
+        await block.edit(PLUGIN_MESAJLAR['block'].format(
+            id=id,
+            username=username,
+            mention=mention,
+            first_name=first_name,
+            last_name=last_name
+        ))
+    else:
+        if block.chat_id in BRAIN_CHECKER:
+            await block.edit(
+                "`Hayır dostum! Asena sahibini engellemeyeceğim!!`"
+            )
+            return
+
+        await block.client(BlockRequest(block.chat_id))
+        replied_user = await block.client.get_entity(block.chat_id)
+        id = replied_user.id
+        first_name = str(replied_user.first_name)
+        if replied_user.last_name:
+            last_name = str(replied_user.last_name)
+        else:
+            last_name = ''
+
+        username = '@' + replied_user.username if replied_user.username else f'[{first_name} {last_name}](tg://user?id={id})'
+        mention = f'[{first_name} {last_name}](tg://user?id={id})'
+
+        await block.edit(PLUGIN_MESAJLAR['block'].format(
+            id=id,
+            username=username,
+            mention=mention,
+            first_name=first_name,
+            last_name=last_name
+        ))
     try:
         from userbot.modules.sql_helper.pm_permit_sql import dissprove
-        dissprove(uid)
+        dissprove(id)
     except:
         pass
 
     if BOTLOG:
         await block.client.send_message(
             BOTLOG_CHATID,
-            "#BLOKLANDI\n" + "İstifadəçi: " + f"[{name0}](tg://user?id={uid})",
+            "#ENGELLENDI\n" + "Kullanıcı: " + mention,
         )
 
 
@@ -267,29 +391,25 @@ async def unblockpm(unblock):
         replied_user = await unblock.client.get_entity(reply.from_id)
         name0 = str(replied_user.first_name)
         await unblock.client(UnblockRequest(replied_user.id))
-        await unblock.edit("`Blokdan çıxarıldı.`")
+        await unblock.edit(f"`{LANG['UNBLOCKED']}`")
 
     if BOTLOG:
         await unblock.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={replied_user.id})"
-            " istifadəçisi blokdan çıxarıldı.",
+            " kişisinin engeli kaldırıldı.",
         )
 
-
-CMD_HELP.update({
-    "pmpermit":
-    "\
-.approve\
-\nİşlədilişi: Özəldə mesaj göndərməsinə icazə verər.\
-\n\n.disapprove\
-\nİşlədilişi: Özəldə mesaj göndərməyə icazə verməz.\
-\n\n.block\
-\nİşlədilişi: İstifadəçini bloklayar.1\
-\n\n.unblock\
-\nİşlədilişi: Bloklanmış istifadəçini blokdan çıxarar.\
-\n\n.notifoff\
-\nİşlədilişi: Özəldə yazmağa icazə verilməmiş mesaj yazanların bildirişlərini deaktiv edər.\
-\n\n.notifon\
-\nİşlədilişi: Özəldə yazmağa icazə verilməmiş mesaj yazanların bildirişlərini aktiv edər."
-})
+CmdHelp('pmpermit').add_command(
+    'approve', None, 'Yanıt verilen kullanıcıya PM atma izni verilir.', 
+).add_command(
+    'disapprove', None, 'Yanıt verilen kullanıcının PM onayını kaldırır.'
+).add_command(
+    'block', '<kullanıcı adı/yanıtlama>', 'Kullanıcıyı engeller.'
+).add_command(
+    'unblock', '<kullanıcı adı/yanıtlama>', 'Kullanıcının engellemesini kaldırır.'
+).add_command(
+    'notifoff', None, 'Onaylanmamış özel mesajların bildirimlerini temizler ya da devre dışı bırakır.'
+).add_command(
+    'notifon', None, 'Onaylanmamış özel mesajların bildirim göndermesine izin verir.'
+).add()
