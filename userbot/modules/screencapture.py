@@ -1,48 +1,46 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
 
+# DTÖUserBot - Ümüd
+
+
 import io
-import traceback
 from re import match
 from selenium import webdriver
 from asyncio import sleep
 from selenium.webdriver.chrome.options import Options
 from userbot.events import register
 from userbot import GOOGLE_CHROME_BIN, CHROME_DRIVER, CMD_HELP
+from userbot.cmdhelp import CmdHelp
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("screencapture")
+
+# ████████████████████████████████
 
 @register(pattern=r".ss (.*)", outgoing=True)
 async def capture(url):
-    await url.edit("`İşleniyor...`")
+    """ .ss """
+    await url.edit(LANG['TRYING'])
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--test-type")
-    chrome_options.binary_location = GOOGLE_CHROME_BIN
     chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument('--disable-gpu')
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
-                              options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     input_str = url.pattern_match.group(1)
     link_match = match(r'\bhttps?://.*\.\S+', input_str)
     if link_match:
         link = link_match.group()
     else:
-        await url.edit("`Ekran görüntüsü almağım üçün mənə düzgün link verməlisən.`")
+        await url.edit(LANG['INVALID_URL'])
         return
     driver.get(link)
     height = driver.execute_script(
@@ -53,30 +51,26 @@ async def capture(url):
     )
     driver.set_window_size(width + 125, height + 125)
     wait_for = height / 1000
-    await url.edit(f"`Səhifənin ekran görüntüsü yaradılır...`\
-    \n`Səhifənin yüksəkliyi: {height} piksel`\
-    \n`Sayfanın genişliyi: {width} piksel`\
-    \n`Sayfanın yüklənməsi üçün {int(wait_for)} saniye gözlədim.`")
+    await url.edit(f"{LANG['TAKING']}\
+    \n`{LANG['HEIGHT']}: {height} {LANG['PIXEL']}`\
+    \n`{LANG['WIDTH']}: {width} {LANG['PIXEL']}`" + 
+    LANG['WAIT'] % str(wait_for))
     await sleep(int(wait_for))
     im_png = driver.get_screenshot_as_png()
-    # Sayfanın ekran görüntüsü kaydedilir.
+    # 
     driver.close()
     message_id = url.message.id
     if url.reply_to_msg_id:
         message_id = url.reply_to_msg_id
     with io.BytesIO(im_png) as out_file:
         out_file.name = "ekran_goruntusu.png"
-        await url.edit("`Ekran görüntüsü qarşıya yüklənir...`")
+        await url.edit(LANG['UPLOADING'])
         await url.client.send_file(url.chat_id,
                                    out_file,
                                    caption=input_str,
                                    force_document=True,
                                    reply_to=message_id)
 
-
-CMD_HELP.update({
-    "ss":
-    ".ss <url>\
-    \nİşlədilişi: Yazdığınız saytdan ekran görüntüsü alıb göndərər.\
-    \nDüzgün link olmalııdr. Məsələn: `https://devotag.com`"
-})
+CmdHelp('ss').add_command(
+    'ss', '<url>', 'Seçilən web saytından bir ekran görüntüsü alar və göndərər.', 'ss https://nexeber.com'
+).add()
