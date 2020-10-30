@@ -151,7 +151,7 @@ TZ_NUMBER = int(os.environ.get("TZ_NUMBER", 1))
 CLEAN_WELCOME = sb(os.environ.get("CLEAN_WELCOME", "True"))
 
 # Last.fm Modülü
-BIO_PREFIX = os.environ.get("BIO_PREFIX", "@AsenaUserBot | ")
+BIO_PREFIX = os.environ.get("BIO_PREFIX", "@DTOUserBot | ")
 DEFAULT_BIO = os.environ.get("DEFAULT_BIO", None)
 
 LASTFM_API = os.environ.get("LASTFM_API", None)
@@ -189,9 +189,6 @@ SPOTIFY_DC = os.environ.get("SPOTIFY_DC", None)
 SPOTIFY_KEY = os.environ.get("SPOTIFY_KEY", None)
 
 PAKET_ISMI = os.environ.get("PAKET_ISMI", "@DTOUserBot Paketi")
-
-# Otomatik Katılma
-OTOMATIK_KATILMA = sb(os.environ.get("OTOMATIK_KATILMA", "True"))
 
 # Özel Pattern'ler
 PATTERNS = os.environ.get("PATTERNS", ".;!,")
@@ -281,16 +278,13 @@ def butonlastir(sayfa, moduller):
     return [max_pages, butonlar]
 
 with bot:
-    if OTOMATIK_KATILMA:
-        try:
-            bot(JoinChannelRequest("@DTOUserBot"))
-            bot(JoinChannelRequest("@DTOSupport"))
-        except:
-            pass
+    try:
+        bot(JoinChannelRequest("@DTOUserBot"))
+        bot(JoinChannelRequest("@DTOSupport"))
 
-    moduller = CMD_HELP
-    me = bot.get_me()
-    uid = me.id
+        moduller = CMD_HELP
+        me = bot.get_me()
+        uid = me.id
 
     try:
         @tgbot.on(NewMessage(pattern='/start'))
