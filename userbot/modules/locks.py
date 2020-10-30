@@ -1,24 +1,25 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Asena UserBot - Yusuf Usta
+
 
 from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
 from telethon.tl.types import ChatBannedRights
 
 from userbot import CMD_HELP
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
+
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("locks")
+
+# ████████████████████████████████ #
 
 
 @register(outgoing=True, pattern=r"^.lock ?(.*)")
@@ -79,10 +80,10 @@ async def locks(event):
         what = "everything"
     else:
         if not input_str:
-            await event.edit("`Hiçliği kilitleyemem dostum!`")
+            await event.edit(LANG['EVERYTHING_LOCK'])
             return
         else:
-            await event.edit(f"`Geçersiz medya tipi:` {input_str}")
+            await event.edit(LANG['INVALID_MEDIA_TYPE'] % input_str)
             return
 
     lock_rights = ChatBannedRights(
@@ -102,10 +103,10 @@ async def locks(event):
         await event.client(
             EditChatDefaultBannedRightsRequest(peer=peer_id,
                                                banned_rights=lock_rights))
-        await event.edit(f"`{what} bu sohbet için kilitlendi!`")
+        await event.edit(LANG['LOCK'] % what)
     except BaseException as e:
         await event.edit(
-            f"`Bunun için gerekli haklara sahip olduğuna emin misin?`\n**Hata:** {str(e)}")
+            f"{LANG['INVALID_AUTHORITY']} {str(e)}")
         return
 
 
@@ -167,10 +168,10 @@ async def rem_locks(event):
         what = "everything"
     else:
         if not input_str:
-            await event.edit("`Hiçliğin kilidini açamam!`")
+            await event.edit(LANG['EVERYTHING_UNLOCK'])
             return
         else:
-            await event.edit(f"`Geçersiz medya tipi:` {input_str}")
+            await event.edit(LANG['INVALID_MEDIA_TYPE'] % input_str)
             return
 
     unlock_rights = ChatBannedRights(
@@ -190,10 +191,10 @@ async def rem_locks(event):
         await event.client(
             EditChatDefaultBannedRightsRequest(peer=peer_id,
                                                banned_rights=unlock_rights))
-        await event.edit(f"`Bu sohbet için {what} kilidi açıldı!`")
+        await event.edit(LANG['UNLOCK'] % what)
     except BaseException as e:
         await event.edit(
-            f"`Bunun için gerekli haklara sahip misin?`\n**Hata:** {str(e)}")
+            f"{LANG['INVALID_AUTHORITY']} {str(e)}")
         return
 
 
@@ -205,3 +206,11 @@ CMD_HELP.update({
 \n\nKilitleyebileceğin ve kilidini açabileceklerin şunlardır: \
 \n`all, msg, media, sticker, gif, game, inline, poll, invite, pin, info`"
 })
+
+CmdHelp('locks').add_command(
+    'lock', '<kilitlenecek medya tipi> veya .unlock <kilitlenecek medya tipi>', 'Sohbetteki birtakım şeyleri engelleyebilmeni sağlar. (sticker atmak, oyun oynamak vs.)'
+).add_info(
+    'Kilitleyebileceğin ve kilidini açabileceklerin şunlardır: all, msg, media, sticker, gif, game, inline, poll, invite, pin, info'
+).add_warning(
+    'Yönetici hakları gerektirir!'
+).add()
