@@ -1,28 +1,30 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Asena UserBot - Yusuf Usta
+
+
+# Deepfry modülü kaynak kodu: https://github.com/Ovyerus/deeppyer
+# @NaytSeyd tarafından portlanmıştır.
 
 import io
 from random import randint, uniform
-from userbot import bot, CMD_HELP
+from userbot import CMD_HELP
 from userbot.events import register
 
 from PIL import Image, ImageEnhance, ImageOps
 from telethon.tl.types import DocumentAttributeFilename
+from userbot.cmdhelp import CmdHelp
 
-from telethon import events
+# ██████ LANGUAGE CONSTANTS ██████ #
 
+from userbot.language import get_value
+LANG = get_value("deepfry")
+
+# ████████████████████████████████ #
 
 @register(pattern="^.deepfry(?: |$)(.*)", outgoing=True) 
 async def deepfryer(event):
@@ -38,20 +40,20 @@ async def deepfryer(event):
         data = await check_media(reply_message)
 
         if isinstance(data, bool):
-            await event.edit("`Bunu deepfry edə bilmərəm!`")
+            await event.edit(LANG['CANT_DEEPFRY'])
             return
     else:
-        await event.edit("`Deepfry eləmək üçün bir şəkilə vəya stikerə cavab olaraq qarşısına yazmalısız.`")
+        await event.edit(LANG['REPLY_PHOTO'])
         return
 
     # Fotoğrafı (yüksek çözünürlük) bayt dizisi olarak indir
-    await event.edit("`Şəkil yüklənir...`")
+    await event.edit(LANG['MEDIA_DOWNLOADING'])
     image = io.BytesIO()
     await event.client.download_media(data, image)
     image = Image.open(image)
 
     # Resime uygula
-    await event.edit("`Şəkilə deepfry edilir...`")
+    await event.edit(LANG['APPLYING_DEEPFRY'])
     for _ in range(frycount):
         image = await deepfry(image)
 
@@ -114,8 +116,6 @@ async def check_media(reply_message):
     else:
         return data
 
-CMD_HELP.update({
-    "deepfry":
-    "✏️**Əmr:** .deepfry [rəqəm 1-5]\
-    \n🔰**İşlədilişi:** Seçilən şəkilə deepfry efekti edər."
-})
+CmdHelp('deepfry').add_command(
+    'deepfry', '<numara 1-5>', 'Belirlenen görüntüye deepfry efekti uygular.', 'deepfry 5'
+).add()
