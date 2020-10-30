@@ -1,18 +1,11 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Asena UserBot - Yusuf Usta
+
 
 """ Telegram'daki profil detaylarınızı değişmeye yarayan UserBot modülüdür. """
 
@@ -29,18 +22,26 @@ from telethon.tl.functions.photos import (DeletePhotosRequest,
 from telethon.tl.types import InputPhoto, MessageMediaPhoto, User, Chat, Channel
 from userbot import bot, CMD_HELP
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
 
 # ====================== CONSTANT ===============================
-INVALID_MEDIA = "```Medya keçərli deil.```"
-PP_CHANGED = "```Profil şəkili dəyişdirildi.```"
-PP_TOO_SMOL = "```Bu şəkil çox balacadı, daha böyük bir şəkil işlədin.```"
-PP_ERROR = "```Şəkili dəyişərkən bir xəta yarandı.```"
+# ██████ LANGUAGE CONSTANTS ██████ #
 
-BIO_SUCCESS = "```Biyoqraf dəyişdirildi.```"
+from userbot.language import get_value
+LANG = get_value("profile")
 
-NAME_OK = "```Adınız dəyişdirildi.```"
-USERNAME_SUCCESS = "```İstifadəçi adınız dəyişdirildi.```"
-USERNAME_TAKEN = "```Bu adda istifadəçi adı var.```"
+# ████████████████████████████████ #
+
+INVALID_MEDIA = LANG['INVALID_MEDIA']
+PP_CHANGED = LANG['PP_CHANGED']
+PP_TOO_SMOL = LANG['PP_TOO_SMOL']
+PP_ERROR = LANG['PP_ERROR']
+
+BIO_SUCCESS = LANG['BIO_SUCCESS']
+
+NAME_OK = LANG['NAME_OK']
+USERNAME_SUCCESS = LANG['USERNAME_SUCCESS']
+USERNAME_TAKEN = LANG['USERNAME_TAKEN']
 # ===============================================================
 
 
@@ -127,7 +128,7 @@ async def count(event):
     bc = 0
     b = 0
     result = ""
-    await event.edit("`Zəhmət olmaza gözləyin..`")
+    await event.edit("`Lütfen bekleyin..`")
     dialogs = await bot.get_dialogs(limit=None, ignore_migrated=True)
     for d in dialogs:
         currrent_entity = d.entity
@@ -146,11 +147,11 @@ async def count(event):
         else:
             print(d)
 
-    result += f"`İstifadəçilər:`\t**{u}**\n"
-    result += f"`Qruplar:`\t**{g}**\n"
-    result += f"`Superqruplar:`\t**{c}**\n"
-    result += f"`Kanallar:`\t**{bc}**\n"
-    result += f"`Botlar:`\t**{b}**"
+    result += f"`{LANG['USERS']}:`\t**{u}**\n"
+    result += f"`{LANG['GROUPS']}:`\t**{g}**\n"
+    result += f"`{LANG['SUPERGROUPS']}:`\t**{c}**\n"
+    result += f"`{LANG['CHANNELS']}:`\t**{bc}**\n"
+    result += f"`{LANG['BOTS']}:`\t**{b}**"
 
     await event.edit(result)
 
@@ -179,23 +180,20 @@ async def remove_profilepic(delpfp):
                        file_reference=sep.file_reference))
     await delpfp.client(DeletePhotosRequest(id=input_photos))
     await delpfp.edit(
-        f"`{len(input_photos)} ədəd profil şəkili silindi.`")
+        LANG['DELPFP'] % len(input_photos))
 
-
-CMD_HELP.update({
-    "profile":
-    ".username <yeni istifadəçi adı>\
-\nİşlədilişi: Telegram'dakı istkfadəçi adınızı dəyişdirər.\
-\n\n.name <ad> or .name <ad> <soyad>\
-\nİşlədilişi: Telegram'dakı adınızı dəyişdirər. (Ad və soyad ilk boşluğa dayanaraq birləşdilir.)\
-\n\n.setpfp\
-\nİşlədilişi: Bir şəkili Telegram'da profil şəkili etmək üçün .setpfp əmriylə şəkilə cavab olaraq yazın.\
-\n\n.setbio <yeni biyoqrafi>\
-\nİşlədilişi: Telegram'dakı biyoqrafınızı bu əmri işlədərək dəyişdirin..\
-\n\n.delpfp or .delpfp <rəqəm>/<all>\
-\nİşlədilişi: Telegram profil şəkilinizi silər.\
-\n\n.reserved\
-\nİşlədilişi: Rezerv etdiyiniz istifadəçi adlarını göstərir.\
-\n\n.count\
-\nİşlədilişi: Qruplarınızı, söhbətlərinizi, aktiv botları vs. sayar."
-})
+CmdHelp('profile').add_command(
+    'username', '<yeni kullanıcı adı>', 'Telegram\'daki kullanıcı adınızı değişir.'
+).add_command(
+    'name', '<isim> or .name <isim> <soyisim>', 'Telegram\'daki isminizi değişir. (Ad ve soyad ilk boşluğa dayanarak birleştirilir.)'
+).add_command(
+    'setpfp', None, 'Bir resmi Telegram\'da profil resmi yapmak için .setpfp komutuyla cevap verin.'
+).add_command(
+    'setbio', '<yeni biyografi>', 'Telegram\'daki biyografinizi bu komutu kullanarak değiştirin.'
+).add_command(
+    'delpfp', '<numara/all>', 'Telegram profil fotoğrafınızı kaldırır.'
+).add_command(
+    'reserved', None, 'Rezerve ettiğiniz kullanıcı adlarını gösterir.'
+).add_command(
+    'count', None, 'Gruplarınızı, sohbetlerinizi, aktif botları vs. sayar.'
+).add()
