@@ -1,18 +1,11 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Asena UserBot - Yusuf Usta
+
 # Prakasaka tarafından portlanmıştır.
 #
 
@@ -22,13 +15,21 @@ import requests
 from userbot.events import register
 from telethon.tl.types import MessageMediaPhoto
 from userbot import CMD_HELP, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
+from userbot.cmdhelp import CmdHelp
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("remove_bg")
+
+# ████████████████████████████████ #
 
 @register(outgoing=True, pattern="^.rbg(?: |$)(.*)")
 async def kbg(remob):
+    """ .rbg komutu ile görüntünün arka planını kaldırın """
     if REM_BG_API_KEY is None:
         await remob.edit(
-            "`Xəta: Remove.BG API key əksikdir. Xahiş olunur əlavə edəsiniz.`"
+            LANG['NEED_API_KEY']
         )
         return
     input_str = remob.pattern_match.group(1)
@@ -36,28 +37,27 @@ async def kbg(remob):
     if remob.reply_to_msg_id:
         message_id = remob.reply_to_msg_id
         reply_message = await remob.get_reply_message()
-        await remob.edit("`Hazırlanır..`")
+        await remob.edit(LANG['TRYING'])
         try:
             if isinstance(
                     reply_message.media, MessageMediaPhoto
             ) or "image" in reply_message.media.document.mime_type.split('/'):
                 downloaded_file_name = await remob.client.download_media(
                     reply_message, TEMP_DOWNLOAD_DIRECTORY)
-                await remob.edit("`Bu görüntüden arxa plan silinir..`")
+                await remob.edit(LANG['RBG'])
                 output_file_name = await ReTrieveFile(downloaded_file_name)
                 os.remove(downloaded_file_name)
             else:
-                await remob.edit("`Bunun arxa planını necə silə bilərəm ?`"
-                                 )
+                await remob.edit(LANG['CANT_RBG'])
         except Exception as e:
             await remob.edit(str(e))
             return
     elif input_str:
         await remob.edit(
-            f"`Onlayn görüntüden arxa planı silmək`\n{input_str}")
+            f"`{LANG['ONLINE_RBG']}`\n{input_str}")
         output_file_name = await ReTrieveURL(input_str)
     else:
-        await remob.edit("`Arxa planı silmək üçün birşeyə ehtiyacım vat.`")
+        await remob.edit(LANG['NEED'])
         return
     contentType = output_file_name.headers.get("content-type")
     if "image" in contentType:
@@ -66,12 +66,12 @@ async def kbg(remob):
             await remob.client.send_file(
                 remob.chat_id,
                 remove_bg_image,
-                caption="Remove.bg `vasitəsilə arxa plan silindi.`",
+                caption=LANG['CAPTION'],
                 force_document=True,
                 reply_to=message_id)
             await remob.delete()
     else:
-        await remob.edit("**Xəta (Böyük ehtimal API key səhvdir və ya əksikdir..)**\n`{}`".format(
+        await remob.edit("**Hata {}**\n`{}`".format(LANG['ERROR'],
             output_file_name.content.decode("UTF-8")))
 
 
@@ -102,9 +102,6 @@ async def ReTrieveURL(input_url):
                       stream=True)
     return r
 
-
-CMD_HELP.update({
-    "rbg":
-    ".rbg <Şəkil linki> vəya şəklə yanıt verin (Bildirş: Stikerlər üzərində işləmir.)\
-\nİşlədilişi: remove.bg API vasitəsilə görüntülərin arxa planını silir."
-})
+CmdHelp('rgb').add_command(
+    'rbg', '<Resim bağlantısı/yanıt>', 'remove.bg API kullanarak görüntülerin arka planını kaldırır.'
+).add()
