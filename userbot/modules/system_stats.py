@@ -14,7 +14,7 @@ from asyncio.subprocess import PIPE as asyncPIPE
 from platform import uname
 from shutil import which
 from os import remove
-from userbot import CMD_HELP, ASENA_VERSION
+from userbot import CMD_HELP, DTO_VERSION
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from telethon import version
