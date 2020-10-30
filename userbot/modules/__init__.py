@@ -14,7 +14,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Tüm modülleri yükleyen init dosyası """
+""" """
 from userbot import LOGS
 
 
@@ -31,5 +31,5 @@ def __list_all_modules():
 
 
 ALL_MODULES = sorted(__list_all_modules())
-LOGS.info("Yüklenecek modüller: %s", str(ALL_MODULES))
+LOGS.info("Yüklənəcək modullar: %s", str(ALL_MODULES))
 __all__ = ALL_MODULES + ["ALL_MODULES"]
