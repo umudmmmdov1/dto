@@ -1,18 +1,11 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Asena UserBot - Yusuf Usta
+
 
 """ Gereksiz mesajları temizlemek için UserBot modülü (genellikle spam veya ot). """
 
@@ -22,7 +15,14 @@ from telethon.errors import rpcbaseerrors
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("purge")
+
+# ████████████████████████████████ #
 
 @register(outgoing=True, pattern="^.purge$")
 async def fastpurger(purg):
@@ -41,19 +41,18 @@ async def fastpurger(purg):
                 await purg.client.delete_messages(chat, msgs)
                 msgs = []
     else:
-        await purg.edit("`Təmizləməyə başlamaq üçün mesajları hardan silmək istəyirsizsə oradan mesaja cavab olaraq yazmaq lazımdır.`")
+        await purg.edit(LANG['NEED_MSG'])
         return
 
     if msgs:
         await purg.client.delete_messages(chat, msgs)
     done = await purg.client.send_message(
-        purg.chat_id, f"`Mesajlar silindi`\
-        \n{str(count)} dənə mesaj silindi.")
+        purg.chat_id, LANG['PURGED'].format(str(count)))
 
     if BOTLOG:
         await purg.client.send_message(
             BOTLOG_CHATID,
-            "Seçilən " + str(count) + " mesajlar silindi.")
+            "Hedeflenen " + str(count) + " mesaj başarıyla silindi.")
     await sleep(2)
     await done.delete()
 
@@ -74,12 +73,12 @@ async def purgeme(delme):
 
     smsg = await delme.client.send_message(
         delme.chat_id,
-        "`Təmizlik tamamlandı` " + str(count) + " dənə mesaj silindi.",
+        LANG['PURGED_ME'].format(str(count))
     )
     if BOTLOG:
         await delme.client.send_message(
             BOTLOG_CHATID,
-            "Seçilən " + str(count) + " mesajlar silindi.")
+            "Hedeflenen " + str(count) + " mesaj başarıyla silindi.")
     await sleep(2)
     i = 1
     await smsg.delete()
@@ -95,11 +94,11 @@ async def delete_it(delme):
             await delme.delete()
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Seçilən mesaj silindi")
+                    BOTLOG_CHATID, "Hedeflenen mesajın silinmesi başarılıyla tamamlandı")
         except rpcbaseerrors.BadRequestError:
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Bu mesajı silə bilmirəm.")
+                    BOTLOG_CHATID, "Bu mesajı silemiyorum.")
 
 
 @register(outgoing=True, pattern="^.edit")
@@ -118,7 +117,7 @@ async def editer(edit):
         i = i + 1
     if BOTLOG:
         await edit.client.send_message(BOTLOG_CHATID,
-                                       "Mesaj düzənləndi")
+                                       "Mesaj düzenleme sorgusu başarıyla yürütüldü")
 
 
 @register(outgoing=True, pattern="^.sd")
@@ -133,33 +132,16 @@ async def selfdestruct(destroy):
     await smsg.delete()
     if BOTLOG:
         await destroy.client.send_message(BOTLOG_CHATID,
-                                          "sd sorgusu tamamlandı")
+                                          "sd sorgusu başarıyla tamamlandı")
 
-
-CMD_HELP.update({
-    'purge':
-    '.purge\
-        \nİşlədilişi: Seçilən mesajdan başlayaraq bütün mesajları silər.'
-})
-
-CMD_HELP.update({
-    'purgeme':
-    '.purgeme <x>\
-        \nİşlədilişi: Öz mesajlarınızı silər nümunə .purgeme 25 əmrini yazsaz 25 ədəd mesajınız silinəcək həmin söhbətdə.'
-})
-
-CMD_HELP.update({"del": ".del\
-\nİşlədilişi: Seçdiyiniz mesajı silər."})
-
-CMD_HELP.update({
-    'edit':
-    ".edit <yenimesaj>\
-\nİşlədilişi: Son mesajınızı <yenimesaj> ilə dəyişdirər."
-})
-
-CMD_HELP.update({
-    'sd':
-    '.sd <x> <mesaj>\
-\nİşlədilişi: x saniyə içində öz özünə yox olan bir mesaj yaradar.\
-\nBotunuzu yuxu moduna keçirtdiyinizdə, saniyələri 100 saniyənin altında tutun.'
-})
+CmdHelp('purge').add_command(
+    'purge', None, 'Hedeflenen yanıttan başlayarak tüm mesajları temizler.'
+).add_command(
+    'purgeme', '<sayı>', 'Hedeflenen yanıttan başlayarak kendi mesajlarınızı temizler.'
+).add_command(
+    'del', '<yanıt>', 'Yanıt verilen mesajı siler.'
+).add_command(
+    'edit', '<yeni mesaj>', 'Yanıt verdiğiniz mesajı yeni mesaj ile değiştirir.'
+).add_command(
+    'sd', '<x> <mesaj>', 'x saniye içinde kendini yok eden bir mesaj oluşturur.'
+).add()
