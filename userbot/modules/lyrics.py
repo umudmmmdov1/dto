@@ -1,39 +1,38 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# Asena UserBot - Yusuf Usta
+
 
 import os
 import lyricsgenius
-import random
 import asyncio
 
 from userbot.events import register
-from userbot import CMD_HELP, LOGS, GENIUS
+from userbot import CMD_HELP, GENIUS
+from userbot.cmdhelp import CmdHelp
+
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("lyrics")
+
+# ████████████████████████████████ #
 
 @register(outgoing=True, pattern="^.lyrics(?: |$)(.*)")
 async def lyrics(lyric):
     if r"-" in lyric.text:
         pass
     else:
-        await lyric.edit("`Xəta: zəhmət olmasa <musiqiçi> və <musiqi> üçün tire olaraq '-' işlədin`\n"
-                         "Nümunə: `Okaber - TABOO`")
+        await lyric.edit(LANG['WRONG_TYPE'])
         return
 
     if GENIUS is None:
         await lyric.edit(
-            "`Zəhmət olmasa Genius tokenini düzəldin. Təşəkkürlər!`")
+            LANG['GENIUS_NOT_FOUND'])
         return
     else:
         genius = lyricsgenius.Genius(GENIUS)
@@ -42,14 +41,14 @@ async def lyrics(lyric):
             artist = args[0].strip(' ')
             song = args[1].strip(' ')
         except:
-            await lyric.edit("`Zəhmət olmasa musiqiçi və musiqi adını yazın`")
+            await lyric.edit(LANG['GIVE_INFO'])
             return
 
     if len(args) < 1:
-        await lyric.edit("`Zəhmət olmasa musiqiçi və musiqi adını yazın`")
+        await lyric.edit(LANG['GIVE_INFO'])
         return
 
-    await lyric.edit(f"`{artist} - {song}  musiqi sözləri axtarılır...`")
+    await lyric.edit(LANG['SEARCHING'].format(artist, song))
 
     try:
         songs = genius.search_song(song, artist)
@@ -57,12 +56,12 @@ async def lyrics(lyric):
         songs = None
 
     if songs is None:
-        await lyric.edit(f"Musiqi **{artist} - {song}** tapılmadı!")
+        await lyric.edit(LANG['NOT_FOUND'].format(artist, song))
         return
     if len(songs.lyrics) > 4096:
-        await lyric.edit("`Musiqi sözləri çox uzundur, görmək üçün fayla baxa bilərsən.`")
+        await lyric.edit(LANG['TOO_LONG'])
         with open("lyrics.txt", "w+") as f:
-            f.write(f"Axtarış sorğusu: \n{artist} - {song}\n\n{songs.lyrics}")
+            f.write(f"{LANG['LYRICS']} \n{artist} - {song}\n\n{songs.lyrics}")
         await lyric.client.send_file(
             lyric.chat_id,
             "lyrics.txt",
@@ -70,21 +69,20 @@ async def lyrics(lyric):
         )
         os.remove("lyrics.txt")
     else:
-        await lyric.edit(f"**Axtarış sorğusu**: \n`{artist} - {song}`\n\n```{songs.lyrics}```")
+        await lyric.edit(f"{LANG['LYRICS']} \n`{artist} - {song}`\n\n```{songs.lyrics}```")
     return
 
-@register(outgoing=True, pattern="^.oxumaq(?: |$)(.*)")
+@register(outgoing=True, pattern="^.singer(?: |$)(.*)")
 async def singer(lyric):
     if r"-" in lyric.text:
         pass
     else:
-        await lyric.edit("`Xəta: zəhmət olmasa <musiqiçi> və <musiqi> üçün tire olaraq '-' işlədin`\n"
-                         "Nümunə: `Okaber - TABOO`")
+        await lyric.edit(LANG['WRONG_TYPE'])
         return
 
     if GENIUS is None:
         await lyric.edit(
-            "`Zəhmət olmasa Genius tokenini düzəldin. Təşəkkürlər!`")
+            LANG['GENIUS_NOT_FOUND'])
         return
     else:
         genius = lyricsgenius.Genius(GENIUS)
@@ -93,14 +91,14 @@ async def singer(lyric):
             artist = args[0].strip(' ')
             song = args[1].strip(' ')
         except:
-            await lyric.edit("`Zəhmət olmasa musiqiçi və musiqi adını yazın`")
+            await lyric.edit(LANG['GIVE_INFO'])
             return
 
     if len(args) < 1:
-        await lyric.edit("`Zəhmət olmasa musiqiçi və musiqi adını yazın`")
+        await lyric.edit(LANG['GIVE_INFO'])
         return
 
-    await lyric.edit(f"`{artist} - {song} musiqi sözləri axtarılır...`")
+    await lyric.edit(LANG['SEARCHING'].format(artist, song))
 
     try:
         songs = genius.search_song(song, artist)
@@ -108,9 +106,9 @@ async def singer(lyric):
         songs = None
 
     if songs is None:
-        await lyric.edit(f"Musiqi **{artist} - {song}** tapılmadı!")
+        await lyric.edit(LANG['NOT_FOUND'].format(artist, song))
         return
-    await lyric.edit(f"`🎙 Qulaqlarıvın pası açılacaq! {artist}'dən {song} gəlir!`")
+    await lyric.edit(LANG['SINGER_LYRICS'].format(artist, song))
     await asyncio.sleep(1)
 
     split = songs.lyrics.splitlines()
@@ -123,7 +121,7 @@ async def singer(lyric):
             i += 1
         except:
             i += 1
-    await lyric.edit(f"`🎙Necə oxudum? Xoşuva gəldi?`")
+    await lyric.edit(LANG['SINGER_ENDED'])
 
     return
 
@@ -131,10 +129,16 @@ async def singer(lyric):
 
 CMD_HELP.update({
     "lyrics":
-    "İşlədilişi: .`lyrics <musiqiçi adı> - <musiqi adı>`\n"
-    "MƏLUMAT: ""-"" tire önəmlidir!",
+    "Kullanım: .`lyrics <sanatçı adı> - <şarkı ismi>`\n"
+    "NOT: ""-"" ayracı önemli!",
     "singer":
-    "İşlədilişi: Musiqi oxuyar .`singer <musiqiçi adı> - <musiqi adı>`\n"
-    "MƏLUMAT: ""-"" tire önəmlidir!"
+    "Şarkı söyler, Kullanım: .`singer <sanatçı adı> - <şarkı ismi>`\n"
+    "NOT: ""-"" ayracı önemli!"
 
 })
+
+CmdHelp('lyrics').add_command(
+    'lyrics', ' <sanatçı adı> - <şarkı ismi>', 'Şarkı sözlerini getirir.', 'lyrics System Of a Down - Scince'
+).add_command(
+    'singer', ' <sanatçı adı> - <şarkı ismi>', 'Şarkı söyler.', 'singer System Of a Down - Scince'
+).add()
