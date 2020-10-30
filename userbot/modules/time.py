@@ -1,19 +1,13 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
 
+# DTÖUserBot - Ümüd
+
+
+""" """
 
 from datetime import datetime as dt
 
@@ -23,9 +17,17 @@ from pytz import timezone as tz
 
 from userbot import CMD_HELP, COUNTRY, TZ_NUMBER
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("time")
+
+# ████████████████████████████████ #
 
 async def get_tz(con):
+    """  """
     if "(Uk)" in con:
         con = con.replace("Uk", "UK")
     if "(Us)" in con:
@@ -51,6 +53,8 @@ async def get_tz(con):
 
 @register(outgoing=True, pattern="^.time(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
 async def time_func(tdata):
+    """ .time
+    """
     con = tdata.pattern_match.group(1).title()
     tz_num = tdata.pattern_match.group(2)
 
@@ -68,11 +72,11 @@ async def time_func(tdata):
         tz_num = TZ_NUMBER
         timezones = await get_tz(COUNTRY)
     else:
-        await tdata.edit(f"Burda saat  **{dt.now().strftime(t_form)}** ")
+        await tdata.edit(f"{LANG['CLOCK']}  **{dt.now().strftime(t_form)}** ")
         return
 
     if not timezones:
-        await tdata.edit("`Xəta. Ölkəni doğru verdiyinizdən əmin olun.`")
+        await tdata.edit(LANG['INVALID_COUNTRY'])
         return
 
     if len(timezones) == 1:
@@ -82,13 +86,13 @@ async def time_func(tdata):
             tz_num = int(tz_num)
             time_zone = timezones[tz_num - 1]
         else:
-            return_str = f"`{c_name} ölkəsinin 1'dən çox saat diliminə sahibdir:`\n\n"
+            return_str = f"`{c_name} {LANG['TOO_TIMEZONE']}:`\n\n"
 
             for i, item in enumerate(timezones):
                 return_str += f"`{i+1}. {item}`\n"
 
-            return_str += "\n`bunlardan birini rəqəm yazaraq seçin."
-            return_str += f"`Məsəıən: .time {c_name} 2`"
+            return_str += f"\n`{LANG['CHOICE_TIMEZONE']}."
+            return_str += f"`{LANG['EXAMPLE']}: .time {c_name} 2`"
 
             await tdata.edit(return_str)
             return
@@ -97,18 +101,19 @@ async def time_func(tdata):
 
     if c_name != COUNTRY:
         await tdata.edit(
-            f"{c_name} ölkəsində saat  **{dtnow}**  ({time_zone} saat dilimində).")
+            f"{c_name} {LANG['IS_CLOCK']}  **{dtnow}**  ({time_zone} {LANG['IS_TZ']}).")
         return
 
     elif COUNTRY:
-        await tdata.edit(f"{COUNTRY} ölkəsində saat **{dtnow}**  "
-                         f"({time_zone} saat dilimində).")
+        await tdata.edit(f"{COUNTRY} {LANG['IS_CLOCK']} **{dtnow}**  "
+                         f"({time_zone} {LANG['IS_TZ']}).")
         return
 
 
 @register(outgoing=True, pattern="^.date(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
 async def date_func(dat):
-
+    """ .date
+    """
     con = dat.pattern_match.group(1).title()
     tz_num = dat.pattern_match.group(2)
 
@@ -126,11 +131,11 @@ async def date_func(dat):
         tz_num = TZ_NUMBER
         timezones = await get_tz(COUNTRY)
     else:
-        await dat.edit(f"Burda tarix: **{dt.now().strftime(d_form)}** ")
+        await dat.edit(f"{LANG['DATE']}: **{dt.now().strftime(d_form)}** ")
         return
 
     if not timezones:
-        await dat.edit("`Xəta. Ölkəni doğru verdiyinizdən əmin olun.`")
+        await dat.edit(LANG['INVALID_COUNTRY'])
         return
 
     if len(timezones) == 1:
@@ -140,13 +145,13 @@ async def date_func(dat):
             tz_num = int(tz_num)
             time_zone = timezones[tz_num - 1]
         else:
-            return_str = f"`{c_name} ölkəsinin 1'dən çox saat diliminə sahibdir:`\n"
+            return_str = f"`{c_name} {LANG['TOO_TIMEZONE']}:`\n"
 
             for i, item in enumerate(timezones):
                 return_str += f"`{i+1}. {item}`\n"
 
-            return_str += "\n`Bunlardan birini rəqəm yazaraq seçin"
-            return_str += f"Məsələn: .date {c_name} 2"
+            return_str += f"\n`{LANG['CHOICE_TIMEZONE']}"
+            return_str += f"{LANG['EXAMPLE']}: .date {c_name} 2"
 
             await dat.edit(return_str)
             return
@@ -155,26 +160,16 @@ async def date_func(dat):
 
     if c_name != COUNTRY:
         await dat.edit(
-            f"{c_name} ölkəsində tarix  **{dtnow}**  ({time_zone} saat dilimində).`")
+            f"{c_name} {LANG['IS_DATE']}  **{dtnow}**  ({time_zone} {LANG['IS_TZ']}).`")
         return
 
     elif COUNTRY:
-        await dat.edit(f"{COUNTRY} ölkəsində tarix **{dtnow}**"
-                       f"({time_zone} saat dilimində).")
+        await dat.edit(f"{COUNTRY} {LANG['IS_DATE']} **{dtnow}**"
+                       f"({time_zone} {LANG['IS_TZ']}).")
         return
 
-
-CMD_HELP.update({
-    "time":
-    ".time <ölkə adı/kodu> <saat dilimi nömrəsi>"
-    "\nİşlədilişi: Bir ölkənkn saatını göstərir. Əgər bir ölkə "
-    "birdən çox saat diliminə sahibdirsə, hamısı birgə göstərilir "
-    "ve seçim sənə qalır."
-})
-CMD_HELP.update({
-    "date":
-    ".date <ölkə adı/kodu> <saat dilimi nömrəsi>"
-    "\nİşlədilişi: Bir ölkənin tarixini göstərir. Əgər ölkə"
-    "birdən çox saat diliminə sahibdirsən, hamısı birgə göstərilir."
-    "və seçim sənə qalır."
-})
+CmdHelp('time').add_command(
+    'time', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkənin saatını göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, hamısı birdən göstərilir və seçim sənə buraxılır.'
+).add_command(
+    'date', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkənin tarixini göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, hamısı birdən göstərilir. və seçim sənə buraxılır.'
+).add()
