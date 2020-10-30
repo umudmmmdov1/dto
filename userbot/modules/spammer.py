@@ -1,26 +1,18 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
 
+# DTÖUserBot - Ümüd
+
+
 import asyncio
-import time
 import threading
-from asyncio import wait, sleep
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
 
 @register(outgoing=True, pattern="^.tspam")
 async def tmeme(e):
@@ -35,7 +27,7 @@ async def tmeme(e):
             await e.client.send_message(
                 BOTLOG_CHATID,
                 "#TSPAM \n\n"
-                "TSpam başarıyla gerçekleştirildi"
+                "TSpam uğurla edildi"
                 )
 
 @register(outgoing=True, pattern="^.spam")
@@ -51,7 +43,7 @@ async def spammer(e):
             await e.client.send_message(
                 BOTLOG_CHATID,
                 "#SPAM \n\n"
-                "Spam başarıyla gerçekleştirildi"
+                "Spam uğurla edildi"
                 )
                                
 @register(outgoing=True, pattern="^.bigspam")
@@ -68,7 +60,7 @@ async def bigspam(e):
             await e.client.send_message(
                 BOTLOG_CHATID,
                 "#BIGSPAM \n\n"
-                "Bigspam başarıyla gerçekleştirildi"
+                "Bigspam uğurla edildi"
                 )
         
         
@@ -86,7 +78,7 @@ async def tiny_pic_spam(e):
             await e.client.send_message(
                 BOTLOG_CHATID,
                 "#PICSPAM \n\n"
-                "PicSpam başarıyla gerçekleştirildi"
+                "PicSpam uğurla edildi"
                 )
 
 
@@ -109,20 +101,19 @@ async def delayspammer(e):
             await e.client.send_message(
                 BOTLOG_CHATID,
                 "#DelaySPAM \n\n"
-                "DelaySpam başarıyla gerçekleştirildi"
+                "DelaySpam uğurla edildi"
                 )
-                               
-CMD_HELP.update({
-    "spammer": ".tspam <mətin>\
-\nİşlədilişi: Verilən mesajı tək tək göndərərək spam edər\
-\n\n.spam <miqdar> <mətin>\
-\nİşlədilişi: Verilən miqdarda spam göndərər\
-\n\n.bigspam <miqdar> <mətin>\
-\nİşlədilişi: .spam əmrinin böyük hali\
-\n\n.picspam <miqdar> <link>\
-\nİşlədilişi: Verilən miqdarda şəkilli spam göndərir\
-\n\n.delayspam <gecikmə> <miqdar> <mətin>\
-\nİşlədilişi: Verilən miqdar və verilən gecikmə ilə gecikməli spam edər\
-\n\n\nMƏLUMAT : Məsuliyyət sizə aiddir!"
-})
 
+CmdHelp('spammer').add_command(
+    'tspam', '<mətin>', 'Verilən mesajı tək tək göndərərək spam edər.'
+).add_command(
+    'spam', '<miqdar> <mətin>', 'Verilən miqdarda spam göndərir.'
+).add_command(
+    'bigspam', '<miqdar> <mətin>', 'Verilən miqdarda spam göndərir.'
+).add_command(
+    'picspam', '<miqdar> <link>', 'Verilən miqdarda fotolu spam göndərir.'
+).add_command(
+    'delayspam', '<gecikmə> <miqdar> <mətin>', 'Verilən miqdar və verilən gecikmə ilə gecikməli spam edər.'
+).add_warning(
+    'Məsuliyyət sizə aitdir!!'
+).add()
