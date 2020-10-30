@@ -1,36 +1,34 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
 
+# Asena UserBot - Yusuf Usta
+
+
+""" QR kodları ile ilgili komutları içeren UserBot modülü. """
 
 import os
-import asyncio
-
 import qrcode
 import barcode
 from barcode.writer import ImageWriter
 from urllib3 import PoolManager
-
 from bs4 import BeautifulSoup
-
 from userbot import CMD_HELP
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("qrcode")
+
+# ████████████████████████████████ #
 
 @register(pattern=r"^.decode$", outgoing=True)
 async def parseqr(qr_e):
+    """ .decode komutu cevap verilen fotoğraftan QR kodu / Barkod içeriğini alır """
     downloaded_file_name = await qr_e.client.download_media(
         await qr_e.get_reply_message())
 
@@ -49,7 +47,7 @@ async def parseqr(qr_e):
 
     os.remove(downloaded_file_name)
     if not t_response:
-        await qr_e.edit("decode uğursuz oldu.")
+        await qr_e.edit(LANG['ERROR'])
         return
     soup = BeautifulSoup(t_response, "html.parser")
     qr_contents = soup.find_all("pre")[0].text
@@ -58,9 +56,10 @@ async def parseqr(qr_e):
 
 @register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
 async def barcode_read(event):
-    await event.edit("`Hazırlanır..`")
+    """ .barcode komutu verilen içeriği içeren bir barkod oluşturur. """
+    await event.edit(LANG['TRYING'])
     input_str = event.pattern_match.group(1)
-    message = "SÖZDİZİMİ: `.barcode <əlavə olunacaq uzun mətn>`"
+    message = f"{LANG['USAGE']} `.barcode <{LANG['TEXT']}>`"
     reply_msg_id = event.message.id
     if input_str:
         message = input_str
@@ -80,7 +79,7 @@ async def barcode_read(event):
         else:
             message = previous_message.message
     else:
-        event.edit("SÖZDİZİMİ: `.barcode <əlavə olunacaq uzun mətn>`")
+        event.edit("SÖZDİZİMİ: `.barcode <eklenecek uzun metin>`")
         return
 
     bar_code_type = "code128"
@@ -101,8 +100,9 @@ async def barcode_read(event):
 
 @register(pattern=r".makeqr(?: |$)([\s\S]*)", outgoing=True)
 async def make_qr(makeqr):
+    """ .makeqr komutu verilen içeriği içeren bir QR kodu yapar. """
     input_str = makeqr.pattern_match.group(1)
-    message = "SÖZDİZİMİ: `.makeqr <əlavə olunacaq uzun mətn>`"
+    message = f"{LANG['USAGE']}: `.makeqr <{LANG['TEXT']}>`"
     reply_msg_id = None
     if input_str:
         message = input_str
@@ -138,19 +138,10 @@ async def make_qr(makeqr):
     os.remove("img_file.webp")
     await makeqr.delete()
 
-
-CMD_HELP.update({
-    'qrcode':
-    ".makeqr <mövzu>\
-\nİşlədilişi: Verilən mövzudan bir QR kodu düzəldin.\
-\nMəsələn: .makeqr www.google.com\
-\nNot: çevrilmiş mövzu almaq üçün .decode komutunu işlədin."
-})
-
-CMD_HELP.update({
-    'barcode':
-    ".barcode <mövzu>\
-\nİşlədilişi: Verilən mövzudan bir barkod düzəldin.\
-\nMəsələn: .barcode www.google.com\
-\nNot: çevrilmiş mövzu almaq üçün .decode komutunu işlədin."
-})
+CmdHelp('qrcode').add_command(
+    'barcode', '<içerik>', 'Verilen içerikten bir barkod yapın.', 'barcode www.google.com'
+).add_command(
+    'decode', '<yanıt>', 'Barkod veya QRCode çözmek için.'
+).add_command(
+    'makeqr', '<içerik>', 'Verilen içerikten bir QR kodu yapın.', 'makeqr www.google.com'
+).add()
