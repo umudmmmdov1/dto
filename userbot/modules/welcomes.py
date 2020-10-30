@@ -1,23 +1,17 @@
-# Copyright (C) 2020 TeamDerUntergang.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+
+# DTÖUserBot - Ümüd
+
+
 
 from userbot.events import register
 from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
 from telethon.events import ChatAction
-
+from userbot.cmdhelp import CmdHelp
 
 @bot.on(ChatAction)
 async def welcome_to_chat(event):
@@ -105,9 +99,9 @@ async def save_welcome(event):
     if msg and msg.media and not string:
         if BOTLOG_CHATID:
             await event.client.send_message(
-                BOTLOG_CHATID, f"#XOŞGƏLDİN_NOTU\
-            \nGRUP ID: {event.chat_id}\
-            \nAşağıdakı mesaj Xoşgəldin mesajı olaraq qeyd edildi. Zəhmət olmasa silməyin!!"
+                BOTLOG_CHATID, f"#QARSİLAMA_NOTU\
+            \nQRUP ID: {event.chat_id}\
+            \nAşağıdakı mesaj söhbət üçün yeni Qarşılama notu olaraq qeyd edildi, xaiş silməyin !!"
             )
             msg_o = await event.client.forward_messages(
                 entity=BOTLOG_CHATID,
@@ -117,17 +111,17 @@ async def save_welcome(event):
             msg_id = msg_o.id
         else:
             await event.edit(
-                "`Xoşgəldin mesajı ayarlamaq üçün BOTLOG_CHATID lazımdır.`"
+                "`Qarşılama notunu qeyd etmək üçün BOTLOG_CHATID tənzimlənməsi edilməlidir.`"
             )
             return
     elif event.reply_to_msg_id and not string:
         rep_msg = await event.get_reply_message()
         string = rep_msg.text
-    success = "`Xoşgəldin mesajı bu söhbət üçün {} `"
+    success = "`Qarşılama mesajı bu söhbət üçün{} `"
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
-        await event.edit(success.format('yaddaşda saxlanıldı'))
+        await event.edit(success.format('qeyd edildi'))
     else:
-        await event.edit(success.format('güncəlləndi'))
+        await event.edit(success.format('yeniləndi'))
 
 
 @register(outgoing=True, pattern="^.checkwelcome$")
@@ -139,17 +133,17 @@ async def show_welcome(event):
         return
     cws = get_current_welcome_settings(event.chat_id)
     if not cws:
-        await event.edit("`Burada Xoşgəldin mesajı yoxdur.`")
+        await event.edit("`Burda qeydli qarşılama mesajı yoxdur.`")
         return
     elif cws and cws.f_mesg_id:
         msg_o = await event.client.get_messages(entity=BOTLOG_CHATID,
                                                 ids=int(cws.f_mesg_id))
         await event.edit(
-            "`Hal hazırda bu Xoşgəldin mesajı ilə yeni istifadəçiləri qarşılayıram.`")
+            "`İndi bu qarşılama notu ilə yeni istifadəçiləri qarşılayıram.`")
         await event.reply(msg_o.message, file=msg_o.media)
     elif cws and cws.reply:
         await event.edit(
-            "`Hal hazırda bu Xoşgəldin mesajı ilə yeni istifadəçiləri qarşılayıram.`")
+            "`İndi bu qarşılama notu ilə yeni istifadəçiləri qarşılayıram.`")
         await event.reply(cws.reply)
 
 
@@ -161,21 +155,31 @@ async def del_welcome(event):
         await event.edit("`SQL xarici modda işləyir!`")
         return
     if rm_welcome_setting(event.chat_id) is True:
-        await event.edit("`Xoşgəldin mesajı bu söhbət üçün silindi.`")
+        await event.edit("`Qarşılama mesajı bu söhbət üçün silindi.`")
     else:
-        await event.edit("`Burda Xoşgəldin mesajı var ?`")
+        await event.edit("`Burda qarşılama notu var görəsən ?`")
 
 
 CMD_HELP.update({
     "welcome":
     "\
-.setwelcome <xoşgəldin mesajı> və ya .setwelcome ilə bir mesaja cavab verin\
-\nİşlədilişi: Mesajı söhbətdə Xoşgəldin mesajı olaraq yadda saxlayar.\
-\n\nXoşgəldin mesajını aşağıdakı dəyişənlər ilə daha gözəl edə bilərsiniz. :\
+.setwelcome <qarşılama mesajı> və ya .setwelcome ilə bir mesaja cavab olaraq yazın\
+\nİşlədilişi: Mesajı söhbətdə qarşılama notu olaraq qeyd edər.\
+\n\nQarşılama mesajlarını düzəltmək üçün işlədilə bilər dəyişkənlər :\
 \n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
 \n\n.checkwelcome\
-\nİşlədilişi: Söhbətdə Xoşgəldin mesajının olub olmadığını yoxluyar.\
+\nİşlədilişi: Söhbətdə qarşılama notu olub olmadığını yoxlayın.\
 \n\n.rmwelcome\
-\nİşlədilişi: Söhbətdəki Xoşgəldin mesajını silər.\
+\nİşlədilişi: Keçərli söhbət üçün qarşılama notunu silər.\
 "
 })
+
+CmdHelp('welcome').add_command(
+    'setwelcome', '<qarşılama mesajı>', 'Mesajı söhbətə qarşılama notu olaraq qeyd edər.'
+).add_command(
+    'checkwelcome', None, 'Söhbətdə qarşılama notu olub olmadığını yoxlayar.'
+).add_command(
+    'rmwelcome', None, 'Keçərli söhbət üçün qarşılama notunu silər.'
+).add_info(
+    'Dəyişkənlər: `{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`'
+).add()
