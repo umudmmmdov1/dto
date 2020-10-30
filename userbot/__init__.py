@@ -190,6 +190,9 @@ SPOTIFY_KEY = os.environ.get("SPOTIFY_KEY", None)
 
 PAKET_ISMI = os.environ.get("PAKET_ISMI", "@DTOUserBot Paketi")
 
+# Avto
+AVTO_Q = sb(os.environ.get("AVTO_Q", "True"))
+
 # Özel Pattern'ler
 PATTERNS = os.environ.get("PATTERNS", ".;!,")
 WHITELIST = get('https://gitlab.com/Quiec/asen/-/raw/master/whitelist.json').json()
@@ -277,14 +280,18 @@ def butonlastir(sayfa, moduller):
     butonlar.append([custom.Button.inline("◀️ Geri", data=f"sayfa({(max_pages - 1) if sayfa == 0 else (sayfa - 1)})"), custom.Button.inline("İrəli ▶️", data=f"sayfa({0 if sayfa == (max_pages - 1) else sayfa + 1})")])
     return [max_pages, butonlar]
 
-with bot:
-    try:
-        bot(JoinChannelRequest("@DTOUserBot"))
-        bot(JoinChannelRequest("@DTOSupport"))
 
-        moduller = CMD_HELP
-        me = bot.get_me()
-        uid = me.id
+with bot:
+    if AVTO_Q:
+        try:
+            bot(JoinChannelRequest("@DTOUserBot"))
+            bot(JoinChannelRequest("@DTOSupport"))
+        except:
+            pass
+
+    moduller = CMD_HELP
+    me = bot.get_me()
+    uid = me.id
 
     try:
         @tgbot.on(NewMessage(pattern='/start'))
