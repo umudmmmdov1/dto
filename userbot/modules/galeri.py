@@ -1,10 +1,10 @@
-# Copyright (C) 2020 Yusuf Usta.
+# Copyright (C) 2020 
 #
 # Licensed under the GPL-3.0 License;
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 import re
 import asyncio
@@ -35,10 +35,10 @@ async def galeri(event):
     try:
         import userbot.modules.sql_helper.galeri_sql as sql
     except:
-        await event.edit("`SQL dışı mod'ta galeri çalışmaz!`")
+        await event.edit("`SQL dışı mod'da qaleri işləməz!`")
     secenek = event.pattern_match.group(1)
     secen = secenek.split(" ")
-    if secen[0] == "ekle":
+    if secen[0] == "elave":
         if len(secen) > 1:
             URL = re.search(URL_REGEX, secen[1])
             if URL != None:
@@ -49,7 +49,7 @@ async def galeri(event):
                 await event.edit(LANG['INVALID_URL'])
         else:
             await event.edit(LANG['EXAMPLE'])
-    elif secen[0] == "liste":
+    elif secen[0] == "list":
         yfoto = ""
         sql.getir_foto()
         fotolar = sql.TUM_GALERI
@@ -87,7 +87,7 @@ async def galeri(event):
         else:
             await event.edit(LANG['NEED_PHOTO'])
             return
-    elif secen[0] == "kapa":
+    elif secen[0] == "bagla":
         if "galeri" in ASYNC_POOL:
             ASYNC_POOL.remove("galeri")
             await event.edit(LANG['STOPPED'])
@@ -98,9 +98,9 @@ async def galeri(event):
         await event.edit(LANG['INVALID'])
 
 CmdHelp('galeri').add_command(
-    'galeri ekle', '<url>', 'Galeri sırasına fotoğraf ekler', 'galeri ekle https://i.hizliresim.com/wFSVKd.jpg'
+    'galeri elave', '<url>', 'Qaleri sırasına foto əlavə edər', 'galeri elave https://i.hizliresim.com/wFSVKd.jpg'
 ).add_command(
-    'galeri liste', None, 'Galeri sırasını gösterir.'
+    'galeri list', None, 'Qaleri sırasını göstərir.'
 ).add_command(
-    'galeri sil', '<sayı>', 'Galeri sırasından bir resmi siler.', 'galeri sil 4'
+    'galeri sil', '<sayı>', 'Qaleri sırasından bir fotonu silər.', 'galeri sil 4'
 ).add()
