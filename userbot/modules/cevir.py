@@ -45,7 +45,7 @@ async def cevir(event):
 
         im = Image.open(foto).convert("RGB")
         im.save("sticker.png", "png")
-        await event.client.send_file(event.chat_id, "sticker.png", reply_to=rep_msg, caption="@DTOUserBot `ile fotoya çevrildi.`")
+        await event.client.send_file(event.chat_id, "sticker.png", reply_to=rep_msg, caption="@DTOUserBot `ilə fotoya çevrildi.`")
 
         await event.delete()
         os.remove("sticker.png")
