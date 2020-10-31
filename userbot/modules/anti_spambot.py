@@ -4,10 +4,10 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 #
 
-''' Gruba katılan spamcıları banlamada yardımcı olan modüldür. '''
+''' DTÖ '''
 
 from asyncio import sleep
 from requests import get
@@ -21,8 +21,7 @@ from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, ANTI_SPAMBOT, ANTI_SPAMBOT_
 @bot.on(ChatAction)
 async def anti_spambot(welcm):
     try:
-        ''' Eğer bir kullanıcı spam algoritmasıyla eşleşiyorsa
-           onu gruptan yasaklar. '''
+        ''' . '''
         if not ANTI_SPAMBOT:
             return
         if welcm.user_joined or welcm.user_added:
@@ -71,19 +70,19 @@ async def anti_spambot(welcm):
                     message_date = message.date
 
                     if message_date < join_time:
-                        # Eğer mesaj kullanıcı katılma tarihinden daha önce ise yoksayılır.
+                        # 
                         continue
 
                     check_user = await welcm.client.get_entity(user_id)
 
-                    # Hata ayıklama. İlerideki durumlar için bırakıldı. ###
+                    # . ###
                     print(
-                        f"Katılan kullanıcı: {check_user.first_name} [ID: {check_user.id}]"
+                        f"Qatılan istifadəçi: {check_user.first_name} [ID: {check_user.id}]"
                     )
-                    print(f"Sohbet: {welcm.chat.title}")
+                    print(f"Söhbət: {welcm.chat.title}")
                     print(f"Zaman: {join_time}")
                     print(
-                        f"Gönderdiği mesaj: {message.text}\n\n[Zaman: {message_date}]"
+                        f"Göndərdiyi mesaj: {message.text}\n\n[Zaman: {message_date}]"
                     )
                     ##############################################
 
@@ -93,37 +92,37 @@ async def anti_spambot(welcm):
                         data = r.json()
                     except BaseException:
                         print(
-                            "CAS kontrolü başarısız, eski anti_spambot kontrolüne dönülüyor."
+                            "CAS yoxlanışı uğursuzdur, köhnə anti_spambot yoxlanışına dönülür."
                         )
                         data = None
                         pass
 
                     if data and data['ok']:
-                        reason = f"[Combot Anti Spam tarafından banlandı.](https://combot.org/cas/query?u={check_user.id})"
+                        reason = f"[Combot Anti Spam tərəfindən banlandı.](https://combot.org/cas/query?u={check_user.id})"
                         spambot = True
                     elif "t.cn/" in message.text:
-                        reason = "`t.cn` URL'leri tespit edildi."
+                        reason = "`t.cn` URL'ləri görsəndi."
                         spambot = True
                     elif "t.me/joinchat" in message.text:
                         reason = "Potansiyel reklam mesajı"
                         spambot = True
                     elif message.fwd_from:
-                        reason = "Başkasından iletilen mesaj"
+                        reason = "Başqasından yönləndirilən mesaj"
                         spambot = True
                     elif "?start=" in message.text:
                         reason = "Telegram botu `start` linki"
                         spambot = True
                     elif "bit.ly/" in message.text:
-                        reason = "`bit.ly` URL'leri tespit edildi."
+                        reason = "`bit.ly` URL'ləri tapıldı."
                         spambot = True
                     else:
                         if check_user.first_name in ("Bitmex", "Promotion",
                                                      "Information", "Dex",
                                                      "Announcements", "Info",
-                                                     "Duyuru", "Duyurular"
-                                                     "Bilgilendirme", "Bilgilendirmeler"):
+                                                     "Məlumat", "Məlumat"
+                                                     "Məlumatlandırma", "Məlumatlandırmalar"):
                             if check_user.last_name == "Bot":
-                                reason = "Bilinen SpamBot"
+                                reason = "BilinƏn SpamBot"
                                 spambot = True
 
                     if spambot:
@@ -131,7 +130,7 @@ async def anti_spambot(welcm):
                         await message.delete()
                         break
 
-                    continue  # Bir sonraki mesajı kontrol et
+                    continue  # 
 
             if spambot:
                 chat = await welcm.get_chat()
@@ -141,19 +140,19 @@ async def anti_spambot(welcm):
                     if ANTI_SPAMBOT_SHOUT:
                         await welcm.reply(
                             "@admins\n"
-                            "`ANTI SPAMBOT TESPİT EDİLDİ!\n"
-                            "BU KULLANICI BENİM SPAMBOT ALGORİTMALARIMLA EŞLEŞİYOR!`"
-                            f"SEBEP: {reason}")
+                            "`ANTI SPAMBOT TAPILDI!\n"
+                            "BU İSTİFADƏÇİ MƏNİM SPAMBOT ALQORİTİMLƏ UYĞUNLAŞIR!`"
+                            f"SƏBƏB: {reason}")
                         kicked = False
                         reported = True
                 else:
                     try:
 
                         await welcm.reply(
-                            "`Potansiyel Spambot Tespit Edildi !!`\n"
-                            f"`SEBEP:` {reason}\n"
-                            "Şu anlık gruptan kickleniyor, bu ID ilerideki durumlar için kaydedilecek.\n"
-                            f"`KULLANICI:` [{check_user.first_name}](tg://user?id={check_user.id})"
+                            "`Potansiyel Spambot Tapıldı !!`\n"
+                            f"`SƏBƏB:` {reason}\n"
+                            "İndilik qrupdan atılır, bu ID irəlidəki vaxtlar üçün qeyd ediləcək.\n"
+                            f"`İSTİFADECİ:` [{check_user.first_name}](tg://user?id={check_user.id})"
                         )
 
                         await welcm.client.kick_participant(
@@ -165,21 +164,21 @@ async def anti_spambot(welcm):
                         if ANTI_SPAMBOT_SHOUT:
                             await welcm.reply(
                                 "@admins\n"
-                                "`ANTI SPAMBOT TESPİT EDİLDİ!\n"
-                                "BU KULLANICI BENİM SPAMBOT ALGORİTMALARIMLA EŞLEŞİYOR!`"
-                                f"SEBEP: {reason}")
+                                "`ANTI SPAMBOT TAPILDI!\n"
+                                "BU İSTİFADƏÇİ MƏNİM SPAMBOT ALQORİTİMLƏ UYĞUNLAŞIR`"
+                                f"SƏBƏB: {reason}")
                             kicked = False
                             reported = True
 
                 if BOTLOG:
                     if kicked or reported:
                         await welcm.client.send_message(
-                            BOTLOG_CHATID, "#ANTI_SPAMBOT RAPORU\n"
-                            f"Kullanıcı: [{check_user.first_name}](tg://user?id={check_user.id})\n"
-                            f"Kullanıcı IDsi: `{check_user.id}`\n"
-                            f"Sohbet: {welcm.chat.title}\n"
-                            f"Sohbet IDsi: `{welcm.chat_id}`\n"
-                            f"Sebep: {reason}\n"
+                            BOTLOG_CHATID, "#ANTI_SPAMBOT SİKAYET\n"
+                            f"İSTİFADECİ: [{check_user.first_name}](tg://user?id={check_user.id})\n"
+                            f"İstifadəçi IDsi: `{check_user.id}`\n"
+                            f"Söhbət: {welcm.chat.title}\n"
+                            f"Söhbət IDsi: `{welcm.chat_id}`\n"
+                            f"Səbəb: {reason}\n"
                             f"Mesaj:\n\n{message.text}")
     except ValueError:
         pass
@@ -187,7 +186,7 @@ async def anti_spambot(welcm):
 
 CMD_HELP.update({
     'anti_spambot':
-    "Kullanım: Bu modül config.env dosyasında ya da env değeri ile etkinleştirilmişse,\
-        \neğer bu spamcılar UserBot'un anti-spam algoritmasıyla eşleşiyorsa, \
-        \nbu modül gruptaki spamcıları gruptan yasaklar (ya da adminlere bilgi verir)."
+    "İşlədilişi: Bu modul config.env faylında ya da env dəyəri ilə aktivləşdirilibsə,\
+        \nəgər bu spamcılar DTÖUserBot'un anti-spam alqoritimi ilə uyğunlaşırsa, \
+        \nbu modul qrupdakı spamcıları qrupdan banlayar (ya da adminlərə məlumat verər)."
 })
