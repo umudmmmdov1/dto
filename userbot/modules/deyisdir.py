@@ -1,10 +1,11 @@
-# Copyright (C) 2020 Yusuf Usta.
+# Copyright (C) 2020
 #
 # Licensed under the  GPL-3.0 License;
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
+
 
 import re
 import userbot.modules.sql_helper.mesaj_sql as sql
@@ -21,7 +22,7 @@ LANG = get_value("deyisdir")
 # ████████████████████████████████ #
 
 @register(outgoing=True, pattern="^.change ?(.*)")
-@register(outgoing=True, pattern="^.de[gğ]i[sş]tir ?(.*)")
+@register(outgoing=True, pattern="^.deyisdir ?(.*)")
 async def degistir(event):
     plugin = event.pattern_match.group(1)
     mesaj = re.search(r"\"(.*)\"", plugin)
@@ -70,12 +71,12 @@ async def degistir(event):
         else:
             await event.edit(LANG['NOT_FOUND'] + ":`afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`")
 
-CmdHelp('degistir').add_command(
-    'değiştir', '<modül> <mesaj/yanıt>', 'Değiştir, bottaki plugin-mesajlarını değiştirmenize yarar. Eğer mesaj yazmazsanız Plugin mesajını orijinal haline döndürür.', '.değiştir afk \"Şu an burda değilim... Belki hiç gelmem\"'
+CmdHelp('deyisdir').add_command(
+    'deyisdir', '<modul> <mesaj/cavab>', 'Dəyişdir, botdakı plugin-mesajlarını dəyişdirmənizə yarayır. Əgər mesaj yazmazsanız Plugin mesajını orijinal halına döndərər.', '.deyisdir afk \"İndi burada deiləm... Bəlkə heç vaxt gəlmədim\"'
 ).add_info(
-    '**Desteklenen Pluginler:** `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`\n**Alive Değişkenleri:** `{plugin}, {telethon}, {asena}, {python}`\n\
-**Ban/Mute Değişkenleri:** `{id}, {username}, {first_name}, {last_name}, {mention}, {date}, {count}`\n\
-**AFK Değişkenleri:** `{username}, {mention}, {first_name}, {last_name}, {last_seen_seconds}, {last_seen}, {last_seen_long}`\n\
-**PMpermit Değişkenler(pm, block, approve, disapprove):** `{id}, {username}, {mention}, {first_name}, {last_name}`\
-**Kickme Değişkenleri:** `{title}`'
+    '**Dəstəklənən Pluginlər:** `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`\n**Alive Dəyişkənləri:** `{plugin}, {telethon}, {dto}, {python}`\n\
+**Ban/Mute Dəyişkənləri:** `{id}, {username}, {first_name}, {last_name}, {mention}, {date}, {count}`\n\
+**AFK Dəyişkənləri:** `{username}, {mention}, {first_name}, {last_name}, {last_seen_seconds}, {last_seen}, {last_seen_long}`\n\
+**PMpermit Dəyişkənlər(pm, block, approve, disapprove):** `{id}, {username}, {mention}, {first_name}, {last_name}`\
+**Kickme Dəyişkənləri:** `{title}`'
 ).add()
