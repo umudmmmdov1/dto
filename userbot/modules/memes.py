@@ -1024,4 +1024,4 @@ CmdHelp('memes').add_command(
     'boşluk', None, 'Boş mesaj. (Elon Musk\'tan öğrendim.)'
 ).add_command(
     'ğ', '<metin>', 'Ğ'
-).add().
+).add()
