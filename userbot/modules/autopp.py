@@ -1,14 +1,11 @@
-# Copyright (C) 2020 Yusuf Usta.
+# Copyright (C) 2020
 #
 # Licensed under the  GPL-3.0 License;
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
-# @NaytSeyd tarafından portlanmıştır.
-# @frknkrc44 tarafından düzenlenmiştir.
-# @Fusuf tarafından AutoVideo yazılmıştır.
 
 import os
 from datetime import datetime
@@ -32,7 +29,7 @@ LANG = get_value("autopp")
 
 # ████████████████████████████████ #
 
-# Before kang; please ask to @fusuf :) #
+# #
 @register(outgoing=True, pattern="^.autovideo ?(.*)$")
 async def autovideo(event):
     if 'autovideo' in ASYNC_POOL:
@@ -72,7 +69,7 @@ async def autovideo(event):
             yazi = yazi.replace("$saat", saat).replace("$tarih", tarih)
             KOMUT = f"text=\'{yazi}\' :expansion=normal: y=h-line_h-10:x=(mod(5*n\,w+tw)-tw): fontcolor=white: fontsize=30: box=1: boxcolor=black@0.5: boxborderw=5: shadowx=2: shadowy=2"
         else:
-            KOMUT = f"text=\'Saat\: {saat} Tarih\: {tarih} {yazi}\' :expansion=normal: y=h-line_h-10:x=(mod(5*n\,w+tw)-tw): fontcolor=white: fontsize=30: box=1: boxcolor=black@0.5: boxborderw=5: shadowx=2: shadowy=2"
+            KOMUT = f"text=\'Saat\: {saat} Tarix\: {tarih} {yazi}\' :expansion=normal: y=h-line_h-10:x=(mod(5*n\,w+tw)-tw): fontcolor=white: fontsize=30: box=1: boxcolor=black@0.5: boxborderw=5: shadowx=2: shadowy=2"
 
         ses = await asyncio.create_subprocess_shell(f"ffmpeg -y -i '{video}' -vf drawtext=\"{KOMUT}\" pp.mp4")
         await ses.communicate()
@@ -126,7 +123,7 @@ async def autopic(event):
             return
 
 async def get_font_file(client, channel_id):
-    # Önce yazı tipi mesajlarını al
+    # 
     font_file_message_s = await client.get_messages(
         entity=channel_id,
         filter=InputMessagesFilterDocument,
@@ -134,18 +131,18 @@ async def get_font_file(client, channel_id):
         # "FLOOD_WAIT" yapmaya neden olabilir
         limit=None
     )
-    # Yazı tipi listesinden rastgele yazı tipi al
+    # 
     # https://docs.python.org/3/library/random.html#random.choice
     font_file_message = random.choice(font_file_message_s)
     # Dosya yolunu indir ve geri dön
     return await client.download_media(font_file_message)
 
 CmdHelp('autopp').add_command(
-    'autopp', None, 'Bu komut belirlediğiniz fotoğrafı profil resmi yapar ve bir saat ekler. Bu saat her dakika değişir.', '.autopp'
+    'autopp', None, 'Bu əmr seçdiyiniz fotonu profil şəkili edər və bir saat əlavə edəe. Bu saat hər dəqiqə dəyişər.', '.autopp'
 ).add()
 
 CmdHelp('autovideo').add_command(
     'autopp', None, 
-    'Bu komut yanıt verdiğiniz videoyu profil video yapar ve bir saat veya tarih veya istediğiniz bir yazı ekler. Bu saat her dakika değişir. nEğer botun kendi yazısını kullanmak istiyorsanız ekstradan bir şey yazmayın. Kendi yazınızı eklemek istiyorsanız .autovideo yazı şeklinde kullanın. ',
+    'Bu əmr cavab verdiyiniz videoyu profil video edər və bir saat vəya tarix vəya istədiyiniz bir yazı əlavə edər. Bu saat hər dəqiqə dəyişir. nƏgər botun öz yazısını işlətmək istiyirsizsə ekstradan bir şey yazmayın. Öz yazınızı əlavə etmək istəyirsizsə .autovideo yazı şəklində işlədin. ',
     '.autovideo ahan saat $saat bu da tarih $tarih'
 ).add()
