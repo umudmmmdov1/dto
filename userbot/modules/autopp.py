@@ -138,7 +138,7 @@ async def get_font_file(client, channel_id):
     return await client.download_media(font_file_message)
 
 CmdHelp('autopp').add_command(
-    'autopp', None, 'Bu əmr seçdiyiniz fotonu profil şəkili edər və bir saat əlavə edəe. Bu saat hər dəqiqə dəyişər.', '.autopp'
+    'autopp', None, 'Bu əmr seçdiyiniz fotonu profil şəkili edər və bir saat əlavə edəe. Bu saat hər dəqiqə dəyişər.', 'autopp'
 ).add()
 
 CmdHelp('autovideo').add_command(
