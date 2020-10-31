@@ -4,10 +4,10 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 
-""" Filtre komutlarını içeren UserBot modülüdür. """
+""" Filtre"""
 
 from asyncio import sleep
 import re
@@ -66,13 +66,13 @@ def split_quotes(text: str):
 
 @register(incoming=True, disable_edited=True, disable_errors=True)
 async def filter_incoming_handler(handler):
-    """ Gelen mesajın filtre tetikleyicisi içerip içermediğini kontrol eder """
+    """  """
     try:
         if not (await handler.get_sender()).bot:
             try:
                 from userbot.modules.sql_helper.filter_sql import get_filters
             except AttributeError:
-                await handler.edit("`Bot Non-SQL modunda çalışıyor!!`")
+                await handler.edit("`Bot Non-SQL modunda işləyir!!`")
                 return
             name = handler.raw_text
             if handler.chat_id == -1001420605284 or handler.chat_id == -1001363514260:
@@ -100,7 +100,7 @@ async def genelfilter(event):
     try:
         from userbot.modules.sql_helper.filter_sql import add_filter
     except AttributeError:
-        await event.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await event.edit("`Bot Non-SQL modunda işləyir!!`")
         return
     mesj = split_quotes(event.pattern_match.group(1))
 
@@ -147,11 +147,11 @@ async def genelfilter(event):
 
 @register(outgoing=True, pattern="^.filter (.*)")
 async def add_new_filter(new_handler):
-    """ .filter komutu bir sohbete yeni filtreler eklemeye izin verir """
+    """ .filter  """
     try:
         from userbot.modules.sql_helper.filter_sql import add_filter
     except AttributeError:
-        await new_handler.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await new_handler.edit("`Bot Non-SQL modunda işləyir!!`")
         return
     mesj = split_quotes(new_handler.pattern_match.group(1))
 
@@ -171,9 +171,9 @@ async def add_new_filter(new_handler):
         if BOTLOG_CHATID:
             await new_handler.client.send_message(
                 BOTLOG_CHATID, f"#FILTER\
-            \nGrup ID: {new_handler.chat_id}\
-            \nFiltre: {keyword}\
-            \n\nBu mesaj filtrenin cevaplanması için kaydedildi, lütfen bu mesajı silmeyin!"
+            \nQrup ID: {new_handler.chat_id}\
+            \nFilter: {keyword}\
+            \n\nBu mesaj filterin cavablanması üçün qeyd edildi, xaiş bu mesajı silməyin!"
             )
             msg_o = await new_handler.client.forward_messages(
                 entity=BOTLOG_CHATID,
@@ -197,11 +197,11 @@ async def add_new_filter(new_handler):
 
 @register(outgoing=True, pattern="^.genelstop (\w*)")
 async def remove_a_genel(r_handler):
-    """ .stop komutu bir filtreyi durdurmanızı sağlar. """
+    """ .stop """
     try:
         from userbot.modules.sql_helper.filter_sql import remove_filter
     except AttributeError:
-        await r_handler.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await r_handler.edit("`Bot Non-SQL modunda işləyir!!`")
         return
     mesj = r_handler.text
     if '"' in mesj:
@@ -217,11 +217,11 @@ async def remove_a_genel(r_handler):
 
 @register(outgoing=True, pattern="^.stop (\w*)")
 async def remove_a_filter(r_handler):
-    """ .stop komutu bir filtreyi durdurmanızı sağlar. """
+    """ .stop  """
     try:
         from userbot.modules.sql_helper.filter_sql import remove_filter
     except AttributeError:
-        await r_handler.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await r_handler.edit("`Bot Non-SQL modunda işləyir!!`")
         return
     mesj = r_handler.text
     if '"' in mesj:
@@ -237,11 +237,11 @@ async def remove_a_filter(r_handler):
 
 @register(outgoing=True, pattern="^.genelfilters$")
 async def genelfilters_active(event):
-    """ .genelfilters komutu bir sohbetteki tüm aktif filtreleri gösterir. """
+    """ .genelfilters """
     try:
         from userbot.modules.sql_helper.filter_sql import get_filters
     except AttributeError:
-        await event.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await event.edit("`Bot Non-SQL modunda işləyir!!`")
         return
     transact = LANG['GENELFILTERS']
     filters = get_filters("GENEL")
@@ -256,11 +256,11 @@ async def genelfilters_active(event):
 
 @register(outgoing=True, pattern="^.filters$")
 async def filters_active(event):
-    """ .filters komutu bir sohbetteki tüm aktif filtreleri gösterir. """
+    """ .filters  """
     try:
         from userbot.modules.sql_helper.filter_sql import get_filters
     except AttributeError:
-        await event.edit("`Bot Non-SQL modunda çalışıyor!!`")
+        await event.edit("`Bot Non-SQL modunda işləyir!!`")
         return
     transact = LANG['FILTERS']
     filters = get_filters(event.chat_id)
@@ -274,13 +274,13 @@ async def filters_active(event):
     await event.edit(transact)
 
 CmdHelp('filter').add_command(
-    'filters', None, 'Bir sohbetteki tüm userbot filtrelerini listeler.'
+    'filters', None, 'Bir söhbətdəki bütün userbot filterlərini listini alar.'
 ).add_command(
-    'filter', '<filtrelenecek kelime> <cevaplanacak metin> ya da bir mesajı .filter <filtrelenecek kelime>', 'Filtre ekler. Ne zaman eklediğiniz kelime/cümle yazılırsa bot cevap verir.', '.filter "merhaba" "meraba"'
+    'filter', '<filtərlənəcək söz> <cavablanacaq söz> ya da bir mesajı .filter <filterlənəcək söz>', 'Filteri əlavə edər. Nə zaman əlavə etdiyiniz söz/cümlə yazılarsa bot cavab verir.', '.filter "merhaba" "meraba"'
 ).add_command(
-    'stop', '<filtre>', 'Seçilen filtreyi durdurur.'
+    'stop', '<filter>', 'Seçilən filteri dayandırır.'
 ).add_command(
-    'genelfilter', '<filtrelenecek kelime> <cevaplanacak metin> ya da bir mesajı .genelfilter <filtrelenecek kelime>', 'Genel filtre ekler. Tüm gruplarda çalışır.'
+    'genelfilter', '<filterlənəcək söz> <cavablanacaq söz> ya da bir mesajı .genelfilter <filterlənəcək söz>', 'Genel filterə əlavə edər. Bütün qruplarda işləyər.'
 ).add_command(
     '.genelstop', '<filtre>', 'Seçilen genel filtreyi durdurur.'
 ).add()
