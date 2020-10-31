@@ -19,7 +19,7 @@ from userbot.cmdhelp import CmdHelp
 @register(outgoing=True, pattern="^.shazam")
 async def shazam(event):
     if not event.is_reply:
-        return await event.edit('`Lütfen bir ses dosyasına yanıt verin!`')
+        return await event.edit('`Xaiş səs faylına cavab olaraq yazın!`')
     else:
         await event.edit('`⬇️ Səs faylı yüklənir...`')
         reply_message = await event.get_reply_message()
@@ -61,10 +61,10 @@ async def shazam(event):
             Caption += f'**Sənədçi(lər):** [{sarki["track"]["subtitle"]}](https://www.shazam.com/artist/{sarki["track"]["artists"][0]["id"]})\n'
         else:
             Caption += f'**Sənədçi(lər):** `{sarki["track"]["subtitle"]}`\n'
-        Caption += f'**Tür:** `{sarki["track"]["genres"]["primary"]}`\n'
+        Caption += f'**Kateqoriya:** `{sarki["track"]["genres"]["primary"]}`\n'
         if sarki["track"]["sections"][0]["type"] == "SONG":
             for metadata in sarki["track"]["sections"][0]["metadata"]:
-                Caption += f'**{"Yıl" if metadata["title"] == "Sorti" else metadata["title"]}:** `{metadata["text"]}`\n'
+                Caption += f'**{"İl" if metadata["title"] == "Sorti" else metadata["title"]}:** `{metadata["text"]}`\n'
 
         Caption += '\n**Müsiqi Platformları:** '
         for provider in sarki['track']['hub']['providers']:
