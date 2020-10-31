@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -13,7 +13,7 @@ LANG = get_value("chat")
 
 # ████████████████████████████████ #
 
-""" Userid, chatid ve log komutlarını içeren UserBot modülü """
+""" """
 
 from asyncio import sleep
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, bot
@@ -23,7 +23,7 @@ from userbot.main import PLUGIN_MESAJLAR
 
 @register(outgoing=True, pattern="^.userid$")
 async def useridgetter(target):
-    """ .userid komutu belirlenen kullanıcının ID numarasını verir """
+    """ .userid  """
     message = await target.get_reply_message()
     if message:
         if not message.forward:
@@ -44,7 +44,7 @@ async def useridgetter(target):
 
 @register(outgoing=True, pattern="^.link(?: |$)(.*)")
 async def permalink(mention):
-    """ .link komutu belirlenen kullanıcının profil bağlantısını metin ile ulaşılabilir hale getirir """
+    """ .link """
     user, custom = await get_user_from_event(mention)
     if not user:
         return
@@ -58,25 +58,25 @@ async def permalink(mention):
 
 @register(outgoing=True, pattern="^.chatid$")
 async def chatidgetter(chat):
-    """ .chatid komutu belirlenen grubun ID numarasını verir """
+    """ .chatid """
     await chat.edit(f"{LANG['GROUP']} `" + str(chat.chat_id) + "`")
 
 
 @register(outgoing=True, pattern=r"^.log(?: |$)([\s\S]*)")
 async def log(log_text):
-    """ .log komutu seçilen mesajı günlük grubuna gönderir """
+    """ .log  """
     if BOTLOG:
         if log_text.reply_to_msg_id:
             reply_msg = await log_text.get_reply_message()
             await reply_msg.forward_to(BOTLOG_CHATID)
         elif log_text.pattern_match.group(1):
-            user = f"#LOG / Grup ID: {log_text.chat_id}\n\n"
+            user = f"#LOG / Qrup ID: {log_text.chat_id}\n\n"
             textx = user + log_text.pattern_match.group(1)
             await bot.send_message(BOTLOG_CHATID, textx)
         else:
-            await log_text.edit("`Bununla ne yapmam gerekiyor ?`")
+            await log_text.edit("`Bununla nə etməliyəm ?`")
             return
-        await log_text.edit("`Günlüğe Kaydedildi`")
+        await log_text.edit("`Günlüyə qeyd edildi`")
     else:
         await log_text.edit(LANG['NEED_LOG'])
     await sleep(2)
@@ -85,23 +85,23 @@ async def log(log_text):
 
 @register(outgoing=True, pattern="^.kickme$")
 async def kickme(leave):
-    """ .kickme komutu gruptan çıkmaya yarar """
+    """ .kickme  """
     chat = await leave.get_chat()
     await leave.edit(f"{PLUGIN_MESAJLAR['kickme']}".format(
         id=chat.id,
         title=chat.title,
-        member_count="Bilinmiyor" if chat.participants_count == None else (chat.participants_count - 1)
+        member_count="Bilinmir" if chat.participants_count == None else (chat.participants_count - 1)
     ))
     await leave.client.kick_participant(leave.chat_id, 'me')
 
 
 @register(outgoing=True, pattern="^.unmutechat$")
 async def unmute_chat(unm_e):
-    """ .unmutechat komutu susturulmuş grubun sesini açar """
+    """ .unmutechat  """
     try:
         from userbot.modules.sql_helper.keep_read_sql import unkread
     except AttributeError:
-        await unm_e.edit('`SQL dışı modda çalışıyor!`')
+        await unm_e.edit('`SQL xarici modda işləyir!`')
         return
     unkread(str(unm_e.chat_id))
     await unm_e.edit(LANG['UNMUTED'])
@@ -111,11 +111,11 @@ async def unmute_chat(unm_e):
 
 @register(outgoing=True, pattern="^.mutechat$")
 async def mute_chat(mute_e):
-    """ .mutechat komutu grubu susturur """
+    """ .mutechat """
     try:
         from userbot.modules.sql_helper.keep_read_sql import kread
     except AttributeError:
-        await mute_e.edit("`SQL dışı modda çalışıyor!`")
+        await mute_e.edit("`SQL xarici modda işləyir!`")
         return
     await mute_e.edit(str(mute_e.chat_id))
     kread(str(mute_e.chat_id))
@@ -125,12 +125,12 @@ async def mute_chat(mute_e):
     if BOTLOG:
         await mute_e.client.send_message(
             BOTLOG_CHATID,
-            str(mute_e.chat_id) + " susturuldu.")
+            str(mute_e.chat_id) + " susduruldu.")
 
 
 @register(incoming=True, disable_errors=True)
 async def keep_read(message):
-    """ Mute mantığı. """
+    """ Mute . """
     try:
         from userbot.modules.sql_helper.keep_read_sql import is_kread
     except AttributeError:
@@ -142,13 +142,13 @@ async def keep_read(message):
                 await message.client.send_read_acknowledge(message.chat_id)
 
 
-# Regex-Ninja modülü için teşekkürler @Kandnub
+# 
 regexNinja = False
 
 
 @register(outgoing=True, pattern="^s/")
 async def sedNinja(event):
-    """Regex-ninja modülü için, s/ ile başlayan otomatik silme komutu"""
+    """ . """
     if regexNinja:
         await sleep(.5)
         await event.delete()
@@ -156,16 +156,16 @@ async def sedNinja(event):
 
 @register(outgoing=True, pattern="^.regexninja (on|off)$")
 async def sedNinjaToggle(event):
-    """ Regex ninja modülünü etkinleştirir veya devre dışı bırakır. """
+    """ . """
     global regexNinja
     if event.pattern_match.group(1) == "on":
         regexNinja = True
-        await event.edit("`Regexbot için ninja modu etkinleştirdi.`")
+        await event.edit("`Regexbot üçün ninja modu aktivləşdirildi.`")
         await sleep(1)
         await event.delete()
     elif event.pattern_match.group(1) == "off":
         regexNinja = False
-        await event.edit("`Regexbot için ninja modu devre dışı bırakıldı.`")
+        await event.edit("`Regexbot üçün ninja modu deaktiv edildi.`")
         await sleep(1)
         await event.delete()
 
@@ -173,20 +173,20 @@ async def sedNinjaToggle(event):
 CMD_HELP.update({
     "chat":
     ".chatid\
-\nKullanım: Belirlenen grubun ID numarasını verir\
+\nİşlədilişi: Seçilən qrupun ID nömrəsini verir\
 \n\n.userid\
-\nKullanım: Belirlenen kullanıcının ID numarasını verir.\
+\nİşlədilişi: Seçilən istifadəçinin ID nömrəsini verir.\
 \n\n.log\
-\nKullanım: Yanıtlanan mesajı günlük grubuna gönderir.\
+\nİşlədilişi: Cavablanan mesajı günlük qrupuna göndərir.\
 \n\n.kickme\
-\nKullanım: Belirlenen gruptan ayrılmanızı sağlar.\
+\nİşlədilişi: Seçilən qrupdan çıxmağınıza yarıyar.\
 \n\n.unmutechat\
-\nKullanım: Susturulmuş bir sohbetin sesini açar.\
+\nİşlədilişi: Susdurulmuş bir söhbətin səsini açar.\
 \n\n.mutechat\
-\nKullanım: Belirlenen grubu susturur.\
-\n\n.link <kullanıcı adı/kullanıcı id> : <isteğe bağlı metin> (veya) herhangi birinin mesajına .link ile yanıt vererek <isteğe bağlı metin>\
-\nKullanım: İsteğe bağlı özel metin ile kullanıcının profiline kalıcı bir bağlantı oluşturun.\
+\nİşlədilişi: Seçilən qrupu susdurar.\
+\n\n.link <istifadəçi adı/istifadəçi id> : <istəyə bağlı mətin> (vəya) hər hansı birinin mesajına .link ilə cavab verərək <istəyə bağlı mətin>\
+\nİşlədilişi: İstəyə bağlı özəl mətin ilə istifadəçinin profilinə qalıcı bir link yaradın.\
 \n\n.regexninja on/off\
-\nKullanım: Küresel olarak regex ninja modülünü etkinleştirir / devre dışı bırakır.\
-\nRegex ninja modülü regex bot tarfından tetiklenen mesajları silmek için yardımcı olur."
+\nİşlədlişi: Qlobal olaraq regex ninja modulunu aktivləşdirir / deaktiv edir.\
+\nRegex ninja modulu regex bot tərəfindən seçilən mesajları silmək üçün kömək olar."
 })
