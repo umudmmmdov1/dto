@@ -7,7 +7,7 @@
 # DTÖUserBot - Ümüd
 
 
-"""  """
+""" DTÖ """
 
 import os
 
@@ -64,7 +64,7 @@ async def who(event):
 
 
 async def get_user(event):
-    """  """
+    """ DTÖ """
     if event.reply_to_msg_id and not event.pattern_match.group(1):
         previous_message = await event.get_reply_message()
         replied_user = await event.client(
@@ -99,7 +99,7 @@ async def get_user(event):
 
 
 async def fetch_info(replied_user, event):
-""" . """
+    """ DTÖ """
     replied_user_profile_photos = await event.client(
         GetUserPhotosRequest(user_id=replied_user.user.id,
                              offset=42,
