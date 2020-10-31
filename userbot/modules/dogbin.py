@@ -4,10 +4,10 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 
-""" Dogbin ile etkileşim için komutlar içeren UserBot modülü(https://del.dog)"""
+""" """
 
 from requests import get, post, exceptions
 import os
@@ -26,7 +26,7 @@ LANG = get_value("dogbin")
 
 @register(outgoing=True, pattern=r"^.paste(?: |$)([\s\S]*)")
 async def paste(pstl):
-    """ .paste komutu metni doğrudan dogbine yapıştırır """
+    """ .paste  """
     dogbin_final_url = ""
     match = pstl.pattern_match.group(1).strip()
     reply_id = pstl.reply_to_msg_id
@@ -54,7 +54,7 @@ async def paste(pstl):
         else:
             message = message.message
 
-    # Dogbin
+    # 
     await pstl.edit(LANG['PASTING'])
     resp = post(DOGBIN_URL + "documents", data=message.encode('utf-8'))
 
@@ -78,13 +78,13 @@ async def paste(pstl):
     if BOTLOG:
         await pstl.client.send_message(
             BOTLOG_CHATID,
-            f"Dogbine metin yapıştırma başarıyla yürütüldü",
+            f"Dogbinə söz yapışdırma uğurla edildi.",
         )
 
 
 @register(outgoing=True, pattern="^.getpaste(?: |$)(.*)")
 async def get_dogbin_content(dog_url):
-    """ .getpaste komutu dogbin url içeriğini aktarır """
+    """ .getpaste."""
     textx = await dog_url.get_reply_message()
     message = dog_url.pattern_match.group(1)
     await dog_url.edit(LANG['DATA_CHECKING'])
@@ -132,7 +132,7 @@ async def get_dogbin_content(dog_url):
         )
 
 CmdHelp('dogbin').add_command(
-    'paste', '<metin/yanıtlama>', 'Dogbin kullanarak yapıştırılmış veya kısaltılmış url oluşturma (https://del.dog/)'
+    'paste', '<söz/cavablama>', 'Dogbin işlədərək yapışdırılmış və ya qısadılmış url yaratma (https://del.dog/)'
 ).add_command(
-    'getpaste', None, 'Dogbin url içeriğini metne aktarır (https://del.dog/)'
+    'getpaste', None, 'Dogbin url məzmuna mətin axtarır (https://del.dog/)'
 ).add()
