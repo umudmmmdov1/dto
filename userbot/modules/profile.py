@@ -4,10 +4,10 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 
-""" Telegram'daki profil detaylarınızı değişmeye yarayan UserBot modülüdür. """
+""" . """
 
 import os
 from telethon.errors import ImageProcessFailedError, PhotoCropSizeSmallError
@@ -47,7 +47,7 @@ USERNAME_TAKEN = LANG['USERNAME_TAKEN']
 
 @register(outgoing=True, pattern="^.reserved$")
 async def mine(event):
-    """ .reserved komutu ayırdığınız kullanıcı adlarını listeler. """
+    """ .reserved  """
     result = await bot(GetAdminedPublicChannelsRequest())
     output_str = ""
     for channel_obj in result.chats:
@@ -57,7 +57,7 @@ async def mine(event):
 
 @register(outgoing=True, pattern="^.name")
 async def update_name(name):
-    """ .name komutu Telegram'daki isminizi değişir. """
+    """ .name  """
     newname = name.text[6:]
     if " " not in newname:
         firstname = newname
@@ -74,7 +74,7 @@ async def update_name(name):
 
 @register(outgoing=True, pattern="^.setpfp$")
 async def set_profilepic(propic):
-    """ .profilepic komutu Telegram'daki profil resminizi yanıtladığınız resimle değişir. """
+    """ .profilepic """
     replymsg = await propic.get_reply_message()
     photo = None
     if replymsg.media:
@@ -102,7 +102,7 @@ async def set_profilepic(propic):
 
 @register(outgoing=True, pattern="^.setbio (.*)")
 async def set_biograph(setbio):
-    """ .setbio komutu Telegram'da yeni bir biyografi ayarlamanızı sağlar. """
+    """ .setbio """
     newbio = setbio.pattern_match.group(1)
     await setbio.client(UpdateProfileRequest(about=newbio))
     await setbio.edit(BIO_SUCCESS)
@@ -110,7 +110,7 @@ async def set_biograph(setbio):
 
 @register(outgoing=True, pattern="^.username (.*)")
 async def update_username(username):
-    """ .username komutu Telegram'da yeni bir kullanıcı adı belirlemenizi sağlar. """
+    """ .username  """
     newusername = username.pattern_match.group(1)
     try:
         await username.client(UpdateUsernameRequest(newusername))
@@ -121,14 +121,14 @@ async def update_username(username):
 
 @register(outgoing=True, pattern="^.count$")
 async def count(event):
-    """ .count komutu profil istatistiklerini gösterir. """
+    """ .count  """
     u = 0
     g = 0
     c = 0
     bc = 0
     b = 0
     result = ""
-    await event.edit("`Lütfen bekleyin..`")
+    await event.edit("`Xaiş gözləyin..`")
     dialogs = await bot.get_dialogs(limit=None, ignore_migrated=True)
     for d in dialogs:
         currrent_entity = d.entity
@@ -158,7 +158,7 @@ async def count(event):
 
 @register(outgoing=True, pattern=r"^.delpfp")
 async def remove_profilepic(delpfp):
-    """ .delpfp komutu Telegram'daki şu anki profil resminizi kaldırır. """
+    """ .delpfp """
     group = delpfp.text[8:]
     if group == 'all':
         lim = 0
@@ -183,17 +183,17 @@ async def remove_profilepic(delpfp):
         LANG['DELPFP'] % len(input_photos))
 
 CmdHelp('profile').add_command(
-    'username', '<yeni kullanıcı adı>', 'Telegram\'daki kullanıcı adınızı değişir.'
+    'username', '<yeni istifadəçi adı>', 'Telegram\'dakı istifadəçi adınızı dəyişdirir.'
 ).add_command(
-    'name', '<isim> or .name <isim> <soyisim>', 'Telegram\'daki isminizi değişir. (Ad ve soyad ilk boşluğa dayanarak birleştirilir.)'
+    'name', '<ad> or .name <ad> <soyad>', 'Telegram\'dakı adınızı dəyişdirir. (Ad və soyad ilk boşluğa dayanaraq birləşdirilir.)'
 ).add_command(
-    'setpfp', None, 'Bir resmi Telegram\'da profil resmi yapmak için .setpfp komutuyla cevap verin.'
+    'setpfp', None, 'Bir fotonu Telegram\'da profil foto etmək üçün .setpfp əmriylə cavab verin.'
 ).add_command(
-    'setbio', '<yeni biyografi>', 'Telegram\'daki biyografinizi bu komutu kullanarak değiştirin.'
+    'setbio', '<yeni biyoqrafi>', 'Telegram\'dakı biyoqrafinizi bu əmri işlədərək dəyişdirin.'
 ).add_command(
-    'delpfp', '<numara/all>', 'Telegram profil fotoğrafınızı kaldırır.'
+    'delpfp', '<rəqəm/all>', 'Telegram profil fotosunu silər.'
 ).add_command(
-    'reserved', None, 'Rezerve ettiğiniz kullanıcı adlarını gösterir.'
+    'reserved', None, 'Rezerve etdiyiniz istifadəçi adlarını göstərər.'
 ).add_command(
-    'count', None, 'Gruplarınızı, sohbetlerinizi, aktif botları vs. sayar.'
+    'count', None, 'Qruplarınızı, söhbətlərinizi, aktiv botları vs. sayar.'
 ).add()
