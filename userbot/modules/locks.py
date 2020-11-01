@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 
 from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
@@ -200,17 +200,17 @@ async def rem_locks(event):
 
 CMD_HELP.update({
     "locks":
-    ".lock <kilitlenecek medya tipi> veya .unlock <kilitlenecek medya tipi>\
-\nKullanım: Sohbetteki birtakım şeyleri engelleyebilmeni sağlar. (sticker atmak, oyun oynamak vs.)\
-[Not: Yönetici hakları gerektirir!]\
-\n\nKilitleyebileceğin ve kilidini açabileceklerin şunlardır: \
+    ".lock <bağlanacaq medya tipi> vəya .unlock <bağlanacaq medya tipi>\
+\nİşlədilişi: Sıhbətdəki bir çox şeyləri əngəlləyə bilməni edər. (stiker atmaq, oyun oynamaq vs.)\
+[Not: İdarəçi icazələri lazımdır!]\
+\n\nBağlaya biləcəyin və bağlayıb aça biləcəyin bunlardır: \
 \n`all, msg, media, sticker, gif, game, inline, poll, invite, pin, info`"
 })
 
 CmdHelp('locks').add_command(
-    'lock', '<kilitlenecek medya tipi> veya .unlock <kilitlenecek medya tipi>', 'Sohbetteki birtakım şeyleri engelleyebilmeni sağlar. (sticker atmak, oyun oynamak vs.)'
+    'lock', '<bağlanacaq medya tipi> vəya .unlock <bağlanacaq medya tipi>', 'Söhbətdəki bir çox şeyləri əngəlləyə bilməni edər. (stiker atmaq, oyun oynamaq vs.)'
 ).add_info(
-    'Kilitleyebileceğin ve kilidini açabileceklerin şunlardır: all, msg, media, sticker, gif, game, inline, poll, invite, pin, info'
+    'Bağlıya biləcəyin və bağlayıb aça biləcəyin bunlardır: all, msg, media, sticker, gif, game, inline, poll, invite, pin, info'
 ).add_warning(
-    'Yönetici hakları gerektirir!'
+    'İdarəçi icazələri lazımdır!'
 ).add()
