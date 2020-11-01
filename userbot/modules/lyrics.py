@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 
 import os
@@ -129,16 +129,16 @@ async def singer(lyric):
 
 CMD_HELP.update({
     "lyrics":
-    "Kullanım: .`lyrics <sanatçı adı> - <şarkı ismi>`\n"
-    "NOT: ""-"" ayracı önemli!",
+    "İşlədilişi: .`lyrics <sənədçi adı> - <musiqi adı>`\n"
+    "NOT: ""-"" defis vacibdir!",
     "singer":
-    "Şarkı söyler, Kullanım: .`singer <sanatçı adı> - <şarkı ismi>`\n"
-    "NOT: ""-"" ayracı önemli!"
+    "Musiqi oxuyar, İşlədilişi: .`singer <sənədçi adı> - <musiqi adı>`\n"
+    "NOT: ""-"" defis vacibdir!"
 
 })
 
 CmdHelp('lyrics').add_command(
-    'lyrics', ' <sanatçı adı> - <şarkı ismi>', 'Şarkı sözlerini getirir.', 'lyrics System Of a Down - Scince'
+    'lyrics', ' <sənədçi adı> - <musiqi adı>', 'Musiqi sözlərini gətirər.', 'lyrics System Of a Down - Scince'
 ).add_command(
-    'singer', ' <sanatçı adı> - <şarkı ismi>', 'Şarkı söyler.', 'singer System Of a Down - Scince'
+    'singer', ' <sənədçi adı> - <musiqi adı>', 'Musiqi oxuyar.', 'singer System Of a Down - Scince'
 ).add()
