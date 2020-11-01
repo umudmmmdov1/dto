@@ -4,9 +4,9 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
-# credit goes to @snapdragon and @devpatel_73 for making it work on this userbot.
+# 
 #
 
 from userbot.events import register
@@ -33,7 +33,7 @@ try:
     from userbot.modules.sql_helper.lydia_sql import get_s, get_all_s, add_s, remove_s
 except:
     logging.log(level=logging.WARNING,
-                msg="Lydia veritabanı bağlantısı başarısız oldu")
+                msg="Lydia veritabanı linki uğursuz oldu")
 
 # SQL dışı mod
 ACC_LYDIA = {}
@@ -82,7 +82,7 @@ async def remcf(event):
         return
     await event.edit(LANG['SQL_OFF'])
     await asyncio.sleep(3)
-    await event.edit("İşleniyor...")
+    await event.edit("İşlənir...")
     reply_msg = await event.get_reply_message()
     try:
         del ACC_LYDIA[event.chat_id & reply_msg.from_id]
@@ -108,9 +108,9 @@ async def user(event):
         return
 
 CmdHelp('lydia').add_command(
-    'addcf', '<kullanıcı adı/yanıtlayarak>', 'Lydia\'nın otomatik sohbetini etkinleştirir.'
+    'addcf', '<istifadəçi adı/cavablayaraq>', 'Lydia\'nın avtomatik söhbətini aktivləşdirir.'
 ).add_command(
-    'remcf', '<kullanıcı adı/yanıtlayarak>', 'Lydia\'nın otomatik sohbetini devre dışı bırakır.'
+    'remcf', '<istifadəçi adı/cavablayaraq>', 'Lydia\'nın avtomatik söhbətini deaktivləşdirir.'
 ).add_command(
-    'repcf', '<kullanıcı adı/yanıtlayarak>', 'Lydia\'nın otomatik sohbetiini belli bir kişi için etkinleştirir.'
+    'repcf', '<istifadəçi adı/cavablayaraq>', 'Lydia\'nın avtomatik söhbətini xüsusi istifadəçi üçün aktivləşdirir.'
 ).add()
