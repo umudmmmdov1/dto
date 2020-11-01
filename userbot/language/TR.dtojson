@@ -33,7 +33,7 @@
             "DTO_PLUGIN_CAPTION": "Bu bir [DTÖUserBot](https://t.me/DTOUserBot) pluginidir."
         },
         
-        "__asena": {
+        "__dto": {
             "NEED_PLUGIN": "Lütfen bir DTÖUserBot modülü adı belirtin.",
             "NEED_MODULE": "Lütfen hangi DTÖUserBot modülü için yardım istediğinizi belirtin !!\nKullanım: .dto <modül adı>"
         },
@@ -153,8 +153,8 @@
             "EFECTING": "`Efekt uygulanıyor...`",
             "NOT_FOUND_EFECT": "**Belirttiğiniz efekt bulunamadı! **`Kullanılabileceğiniz efektler: ``çocuk/robot/earrape/hızlı/parazit/yankı`",
             "NEED_VIDEO": "`Lütfen bir videoya yanıt verin!`",
-            "WITH_ASENA":"@DTOUserBot `ile efekt uygulandı.`",
-            "WITH_ASENA_GIF": "@DTOUserBot `ile Gif'e çevirildi.`",
+            "WITH_DTO":"@DTOUserBot `ile efekt uygulandı.`",
+            "WITH_DTO_GIF": "@DTOUserBot `ile Gif'e çevirildi.`",
             "CONVERTING_TO_GIF": "Gif'e çeviriliyor...",
             "UPLOADING_GIF": "`Gif yükleniyor...`",
             "ERROR": "Gif'e çeviremedim :/"
@@ -242,7 +242,7 @@
 
         "galeri": {
             "ADDED_LIST": "`Fotoğraf sıraya alındı.`",
-            "INVALID_URL": "`Geçersiz bir resim URL'si girdiniz. Kullanım hakkında bir fikriniz yoksa, ` `.asena galeri` `yazınız.`",
+            "INVALID_URL": "`Geçersiz bir resim URL'si girdiniz. Kullanım hakkında bir fikriniz yoksa, ` `.dto galeri` `yazınız.`",
             "EXAMPLE": "`Lütfen bir resim adresi giriniz. Örnek olarak: ` `.galeri ekle https://i.resimyukle.xyz/7Qbbc9.jpeg`",
             "LIST": "Sıraya Aldığınız Fotoğraflar",
             "REMOVED": "**Sıradaki fotoğraf başarıyla kaldırıldı**",
@@ -250,7 +250,7 @@
             "NEED_NUMBER": "Lütfen resmin sırasını belirtiniz. Örnek:",
             "WORKING": "`Hali hazırda galeri çalışıyor.`",
             "STARTED": "`Galeri çalışmaya başladı.`",
-            "NEED_PHOTO": "Galeri çalışması için fotoğraf eklemeniz gerekmektedir. Eklemeyi bilmiyorsanız .asena galeri ile kullanım hakkında bilgi sahibi olabilirsiniz.",
+            "NEED_PHOTO": "Galeri çalışması için fotoğraf eklemeniz gerekmektedir. Eklemeyi bilmiyorsanız .dto galeri ile kullanım hakkında bilgi sahibi olabilirsiniz.",
             "STOPPED": "`Galeri durduruldu!`",
             "ALREADY_STOP": "`Galeri zaten çalışmıyor.`",
             "INVALID": "**Bilinmeyen komut** Kullanım:\n\nGaleri'ye fotoğraf ekleme: `.galeri ekle https://i.resimyukle.xyz/7Qbbc9.jpeg`\nGaleri listesini görme: `.galeri liste`\nSıradan bir fotoğrafı silme: `.galeri sil <sıra sayısı>`"
@@ -328,13 +328,13 @@
             "REPLY_TO_FILE": "`Bir dosyaya yanıt ver.`",
             "QUERY": "Sorgu",
             "RESULT": "Çıktı",
-            "NEED_MUCH_DATA_FOR_RANDOM": "`2 veya daha fazla eşya gerekli. Daha fazla bilgi için .asena random komutunu gir.`",
+            "NEED_MUCH_DATA_FOR_RANDOM": "`2 veya daha fazla eşya gerekli. Daha fazla bilgi için .dto random komutunu gir.`",
             "SLEEP_DESC": "Kullanım Şekli: `.sleep [saniye]`",
             "SLEEPING": "`Horlayarak uyuyorum...`",
             "GOODMORNIN_YALL": "`Günaydın!`",
             "GOODBYE_MFRS": "`Görüşürüz... *Windows XP kapanma sesi*`",
             "RESTARTING": "`Bot yeniden başlatılıyor...`",
-            "SUPPORT_GROUP": "[Buradan](http://t.me/AsenaSupport) destek grubumuza ulaşabilirsiniz.",
+            "SUPPORT_GROUP": "[Buradan](http://t.me/DTOSupport) destek grubumuza ulaşabilirsiniz.",
             "CREATOR": "Bu bot \n[Ümüd Məmmədov](https://t.me/umudmmmdov1) tarafından geliştirilmiştir. \n",
             "README": "[DTÖUserBot README.md](https://github.com/umudmmmdov1/DTOUserBot/blob/master/README.md)",
             "REPO": "[DTÖUserBot Repo](https://github.com/umudmmmdov1/dtouserbot)",
@@ -532,7 +532,7 @@
             "QUERY": "Sorgu",
             "RESULT": "Sonuç",
             "NOT_FOUND": "Bir şey bulunamadı",
-            "EXAMPLE": "`Bir örnek görmek için .asena pip komutunu kullanın.`"
+            "EXAMPLE": "`Bir örnek görmek için .dto pip komutunu kullanın.`"
 
         },
 
@@ -554,7 +554,7 @@
             "NOT_FOUND": "klasörü bulunamadı.",
             "GIT_ERROR": "Git hatası!",
             "NOT_GIT": "klasörü bir git reposu gibi görünmüyor. \nFakat bu sorunu .update now komutuyla botu zorla güncelleyerek çözebilirsin.",
-            "INVALID_BRANCH": "**[UPDATER]:**` Galiba Asena botunu modifiye ettin ve kendi branşını kullanıyorsun.\nBu durum güncelleyicinin kafasını karıştırıyor,\nGüncelleme nereden çekilecek?\nLütfen Asena botunu resmi repodan kullan.`",
+            "INVALID_BRANCH": "**[UPDATER]:**` Galiba DTÖUserBot botunu modifiye ettin ve kendi branşını kullanıyorsun.\nBu durum güncelleyicinin kafasını karıştırıyor,\nGüncelleme nereden çekilecek?\nLütfen DTÖUserBotunu resmi repodan kullan.`",
             "UPDATE": "\n`Botun` **tamamen güncel!** `Branch:` **{}**\n",
             "WAS_UPDATE": "**{} için yeni güncelleme mevcut!\n\nDeğişiklikler:**\n`{}`",
             "BIG": "`Değişiklik listesi çok büyük, dosya olarak görüntülemelisin.`",
