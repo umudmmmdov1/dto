@@ -998,7 +998,7 @@ CmdHelp('memes').add_command(
 ).add_command(
     'type', '<yazı>', 'Daktilo kimi yazı yazın.'
 ).add_command(
-    'lfy', '<sorgu>', 'Buraxın Google bunu sizin üçün araşdırsın.'
+    'lfy', '<sorğu>', 'Buraxın Google bunu sizin üçün araşdırsın.'
 ).add_command(
     'scam', '<hərəkət> <vaxt>', 'Saxta hərəkətlər yaradın.\nMövcus hərəkətlər: (typing, contact, game, location, voice, round, video, photo, document, cancel)'
 ).add_command(
@@ -1006,5 +1006,5 @@ CmdHelp('memes').add_command(
 ).add_command(
     'boşluq', None, 'Boş mesaj.'
 ).add_command(
-    'ğ', '<metin>', 'Ğ'
+    'ğ', '<mesaj>', 'Ğ'
 ).add()
