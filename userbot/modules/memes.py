@@ -962,13 +962,13 @@ CmdHelp('memes').add_command(
 ).add_command(
     'zal', '<cavablama/mesaj>', 'Çox qarmaşıq! Hər şey çox qarmaşıq.'
 ).add_command(
-    'oof', None, 'of ya'
+    'oof', None, 'of dana'
 ).add_command(
     'skrrt', None, 'sıkırt'
 ).add_command(
     'fuk', None, '+18'
 ).add_command(
-    'urek', '<isim>', 'Sevginizi göstərin.'
+    'urek', '<ad>', 'Sevginizi göstərin.'
 ).add_command(
     'fp', None, 'Utanmaq.'
 ).add_command(
@@ -982,7 +982,7 @@ CmdHelp('memes').add_command(
 ).add_command(
     'react', None, 'Dıtıyızırbotun hər şeyə hərəkət verməsini düzəldin.'
 ).add_command(
-    'slap', '<yanıt>', 'Təsadufi şeylərlə şillələmək üçün mesaja cavab verin.'
+    'slap', '<cavab>', 'Təsadufi şeylərlə şillələmək üçün mesaja cavab verin.'
 ).add_command(
     'cry', None, 'Ağlamaq mı istiyirsən?'
 ).add_command(
