@@ -4,10 +4,10 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 
-""" Birkaç küçük komutu içeren UserBot modülü. """
+""" . """
 
 from random import randint
 from asyncio import sleep
@@ -37,7 +37,7 @@ async def resend(event):
 
 @register(outgoing=True, pattern="^.random")
 async def randomise(items):
-    """ .random komutu, eşya listesinden rastgele bir eşya seçer. """
+    """ .random  """
     itemo = (items.text[8:]).split()
     if len(itemo) < 2:
         await items.edit(
@@ -51,7 +51,7 @@ async def randomise(items):
 
 @register(outgoing=True, pattern="^.sleep( [0-9]+)?$")
 async def sleepybot(time):
-    """ .sleep komutu Asena'nın birkaç saniye uyumasına olanak sağlar. """
+    """ .sleep """
     if " " not in time.pattern_match.group(1):
         await time.reply(LANG['SLEEP_DESC'])
     else:
@@ -61,7 +61,7 @@ async def sleepybot(time):
         if BOTLOG:
             await time.client.send_message(
                 BOTLOG_CHATID,
-                "Botu" + str(counter) + "saniye uykuya bıraktın.",
+                "Botu" + str(counter) + "saniyə yuxuya buraxdın.",
             )
         await sleep(counter)
         await time.edit(LANG['GOODMORNIN_YALL'])
@@ -69,13 +69,13 @@ async def sleepybot(time):
 
 @register(outgoing=True, pattern="^.shutdown$")
 async def shutdown(event):
-    """ .shutdown komutu botu kapatır. """
+    """ .shutdown """
     await event.client.send_file(event.chat_id, 'https://www.winhistory.de/more/winstart/mp3/winxpshutdown.mp3', caption=LANG['GOODBYE_MFRS'], voice_note=True)
     await event.delete()
 
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n"
-                                        "Bot kapatıldı.")
+                                        "Bot söndürüldü.")
     try:
         await bot.disconnect()
     except:
@@ -87,7 +87,7 @@ async def restart(event):
     await event.edit(LANG['RESTARTING'])
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#RESTART \n"
-                                        "Bot yeniden başlatıldı.")
+                                        "Bot yenidən başladıldı.")
 
     try:
         await bot.disconnect()
@@ -99,7 +99,7 @@ async def restart(event):
 
 @register(outgoing=True, pattern="^.support$")
 async def bot_support(wannahelp):
-    """ .support komutu destek grubumuzu verir. """
+    """ .support """
     await wannahelp.edit(LANG['SUPPORT_GROUP'])
 
 
@@ -113,7 +113,7 @@ async def reedme(e):
     await e.edit(LANG['CREATOR'])
 
 
-# Copyright (c) Gegham Zakaryan | 2019
+# 
 @register(outgoing=True, pattern="^.repeat (.*)")
 async def repeat(rep):
     cnt, txt = rep.pattern_match.group(1).split(' ', 1)
@@ -130,7 +130,7 @@ async def repeat(rep):
 
 @register(outgoing=True, pattern="^.repo$")
 async def repo_is_here(wannasee):
-    """ .repo komutunun tek yaptığı şey GitHub repomuzun bağlantısını vermek. """
+    """ .repo """
     await wannasee.edit(LANG['REPO'])
 
 @register(outgoing=True, pattern="^.raw$")
@@ -147,35 +147,35 @@ async def raw(event):
     with io.BytesIO(str.encode(the_real_message)) as out_file:
         out_file.name = "raw_message_data.txt"
         await event.edit(
-            "`Çözülmüş mesaj için userbot loglarını kontrol et!`")
+            "`Həll edilmiş mesaj üçün userbot loglarını yoxlayın`")
         await event.client.send_file(
             BOTLOG_CHATID,
             out_file,
             force_document=True,
             allow_cache=False,
             reply_to=reply_to_id,
-            caption="`Çözülen mesaj`")
+            caption="`Həll edilən mesaj`")
 
 CmdHelp('misc').add_command(
-    'random', '<eşya1> <eşya2> ... <eşyaN>', 'Eşya listesinden rastgele bir eşya seçer', 'random asena uniborg userge'
+    'random', '<əşya1> <əşya2> ... <şyaN>', 'Əşya listindən təsadufi bir əşya seçər', 'random dto user bot'
 ).add_command(
-    'sleep', '<süre>', 'Asena de bir insan, o da yoruluyor. Ara sıra biraz uyumasına izin ver.', 'sleep 30'
+    'sleep', '<vaxt>', 'DTÖUserBot da bir insan, o da yorulur. Ara bir biraz yatmağına icazə ver.', 'sleep 30'
 ).add_command(
-    'shutdown', None, 'Nostaljik bir şekilde botunuzu kapatın.'
+    'shutdown', None, 'Nostaljik bir şəkildə botunuzu söndürər.'
 ).add_command(
-    'repo', None, 'Asena botunun GitHub\'daki reposuna giden bir bağlantı.'
+    'repo', None, 'DTÖUserBot botunun GitHub\'dakı reposuna gedən bir link.'
 ).add_command(
-    'readme', None, 'Asena botunun GitHub\'daki README.md dosyasına giden bir bağlantı.'
+    'readme', None, 'DTÖUserBot botunun GitHub\'dakı README.md faylına gedən bir link.'
 ).add_command(
-    'creator', None, 'Bu güzel botu kimlerin oluşturduğunu öğren :-)'
+    'creator', None, 'Bu gözəl botu kimin yaratdığını öyrən :-)'
 ).add_command(
-    'repeat', '<sayı> <metin>', 'Bir metni belli bir sayıda tekrar eder. Spam komutu ile karıştırma!'
+    'repeat', '<rəqəm> <mətin>', 'Bir mətini bəlli bir sayıda təkrar edər. Spam əmri ilə qarışdırmayın.'
 ).add_command(
-    'restart', None, 'Botu yeniden başlatır.'
+    'restart', None, 'Botu yenidən başladar.'
 ).add_command(
-    'resend', None, 'Bir medyayı yeniden gönderir.'
+    'resend', None, 'Bir medyayı yenidən göndərər.'
 ).add_command(
-    'resend', None, 'Bir medyayı yeniden gönderir.'
+    'resend', None, 'Bir medyayı yenidən göndərər.'
 ).add_command(
-    'raw', '<yanıt>', 'Yanıt verilen mesaj hakkında bilgi verir.'
+    'raw', '<cavab>', 'Cavab verilən mesaj haqqında məlumat verər.'
 ).add()
