@@ -61,9 +61,9 @@ class CmdHelp:
 
         result = f"**📗 Fayl:** `{self.FILE}`\n"
         if self.WARNING == '' and self.INFO == '':
-            result += f"**⬇️ Official:** {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
+            result += f"**⬇️ Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
         else:
-            result += f"**⬇️ Official:** {'✅' if self.IS_OFFICIAL else '❌'}\n"
+            result += f"**⬇️ Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n"
             
             if self.INFO == '':
                 if not self.WARNING == '':
@@ -71,7 +71,7 @@ class CmdHelp:
             else:
                 if not self.WARNING == '':
                     result += f"**⚠️ Xəbərdarlıq:** {self.WARNING}\n"
-                result += f"**ℹ️ Info:** {self.INFO}\n\n"
+                result += f"**ℹ️ Məlumat:** {self.INFO}\n\n"
                      
         for command in self.COMMANDS:
             command = self.COMMANDS[command]
