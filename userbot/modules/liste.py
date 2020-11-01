@@ -1,10 +1,10 @@
-# Copyright (C) 2020 Yusuf Usta.
+# Copyright (C) 2020
 #
 # Licensed under the GPL-3.0 License;
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 from userbot import CMD_HELP
 from userbot.events import register
@@ -21,7 +21,7 @@ LANG = get_value("liste")
 
 # ████████████████████████████████ #
 
-@register(outgoing=True, pattern="^.liste ?(gmute|gban)?")
+@register(outgoing=True, pattern="^.list ?(gmute|gban)?")
 async def liste(event):
     liste = event.pattern_match.group(1)
     try:
@@ -69,6 +69,6 @@ async def liste(event):
         else:
             await event.edit(LANG['GMUTE_LIST'] % mesaj)
 
-CmdHelp('liste').add_command(
-    'liste', '<gmute/gban>', 'Gbanladığınız ya da Gmutelediğiniz kişileri getirir.'
+CmdHelp('list').add_command(
+    'list', '<gmute/gban>', 'Gbanladığınız ya da Gmutelədiyiniz istifadəçiləri göstərər.'
 ).add()
