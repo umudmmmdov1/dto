@@ -4,10 +4,10 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüs
 
 
-""" QR kodları ile ilgili komutları içeren UserBot modülü. """
+""" QR kodları"""
 
 import os
 import qrcode
@@ -28,11 +28,11 @@ LANG = get_value("qrcode")
 
 @register(pattern=r"^.decode$", outgoing=True)
 async def parseqr(qr_e):
-    """ .decode komutu cevap verilen fotoğraftan QR kodu / Barkod içeriğini alır """
+    """ .decode """
     downloaded_file_name = await qr_e.client.download_media(
         await qr_e.get_reply_message())
 
-    # QR kodunu çözmek için resmi ZXing web sayfasını ayrıştır
+    # QR
     files = {'f': open(downloaded_file_name, 'rb').read()}
     t_response = None
 
@@ -56,7 +56,7 @@ async def parseqr(qr_e):
 
 @register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
 async def barcode_read(event):
-    """ .barcode komutu verilen içeriği içeren bir barkod oluşturur. """
+    """ .barcode  """
     await event.edit(LANG['TRYING'])
     input_str = event.pattern_match.group(1)
     message = f"{LANG['USAGE']} `.barcode <{LANG['TEXT']}>`"
@@ -79,7 +79,7 @@ async def barcode_read(event):
         else:
             message = previous_message.message
     else:
-        event.edit("SÖZDİZİMİ: `.barcode <eklenecek uzun metin>`")
+        event.edit("SÖZ DİZİMİ: `.barcode <əlavə ediləcək uzun mətin>`")
         return
 
     bar_code_type = "code128"
@@ -100,7 +100,7 @@ async def barcode_read(event):
 
 @register(pattern=r".makeqr(?: |$)([\s\S]*)", outgoing=True)
 async def make_qr(makeqr):
-    """ .makeqr komutu verilen içeriği içeren bir QR kodu yapar. """
+    """ .makeqr  """
     input_str = makeqr.pattern_match.group(1)
     message = f"{LANG['USAGE']}: `.makeqr <{LANG['TEXT']}>`"
     reply_msg_id = None
@@ -139,9 +139,9 @@ async def make_qr(makeqr):
     await makeqr.delete()
 
 CmdHelp('qrcode').add_command(
-    'barcode', '<içerik>', 'Verilen içerikten bir barkod yapın.', 'barcode www.google.com'
+    'barcode', '<məzmun>', 'Verilən məzmundan bir barkod edin.', 'barcode www.google.com'
 ).add_command(
-    'decode', '<yanıt>', 'Barkod veya QRCode çözmek için.'
+    'decode', '<cavab>', 'Barkod və ya QRCode həll etmək üçün.'
 ).add_command(
-    'makeqr', '<içerik>', 'Verilen içerikten bir QR kodu yapın.', 'makeqr www.google.com'
+    'makeqr', '<cavab>', 'Verilən məzmundan bir QR kodu edin.', 'makeqr www.google.com'
 ).add()
