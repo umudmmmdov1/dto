@@ -396,7 +396,7 @@ async def hayvan(e):
     await e.delete()
     await e.client.send_message(
         e.chat_id,
-        f"`Təsadufi bir {arg} foto`",
+        f"`Təsadufi bir {arg} fotosu`",
         file=foto
     )
 
