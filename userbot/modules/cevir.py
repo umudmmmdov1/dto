@@ -136,7 +136,7 @@ async def cevir(event):
 CmdHelp('cevir').add_command(
     'çevir foto', None, 'Stickeri fotoğrafa çevirər.'
 ).add_command(
-    'çevir gif', None, 'Videonu və ya animasyonlu stickeri gife çevirər.'
+    'çevir gif', None, 'Videonu və ya animasyonlu stickeri gifə çevirər.'
 ).add_command(
     'çevir ses', '<uşaq/robot/earrape/suretli/parazit/yangi>', 'Səsə efekt verər.'
 ).add()
