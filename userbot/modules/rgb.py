@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# 
+# DTÖUserBot - Ümüd
 
 import io
 import os
@@ -30,19 +30,19 @@ async def sticklet(event):
     G = random.randint(0,256)
     B = random.randint(0,256)
 
-    # Giriş metnini al
+    # 
     sticktext = event.pattern_match.group(1).strip()
 
     if len(sticktext) < 1:
         await event.edit(LANG['NEED_TEXT'])
         return
 
-    # Komutu düzenle
+    # 
     await event.edit(LANG['CONVERTING'])
 
     # https://docs.python.org/3/library/textwrap.html#textwrap.wrap
     sticktext = textwrap.wrap(sticktext, width=10)
-    # Listeyi bir dizeye dönüştür
+    # 
     sticktext = '\n'.join(sticktext)
 
     image = Image.new("RGBA", (512, 512), (255, 255, 255, 0))
@@ -78,7 +78,7 @@ async def sticklet(event):
     await event.delete()
 
     await event.client.send_file(event.chat_id, image_stream, reply_to=event.message.reply_to_msg_id)
-    # Temizlik
+    # 
     try:
         os.remove(FONT_FILE)
     except:
@@ -86,20 +86,20 @@ async def sticklet(event):
 
 
 async def get_font_file(client, channel_id):
-    # Önce yazı tipi mesajlarını al
+    #
     font_file_message_s = await client.get_messages(
         entity=channel_id,
         filter=InputMessagesFilterDocument,
-        # Bu işlem çok fazla kullanıldığında
-        # "FLOOD_WAIT" yapmaya neden olabilir
+        # 
+        # 
         limit=None
     )
-    # Yazı tipi listesinden rastgele yazı tipi al
+    # 
     # https://docs.python.org/3/library/random.html#random.choice
     font_file_message = random.choice(font_file_message_s)
-    # Dosya yolunu indir ve geri dön
+    # 
     return await client.download_media(font_file_message)
 
 CmdHelp('rgb').add_command(
-    'rbg', '<yanıt>', 'Metninizi RGB çıkartmaya dönüştürün.'
+    'rbg', '<cavab>', 'Mesajınızı RGB stikerə dəyişdirər'
 ).add()
