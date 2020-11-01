@@ -4,10 +4,10 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot + Ümüd
 
 
-""" Gereksiz mesajları temizlemek için UserBot modülü (genellikle spam veya ot). """
+""" . """
 
 from asyncio import sleep
 
@@ -26,7 +26,7 @@ LANG = get_value("purge")
 
 @register(outgoing=True, pattern="^.purge$")
 async def fastpurger(purg):
-    """ .purge komutu hedeflenen yanıttan başlayarak tüm mesajları temizler. """
+    """ .purge  """
     chat = await purg.get_input_chat()
     msgs = []
     itermsg = purg.client.iter_messages(chat, min_id=purg.reply_to_msg_id)
@@ -52,14 +52,14 @@ async def fastpurger(purg):
     if BOTLOG:
         await purg.client.send_message(
             BOTLOG_CHATID,
-            "Hedeflenen " + str(count) + " mesaj başarıyla silindi.")
+            "Hədəflənən " + str(count) + " mesaj uğurla silindi.")
     await sleep(2)
     await done.delete()
 
 
 @register(outgoing=True, pattern="^.purgeme")
 async def purgeme(delme):
-    """ .purgeme komutu belirtilen miktarda kullanıcın mesajlarını siler. """
+    """ .purgeme """
     message = delme.text
     count = int(message[9:])
     i = 1
@@ -78,7 +78,7 @@ async def purgeme(delme):
     if BOTLOG:
         await delme.client.send_message(
             BOTLOG_CHATID,
-            "Hedeflenen " + str(count) + " mesaj başarıyla silindi.")
+            "Hədəflənən " + str(count) + " mesaj uğurla silindi.")
     await sleep(2)
     i = 1
     await smsg.delete()
@@ -86,7 +86,7 @@ async def purgeme(delme):
 
 @register(outgoing=True, pattern="^.del$")
 async def delete_it(delme):
-    """ .del komutu yanıtlanan mesajı siler. """
+    """ .del  """
     msg_src = await delme.get_reply_message()
     if delme.reply_to_msg_id:
         try:
@@ -94,16 +94,16 @@ async def delete_it(delme):
             await delme.delete()
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Hedeflenen mesajın silinmesi başarılıyla tamamlandı")
+                    BOTLOG_CHATID, "Hədəflənən mesajın silinməsi uğurla başa çatdı")
         except rpcbaseerrors.BadRequestError:
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Bu mesajı silemiyorum.")
+                    BOTLOG_CHATID, "Bu mesajı silə bilmirəm.")
 
 
 @register(outgoing=True, pattern="^.edit")
 async def editer(edit):
-    """ .editme komutu son mesajınızı düzenler. """
+    """ .editme """
     message = edit.text
     chat = await edit.get_input_chat()
     self_id = await edit.client.get_peer_id('me')
@@ -117,12 +117,12 @@ async def editer(edit):
         i = i + 1
     if BOTLOG:
         await edit.client.send_message(BOTLOG_CHATID,
-                                       "Mesaj düzenleme sorgusu başarıyla yürütüldü")
+                                       "Mesaj düzəltmə sorğusu uğurla edildi")
 
 
 @register(outgoing=True, pattern="^.sd")
 async def selfdestruct(destroy):
-    """ .sd komutu kendi kendine yok edilebilir mesajlar yapar. """
+    """ .sd  """
     message = destroy.text
     counter = int(message[4:6])
     text = str(destroy.text[6:])
@@ -132,16 +132,16 @@ async def selfdestruct(destroy):
     await smsg.delete()
     if BOTLOG:
         await destroy.client.send_message(BOTLOG_CHATID,
-                                          "sd sorgusu başarıyla tamamlandı")
+                                          "sd sorğusu uğurla başa çatdı")
 
 CmdHelp('purge').add_command(
-    'purge', None, 'Hedeflenen yanıttan başlayarak tüm mesajları temizler.'
+    'purge', None, 'Hədəflənən cavabdan başlayaraq bütün mesajları təmizləyər.'
 ).add_command(
-    'purgeme', '<sayı>', 'Hedeflenen yanıttan başlayarak kendi mesajlarınızı temizler.'
+    'purgeme', '<sayı>', 'Hədəflənən cavabdan başlayaraq öz mesajlarınızı təmizləyər.'
 ).add_command(
-    'del', '<yanıt>', 'Yanıt verilen mesajı siler.'
+    'del', '<cavab>', 'Cavab verilən mesajı silər.'
 ).add_command(
-    'edit', '<yeni mesaj>', 'Yanıt verdiğiniz mesajı yeni mesaj ile değiştirir.'
+    'edit', '<yeni mesaj>', 'Cavab verdiyiniz mesajı yeni mesaj ilə dəyişdirər.'
 ).add_command(
-    'sd', '<x> <mesaj>', 'x saniye içinde kendini yok eden bir mesaj oluşturur.'
+    'sd', '<x> <mesaj>', 'x saniyə içində özünü yox edən bir mesaj yaradar.'
 ).add()
