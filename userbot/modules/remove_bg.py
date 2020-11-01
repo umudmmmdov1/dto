@@ -4,9 +4,8 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
-# Prakasaka tarafından portlanmıştır.
 #
 
 import io
@@ -26,7 +25,7 @@ LANG = get_value("remove_bg")
 
 @register(outgoing=True, pattern="^.rbg(?: |$)(.*)")
 async def kbg(remob):
-    """ .rbg komutu ile görüntünün arka planını kaldırın """
+    """ .rbg """
     if REM_BG_API_KEY is None:
         await remob.edit(
             LANG['NEED_API_KEY']
@@ -71,7 +70,7 @@ async def kbg(remob):
                 reply_to=message_id)
             await remob.delete()
     else:
-        await remob.edit("**Hata {}**\n`{}`".format(LANG['ERROR'],
+        await remob.edit("**Xəta {}**\n`{}`".format(LANG['ERROR'],
             output_file_name.content.decode("UTF-8")))
 
 
@@ -103,5 +102,5 @@ async def ReTrieveURL(input_url):
     return r
 
 CmdHelp('rgb').add_command(
-    'rbg', '<Resim bağlantısı/yanıt>', 'remove.bg API kullanarak görüntülerin arka planını kaldırır.'
+    'rbg', '<Foto linki/cavab>', 'remove.bg API işlədərək görüntülərin arxa planını silər.'
 ).add()
