@@ -4,10 +4,10 @@
 # you may not use this file except in compliance with the License.
 #
 
-# Asena UserBot - Yusuf Usta
+# DTÖUserBot - Ümüd
 
 
-""" İnsanlarla eğlenmek için yapılmış olan UserBot modülü. """
+""" . """
 
 from asyncio import sleep
 from random import choice, getrandbits, randint
@@ -180,77 +180,77 @@ FACEREACTS = [
 ]
 
 RUNS_STR = [
-    "Hey! Nereye gidiyorsun?",
-    "Ha? Ne? kaçtılar mı?",
-    "ZZzzZZzz... Noldu? oh, yine onlarmış, boşver.",
-    "Geri gel!",
-    "Kaçın OneBot geliyor !!",
-    "Duvara dikkat et!",
-    "Beni onlarla sakın yalnız bırakma!!",
-    "Kaçarsan, ölürsün.",
-    "Şakacı seni, Ben heryerdeyim.",
-    "Bunu yaptığına pişman olacaksın...",
-    "/kickme tuşunuda deneyebilirsin, Eğlenceli olduğunu söylüyorlar.",
-    "Git başka birini rahatsız et, burda kimse takmıyor.",
-    "Kaçabilirsin ama saklanamazsın.",
-    "Yapabildiklerin bunlar mı?",
-    "Arkandayım...",
-    "Misafirlerin var!",
-    "Bunu kolay yoldan yapabiliriz, yada zor yoldan.",
-    "Anlamıyorsun, değil mi?",
-    "Haha, kaçsan iyi edersin.!",
-    "Lütfen, hatırlat bana ne kadar aldırıyorum?",
-    "Senin yerinde olsam daha hızlı kaçardım.",
-    "Bu kesinlikle aradığımız robot.",
-    "Belki şans sana güler.",
-    "Ünlü son sözler.",
-    "Ve sonsuza dek yok oldular, hiç görünmediler.",
-    "\"Hey, bana bakın! Bottan kaçabiliyorum çok havalıyım!\" - bu kişi",
-    "Evet evet, /kickme tuşuna şimdiden bas.",
-    "İşte, bu yüzüğü alın ve Mordor'a gidin.",
-    "Efsaneye göre onlar hala çalışıyor...",
-    "Harry Potter'ın aksine, ebeveynlerin seni benden koruyamaz.",
-    "Korku öfkeye, öfke nefrete, nefret acıya yol açar. Korku içinde kaçmaya devam edersen,"
-    "bir sonraki Vader sen olabilirsin.",
-    "Birden fazla hesaplama yapıldıktan sonra, dalaverelerine olan ilgimin tam olarak 0 olduğuna karar verdim.",
-    "Efsaneye göre onlar hala çalışıyor.",
-    "Devam et, seni burda istediğimize emin değilim.",
-    "Sen bir sihirb- Oh. Bekle. Sen Harry değilsin, devam et.",
-    "KORİDORDA KOŞMAYIN!",
-    "Görüşürüz bebeğim.",
-    "Kim köpekleri saldı?",
-    "Komik çünkü kimse takmıyor.",
-    "Ah, ne büyük kayıp. Bu seferkini sevmiştim.",
-    "Açıkcası canım, umrumda değil.",
-    "Sütüm tüm erkekleri avluya çekiyor... Daha hızlı koş!",
-    "Gerçeği KALDIRAMAZSIN!",
-    "Uzun zaman önce, çok çok uzaktaki bir galakside birileri takabilirdi. Ama artık değil.",
-    "Hey, onlara bak! Kaçınılmaz banhammer'dan kaçıyorlar... Ne kadarda tatlı.",
-    "Han önce vuruldu. Ben de öyle yapacağım",
-    "Beyaz tavşanın, arkasında ne yapıyorsun?",
-    "Doktorunda söyleyeceği gibi... KAÇ!",
+        "Hey! Hara gedirsən?",
+    "Ha? Nə? Qaçdılar ?",
+    "ZZzzZZzz... Noldu? oh, yenə onlarimiş, boş ver.",
+    "Geri gəl!",
+    "Qaçın OneBot gəlir !!",
+    "Divara diqqət elə !",
+    "Məni onlarnan tək saxlama !!",
+    "Qaçsan, ölərsən.",
+    "Ay səni zarafatcııl, mən hər yerdəyəm.",
+    "Bunu elədiyivə görə peşman olacağsan...",
+    "/kickme butonunu da yoxlaya bilərsən, əyləncəli olduğunu söyləyirlər.",
+    "Get başqa birini narahat elə, burda heçkimin vecinə deyilsən.",
+    "Qaça bilərsən amma gizlənə bilməzsən.",
+    "Eləyəbildiklərin elə bu qədərdi ?",
+    "Arxandayam...",
+    "Qonağların var!",
+    "Bunu asan yoldan edə biləriy, yada çətin yoldan.",
+    "Başa düşmürsən, elə mi?",
+    "Haha, qaçsan yaxşı olar.!",
+    "Zəhmət olmasa, xatırlat mənə nə qədər veciməsən?",
+    "Sənin yerində olsam daha da sürətli qaçardım.",
+    "Bu tamamiylə axtardığımız robotdu.",
+    "Bəlkə bəxt sənə gülər.",
+    "Tanınmış son sözlər.",
+    "Və sonsuza qədər itkin düşdülər, heç görunmədilər.",
+    "\"Hey, mənə baxın ! Bottan qaça bilirəm çox əlayam!\" - bu adam",
+    "Bəli bəli, /kickme butonuna indidən bas.",
+    "Baxın, bu üzüyü alın və Mordor'a gedin.",
+    "Əfsanəyə görə onlar hələ də işləyir...",
+    "Harry Potter'ın əksinə, valideyinlərin səni məndən qoruya bilməz.",
+    "Qorxu əsəbə, əsəb nifrətə, nifrət acıya yol açar. Qorxu içində qaçmaya davam eləsən,"
+    "bir sonraki Vader sən olabilərsən.",
+    "Birdən çox hesablama edildikdən sonra, dalaverelerine olan marağımın tam olarağ 0’a bərabər olduğuna qərar verdim.",
+    "Əfsanəyə görə onlar hələ də işləyir.",
+    "Davam elə, səni burda istədiyimizə əmin deyiləm.",
+    "Sən bir sihirb- Oh. Gözlə. Sen Harry deyilsən, davam elə.",
+    "KARİDORDA QAÇMAYIN!",
+    "Görüşəriy bəbəyim.",
+    "Kim itləri buraxdı ?",
+    "Gülməlidi çünkü heçkimin vecinə deyil.",
+    "Ah, nə böyük itki. Bu səfərkini sevmişdim.",
+    "Açığı canım, vecimə deyil.",
+    "Südüm bütün oğlanları avluya çəkir... Biraz da bərk qaç!",
+    "Doğruları qaldıra BİLMƏZSƏN!",
+    "Keçmiş zamanlarda, çox çox uzağ bir qalaksidə kimsə vecinə ala bilərdi. Amma artığ ele deyil.",
+    "Hey, onlara bax! Qaçınılmaz banhammer'dən qaçırlar... Nə qədər də şirin.",
+    "Han əvvəl vuruldu. Mən də elə edəcəm",
+    "Ağ dovşanın, arxasında nə edirsən ?",
+    "Həkimin də söylədiyi kimi... QAÇ!",
 ]
 
 HELLOSTR = [
-    "Merhaba!",
-    "‘Naber Müdür!",
-    "Nasılsın’?",
-    "‘Hey N'oluyor?",
-    "Selam, selam, selam!",
-    "Merhaba, kim var orada?, Ben konuşuyorum.",
-    "Bunun kim oldugunu biliyorsun",
+    "Salamm!",
+    "Nə var nə yox Müdür!",
+    "Necəsən’?",
+    "‘Hey Nə baş verir?",
+    "Salam, salam, salam!",
+    "Salamm, kim var orda?, Mən danışıram.",
+    "Bunun kim olduğunu bilirsən",
     "Hey Yo!",
-    "N'aber.",
-    "Selamlar ve selamlar!",
-    "Merhaba, günışığı!",
-    "Hey, n'aber, merhaba!",
-    "Nasıl gidiyor’, küçük civciv?",
+    "Nə var nə yox.",
+    "Salamlar və salamlar !",
+    "Salam, günişığı!",
+    "Hey, nə var nə yox, salam!",
+    "Necə gedir’, balaca civciv?",
     "Ce-e!",
-    "Naber-doody!",
-    "Selam, birinci sınıf veledi!",
-    "Barışalım!",
-    "Selam, dostum!",
-    "M-merhaba!",
+    "Necəsən-doody!",
+    "Salam, birinci sinif küçüyü!",
+    "Barışağ!",
+    "Salam, dostum!",
+    "S-salam!",
 ]
 
 SHGS = [
@@ -313,94 +313,94 @@ CRI = [
 ]
 
 SLAP_TEMPLATES = [
-    "{victim} kullanıcısını {item} ile {hits} .",
-    "{victim} kullanıcısını {item} ile yüzüne {hits} .",
-    "{victim} kullanıcısını {item} ile biraz {hits} .",
-    "{victim} kullanıcısına {item} {throws} .",
-    "{victim} kullanıcısını {item} ile yüzüne {throws} .",
-    "{victim} kullanıcısına doğru {item} fırlatıyor.",
-    "{victim} aptalına {item} ile tokat atıyor.",
-    "{victim} kullanıcısını yere sabitleyıp ardı ardına {item} ile {hits} .",
-    "{item} alarak {victim} {hits}.",
-    "{victim} kullanıcısını sandalyeye bağlayıp {item} {throws} .",
-    "{victim} kullanıcısını arkadaşca ittirerek lavda yüzmeyi öğrenmesini sağlıyor."
+     "{victim} istifadəçisini {item} ilə {hits} .",
+    "{victim} istifadəçisini {item} ilə üzünə {hits} .",
+    "{victim} istifadəçisini {item} ilə biraz {hits} .",
+    "{victim} istifadəçisinə {item} {throws} .",
+    "{victim} istifadəçisini {item} ilə üzünə {throws} .",
+    "{victim} istifadəçisinə tərəf {item} atır.",
+    "{victim} axmaqına {item} ilə şillə vurur.",
+    "{victim} istifadəçisini yere sabitləyib ard-arda {item} ilə {hits} .",
+    "{item} alarağ {victim} {hits}.",
+    "{victim} istifadəçisini stola bağlayıb {item} {throws} .",
+    "{victim} istifadəçisini dostca itələyərək lavada üzməyi öyrədir."
 ]
 
 ITEMS = [
-    "demir tencere",
-    "büyük alabalık",
-    "beyzbol sopası",
-    "kriket sopası",
-    "tahta baston",
-    "çivi",
+        "dəmir tava",
+    "böyük alabalığ",
+    "beyzbol çubuğu",
+    "kriket çubuğu",
+    "taxta baston",
+    "mismar",
     "yazıcı",
-    "kürek",
-    "tüplü monitör",
-    "fizik defteri",
-    "tost makinası",
-    "Richard Stallman'ın portresi",
-    "televizyon",
-    "beş ton kamyon",
-    "koli bandı",
-    "kitap",
-    "dizüstü bilgisayar",
-    "eski televizyon",
-    "kayalı çuval",
-    "gökkuşağı alabalığı",
-    "plastik tavuk",
-    "çivili sopa",
-    "yangın söndürücü",
-    "ağır taş",
+    "lapatka",
+    "boru monitoru",
+    "fizika dəftəri",
+    "krem aparatı",
+    "Richard Stallman'ın portreti",
+    "televizor",
+    "beş ton kamaz",
+    "koli bandajı",
+    "kitab",
+    "dizüstü komputer",
+    "köhnə televizor",
+    "daşlı kisə",
+    "göyqurşağı alabalığı",
+    "plastik cücə",
+    "mismarlı çubuğ",
+    "yanğın söndürücü",
+    "ağır daş",
     "kir yığını",
-    "arı kovanı",
-    "çürük et parçası",
+    "arı yuvası",
+    "çürüy ət parçası",
     "ayı",
-    "tonlarca tuğla",
+    "tonlarca kərpic",
 ]
 
 THROW = [
-    "atıyor",
-    "fırlatıyor",
-    "savuruyor",
-    "yağdırıyor",
+    "atır",
+    "fırladır",
+    "tullayır",
+    "yağdırır",
 ]
 
 HIT = [
-    "vuruyor",
-    "sert vuruyor",
-    "tokatlıyor",
-    "yumrukluyor",
-    "geçiriyor",
+    "vurur",
+    "sərt vurur",
+    "şillələyir",
+    "yumruğlayır",
+    "keçirdir",
 ]
 
 # ===========================================
 
-@register(outgoing=True, pattern="^.hayvan ?(.*)")
+@register(outgoing=True, pattern="^.heyvan ?(.*)")
 async def hayvan(e):
     arg = e.pattern_match.group(1)
-    if arg == "kedi":
+    if arg == "pişik":
         args = "cat"
-    elif arg == "köpek":
+    elif arg == "it":
         args = "dog"
-    elif arg == "kuş":
+    elif arg == "quş":
         args = "birb"
-    elif arg == "kurt":
+    elif arg == "qurd":
         args = "fox"
     elif arg == "panda":
         args = "panda"
     else:
-        arg = "kedi"
+        arg = "pişik"
         args = "cat"
 
     foto = requests.get(f'https://some-random-api.ml/img/{args}').json()["link"]
     await e.delete()
     await e.client.send_message(
         e.chat_id,
-        f"`Rastgele bir {arg} fotoğrafı`",
+        f"`Təsadufi bir {arg} foto`",
         file=foto
     )
 
-@register(outgoing=True, pattern="^.karar$")
+@register(outgoing=True, pattern="^.qerar$")
 async def karar(e):
     msaj = ""
     if e.reply_to_msg_id:
@@ -408,14 +408,14 @@ async def karar(e):
         replyto = rep.id
         msaj += f"[Dostum](tg://user?id={rep.from_id}), "
     else:
-        e.edit("`Lütfen bir mesaja yanıt verin`")
+        e.edit("`Xaiş bir mesaja cavab verin`")
         return
     yesno = requests.get('https://yesno.wtf/api').json()
     if yesno["answer"] == "yes":
-        cevap = "evet"
+        cevap = "bəli"
     else:
-        cevap = "hayır"
-    msaj += f"Sanırım buna {cevap} diyeceğim."
+        cevap = "xeyr"
+    msaj += f"Deyəsən buna {cevap} deyəcəyəm."
 
     await e.delete()
     await e.client.send_message(
@@ -427,7 +427,7 @@ async def karar(e):
 
 @register(outgoing=True, pattern=r"^.(\w+)say (.*)")
 async def univsaye(cowmsg):
-    """ .cowsay komutu bir şeyler söyleyen inek yapar """
+    """ .cowsay"""
     arg = cowmsg.pattern_match.group(1).lower()
     text = cowmsg.pattern_match.group(2)
 
@@ -443,7 +443,7 @@ async def univsaye(cowmsg):
 
 @register(outgoing=True, pattern="^:/$", ignore_unsafe=True)
 async def kek(keks):
-    """ Kendinizi kontrol edin ;)"""
+    """  ;)"""
     uio = ["/", "\\"]
     for i in range(1, 15):
         time.sleep(0.3)
@@ -452,7 +452,7 @@ async def kek(keks):
 
 @register(pattern="^.slap(?: |$)(.*)", outgoing=True)
 async def who(event):
-    """ Hedeflenen kullanıcıya tokat atar. """
+    """ .slap, """
     replied_user = await get_user_from_event(event)
     if replied_user:
         replied_user = replied_user[0]
@@ -465,12 +465,12 @@ async def who(event):
 
     except BaseException:
         await event.edit(
-            "`Bu kişiyi tokatlayamam, yanıma sopa ve taş almam gerekecek !!`"
+            "`Bu istifadəçini şillələyə bilmərəm, yanıma bita və daş almalıyam !!`"
         )
 
 
 async def slap(replied_user, event):
-    """ Tokat atarken komik cümle kur !! """
+    """ !! """
     user_id = replied_user.id
     first_name = replied_user.first_name
     username = replied_user.username
@@ -485,7 +485,7 @@ async def slap(replied_user, event):
     hit = choice(HIT)
     throw = choice(THROW)
 
-    caption = "Asena " + temp.format(
+    caption = "DTÖUserBot " + temp.format(
         victim=slapped, item=item, hits=hit, throws=throw)
 
     return caption
@@ -510,13 +510,13 @@ async def fun(e):
 
 @register(outgoing=True, pattern="^.fp$")
 async def facepalm(e):
-    """ Utanmak  🤦‍♂ """
+    """ Utanmaq 🤦‍♂ """
     await e.edit("🤦‍♂")
 
 
 @register(outgoing=True, pattern="^.cry$")
 async def cry(e):
-    """ bunu yaparsan, her zaman ağlarım !! """
+    """ !! """
     await e.edit(choice(CRI))
 
 
@@ -531,7 +531,7 @@ async def copypasta(cp_e):
     elif textx:
         message = textx.text
     else:
-        await cp_e.edit("`😂Bana💯BIR✌️mE🅱️In👐Ver👏`")
+        await cp_e.edit("`😂Mənə💯BiR✌️mƏ🅱️In👐Ver👏`")
         return
 
     reply_text = choice(EMOJIS)
@@ -555,7 +555,7 @@ async def copypasta(cp_e):
 
 @register(outgoing=True, pattern="^.vapor(?: |$)(.*)")
 async def vapor(vpr):
-    """ Her şeyi vaporlaştırın! """
+    """ ! """
     reply_text = list()
     textx = await vpr.get_reply_message()
     message = vpr.pattern_match.group(1)
@@ -564,7 +564,7 @@ async def vapor(vpr):
     elif textx:
         message = textx.text
     else:
-        await vpr.edit("`Ｂａｎａ ｂｉｒ ｍｅｔｉｎ ｖｅｒ!`")
+        await vpr.edit("`M ə n ə ｂｉｒ m ə t i n ｖｅｒ!`")
         return
 
     for charac in message:
@@ -580,7 +580,7 @@ async def vapor(vpr):
 
 @register(outgoing=True, pattern="^.str(?: |$)(.*)")
 async def stretch(stret):
-    """ Mesajı iyice uzatın."""
+    """ ."""
     textx = await stret.get_reply_message()
     message = stret.text
     message = stret.pattern_match.group(1)
@@ -589,7 +589,7 @@ async def stretch(stret):
     elif textx:
         message = textx.text
     else:
-        await stret.edit("`Baaaaanaaaaa biiiiir meeeeetiiiiin veeeeer!`")
+        await stret.edit("`Məəəənəəəə biiiiir məəəəətiiiiin veeeeer!`")
         return
 
     count = randint(3, 10)
@@ -600,7 +600,7 @@ async def stretch(stret):
 
 @register(outgoing=True, pattern="^.zal(?: |$)(.*)")
 async def zal(zgfy):
-    """ Kaos duygusunu çağırın. """
+    """ . """
     reply_text = list()
     textx = await zgfy.get_reply_message()
     message = zgfy.pattern_match.group(1)
@@ -629,7 +629,7 @@ async def zal(zgfy):
 
 @register(outgoing=True, pattern="^.hi$")
 async def hoi(hello):
-    """ Herkesi selamlayın """
+    """ salamda salam """
     await hello.edit(choice(HELLOSTR))
 
 
@@ -643,7 +643,7 @@ async def faces(owo):
     elif textx:
         message = textx.text
     else:
-        await owo.edit("` UwU bana bir metin ver! `")
+        await owo.edit("` UwU mənə bir mətin ver! `")
         return
 
     reply_text = sub(r"(r|l)", "w", message)
@@ -658,7 +658,7 @@ async def faces(owo):
 
 @register(outgoing=True, pattern="^.react$")
 async def react_meme(react):
-    """ UserBot'un her şeye tepki vermesini sağlayın. """
+    """ . """
     await react.edit(choice(FACEREACTS))
 
 
@@ -722,7 +722,7 @@ async def fuk(event):
         await event.edit(animation_chars[i % 4])
 
 
-@register(outgoing=True, pattern="^.kalp (.*)")
+@register(outgoing=True, pattern="^.urek (.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -734,42 +734,25 @@ async def _(event):
         deq.rotate(1)
     await event.edit("❤️🧡💛" + input_str + "💚💙💜🖤")
 
-
-@register(outgoing=True, pattern="^.10iq$")
-async def iqless(e):
-    await e.edit(
-    "DÜÜÜT DÜÜÜTT AÇ YOLU AÇÇ HADİ ASLAN PARÇASI YOLU AÇ \n"
-    "HADİ BAK ENGELLİ BEKLİYO BURDA HADİ DÜÜÜTTT ♿️ BAK \n"
-    "SİNİRLENDİ ARKADAŞ HADİ YOLU AÇ HADİİ DÜÜÜT DÜÜTT BİİİPP \n"
-    "HADİ BE HIZLI OLL DÜÜÜTT BİİİPPP ♿️♿️ BAK HIZLANDI ENGELLİ \n"
-    "KARDEŞİMİZ SERİ KÖZ GETİR SERİ DÜÜÜTT DÜÜÜT DÜÜÜÜTTTTT \n"
-    "BİİİİPPP BİİİİİPPP DÜÜÜTTT ♿️♿️♿️♿️ BAK ARTIYO SAYILARI \n"
-    "AÇTIN MI YOLU AÇMADIN PÜÜÜÜ REZİİİLL DÜÜÜÜTTT ♿️♿️♿️ \n"
-    "♿️♿️♿️ BAK KALABALIKLASTI BAK DELI GELIYOR DELIRDI DELI \n"
-    "AC YOLU DUTDUTDURURURUDUTTT♿️♿️♿️♿️♿️♿️♿️♿️♿️ \n"
-    "♿️♿️♿️♿️♿️KAFAYI YEDI BUNLAR AC LAAAAN YOLU"
-    )
-    
-    
 @register(outgoing=True, pattern="^.mizah$")
 async def mizahshow(e):
     await e.edit(
     "⚠️⚠️⚠️MmMmMmMizahh Şoww😨😨😨😨😱😱😱😱😱 \n"
     "😱😱⚠️⚠️ 😂😂😂😂😂😂😂😂😂😂😂😂😂😂😱😵 \n"
     "😂😂👍👍👍👍👍👍👍👍👍👍👍👍👍 MiZah \n"
-    "ŞeLaLesNdEn b1r yUdm aLdım✔️✔️✔️✔️ \n"
+    "ŞəLaLesNdƏn b1r yUdm aLdım✔️✔️✔️✔️ \n"
     "AHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHAHAHHAHAHAHAHA \n"
     "HAHAHAHAHAHAHHAHAHAHAHAHAHA😂😂😂😂😂😂😂😂 \n"
-    "😂 KOMİK LAN KOMİİİK \n"
-    "heLaL LaN ✔️✔️✔️✔️✔️✔️✔️✔️👏👏👏👏👏👏👏👏 \n"
-    "👏 EfSaNe mMmMiZah şooooovv 👏👏👏👏👏😂😂😂😂 \n"
+    "😂 GÜLDÜM ALA GÜLDÜÜM \n"
+    "hALaL LaN ✔️✔️✔️✔️✔️✔️✔️✔️👏👏👏👏👏👏👏👏 \n"
+    "👏 ƏfSaNə mMmMiZah şooooovv 👏👏👏👏👏😂😂😂😂 \n"
     "😂😂😂😂😂😂⚠️ \n"
     "💯💯💯💯💯💯💯💯💯 \n"
-    "KNK AYNI BİİİZ 😂😂😂👏👏 \n"
-    "💯💯⚠️⚠️♿️AÇ YOLU POST SAHİBİ VE ONU ♿️SAVUNANLAR \n"
-    "GELIYOR ♿️♿️ DÜÜTT♿️ \n"
+    "DSTM EYNI BİİİZ 😂😂😂👏👏 \n"
+    "💯💯⚠️⚠️♿️AÇ YOLU POST SAHİBİ VE ONU ♿️QORUYANLAR \n"
+    "GƏLİR ♿️♿️ DÜÜTT♿️ \n"
     "DÜÜÜÜT♿️DÜÜT♿️💯💯⚠️ \n"
-    "♿️KOMİİİK ♿️ \n"
+    "♿️GÜLMƏLİDİ ♿️ \n"
     "CJWJCJWJXJJWDJJQUXJAJXJAJXJWJFJWJXJAJXJWJXJWJFIWIXJQJJQJASJAXJ \n"
     "AJXJAJXJJAJXJWJFWJJFWIIFIWICIWIFIWICJAXJWJFJEICIIEICIEIFIWICJSXJJS \n"
     "CJEIVIAJXBWJCJIQICIWJX💯💯💯💯💯💯😂😂😂😂😂😂😂 \n"
@@ -804,7 +787,7 @@ async def clock(event):
 
 @register(outgoing=True, pattern="^.mock(?: |$)(.*)")
 async def spongemocktext(mock):
-    """ Yap ve gerçek eğlenceyi bul. """
+    """ . """
     reply_text = list()
     textx = await mock.get_reply_message()
     message = mock.pattern_match.group(1)
@@ -813,7 +796,7 @@ async def spongemocktext(mock):
     elif textx:
         message = textx.text
     else:
-        await mock.edit("`bANa bIr mETin vEr!`")
+        await mock.edit("`mƏNə bIr mƏTin vEr!`")
         return
 
     for charac in message:
@@ -828,7 +811,7 @@ async def spongemocktext(mock):
 
 @register(outgoing=True, pattern="^.clap(?: |$)(.*)")
 async def claptext(memereview):
-    """ İnsanları övün! """
+    """ ! """
     textx = await memereview.get_reply_message()
     message = memereview.pattern_match.group(1)
     if message:
@@ -836,7 +819,7 @@ async def claptext(memereview):
     elif textx:
         message = textx.text
     else:
-        await memereview.edit("`Hah, anlamı olmadan alkışlamıyorum!`")
+        await memereview.edit("`Hah, mənası olmadan alqışlamıram!`")
         return
     reply_text = "👏 "
     reply_text += message.replace(" ", " 👏 ")
@@ -873,7 +856,7 @@ async def payg(event):
     paytext = event.pattern_match.group(1)
     await event.edit(g.replace('❤️', paytext))
 
-@register(outgoing=True, pattern=r"^.bo[sş]luk")
+@register(outgoing=True, pattern=r"^.bo[sş]luq")
 async def bosluk(event):
     await event.delete()
     await event.reply('ㅤ')
@@ -897,7 +880,7 @@ async def let_me_google_that_for_you(lmgtfy_q):
 
 @register(pattern=r".scam(?: |$)(.*)", outgoing=True)
 async def scam(event):
-    """ Sahte sohbet eylemleri için küçük bir komut !! """
+    """ !! """
     options = [
         'typing', 'contact', 'game', 'location', 'voice', 'round', 'video',
         'photo', 'document', 'cancel'
@@ -931,7 +914,7 @@ async def scam(event):
 
 @register(pattern=r".type(?: |$)(.*)", outgoing=True)
 async def typewriter(typew):
-    """ Klavyenizi daktilo haline getirmek için küçük bir komut! """
+    """ . """
     textx = await typew.get_reply_message()
     message = typew.pattern_match.group(1)
     if message:
@@ -939,7 +922,7 @@ async def typewriter(typew):
     elif textx:
         message = textx.text
     else:
-        await typew.edit("`Bana bir metin ver!`")
+        await typew.edit("`Mənə bir mətin ver!`")
         return
     sleep_time = 0.03
     typing_symbol = "|"
@@ -955,29 +938,29 @@ async def typewriter(typew):
         await sleep(sleep_time)
 
 CmdHelp('memes').add_command(
-    'hayvan', 'kedi/köpek/panda/kuş/kurt', 'Rastgele bir hayvan fotoğrafı atar.'
+    'heyvan', 'pişik/it/panda/quş/qurd', 'Təsadufi bir heyvan fotosu atar.'
 ).add_command(
-    'cowsay', None, 'Bir şeyler söyleyen inek'
+    'cowsay', None, 'Bir şeylər danışan inək'
 ).add_command(
-    ':/', None, 'Tiox\'un 3 aydır kızın adını öğrenemediği aklına geliyor.'
+    ':/', None, 'Rihad\'ın 3 aydır qızın adını öyrənmədiyi ağlına gəlir.'
 ).add_command(
-    'karar', None, 'Karar verin.'
+    'qerar', None, 'Qərar verin.'
 ).add_command(
-    '-_-', None, 'Tamamdır.\n-Birtanem Usta'
+    '-_-', None, 'Tamamdır.\n-Birdənəm ustam'
 ).add_command(
-    ';_;', None, 'Berkant\' 5 dakikadır kaynanasını görmediğini düşünün.'
+    ';_;', None, 'Hüseynin\' 5 dəqiqədir qaynanasını görmədiyini düşünün.'
 ).add_command(
-    'cp', '<yanıt>', 'Emoji falan ekliyor.'
+    'cp', '<cavab>', 'Emoji falan əlavə edir.'
 ).add_command(
-    'vapor', '<mesaj/yanıt>', 'Vaporlaştırın!'
+    'vapor', '<mesaj/cavab>', 'Vaporlaşdırın!'
 ).add_command(
-    'str', '<yazı>', 'Yazıyı uzatın.'
+    'str', '<yazı>', 'Yazıyı uzadın.'
 ).add_command(
-    '10iq', None, 'Selax mesaj yazıyor.'
+    '10iq', None, 'Coshgyn mesaj yazır....'
 ).add_command(
-    'mizah', None, 'Tekerlek Selax Usta espri yaparsa hemen kullanın.'
+    'mizah', None, 'Ümüd Usta mizah edərsə tez edin.'
 ).add_command(
-    'zal', '<yanıtlama/mesaj>', 'Çok karmaşık! Her şey çok karmaşık.'
+    'zal', '<cavablama/mesaj>', 'Çox qarmaşıq! Hər şey çox qarmaşıq.'
 ).add_command(
     'oof', None, 'of ya'
 ).add_command(
@@ -985,43 +968,43 @@ CmdHelp('memes').add_command(
 ).add_command(
     'fuk', None, '+18'
 ).add_command(
-    'kalp', '<isim>', 'Sevginizi gösterin.'
+    'urek', '<isim>', 'Sevginizi göstərin.'
 ).add_command(
-    'fp', None, 'Utanmak.'
+    'fp', None, 'Utanmaq.'
 ).add_command(
-    'moon', None, 'Ay animasyonu.'
+    'moon', None, 'Ay animasiyası.'
 ).add_command(
-    'clock', None, 'Berkant kaynanasını bekliyor. (Saat animasyonu)'
+    'clock', None, 'Hüseyn qaynanasını gözləyir. (Saat animasiyası)'
 ).add_command(
-    'hi', None, 'Selam verin.'
+    'hi', None, 'Salam verin.'
 ).add_command(
-    'owo', None, 'LOLcü Selin olur gibi'
+    'owo', None, 'OwoooooWoooo'
 ).add_command(
-    'react', None, 'Ayzırbotun her şeye tepki vermesini sağlayın.'
+    'react', None, 'Dıtıyızırbotun hər şeyə hərəkət verməsini düzəldin.'
 ).add_command(
-    'slap', '<yanıt>', 'Rastgele nesnelerle tokatlamak için mesaja cevap verin.'
+    'slap', '<yanıt>', 'Təsadufi şeylərlə şillələmək üçün mesaja cavab verin.'
 ).add_command(
-    'cry', None, 'Ağlamak mı istiyorsun?'
+    'cry', None, 'Ağlamaq mı istiyirsən?'
 ).add_command(
     'shg', None, '¯\_(ツ)_/¯'
 ).add_command(
-    'run', None, 'Koş!'
+    'run', None, 'Qaç!'
 ).add_command(
-    'mock', '<yanıt/mesaj>', 'Yap ve gerçek eğlenceyi bul.'
+    'mock', '<cavab/mesaj>', 'Elə və real əyləncəni tap.'
 ).add_command(
-    'clap', None, 'Beni, yapraklar değil Ayzırbotlar alkışlıyor!'
+    'clap', None, 'Məni, yapraqlar deyil Yuzurbotlar alqışlıyır!'
 ).add_command(
     'f', '<mesaj>', 'F'
 ).add_command(
-    'type', '<yazı>', 'Daktilo gibi yazı yazın.'
+    'type', '<yazı>', 'Daktilo kimi yazı yazın.'
 ).add_command(
-    'lfy', '<sorgu>', 'Bırakın Google bunu sizin için araştırsın.'
+    'lfy', '<sorgu>', 'Buraxın Google bunu sizin üçün araşdırsın.'
 ).add_command(
-    'scam', '<eylem> <süre>', 'Sahte eylemler oluşturun.\nMevcut eylemler: (typing, contact, game, location, voice, round, video, photo, document, cancel)'
+    'scam', '<hərəkət> <vaxt>', 'Saxta hərəkətlər yaradın.\nMövcus hərəkətlər: (typing, contact, game, location, voice, round, video, photo, document, cancel)'
 ).add_command(
-    'lfy', '<sorgu>', 'Bırakın Google bunu sizin için araştırsın.'
+    'lfy', '<sorğu>', 'Buraxın Google bunu sizin üçün araşdırsın.'
 ).add_command(
-    'boşluk', None, 'Boş mesaj. (Elon Musk\'tan öğrendim.)'
+    'boşluq', None, 'Boş mesaj.'
 ).add_command(
     'ğ', '<metin>', 'Ğ'
 ).add()
