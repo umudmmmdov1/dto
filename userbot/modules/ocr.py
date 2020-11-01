@@ -73,5 +73,5 @@ async def ocr(event):
 CmdHelp('ocr').add_command(
     'ocr', '<dil>', 'Mətin aydınlatmaq üçün bir fotoya vəya stikerə cavab verin.'
 ).add_info(
-    'Dil kodlarını [buradan](https://ocr.space/ocrapi) alın.'
+    'Dil kodlarını [buradan](https://ocr.space/ocrapi) götürün.'
 ).add()
