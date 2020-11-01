@@ -563,7 +563,7 @@
             "UPDATING": "`Bot güncelleştiriliyor...`",
             "INVALID_APPNAME": "`[HEROKU UPDATER] Güncelleyiciyi kullanabilmek için HEROKU_APPNAME değişkenini tanımlamalısın.`",
             "INVALID_HEROKU": "{}\n`Heroku değişkenleri yanlış veya eksik tanımlanmış.`",
-            "HEROKU_UPDATING": "`[HEROKU UPDATER]\nUserBot'unuz daha iyi olacağınıza emin olabilirsiniz :) Bu işlem maksimum 10 dakika sürmektedir.`",
+            "HEROKU_UPDATING": "`[HEROKU UPDATER]\nDTÖUserBotunuzun daha iyi olacağınıza emin olabilirsiniz :) Bu işlem maksimum 10 dakika sürmektedir.`",
             "ERRORS": "Karşılaşılan hatalar burada",
             "SUCCESSFULLY": "`Güncelleme başarıyla tamamlandı!\nYeniden başlatılıyor...`"
         },
