@@ -429,7 +429,7 @@ async def urban_dict(ud_e):
             return
         await ud_e.edit("Sorğu: **" + query + "**\n\nMənası: **" +
                         mean[0]["def"] + "**\n\n" + "Məsələn: \n__" +
-                        mean[0]["example"] + "__)
+                        mean[0]["example"] + "__")
         if BOTLOG:
             await ud_e.client.send_message(
                 BOTLOG_CHATID,
