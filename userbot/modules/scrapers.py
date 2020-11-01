@@ -261,12 +261,12 @@ async def carbon_api(e):
     # driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
     await e.edit("`İşlənir...\nTamamlanma Faizi: 75%`")
-    # İndirme için bekleniyor
+    # 
     while not os.path.isfile("./carbon.png"):
         await sleep(0.5)
     await e.edit("`İşlənir...\nTamamlanma Faizi: 100%`")
     file = './carbon.png'
-    await e.edit("`Şəkik qarşıya yüklənir...`")
+    await e.edit("`Şəkil qarşıya yüklənir...`")
     await e.client.send_file(
         e.chat_id,
         file,
