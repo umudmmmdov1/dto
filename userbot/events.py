@@ -78,7 +78,7 @@ def register(**args):
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-                    text = "**DTÖUSERBOT XETA**\n"
+                    text = "**DTÖUSERBOT XƏTA**\n"
                     link = "[DTÖUserBot Dəstək Qrupu](https://t.me/DtoSupport)"
                     text += "İstərsəniz, bunu şikayət edə bilərsiz"
                     text += f"- sədəcə bu mesajı buraya yönləndirin {link}.\n"
