@@ -29,16 +29,16 @@ LANG = get_value("afk")
 # ████████████████████████████████ #
 
 def time_formatter(seconds, short=True):
-    # Thanks UsergeTeam #
-    # https://github.com/UsergeTeam/Userge/blob/053786a1ed54530b305c1bfb96e70147ca99463f/userge/utils/tools.py#L70 #
+    #  #
+    #  #
     minutes, seconds = divmod(int(seconds), 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     tmp = ((str(days) + (" gün, " if not short else "g, ")) if days else "") + \
         ((str(hours) + (" saat, " if not short else "s, ")) if hours else "") + \
-        ((str(minutes) + (" dəqiqə, " if not short else "d, ")) if minutes else "") + \
-        ((str(seconds) + (" saniyə, " if not short else "s, ")) if seconds else "")
-    return tmp[:-2] + " əvvəl"
+        ((str(minutes) + (" dakika, " if not short else "d, ")) if minutes else "") + \
+        ((str(seconds) + (" saniye, " if not short else "s, ")) if seconds else "")
+    return tmp[:-2] + " önce"
 
 @register(incoming=True, disable_edited=True)
 async def mention_afk(mention):
@@ -78,7 +78,7 @@ async def mention_afk(mention):
                         last_seen=last_seen,
                         last_seen_long=last_seen_long
                     ) \
-                            + "\n{LANG['REASON']}: `{AFKREASON}`\n")
+                            + f"\n{LANG['REASON']}: `{AFKREASON}`\n")
                     else:
                         msj = await mention.reply(PLUGIN_MESAJLAR['afk'])
                         await msj.reply(f"{LANG['REASON']}: `{AFKREASON}`")
@@ -107,7 +107,7 @@ async def mention_afk(mention):
                             last_seen=last_seen,
                             last_seen_long=last_seen_long
                             ) \
-                                + "\{LANG['REASON']}: `{AFKREASON}`")
+                                + f"\{LANG['REASON']}: `{AFKREASON}`")
                         else:
                             msj = await mention.reply(PLUGIN_MESAJLAR['afk'])
                             await msj.reply(f"{LANG['REASON']}: `{AFKREASON}`")
@@ -129,7 +129,7 @@ async def mention_afk(mention):
 
 @register(incoming=True, disable_errors=True)
 async def afk_on_pm(sender):
-    """  """
+    """ . """
     global ISAFK
     global USERS
     global COUNT_MSG
@@ -174,7 +174,7 @@ async def afk_on_pm(sender):
                         last_seen=last_seen,
                         last_seen_long=last_seen_long
                     ) \
-                    + "\n{LANG['REASON']}: `{AFKREASON}`")
+                    + f"\n{LANG['REASON']}: `{AFKREASON}`")
                 else:
                     await sender.reply(PLUGIN_MESAJLAR['afk'].format(
                         username=username,
@@ -200,7 +200,7 @@ async def afk_on_pm(sender):
                                 last_seen=last_seen,
                                 last_seen_long=last_seen_long
                             ) \
-                            + "\n{LANG['REASON']}: `{AFKREASON}`")
+                            + f"\n{LANG['REASON']}: `{AFKREASON}`")
                         else:
                             msj = await sender.reply(PLUGIN_MESAJLAR['afk'])
                             await msj.reply(f"{LANG['REASON']}: `{AFKREASON}`")
@@ -223,7 +223,7 @@ async def afk_on_pm(sender):
 
 @register(outgoing=True, pattern="^.afk(?: |$)(.*)", disable_errors=True)
 async def set_afk(afk_e):
-    """ .afk . """
+    """ .afk """
     message = afk_e.text
     string = afk_e.pattern_match.group(1)
     global ISAFK
@@ -246,7 +246,7 @@ async def set_afk(afk_e):
 
 @register(outgoing=True)
 async def type_afk_is_not_true(notafk):
-    """  """
+    """ . """
     global ISAFK
     global COUNT_MSG
     global USERS
@@ -258,7 +258,7 @@ async def type_afk_is_not_true(notafk):
         if BOTLOG:
             await notafk.client.send_message(
                 BOTLOG_CHATID,
-                "Siz AFK olduğunuzda " + str(len(USERS)) + " istifadəçi sizə " +
+                "Siz AFK olanda " + str(len(USERS)) + " istifadəçi sizə " +
                 str(COUNT_MSG) + " mesaj göndərdi.",
             )
             for i in USERS:
@@ -276,5 +276,5 @@ async def type_afk_is_not_true(notafk):
 CmdHelp('afk').add_command(
     'afk', 
     '<İstəyə bağlı səbəb>', 
-    'AFK olduğunuzu bildirər. Kim sizənpm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və seçdiyiniz səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.'
+    'AFK olduğunuzu bildirir. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərir. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.'
     ).add()
