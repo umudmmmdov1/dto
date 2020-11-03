@@ -7,7 +7,7 @@
 # DTÖUserBot - Ümüd
 #
 
-""" AFK ile ilgili komutları içeren UserBot modülü """
+""" AFK """
 
 from random import randint
 from asyncio import sleep
@@ -29,8 +29,8 @@ LANG = get_value("afk")
 # ████████████████████████████████ #
 
 def time_formatter(seconds, short=True):
-    # Thanks UsergeTeam #
-    # https://github.com/UsergeTeam/Userge/blob/053786a1ed54530b305c1bfb96e70147ca99463f/userge/utils/tools.py#L70 #
+    # #
+    # #
     minutes, seconds = divmod(int(seconds), 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
