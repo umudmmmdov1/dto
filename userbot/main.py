@@ -4,9 +4,9 @@
 # you may not use this file except in compliance with the License.
 #
 
-# DTÖUserBot - Ümüd
+# Asena UserBot - Yusuf Usta
 
-""" UserBot başlanğıc """
+""" UserBot başlangıç noktası """
 import importlib
 from importlib import import_module
 from sqlite3 import connect
@@ -42,7 +42,7 @@ DIZCILIK_STR = [
 ]
 
 AFKSTR = [
-    "İndi təcili işim var, daha sonra mesaj atsan olar? Onsuz yenidən gələcəm.",
+"İndi təcili işim var, daha sonra mesaj atsan olar? Onsuz yenidən gələcəm.",
     "Bu nömrəyə zəng çatmır. Telefon ya söndürülüb yada əhatə dairəsi xaricindədi. Zəhmət olmasa yenidən cəhd edin. \nbiiiiiiiiiiiiiiiiiiiiiiiiiiiiip!",
     "Bir neçə dəqiqə içində gələcəyəm. Ancaq gəlməsəm...\ndaha çox gözlə.",
     "İndi burada deyiləm, başqa yerdəyəm.",
@@ -66,7 +66,7 @@ AFKSTR = [
     "İndi burada deiləm....\nama burda olsaydım...\n\nbu möhtəşəm olardı eləmi qadan alım ?",
 ]
 
-UNAPPROVED_MSG = (("`Hey salam!` {mention}`! Bu bir bot. Qorxma.\n\n`"
+UNAPPROVED_MSG = ("`Hey salam!` {mention}`! Bu bir bot. Qorxma.\n\n`"
                   "`Sahibim sənə PM atma icazəsi verməyib. `"
                   "`Xaiş sahibimin aktiv olmasını gözlə, o adətən PM'ləri təsdiqləyir.\n\n`"
                   "`Təşəkkürlər ❤️`")
@@ -81,7 +81,7 @@ INVALID_PH = '\nXƏTA: GirilƏN telefon nömrəsi keçərsizdir' \
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
-connect("dtobrain.check").close()
+connect("dtobrain").close()
 
 def extractCommands(file):
     FileRead = open(file, 'r').read()
@@ -98,7 +98,7 @@ def extractCommands(file):
         dosyaAdi = file.replace('.py', '')
         CmdHelp = userbot.cmdhelp.CmdHelp(dosyaAdi, False)
 
-        # Emrler #
+        # Komutları Alıyoruz #
         for Command in Pattern:
             Command = Command[1]
             if Command == '' or len(Command) <= 1:
@@ -120,7 +120,7 @@ def extractCommands(file):
                             KomutStr = Command
                         Komutlar.append(KomutStr)
 
-            # DTOPY
+            # DtoPY
             Dtopy = re.search('\"\"\"DTOPY(.*)\"\"\"', FileRead, re.DOTALL)
             if not Dtopy == None:
                 Dtopy = Dtopy.group(0)
@@ -139,7 +139,7 @@ def extractCommands(file):
             for Komut in Komutlar:
                 # if re.search('\[(\w*)\]', Komut):
                     # Komut = re.sub('(?<=\[.)[A-Za-z0-9_]*\]', '', Komut).replace('[', '')
-                CmdHelp.add_command(Komut, None, 'Bu plugin qırağdan yüklənib. Hər hansısa bir açıqlama yazılmayıb.')
+                CmdHelp.add_command(Komut, None, 'Bu plugin dışarıdan yüklenmiştir. Herhangi bir açıklama tanımlanmamıştır.')
             CmdHelp.add()
 
 try:
@@ -149,7 +149,7 @@ try:
     if idim in dtobl:
         bot.disconnect()
 
-    # ChromeDriver #
+    # ChromeDriver'ı Ayarlayalım #
     try:
         chromedriver_autoinstaller.install()
     except:
@@ -160,7 +160,7 @@ try:
 
     # PLUGIN MESAJLARI AYARLIYORUZ
     PLUGIN_MESAJLAR = {}
-    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanlıları qorusun\nDTÖUserBot Əla işləyir ⚡`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Bye-bye mən qaçdım `🥰", "pm": UNAPPROVED_MSG, "dızcı": str(choice(DIZCILIK_STR)), "ban": "{mention}`, banlandı!`", "mute": "{mention}`, susduruldu!`", "approve": "{mention}`, mənə mesaj göndərə bilərsən!`", "disapprove": "{mention}`, artıq mənə mesaj göndərə bilmərsən!`", "block": "{mention}`, bloklandın!`"}
+    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanlıları qorusun/nDTÖUserBot Əla işləyir ⚡.`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Bye bye mən qaçdım `🥰", "pm": UNAPPROVED_MSG, "dızcı": str(choice(DIZCILIK_STR)), "ban": "{mention}`, banlandı!`", "mute": "{mention}`, susduruldu!`", "approve": "{mention}`, mənə artıq mesaj yaza bilərsən!`", "disapprove": "{mention}`, artıq mənə mesaj göndərə bilmərsən!`", "block": "{mention}`, bloklandın!`"}
 
     PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "kickme", "pm", "dızcı", "ban", "mute", "approve", "disapprove", "block"]
     for mesaj in PLUGIN_MESAJLAR_TURLER:
@@ -176,7 +176,7 @@ try:
             else:
                 PLUGIN_MESAJLAR[mesaj] = dmsj
     if not PLUGIN_CHANNEL_ID == None:
-        LOGS.info("Pluginlər Yüklənir")
+        LOGS.info("Pluginler Yükleniyor")
         try:
             KanalId = bot.get_entity(PLUGIN_CHANNEL_ID)
         except:
@@ -190,7 +190,7 @@ try:
                 if not os.path.exists("./userbot/modules/" + plugin.file.name):
                     dosya = bot.download_media(plugin, "./userbot/modules/")
                 else:
-                    LOGS.info("Bu Plugin Onsuz Yüklənih " + plugin.file.name)
+                    LOGS.info("Bu Plugin Zaten Yüklü " + plugin.file.name)
                     extractCommands('./userbot/modules/' + plugin.file.name)
                     dosya = plugin.file.name
                     continue 
@@ -201,7 +201,7 @@ try:
 
                     spec.loader.exec_module(mod)
                 except Exception as e:
-                    LOGS.info(f"`Yükləmə uğursuz! Plugin xətalıdır.\n\nXəta: {e}`")
+                    LOGS.info(f"`Yükleme başarısız! Plugin hatalı.\n\nHata: {e}`")
 
                     try:
                         plugin.delete()
@@ -213,7 +213,7 @@ try:
                     continue
                 extractCommands('./userbot/modules/' + plugin.file.name)
     else:
-        bot.send_message("me", f"`Xaiş pluginlərin qalıcı olması üçün PLUGIN_CHANNEL_ID'i düzəldin.`")
+        bot.send_message("me", f"`Lütfen pluginlerin kalıcı olması için PLUGIN_CHANNEL_ID'i ayarlayın.`")
 except PhoneNumberInvalidError:
     print(INVALID_PH)
     exit(1)
