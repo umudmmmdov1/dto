@@ -1,59 +1,8 @@
-# Biz Arch Linux kullanıyoruz <3
-FROM archlinux:latest
+# 2020 #
+# DTÖUserBot
 
-
-# Gerekyi paketleri yükle
-RUN pacman -Syyu --noconfirm \
-    aria2 \
-    curl \
-    chromium \
-    ffmpeg \
-    figlet \
-    gcc \
-    git \
-    jq \
-    libevent \
-    libffi \
-    libjpeg \
-    libpng \
-    libpqxx \
-    libsystemd \
-    libwebp \
-    libxml2 \
-    libxslt \
-    linux-headers \
-    musl \
-    neofetch \
-    nss \
-    openssl \
-    postgresql \
-    postgresql-client \
-    python3 \
-    python-pip \
-    pv \
-    sudo \
-    tzdata \
-    util-linux \
-    wget  
-
-
-# Repoyu klonla ve çalışma dizinini hazırla
-RUN git clone https://github.com/umudmmmdov1/DTOUserBot /root/dto
-RUN mkdir /root/dto/bin/
-WORKDIR /root/dto/
-
-
-# Oturum ve yapılandırmayı kopyala (varsa)
-COPY ./sample_config.env ./userbot.session* ./config.env* /root/dto/
-
-
-# Zaman dilimini ayarla
-ENV TZ=Asia/Baku
-
-
-# Gerekli pip modüllerini kur
+FROM umudmmmdov1/dtouserbot:latest
+RUN git clone https://github.com/umudmmmdov1/DTOUserBot /root/DTOUserBot
+WORKDIR /root/DTOUserBot/
 RUN pip3 install -r requirements.txt
-
-
-# Botu çalıştır
-CMD ["python3","main.py"]
+CMD ["python3", "main.py"]  
