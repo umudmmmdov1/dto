@@ -81,7 +81,7 @@ INVALID_PH = '\nXƏTA: GirilƏN telefon nömrəsi keçərsizdir' \
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
-connect("dtobrain.check").close()
+connect("dtobrain").close()
 
 def extractCommands(file):
     FileRead = open(file, 'r').read()
