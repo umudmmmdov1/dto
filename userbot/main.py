@@ -81,7 +81,7 @@ INVALID_PH = '\nXƏTA: GirilƏN telefon nömrəsi keçərsizdir' \
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
-connect("dtobrain").close()
+connect("dtobrain.check").close()
 
 def extractCommands(file):
     FileRead = open(file, 'r').read()
@@ -145,8 +145,8 @@ def extractCommands(file):
 try:
     bot.start()
     idim = bot.get_me().id
-    dtoxbl = requests.get('https://raw.githubusercontent.com/umudmmmdov1/DunyaTurkOrgutu/master/dtox.json').json()
-    if idim in dtoxbl:
+    dtobl = requests.get('https://raw.githubusercontent.com/umudmmmdov1/DunyaTurkOrgutu/master/dtox.json').json()
+    if idim in dtobl:
         bot.disconnect()
 
     # ChromeDriver #
