@@ -7,7 +7,7 @@
 # DTÖUserBot - Ümüd
 #
 
-""" AFK"""
+""" AFK """
 
 from random import randint
 from asyncio import sleep
@@ -29,8 +29,8 @@ LANG = get_value("afk")
 # ████████████████████████████████ #
 
 def time_formatter(seconds, short=True):
-    # . #
-    # . #
+    # #
+    #  #
     minutes, seconds = divmod(int(seconds), 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
@@ -42,7 +42,7 @@ def time_formatter(seconds, short=True):
 
 @register(incoming=True, disable_edited=True)
 async def mention_afk(mention):
-    """ . """
+    """ ."""
     global COUNT_MSG
     global USERS
     global ISAFK
@@ -83,7 +83,7 @@ async def mention_afk(mention):
                         msj = await mention.reply(PLUGIN_MESAJLAR['afk'])
                         await msj.reply(f"{LANG['REASON']}: `{AFKREASON}`")
                 else:
-                    if PLUGIN_MESAJLAR['afk'].text:
+                    if not isinstance(PLUGIN_MESAJLAR['afk'], str):
                         PLUGIN_MESAJLAR['afk'].text = PLUGIN_MESAJLAR['afk'].text.format(
                             username=username,
                             mention=mention_format,
@@ -113,7 +113,7 @@ async def mention_afk(mention):
                             msj = await mention.reply(PLUGIN_MESAJLAR['afk'])
                             await msj.reply(f"{LANG['REASON']}: `{AFKREASON}`")
                     else:
-                        if PLUGIN_MESAJLAR['afk'].text:
+                        if not isinstance(PLUGIN_MESAJLAR['afk'], str):
                             PLUGIN_MESAJLAR['afk'].text = PLUGIN_MESAJLAR['afk'].text.format(
                                 username=username,
                                 mention=mention_format,
@@ -168,7 +168,7 @@ async def afk_on_pm(sender):
         if apprv and ISAFK:
             if sender.sender_id not in USERS:
                 if AFKREASON:
-                    await sender.reply({LANG['AFK']}.format(
+                    await sender.reply(LANG['AFK'].format(
                         username=username,
                         mention=mention,
                         first_name=first_name,
@@ -179,7 +179,7 @@ async def afk_on_pm(sender):
                     ) \
                     + f"\n{LANG['REASON']}: `{AFKREASON}`")
                 else:
-                    if PLUGIN_MESAJLAR['afk'].text:
+                    if not isinstance(PLUGIN_MESAJLAR['afk'], str):
                         PLUGIN_MESAJLAR['afk'].text = PLUGIN_MESAJLAR['afk'].text.format(
                             username=username,
                             mention=mention,
@@ -209,7 +209,7 @@ async def afk_on_pm(sender):
                             msj = await sender.reply(PLUGIN_MESAJLAR['afk'])
                             await msj.reply(f"{LANG['REASON']}: `{AFKREASON}`")
                     else:
-                        if PLUGIN_MESAJLAR['afk'].text:
+                        if not isinstance(PLUGIN_MESAJLAR['afk'], str):
                             PLUGIN_MESAJLAR['afk'].text = PLUGIN_MESAJLAR['afk'].text.format(
                                 username=username,
                                 mention=mention,
@@ -229,7 +229,7 @@ async def afk_on_pm(sender):
 
 @register(outgoing=True, pattern="^.afk(?: |$)(.*)", disable_errors=True)
 async def set_afk(afk_e):
-    """ .afk  """
+    """ .afk """
     message = afk_e.text
     string = afk_e.pattern_match.group(1)
     global ISAFK
@@ -282,5 +282,5 @@ async def type_afk_is_not_true(notafk):
 CmdHelp('afk').add_command(
     'afk', 
     '<İstəyə bağlı səbəb>', 
-    'AFK olduğunuzu bildirər. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.'
+    'AFK olduğunuzu bildirir. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.'
     ).add()
