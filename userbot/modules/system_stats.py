@@ -7,14 +7,14 @@
 # DTÖUserBot - Ümüd
 
 
-"""  """
+""" . """
 
 from asyncio import create_subprocess_shell as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
 from platform import uname
 from shutil import which
 from os import remove
-from userbot import CMD_HELP, DTO_VERSION
+from userbot import CMD_HELP, ASENA_VERSION
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from telethon import version
@@ -53,7 +53,7 @@ async def sysdetails(sysd):
 
 @register(outgoing=True, pattern="^.botver$")
 async def bot_ver(event):
-    """ .botver """
+    """ .botver"""
     if which("git") is not None:
         invokever = "git describe --all --long"
         ver = await asyncrunapp(
@@ -83,13 +83,13 @@ async def bot_ver(event):
                          "`")
     else:
         await event.edit(
-            "Mmm 🥰 DTÖUserBotunuz əla işləyir ⚡"
+            "Allah Azərbaycanlıları qorusun 🇦🇿"
         )
 
 
 @register(outgoing=True, pattern="^.pip(?: |$)(.*)")
 async def pipcheck(pip):
-    """ .pip """
+    """ .pip"""
     pipmodule = pip.pattern_match.group(1)
     if pipmodule:
         await pip.edit(f"`{LANG['SEARCHING']} . . .`")
@@ -131,12 +131,18 @@ async def pipcheck(pip):
 
 @register(outgoing=True, pattern="^.alive$")
 async def amialive(e):
+    me = await e.client.get_me()
     if type(PLUGIN_MESAJLAR['alive']) == str:
         await e.edit(PLUGIN_MESAJLAR['alive'].format(
             telethon=version.__version__,
             python=python_version(),
             dto=DTO_VERSION,
-            plugin=len(CMD_HELP)
+            plugin=len(CMD_HELP),
+            id=me.id,
+            username='@' + me.username if me.username else f'[{me.first_name}](tg://user?id={me.id})',
+            first_name=me.first_name,
+            last_name=me.last_name if me.last_name else '',
+            mention=f'[{me.first_name}](tg://user?id={me.id})'
         ))
     else:
         await e.delete()
@@ -145,16 +151,25 @@ async def amialive(e):
                 telethon=version.__version__,
                 python=python_version(),
                 dto=DTO_VERSION,
-                plugin=len(CMD_HELP)
+                plugin=len(CMD_HELP),
+                id=me.id,
+                username='@' + me.username if me.username else f'[{me.first_name}](tg://user?id={me.id})',
+                first_name=me.first_name,
+                last_name=me.last_name if me.last_name else '',
+                mention=f'[{me.first_name}](tg://user?id={me.id})'
             )
-        await e.respond(PLUGIN_MESAJLAR['alive'])
+        if e.is_reply:
+            await e.respond(PLUGIN_MESAJLAR['alive'], reply_to=e.message.reply_to_msg_id)
+        else:
+            await e.respond(PLUGIN_MESAJLAR['alive'])
+
 
 CmdHelp('system_stats').add_command(
-    'sysd', None, 'Neofetch modulunu işlədərək sistem məlumatlarına baxa bilərsiz.'
+    'sysd', None, 'Neofetch modulunu işlədərək sistem məlumatlarını göstərər.'
 ).add_command(
-    'botver', None, 'DTÖUserBotunuzun versiyasını göstərər.'
+    'botver', None, 'DTÖUserBotun versiyasını göstərər.'
 ).add_command(
-    'pip', '<modül(ler)>', 'Pip modullarında axtarış edər.'
+    'pip', '<modul(lar)>', 'Pip modullarında axtarış edər.'
 ).add_command(
-    'alive', None, 'DTÖUserBot botunun işləyib işləmədiyini yoxlamaq üçün edilir.'
+    'alive', None, 'DTÖUserBotunun işləyib işləmədiyini yoxlamaq üçün işlədilir.'
 ).add()
