@@ -245,4 +245,4 @@ async def ptest(event):
         return os.remove("./userbot/temp_plugins/" + dosya)
 
     return await event.edit(f'**Modul uğurla yükləndi!**\
-    \n__Modul yoxlaması edə bilərsiz. Botu yenidən başlatdığınızda da plugin işləməyəcək.__')
+    \n__Modul yoxlaması edə bilərsiz. Botu yenidən başlatdığınızda plugin işləməyəcək.__')
