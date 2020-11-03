@@ -6,7 +6,7 @@
 
 # DTÖUserBot - Ümüd
 
-""" UserBot başlanğıc """
+"""  """
 import importlib
 from importlib import import_module
 from sqlite3 import connect
@@ -15,7 +15,7 @@ import requests
 from telethon.tl.types import InputMessagesFilterDocument
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from telethon.tl.functions.channels import GetMessagesRequest
-from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP, LANGUAGE, ASENA_VERSION, PATTERNS
+from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP, LANGUAGE, DTO_VERSION
 from .modules import ALL_MODULES
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
 import userbot.modules.sql_helper.galeri_sql as GALERI_SQL
@@ -25,8 +25,6 @@ from telethon.tl import functions
 from random import choice
 import chromedriver_autoinstaller
 from json import loads, JSONDecodeError
-import re
-import userbot.cmdhelp
 
 DIZCILIK_STR = [
     "Stikeri fırladıram...",
@@ -65,13 +63,12 @@ AFKSTR = [
     "Həyat qısa, dəyməz qıza...\nNətər zarafat elədim?",
     "İndi burada deiləm....\nama burda olsaydım...\n\nbu möhtəşəm olardı eləmi qadan alım ?",
 ]
-
-UNAPPROVED_MSG = (("`Hey salam!` {mention}`! Bu bir bot. Qorxma.\n\n`"
+UNAPPROVED_MSG = ("`Hey salam!` {mention}`! Bu bir bot. Qorxma.\n\n`"
                   "`Sahibim sənə PM atma icazəsi verməyib. `"
                   "`Xaiş sahibimin aktiv olmasını gözlə, o adətən PM'ləri təsdiqləyir.\n\n`"
                   "`Təşəkkürlər ❤️`")
 
-DB = connect("dtobrain")
+DB = connect("dtobrain.check")
 CURSOR = DB.cursor()
 CURSOR.execute("""SELECT * FROM BRAIN1""")
 ALL_ROWS = CURSOR.fetchall()
@@ -83,65 +80,6 @@ for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
 connect("dtobrain").close()
 
-def extractCommands(file):
-    FileRead = open(file, 'r').read()
-    
-    if '/' in file:
-        file = file.split('/')[-1]
-
-    Pattern = re.findall(r"@register\(.*pattern=(r|)\"(.*)\".*\)", FileRead)
-    Komutlar = []
-
-    if re.search(r'CmdHelp\(.*\)', FileRead):
-        pass
-    else:
-        dosyaAdi = file.replace('.py', '')
-        CmdHelp = userbot.cmdhelp.CmdHelp(dosyaAdi, False)
-
-        # Emrler #
-        for Command in Pattern:
-            Command = Command[1]
-            if Command == '' or len(Command) <= 1:
-                continue
-            Komut = re.findall("(^.*[a-zA-Z0-9şğüöçı]\w)", Command)
-            if (len(Komut) >= 1) and (not Komut[0] == ''):
-                Komut = Komut[0]
-                if Komut[0] == '^':
-                    KomutStr = Komut[1:]
-                    if KomutStr[0] == '.':
-                        KomutStr = KomutStr[1:]
-                    Komutlar.append(KomutStr)
-                else:
-                    if Command[0] == '^':
-                        KomutStr = Command[1:]
-                        if KomutStr[0] == '.':
-                            KomutStr = KomutStr[1:]
-                        else:
-                            KomutStr = Command
-                        Komutlar.append(KomutStr)
-
-            # DTOPY
-            Dtopy = re.search('\"\"\"DTOPY(.*)\"\"\"', FileRead, re.DOTALL)
-            if not Dtopy == None:
-                Dtopy = Dtopy.group(0)
-                for Satir in Dtopy.splitlines():
-                    if (not '"""' in Satir) and (':' in Satir):
-                        Satir = Satir.split(':')
-                        Isim = Satir[0]
-                        Deger = Satir[1][1:]
-                                
-                        if Isim == 'INFO':
-                            CmdHelp.add_info(Deger)
-                        elif Isim == 'WARN':
-                            CmdHelp.add_warning(Deger)
-                        else:
-                            CmdHelp.set_file_info(Isim, Deger)
-            for Komut in Komutlar:
-                # if re.search('\[(\w*)\]', Komut):
-                    # Komut = re.sub('(?<=\[.)[A-Za-z0-9_]*\]', '', Komut).replace('[', '')
-                CmdHelp.add_command(Komut, None, 'Bu plugin qırağdan yüklənib. Hər hansısa bir açıqlama yazılmayıb.')
-            CmdHelp.add()
-
 try:
     bot.start()
     idim = bot.get_me().id
@@ -149,18 +87,18 @@ try:
     if idim in dtobl:
         bot.disconnect()
 
-    # ChromeDriver #
+    # ChrommDriver
     try:
         chromedriver_autoinstaller.install()
     except:
         pass
     
-    # Galeri için değerler
+    # Qaleri
     GALERI = {}
 
-    # PLUGIN MESAJLARI AYARLIYORUZ
+    # PLUGIN MESAJLARI
     PLUGIN_MESAJLAR = {}
-    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanlıları qorusun\nDTÖUserBot Əla işləyir ⚡`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Bye-bye mən qaçdım `🥰", "pm": UNAPPROVED_MSG, "dızcı": str(choice(DIZCILIK_STR)), "ban": "{mention}`, banlandı!`", "mute": "{mention}`, susduruldu!`", "approve": "{mention}`, mənə mesaj göndərə bilərsən!`", "disapprove": "{mention}`, artıq mənə mesaj göndərə bilmərsən!`", "block": "{mention}`, bloklandın!`"}
+    ORJ_PLUGIN_MESAJLAR = {"alive": "`Allah Azərbaycanlıları qorusun\nDTÖUserBot əla işləyir ⚡.`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Bye bye mən getdim `🤠", "pm": UNAPPROVED_MSG, "dızcı": str(choice(DIZCILIK_STR)), "ban": "{mention}`, banlandı!`", "mute": "{mention}`, səssizə alındı!`", "approve": "{mention}`, mənə mesaj göndərə bilərsən!`", "disapprove": "{mention}`, artıq mənə mesaj göndərə bilmərsən!`", "block": "{mention}`, bloklandın!`"}
 
     PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "kickme", "pm", "dızcı", "ban", "mute", "approve", "disapprove", "block"]
     for mesaj in PLUGIN_MESAJLAR_TURLER:
@@ -175,43 +113,50 @@ try:
                 PLUGIN_MESAJLAR[mesaj] = medya
             else:
                 PLUGIN_MESAJLAR[mesaj] = dmsj
-    if not PLUGIN_CHANNEL_ID == None:
-        LOGS.info("Pluginlər Yüklənir")
+    if PLUGIN_CHANNEL_ID != None:
+        LOGS.info("Pluginlər yüklənir")
         try:
             KanalId = bot.get_entity(PLUGIN_CHANNEL_ID)
+            DOGRU = 1
         except:
             KanalId = "me"
+            bot.send_message("me", f"`Plugin_Channel_Id'iniz keçərsiz. Pluginler qalıcı olmuyacaq.`")
+            DOGRU = 0
 
         for plugin in bot.iter_messages(KanalId, filter=InputMessagesFilterDocument):
-            if plugin.file.name and (len(plugin.file.name.split('.')) > 1) \
-                and plugin.file.name.split('.')[-1] == 'py':
-                Split = plugin.file.name.split('.')
+            if DOGRU == 0:
+                break
+            dosyaa = plugin.file.name
+            dosyaismi = plugin.file.name.split(".")
 
-                if not os.path.exists("./userbot/modules/" + plugin.file.name):
-                    dosya = bot.download_media(plugin, "./userbot/modules/")
-                else:
-                    LOGS.info("Bu Plugin Onsuz Yüklənih " + plugin.file.name)
-                    extractCommands('./userbot/modules/' + plugin.file.name)
-                    dosya = plugin.file.name
-                    continue 
-                
-                try:
-                    spec = importlib.util.spec_from_file_location("userbot.modules." + Split[0], dosya)
-                    mod = importlib.util.module_from_spec(spec)
+            try:
+                ext = plugin.file.name.split(".")[1]
+            except:
+                continue
 
-                    spec.loader.exec_module(mod)
-                except Exception as e:
-                    LOGS.info(f"`Yükləmə uğursuz! Plugin xətalıdır.\n\nXəta: {e}`")
+            if not dosyaismi[1] == "py":
+                continue
+            if not os.path.exists("./userbot/modules/" + dosyaa):
+                dosya = bot.download_media(plugin, "./userbot/modules/")
+            else:
+                LOGS.info("Bu plugin onsuz yüklənib " + dosyaa)
+                dosya = dosyaa
+                continue 
+            
+            try:
+                spec = importlib.util.spec_from_file_location("userbot.modules." + dosyaismi[0], dosya)
+                mod = importlib.util.module_from_spec(spec)
 
-                    try:
-                        plugin.delete()
-                    except:
-                        pass
+                spec.loader.exec_module(mod)
+            except Exception as e:
+                LOGS.info(f"`Yükləmə uğursuz! Plugin xətalı.\n\nXəta: {e}`")
 
-                    if os.path.exists("./userbot/modules/" + plugin.file.name):
-                        os.remove("./userbot/modules/" + plugin.file.name)
-                    continue
-                extractCommands('./userbot/modules/' + plugin.file.name)
+                if os.path.exists("./userbot/modules/" + dosyaa):
+                    os.remove("./userbot/modules/" + dosyaa)
+                continue
+            
+            ndosya = dosyaismi[0]
+            CMD_HELP[ndosya] = "Bu Plugin Qırağdan Yüklənmişdir"
     else:
         bot.send_message("me", f"`Xaiş pluginlərin qalıcı olması üçün PLUGIN_CHANNEL_ID'i düzəldin.`")
 except PhoneNumberInvalidError:
@@ -236,9 +181,9 @@ async def FotoDegistir (foto):
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("Botunuz işleyir! Her hansi bir söhbete .alive yazaraq Test edin."
-          " Yardıma ehtiyacınız varsa, Destek qrupumuza buyurun t.me/DTOSupport")
-LOGS.info(f"Bot versiyası: DTÖUserBot {DTO_VERSION}")
+LOGS.info("Botunuz işleyir! Her hansı bir söhbetde .alive yazaraq Test edin."
+          " Köməyə ehtiyacınız varsa, Destek qrupumuza gelin t.me/DTOSupport")
+LOGS.info(f"Bot versiya: {DTO_VERSION}")
 
 """
 if len(argv) not in (1, 3, 4):
