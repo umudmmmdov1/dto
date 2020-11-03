@@ -194,7 +194,7 @@ PAKET_ISMI = os.environ.get("PAKET_ISMI", "@DTOUserBot Paketi")
 AVTO_Q = sb(os.environ.get("AVTO_Q", "True"))
 
 # Özel Pattern'ler
-PATTERNS = os.environ.get("PATTERNS", ".;!,")
+PATTERNS = os.environ.get("PATTERNS", ".,")
 WHITELIST = get('https://gitlab.com/Quiec/asen/-/raw/master/whitelist.json').json()
 
 # CloudMail.ru ve MEGA.nz ayarlama
