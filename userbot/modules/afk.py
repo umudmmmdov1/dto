@@ -7,7 +7,7 @@
 # DTÖUserBot - Ümüd
 #
 
-""" AFK """
+""" AFK"""
 
 from random import randint
 from asyncio import sleep
@@ -29,8 +29,8 @@ LANG = get_value("afk")
 # ████████████████████████████████ #
 
 def time_formatter(seconds, short=True):
-    # #
-    # #
+    # . #
+    # . #
     minutes, seconds = divmod(int(seconds), 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
@@ -42,7 +42,7 @@ def time_formatter(seconds, short=True):
 
 @register(incoming=True, disable_edited=True)
 async def mention_afk(mention):
-    """ .afk"""
+    """ . """
     global COUNT_MSG
     global USERS
     global ISAFK
@@ -132,7 +132,7 @@ async def mention_afk(mention):
 
 @register(incoming=True, disable_errors=True)
 async def afk_on_pm(sender):
-    """ afk """
+    """ . """
     global ISAFK
     global USERS
     global COUNT_MSG
@@ -229,7 +229,7 @@ async def afk_on_pm(sender):
 
 @register(outgoing=True, pattern="^.afk(?: |$)(.*)", disable_errors=True)
 async def set_afk(afk_e):
-    """ .afk """
+    """ .afk  """
     message = afk_e.text
     string = afk_e.pattern_match.group(1)
     global ISAFK
@@ -245,14 +245,14 @@ async def set_afk(afk_e):
 
     SON_GORULME = time()
     if BOTLOG:
-        await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nAFK oldunuz.")
+        await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nAFK olduz.")
     ISAFK = True
     raise StopPropagation
 
 
 @register(outgoing=True)
 async def type_afk_is_not_true(notafk):
-    """ .afk """
+    """ . """
     global ISAFK
     global COUNT_MSG
     global USERS
@@ -282,5 +282,5 @@ async def type_afk_is_not_true(notafk):
 CmdHelp('afk').add_command(
     'afk', 
     '<İstəyə bağlı səbəb>', 
-    'AFK olduğunuzu bildirir. Kim sizə pm atarsa ya da sizi etiketlərse sizin AFK olduğunuzu və yazdığınız səbəbi göstərir. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.'
+    'AFK olduğunuzu bildirər. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.'
     ).add()
