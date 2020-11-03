@@ -28,98 +28,98 @@
       "required": false
     },
     "SPOTIFY_DC": {
-      "description": "Spotify bio için gerekli olan anahtar",
+      "description": "Spotify bio üçün lazım olan açar",
       "required": false
     },
     "SPOTIFY_KEY": {
-      "description": "Spotify bio için gerekli olan anahtar",
+      "description": "Spotify bio üçün lazım olan açad",
       "required": false
     },
     "STRING_SESSION": {
-      "description": "python3 GenerateStringSession.py dosyasını yerel olarak çalıştırarak bu değeri alın.",
+      "description": "String session keyi bura yapışdırın.",
       "required": true
     },
     "HEROKU_MEMEZ": {
-      "description": "UserBot bir Heroku Dyno üzerinde çalışıyorsa, bu değer True olmalıdır.",
+      "description": "UserBot bir Heroku Dyno üstündə işləyirsə, bu dəyər True olmalıdır.",
       "value": "True",
       "required": true
     },
     "HEROKU_APIKEY": {
-      "description": "Heroku API Key, 'https://dashboard.heroku.com/account' adresinden alın.",
+      "description": "Heroku API Key, 'https://dashboard.heroku.com/account' adresindən alın.",
       "value": ""
     },
     "HEROKU_APPNAME": {
-      "description": "Heroku uygulama adını buraya ekleyin. UserBot güncellemelerine yardımcı olur.",
+      "description": "Heroku app adını bura yazın. UserBot yenilənmələrinə kömək olur.",
       "required": true
     },
     "UPSTREAM_REPO_URL": {
-      "description": "Fork sağlamanız durumunda repo URL'nizi buraya ekleyin. Varsayılan olarak kendi repo adresimiz eklidir.",
+      "description": "Bura toxunmayın.",
       "value": "https://github.com/umudmmmdov1/DTOUserBot",
       "required": true
     },
     "COUNTRY": {
-      "description": "Ülkenizi .time ve .date komutlarında kullanılacak şekilde ayarlayın. Varsayılan olarak Türkiye ayarlanmıştır.",
-      "value": "Turkey",
+      "description": "Ölkənizi .time və .date əmrlərində işlədiləcək şəkildə düzəldin. Həmişəlik olaraq Azərbaycan ayarlanıb.",
+      "value": "Azerbaijan",
       "required": false
     },
     "TZ_NUMBER": {
-      "description": "Ülkenizde birden fazla Saat Dilimi olması durumunda bu değeri değiştirin.",
+      "description": "Bura toxunmayın.",
       "value": "1",
       "required": false
     },
     "TZ": {
-      "description": "Bunun ne işe yaradığı hakkında fikrin yoksa kurcalama :)",
+      "description": "Bunun nə işə yaradığı haqqında məlumatın yoxdursa əl dəymə :)",
       "value": "Asia/Baku",
       "required": true  
     },
     "CHROME_DRIVER": {
-      "description": "Selenium tabanlı modüller için ChromeDriver konumu.",
+      "description": "Selenium tabanlı modullar üçün ChromeDriver konumu.",
       "value": "/usr/bin/chromedriver",
       "required": false
     },
     "GOOGLE_CHROME_BIN": {
-      "description": "Selenium tabanlı modüller için Google Chrome (veya) Chromium binary konumu.",
+      "description": "Selenium tabanlı modullar üçün Google Chrome (vəya) Chromium binary konumu.",
       "value": "/usr/bin/chromium-browser",
       "required": false
     },
     "OPEN_WEATHER_MAP_APPID": {
-      "description": "https://api.openweathermap.org/data/2.5/weather adresinden kendi APPID'inizi (API key) edinin.",
+      "description": "https://api.openweathermap.org/data/2.5/weather adresindən öz APPID'inizi (API key) alın.",
       "required": false
     },
     "BOTLOG": {
-      "description": "# DOKUNMA #",
+      "description": "# TOXUNMA #",
       "value": "False"
     },
     "BOT_USERNAME": {
-      "description": "Inline bot özelliğinin çalışması için gereklidir. Buraya botunuzun kullanıcı adınız yazmanız lazım (Örnek: @QuiecBot). Botunuz yok ise @BotFather yardımı ile bot oluşturabilirsiniz.",
+      "description": "Inline bot özəlliyinin işləməsi üçün lazımdır. Buraya botunuzun istifadəçi adınız yazmanız lazımdır (Məsələn: @UmudBot). Botunuz yoxdursa @BotFather köməyi ilə bot yarada bilərsiz.",
       "required": false  
     },
     "BOT_TOKEN": {
-      "description": "Inline bot özelliğinin çalışması için gereklidir. Buraya botunuzun tokenini yazmanız lazım. Botunuz yok ise @BotFather yardımı ile bot oluşturabilirsiniz.",
+      "description": "Inline bot özəlliyin işləməsi üçün lazımdır. Buraya botunuzun tokenini yazmanız lazımdır. Botunuz yoxdursa @BotFather köməyi ilə bot yarada bilərsiz.",
       "required": false    
     },
     "GENIUS": {
-      "description": "Buraya aldığınız Genius API Token'i yazın.",
+      "description": "Bura aldığınız Genius API Token'i yazın.",
       "required": false
     },
     "AUTO_PP": {
-      "description": "Autopp modülünün çalışması için gerekli olan değişkendir. Çalışması için kullanacağınız resmin direk adresini girmeniz gerekiyor.",
+      "description": "Autopp modulun işləməsi üçün lazım olan dəyişgəndir. İşləməsi üçün işlədəcəyiniz fotonun linkini yazmaq lazımdır.",
       "required": false      
     },
     "BOTLOG_CHATID": {
-      "description": "Günlük grubunun ChatID'si. BOTLOG= False ve / veya LOGSPAMMER= False ise '0' olarak ayarlayın.",
+      "description": "Günlük qrupunun ChatID'si. BOTLOG= False və / vəya LOGSPAMMER= False isə '0' olaraq qeyd edin...",
       "value": "0"
     },
     "CONSOLE_LOGGER_VERBOSE": {
-      "description": "Konsol günlüğünde ayrıntıya ihtiyacınız varsa, bunu True olarak ayarlayın.",
+      "description": "Konsol günlüyündə ayrıntıya ehtiyacınız varsa, bunu True olaraq qeyd edin.",
       "value": "False"
     },
     "PM_AUTO_BAN": {
-      "description": "PM Otomatik Yasaklama Özelliği. 'Hey! Bu bir bot.' modülüdür.",
+      "description": "PM Avtomatik Bloklama Özəlliyi. 'Bu bir bot.' moduludur.",
       "value": "False"
     },
     "PM_AUTO_BAN_LIMIT": {
-      "description": "PM Auto Ban limiti. Size kullanıcı x mesaj atarsa engellencek.",
+      "description": "PM Auto Ban limiti. Size kullaynıcı x mesaj atarsa engelllencek.",
       "value": "4",
       "required": false
     },
@@ -221,7 +221,7 @@
       "required": false
     },
     "AVTO_Q": {
-      "description": "Support grubuna ve Kanal'a otomatik katılmak istemiyorsanız False yazın.",
+      "description": "Bura toxunmayın.",
       "value": "True",
       "required": true
     },
