@@ -71,7 +71,7 @@ UNAPPROVED_MSG = (("`Hey salam!` {mention}`! Bu bir bot. Qorxma.\n\n`"
                   "`Xaiş sahibimin aktiv olmasını gözlə, o adətən PM'ləri təsdiqləyir.\n\n`"
                   "`Təşəkkürlər ❤️`")
 
-DB = connect("dtobrain.check")
+DB = connect("dtobrain")
 CURSOR = DB.cursor()
 CURSOR.execute("""SELECT * FROM BRAIN1""")
 ALL_ROWS = CURSOR.fetchall()
