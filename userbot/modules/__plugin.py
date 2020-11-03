@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# DTÖUserBot
+# DTÖUserBot - Ümüd
 
 import re
 import os
@@ -15,6 +15,7 @@ import traceback
 
 from userbot import CMD_HELP, bot, tgbot, PLUGIN_CHANNEL_ID, PATTERNS
 from userbot.events import register
+from userbot.main import extractCommands
 import userbot.cmdhelp
 
 # ██████ LANGUAGE CONSTANTS ██████ #
@@ -24,7 +25,7 @@ LANG = get_value("__plugin")
 
 # ████████████████████████████████ #
 
-# Plugin Porter - UniBorg
+# Plugin
 @register(outgoing=True, pattern="^.pport")
 async def pport(event):
     if event.is_reply:
@@ -160,58 +161,26 @@ async def pins(event):
         await event.edit(LANG['PLUGIN_DOWNLOADED'] % komutlar)
     else:
         Pattern = re.findall(r"@register\(.*pattern=(r|)\"(.*)\".*\)", dosy)
-        Komutlar = []
 
         if (not type(Pattern) == list) or (len(Pattern) < 1 or len(Pattern[0]) < 1):
-            CMD_HELP[dosya] = LANG['PLUGIN_WITHOUT_DESC']
-            return await event.edit(LANG['PLUGIN_DESCLESS'])
+            if re.search(r'CmdHelp\(.*\)', dosy):
+                cmdhelp = re.findall(r"CmdHelp\([\"'](.*)[\"']\)", dosy)[0]
+                await reply_message.forward_to(PLUGIN_CHANNEL_ID)
+                return await event.edit(f'**Modul uğurla yükləndi!**\n__Modulun əmrləri və işlədilişi haqqında məlumat almaq üçün__ `.dto {cmdhelp}` __yazınız.__')
+            else:
+                await reply_message.forward_to(PLUGIN_CHANNEL_ID)
+                userbot.cmdhelp.CmdHelp(dosya).add_warning('Əmrlər tapılmadı!').add()
+                return await event.edit(LANG['PLUGIN_DESCLESS'])
         else:
             if re.search(r'CmdHelp\(.*\)', dosy):
                 cmdhelp = re.findall(r"CmdHelp\([\"'](.*)[\"']\)", dosy)[0]
                 await reply_message.forward_to(PLUGIN_CHANNEL_ID)
-                return await event.edit(f'**Modul uğurla yükləndi!**\n__Modulun əmrləri və işlədilişi haqqında məlumat almaq üçün__ `.dto {cmdhelp}` __yazın.__')
+                return await event.edit(f'**Modul uğurla yükləndi!**\n__Modulun əmrlər və işlədilişi haqqında məlumat almaa üçün__ `.dto {cmdhelp}` __yazın.__')
             else:
                 dosyaAdi = reply_message.file.name.replace('.py', '')
-                CmdHelp = userbot.cmdhelp.CmdHelp(dosyaAdi, False)
-                # Komutları Alıyoruz #
-                for Command in Pattern:
-                    Command = Command[1]
-                    if Command == '' or len(Command) <= 1:
-                        continue
-                    Komut = re.findall("([^.].*\w)(\W*)", Command)
-                    if (len(Komut[0]) > 1) and (not Komut[0][1] == ''):
-                        KomutStr = Command.replace(Komut[0][1], '')
-                        if KomutStr[0] == '^':
-                            KomutStr = KomutStr[1:]
-                            if KomutStr[0] == '.':
-                                KomutStr = PATTERNS[:1] + KomutStr[1:]
-                        Komutlar.append(KomutStr)
-                    else:
-                        if Command[0] == '^':
-                            KomutStr = Command[1:]
-                            if KomutStr[0] == '.':
-                                KomutStr = PATTERNS[:1] + KomutStr[1:]
-                        else:
-                            KomutStr = Command
-                        Komutlar.append(KomutStr)
-
-                # DtoPY
-                Dtopy = re.search('\"\"\"DTOAPY(.*)\"\"\"', dosy, re.DOTALL)
-                if not Dtopy == None:
-                    Dtopy = Dtopy.group(0)
-                    for Satir in Dtopy.splitlines():
-                        if (not '"""' in Satir) and (':' in Satir):
-                            Satir = Satir.split(':')
-                            Isim = Satir[0]
-                            Deger = Satir[1][1:]
-
-                            CmdHelp.set_file_info(Isim, Deger)
-                            
-                for Komut in Komutlar:
-                    CmdHelp.add_command(Komut, None, 'Bu plugin dışarıdan yüklenmiştir. Herhangi bir açıklama tanımlanmamıştır.')
-                CmdHelp.add()
+                extractCommands(dosya)
                 await reply_message.forward_to(PLUGIN_CHANNEL_ID)
-                return await event.edit(f'**Modul uğurla yükləndi!**\n__Modulun əmrləri və işlədilişi haqqında məlumat almaq üçün` `.dto {dosyaAdi}` `yazın.__')
+                return await event.edit(f'**Modul uğurla yükləndi!**\n__Modulun əmrləri və işlədilişi haqqında məlumat almaq için__ `.dto {dosyaAdi}` __yazın.__')
 
 @register(outgoing=True, pattern="^.premove ?(.*)")
 async def premove(event):
