@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-# DTÖUserBot - Ümüd
+# DTÖUserBot - Ümüd 
 #
 
 """ AFK """
@@ -29,7 +29,7 @@ LANG = get_value("afk")
 # ████████████████████████████████ #
 
 def time_formatter(seconds, short=True):
-    # #
+    #  #
     #  #
     minutes, seconds = divmod(int(seconds), 60)
     hours, minutes = divmod(minutes, 60)
@@ -90,9 +90,20 @@ async def mention_afk(mention):
                             first_name=first_name,
                             last_name=last_name,
                             last_seen_seconds=last_seen_seconds,
-                            last_seen=last_seen
+                            last_seen=last_seen,
+                            last_seen_long=last_seen_long
                         )
-                    await mention.reply(PLUGIN_MESAJLAR['afk'])
+                        await mention.reply(PLUGIN_MESAJLAR['afk'])
+                    else:
+                        await mention.reply(PLUGIN_MESAJLAR['afk'].format(
+                            username=username,
+                            mention=mention_format,
+                            first_name=first_name,
+                            last_name=last_name,
+                            last_seen_seconds=last_seen_seconds,
+                            last_seen=last_seen,
+                            last_seen_long=last_seen_long
+                        ))
                 USERS.update({mention.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif mention.sender_id in USERS:
@@ -120,9 +131,21 @@ async def mention_afk(mention):
                                 first_name=first_name,
                                 last_name=last_name,
                                 last_seen_seconds=last_seen_seconds,
-                                last_seen=last_seen
+                                last_seen=last_seen,
+                                last_seen_long=last_seen_long
                             )
-                        await mention.reply(PLUGIN_MESAJLAR['afk'])
+                            await mention.reply(PLUGIN_MESAJLAR['afk'])
+                        else:
+                            await mention.reply(PLUGIN_MESAJLAR['afk'].format(
+                                username=username,
+                                mention=mention_format,
+                                first_name=first_name,
+                                last_name=last_name,
+                                last_seen_seconds=last_seen_seconds,
+                                last_seen=last_seen,
+                                last_seen_long=last_seen_long
+                            ))
+
                     USERS[mention.sender_id] = USERS[mention.sender_id] + 1
                     COUNT_MSG = COUNT_MSG + 1
                 else:
@@ -186,9 +209,21 @@ async def afk_on_pm(sender):
                             first_name=first_name,
                             last_name=last_name,
                             last_seen_seconds=last_seen_seconds,
-                            last_seen=last_seen
+                            last_seen=last_seen,
+                            last_seen_long=last_seen_long
                         )
-                    await sender.reply(PLUGIN_MESAJLAR['afk'])
+                        await sender.reply(PLUGIN_MESAJLAR['afk'])
+                    else:
+                        await sender.reply(PLUGIN_MESAJLAR['afk'].format(
+                            username=username,
+                            mention=mention,
+                            first_name=first_name,
+                            last_name=last_name,
+                            last_seen_seconds=last_seen_seconds,
+                            last_seen=last_seen,
+                            last_seen_long=last_seen_long
+                        ))
+
                 USERS.update({sender.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif apprv and sender.sender_id in USERS:
@@ -216,10 +251,22 @@ async def afk_on_pm(sender):
                                 first_name=first_name,
                                 last_name=last_name,
                                 last_seen_seconds=last_seen_seconds,
-                                last_seen=last_seen
+                                last_seen=last_seen,
+                                last_seen_long=last_seen_long
                             )
 
-                        await sender.reply(PLUGIN_MESAJLAR['afk'])
+                            await sender.reply(PLUGIN_MESAJLAR['afk'])
+                        else:
+                            await sender.reply(PLUGIN_MESAJLAR['afk'].format(
+                                username=username,
+                                mention=mention,
+                                first_name=first_name,
+                                last_name=last_name,
+                                last_seen_seconds=last_seen_seconds,
+                                last_seen=last_seen,
+                                last_seen_long=last_seen_long
+                            ))
+
                     USERS[sender.sender_id] = USERS[sender.sender_id] + 1
                     COUNT_MSG = COUNT_MSG + 1
                 else:
@@ -282,5 +329,5 @@ async def type_afk_is_not_true(notafk):
 CmdHelp('afk').add_command(
     'afk', 
     '<İstəyə bağlı səbəb>', 
-    'AFK olduğunuzu bildirir. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.'
+    'AFK olduğunuzu bildirər. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.'
     ).add()
