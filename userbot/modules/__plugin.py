@@ -166,7 +166,7 @@ async def pins(event):
             if re.search(r'CmdHelp\(.*\)', dosy):
                 cmdhelp = re.findall(r"CmdHelp\([\"'](.*)[\"']\)", dosy)[0]
                 await reply_message.forward_to(PLUGIN_CHANNEL_ID)
-                return await event.edit(f'**Modul uğurla yükləndi!**\n__Modulun əmrləri və işlədilişi haqqında məlumat almaq üçün__ `.dto {cmdhelp}` __yazınız.__')
+                return await event.edit(f'**Modul uğurla yükləndi!**\n__Modulun əmrləri və işlədilişi haqqında məlumat almaq üçün__ `.dto {cmdhelp}` __yazın.__')
             else:
                 await reply_message.forward_to(PLUGIN_CHANNEL_ID)
                 userbot.cmdhelp.CmdHelp(dosya).add_warning('Əmrlər tapılmadı!').add()
@@ -180,7 +180,7 @@ async def pins(event):
                 dosyaAdi = reply_message.file.name.replace('.py', '')
                 extractCommands(dosya)
                 await reply_message.forward_to(PLUGIN_CHANNEL_ID)
-                return await event.edit(f'**Modul uğurla yükləndi!**\n__Modulun əmrləri və işlədilişi haqqında məlumat almaq için__ `.dto {dosyaAdi}` __yazın.__')
+                return await event.edit(f'**Modul uğurla yükləndi!**\n__Modulun əmrləri və işlədilişi haqqında məlumat almaq üçün__ `.dto {dosyaAdi}` __yazın.__')
 
 @register(outgoing=True, pattern="^.premove ?(.*)")
 async def premove(event):
