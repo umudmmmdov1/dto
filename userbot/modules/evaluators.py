@@ -91,7 +91,7 @@ async def run(run_q):
         await run_q.edit(LANG['NEED_CODE'])
         return
 
-    if (code in ("userbot.session", "config.env")) or code is 'env':
+    if (expression in ("userbot.session", "config.env")) or (expression == 'env'):
         await run_q.edit(LANG['WARNING'])
         return
 
