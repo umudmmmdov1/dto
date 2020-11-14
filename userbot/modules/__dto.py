@@ -5,7 +5,7 @@
 #
 
 # DTÖUserBot - Ümüd
-#
+# Botu kopyalayan peysərdi.
 
 
 from userbot.cmdhelp import CmdHelp
