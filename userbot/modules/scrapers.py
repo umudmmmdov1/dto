@@ -55,7 +55,7 @@ from userbot.cmdhelp import CmdHelp
 
 CARBONLANG = "auto"
 TTS_LANG = "tr"
-TRT_LANG = "az"
+TRT_LANG = "tr"
 
 
 from telethon import events
@@ -298,7 +298,7 @@ async def img_sampler(event):
     ig.get_urls()
     paths = ig.download()
     await event.edit('`Telegram\'a Yüklənir...`')
-    await event.client.send_file(event.chat_id, paths, caption=f'**İstək** `{limit}` **ədəd** `{query}` **resimi**')
+    await event.client.send_file(event.chat_id, paths, caption=f'**İstək** `{limit}` **ədəd** `{query}` **şəkili**')
     await event.delete()
 
     for path in paths:
