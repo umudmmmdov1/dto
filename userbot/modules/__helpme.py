@@ -5,6 +5,7 @@
 #
 
 # DTÖUserBot - Ümüd
+# Botu kopyalayan peysərdi.
 
 from userbot import BOT_USERNAME
 from userbot.events import register
