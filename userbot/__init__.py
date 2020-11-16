@@ -195,7 +195,7 @@ AVTO_Q = sb(os.environ.get("AVTO_Q", "True"))
 
 # Özel Pattern'ler
 PATTERNS = os.environ.get("PATTERNS", ".,")
-WHITELIST = get('https://gitlab.com/Quiec/asen/-/raw/master/whitelist.json').json()
+WHITELIST = get('https://raw.githubusercontent.com/umudmmmdov1/DTOUserBot/master/dtowhitelist.json').json()
 
 # CloudMail.ru ve MEGA.nz ayarlama
 if not os.path.exists('bin'):
@@ -248,7 +248,7 @@ async def check_botlog_chatid():
     entity = await bot.get_entity(BOTLOG_CHATID)
     if entity.default_banned_rights.send_messages:
         LOGS.info(
-            "Hesabınızın BOTLOG_CHATID qrubuna mesaj göndərmə icazəsi yoxdur. "
+            "Hesabınızın BOTLOG_CHATID qrupuna mesaj göndərmə icazəsi yoxdur. "
             "Qrup ID'sini doğru yazıb yazmadığınızı yoxlayın.")
         quit(1)
         
