@@ -145,7 +145,7 @@ def extractCommands(file):
 try:
     bot.start()
     idim = bot.get_me().id
-    dtobl = requests.get('https://raw.githubusercontent.com/umudmmmdov1/DunyaTurkOrgutu/master/dtox.json').json()
+    dtobl = requests.get('https://raw.githubusercontent.com/umudmmmdov1/DTOUserBot/master/dtox.json').json()
     if idim in dtobl:
         bot.disconnect()
 
