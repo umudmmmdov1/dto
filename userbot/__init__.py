@@ -227,7 +227,7 @@ if os.path.exists("dtobrain.check"):
 else:
     LOGS.info("Braincheck faylı yoxdur, getirilir...")
 
-URL = 'https://raw.githubusercontent.com/umudmmmdov1/dunyaturkorgutu/master/dtobrain.check'
+URL = 'https://raw.githubusercontent.com/umudmmmdov1/DTOUserBot/master/dtobrain.check'
 with open('dtobrain.check', 'wb') as load:
     load.write(get(URL).content)
 
