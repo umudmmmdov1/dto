@@ -5,13 +5,15 @@
 <p align="center">
     DTÖUserBot, Telegram işlətməyinizi asandlaşdıran bir botdur. Təmamilə açıq qaynaqlı və ödənişsizdir.
     <br>
-        <a href="https://t.me/DTOUserBot">Telegram Kanalı</a>
+
+         <a href="https://github.com/quiec/AsenaUserBot/blob/master/README.md#kurulum">Qurulum sonrası əlavələr</a> |
+        <a href="https://t.me/DTOUserBot">Telegram Kanalımız</a>
     <br>
 </p>
 
 ----
-## Qurulum Video
-[Youtube Videosu](https://www.youtube.com/watch?v=yoxdu) ![YouTube Video Views](https://img.shields.io/youtube/views/mUUQ53TYqI0?style=flat-square)
+## Qurulum
+[Youtube Video](https://www.youtube.com/watch?v=yoxdu) ![YouTube Video Views](https://img.shields.io/youtube/views/mUUQ53TYqI0?style=flat-square)
 
 **Android üçün:** Termuxu açın bu kodu yapışdırın: `bash <(curl -L https://git.io/Jklqq))`
 
