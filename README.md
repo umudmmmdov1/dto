@@ -5,8 +5,9 @@
 <p align="center">
     DTÖUserBot, Telegram işlətməyinizi asandlaşdıran bir botdur. Tamamilə açıq qaynağlı və ödənişsizdir.
     <br>
-<a href="####">Qurulum sonrası əlavələr</a> |
-<a href="https://t.me/DTOUserBot">Telegram Kanalımız</a>
+<a href="https://t.me/DTOUserBot">Telegram Qrupumuz</a> |
+<a href="https://t.me/DTOUserBot">Telegram Kanalımız</a> |
+<a href="####">Qurulum sonrası əlavələr</a>
     <br>
 </p>
 
