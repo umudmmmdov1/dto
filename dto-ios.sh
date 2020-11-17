@@ -1,13 +1,13 @@
-mesaj = "DTÖUserBot Yükləyici"
+mesaj = "DTÖUserBot Yükleyici"
 mesaj += "Telegram: @DTOUserBot"
-mesaj += "Çıxan hər şeyə Y ardından enterləyin."
+mesaj += "Çıxan her şeye Y ardından enterleyin."
 clear
 echo $mesaj
-echo "Python yüklənir"
+echo "Python yüklenir"
 apk add python3
 clear
 echo $mesaj
-echo "TeleThon yüklənir"
+echo "TeleThon yüklenir"
 pip3 install telethon
 pip3 install bs4
 pip3 install requests
@@ -16,5 +16,5 @@ echo $mesaj
 echo "Fayl yazılır"
 curl "https://raw.githubusercontent.com/umudmmmdov1/DTOUserBot/master/dto.py" --output "dto.py"
 echo $mesaj
-echo "Qurulum hazırdır, İndi StringSessionu ala bilərsiz"
+echo "Qurulum hazırdır, İndi StringSessionu ala bilersiz"
 python3 dto.py
