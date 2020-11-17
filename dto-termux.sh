@@ -9,7 +9,7 @@ clear
 echo -e $MESAJ
 echo "TeleThon yüklenir"
 pip install telethon
-echo "Requests/BS4 yüklənir"
+echo "Requests/BS4 yüklenir"
 pip install requests
 pip install bs4
 clear
