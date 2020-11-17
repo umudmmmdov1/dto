@@ -26,10 +26,11 @@ Asağıdakı Deploy logosuna basaraq botu qurmağa başlayın.
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/umudmmmdov1/DTOUserBot)
 
 ## Məlumatlandırma
-Hər hansü bir istək & şikayət & önəri varsa [dəstək qrupuna](https://t.me/DtoSupport) gələ bilərsiz.
+Hər hansı bir istək & şikayət & önəri varsa [dəstək qrupuna](https://t.me/DtoSupport) gələ bilərsiz.
 
-```
-    Userbottan dolayı; Telegram hesabınız yasaklanabilir.
-    Bu bir açık kaynaklı projedir, yaptığınız her işlemden kendiniz sorumlusunuz. Kesinlikle Asena yöneticileri sorumluluk kabul etmemektedir.
-    Asenayı kurarak bu sorumlulukları kabul etmiş sayılırsınız.
+```Botu düzgün istifade etmediyiniz halda hesabınız bağlana biler.
+Botun yanlış istifadesi halında mesuliyyet tamamile istifadeçiye 
+aiddir.DTÖUserBot qrupu olaraq heç bir mesuliyyet qebul etmirik.
+Botu telegramı daha rahat istifade elemek xaricinde eylenmek
+üçün de istifade ede bilersiniz.
 ```
