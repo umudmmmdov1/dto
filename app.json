@@ -1,7 +1,7 @@
 {
   "name": "DTÖUserBot",
-  "description": "DTÖ UserBot",
-  "logo": "https://i.imgyukle.com/2020/09/07/xXB3SA.jpg",
+  "description": "Telegram UserBot",
+  "logo": "https://i.imgyukle.com/2020/11/17/TYuenv.jpg",
   "keywords": [
     "telegram",
     "userbot",
@@ -36,7 +36,7 @@
       "required": false
     },
     "STRING_SESSION": {
-      "description": "String session keyi bura yapışdırın.",
+      "description": "StringSession keyi bura yapışdırın.",
       "required": true
     },
     "HEROKU_MEMEZ": {
@@ -119,104 +119,104 @@
       "value": "False"
     },
     "PM_AUTO_BAN_LIMIT": {
-      "description": "PM Auto Ban limiti. Size kullaynıcı x mesaj atarsa engelllencek.",
+      "description": "PM Auto Ban limiti. Sizə istifadəçi x mesaj atarsa bloklanacaq.",
       "value": "4",
       "required": false
     },
     "YOUTUBE_API_KEY": {
-      "description": ".yt əmri için YouTube Veri API'sı keyidir. https://console.cloud.google.com adresinden alın.",
+      "description": ".yt əmri üçün YouTube Veri API keyidir. https://console.cloud.google.com adresindən alın.",
       "required": false
     },
     "OCR_SPACE_API_KEY": {
-      "description": ".ocr komutu için OCR API Key. https://ocr.space/ocrapi adresinden alın.",
+      "description": ".ocr əmri üçün OCR API Key. https://ocr.space/ocrapi adresindən alın.",
       "required": false
     },
     "REM_BG_API_KEY": {
-      "description": ".rbg komutu için API Key. https://www.remove.bg/api adresinden alın.",
+      "description": ".rbg əmri üçün API Key. https://www.remove.bg/api adresindən alın.",
       "required": false
     },
     "ANTI_SPAMBOT": {
-      "description": "Katıldıktan sonra gruplardan spambotları tekmeliyor. [Tekmelemek için yönetici yetkileri gerektirir]",
+      "description": "Qatıldıqdan sonra qruplardan spambotları qovur. [Qovmaq üçün idarəçi icazələri lazımdır]",
       "value": "False"
     },
     "ANTI_SPAMBOT_SHOUT": {
-      "description": "Tekme atmak için yönetici yetkileriniz yoksa spambotları gruba katıldıktan sonra yöneticilere rapor edin.",
+      "description": "Qovmaq üçün idarəçi icazələriniz yoxdursa spambotları qruba qatıldıqdan sonra idarəçilərə şikayət edin.",
       "value": "False"
     },
     "TMP_DOWNLOAD_DIRECTORY": {
-      "description": "Birçok modül için indirme konumu (GDrive, .download vb..)",
+      "description": "Bir çox modul üçün endirmə yeri (GDrive, .download vb..)",
       "value": "./downloads/"
     },
     "CLEAN_WELCOME": {
-      "description": "Yeni bir kişi katıldığında, eski karşılama mesajı silinir.",
+      "description": "Yeni bir istifadəçi qatıldığında, köhnə qarşılama mesajı silinər.",
       "value": "True"
     },
     "G_DRIVE_CLIENT_ID": {
-      "description": "Google Drive için client id girin.",
+      "description": "Google Drive üçün client id yazın.",
       "required": false
     },
     "LASTFM_API": {
-      "description": "Last.FM modülü için API Key. [Şuradan bir tane alın - https://www.last.fm/api/account/create]",
+      "description": "Last.FM modulu üçün API Key. [Buradan bir dənə alın - https://www.last.fm/api/account/create]",
       "required": false
     },
     "LASTFM_SECRET": {
-      "description": "Last.FM modülü için SECRET Key. [Şuradan bir tane alın - https://www.last.fm/api/account/create]",
+      "description": "Last.FM modulu üçün SECRET Key. [Buradan bir dənə alın - https://www.last.fm/api/account/create]",
       "required": false
     },
     "LASTFM_USERNAME": {
-      "description": "Last.FM Kullanıcı adı",
+      "description": "Last.FM İstifadəçi adı",
       "required": false
     },
     "LASTFM_PASSWORD": {
-      "description": "Last.FM Şifre",
+      "description": "Last.FM Şifrə",
       "required": false
     },
     "BIO_PREFIX": {
-      "description": "Last.FM Modülü Biyografi için önek.",
+      "description": "Last.FM Modulu Biyoqrafiya üçün nümunə.",
       "required": false
     },
     "DEFAULT_BIO": {
-      "description": "Varsayılan profil biyografisi.",
+      "description": "Həmişəlik profil biyoqrafiyası.",
       "value": "@DTOUserBot",
       "required": false
     },
     "G_DRIVE_CLIENT_SECRET": {
-      "description": "Google Drive için client secret girin.",
+      "description": "Google Drive üçün client secret yazın.",
       "required": false
     },
     "G_DRIVE_AUTH_TOKEN_DATA": {
-      "description": "Google Drive kimlik doğrulama verilerini JSON yapısı olarak girin.",
+      "description": "Google Drive şəxsiyyət doğrulama məlumatlarını JSON quruluşu olaraq yazın.",
       "required": false
     },
     "LYDIA_API_KEY": {
-      "description": "Bu modülün çalışması için CoffeeHouse API'sine ihtiyacı var. 'https://coffeehouse.intellivoid.info/dashboard' Buradan alabilirsiniz.",
+      "description": "Bu modulun işləməsi üçün CoffeeHouse API'sinə ehtiyacı var. 'https://coffeehouse.intellivoid.info/dashboard' Buradan ala bilərsiz.",
       "required": false
     },
     "WEATHER_DEFCITY": {
-      "description": "UserBot'un hava durumu modülü için varsayılan şehri ayarlayın.",
+      "description": "UserBot'un hava statusun modulu üçün həmişəlik şəhər qeyd edin.",
       "required": false
     },
     "LOGSPAMMER": {
-      "description": "Hata günlüklerinin, geçerli sohbette dosyayı göndermesi yerine UserBot günlük grubunda saklanmasını istemeniz durumunda bu değeri True olarak ayarlayın. Geçerli bir BOTLOG_CHATID değerinin ayarlanmasını gerektirir.",
+      "description": "Xəta günlüklərinin, keçərli söhbətdə faylı göndərməsi yerinə UserBot günlük qrupunda saxlanmasını istəməniz anında bu dəyəri True olaraq qeyd edin. Keçərli bir BOTLOG_CHATID dəyərini qeyd etmək lazımdır.",
       "value": "False"
     },
     "WARN_LIMIT": {
-      "description": "Kişiyi gmutelemek/gbanlamak için gerekli uyarı sayısı. Genellikle 3 kullanılır.",
+      "description": "İstidadəçini gmuteləmək/gbanlamaq üçün lazımlı xəbərdarlıq sayı. Çox vaxt 3 işlədilir.",
       "value": "3",
       "required": false
     },
     "WARN_MODE": {
-      "description": "3 uyarıdan sonra gerçekleşecek olay. Sadece gmute ya da gban yazabilirsiniz. Aksi takdirde bot çalışmayabilir.",
+      "description": "3 xəbərdarlıqdan sonra reallaşacaq hadisə. Sadəcə gmute ya da gban yaza bilərsiz. Əks təqdirdə bot işləməyəcək.",
       "value": "gmute",
       "required": false
     },
     "GALERI_SURE": {
-      "description": "Galeri plugini içindir. Profil fotoğrafları kaç saniye de bir değişsin?",
+      "description": "Qaleriya plugini üçündür. Profil fotolarını neçə saniyə də bir dəyişsin?",
       "value": "60",
       "required": false
     },
     "PAKET_ISMI": {
-      "description": "Dızla komutu paket ismini belirleyin. Paket ismi şöyle olacaktır: @KullanıcıAdın verdiğin değer 1",
+      "description": "Fırlat əmri paket adını seçin. Paket adı belə olacaq: @İstifadəçiAdın verdiyin dəyər",
       "value": "@DTOUserBot Paketi",
       "required": false
     },
@@ -226,7 +226,7 @@
       "required": true
     },
     "LANGUAGE": {
-      "description": "Botun dili. EN/TR/AZ seçin.",
+      "description": "Botun dili AZ/TR/RU/EN seçin.",
       "value": "AZ",
       "required": true
     }
