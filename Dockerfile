@@ -35,12 +35,12 @@ RUN pacman -Syyu --noconfirm \
     wget  
 
 
-RUN git clone https://github.com/umudmmmdov1/DTOUserBot /root/dto
-RUN mkdir /root/dto/bin/
-WORKDIR /root/dto/
+RUN git clone https://github.com/umudmmmdov1/DTOUserBot /root/dtouserbot
+RUN mkdir /root/dtouserbot/bin/
+WORKDIR /root/dtouserbot/
 
 
-COPY ./sample_config.env ./userbot.session* ./config.env* /root/dto/
+COPY ./sample_config.env ./userbot.session* ./config.env* /root/dtouserbot/
 
 
 ENV TZ=Asia/Baku
