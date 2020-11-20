@@ -110,7 +110,7 @@
         },
 
         "auto": {
-            "INVALID_TYPE": "Naməlum növ. Mövcud növlər: `isim`, `bio`",
+            "INVALID_TYPE": "Naməlum növ. Mövcud növlər: `ad`, `bio`",
             "ALREADY": "`Hazırda %s onsuzda avtomatik olaraq dəyişir.`",
             "SETTING": "`%s hazırlanır...`",
             "BIO": "⌚️ Saat: {saat} | ",
