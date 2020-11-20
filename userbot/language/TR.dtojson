@@ -110,7 +110,7 @@
         },
 
         "auto": {
-            "INVALID_TYPE": "Bilinmeyen tür. Var olan türler: `isim`, `bio`",
+            "INVALID_TYPE": "Bilinmeyen tür. Var olan türler: `ad`, `bio`",
             "ALREADY": "`Görünüşe göre %s zaten otomatik olarak değişiyor.`",
             "SETTING": "`%s ayarlanıyor...`",
             "BIO": "⌚️ Saat: {saat} | ",
