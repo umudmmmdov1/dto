@@ -55,4 +55,3 @@ pydub
 emoji-country-flag
 cairosvg
 imagedown
-pybase64
