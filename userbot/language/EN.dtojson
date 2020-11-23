@@ -192,7 +192,7 @@
             "DOGBIN_DATA": "` The URL content of the Dogbin was successfully fetched! `\n\n` Content: `",
             "DOGBIN_ENDED": "Dogbin content transfer executed successfully"
         },
-        "durum": {
+        "status": {
             "VERSION": "Version",
             "PLUGIN_COUNT": "Plugin Count",
             "PERMAMENT": "Permanent",
