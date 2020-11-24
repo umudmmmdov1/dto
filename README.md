@@ -15,9 +15,9 @@
 ## Qurulum
 [Youtube Video](https://youtu.be/fBBJoU1uV-w) ![YouTube Video Views](https://img.shields.io/youtube/views/fBBJoU1uV-w?style=flat-square)
 
-**Android üçün:** Termuxu açın bu kodu yapışdırın: `bash <(curl -L https://git.io/Jklqq))`
+**Android üçün:** Termuxu açın bu kodu yapışdırın: `bash <(curl -L https://git.io/JkrSb)`
 
-**iOS üçün:** iSH açın bu kodu yapışdırın: `apk update && apk add bash && apk add curl && curl -L -o dto-ios.sh https://git.io/JklX4 && chmod +x dto-ios.sh && bash dto-ios.sh`
+**iOS üçün:** iSH açın bu kodu yapışdırın: `apk update && apk add bash && apk add curl && curl -L -o dto_installer.sh https://git.io/Jkr9n && chmod +x dto_installer.sh && bash dto_installer.sh`
 
 ### Deploy
 
