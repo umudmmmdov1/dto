@@ -50,7 +50,6 @@ Pillow
 telegraph
 lottie
 git+https://github.com/Joeclinton1/google-images-download.git
-eksipy
 pydub
 emoji-country-flag
 cairosvg
