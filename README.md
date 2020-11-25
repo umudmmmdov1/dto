@@ -13,7 +13,7 @@
 
 ----
 ## Qurulum
-[Youtube Video](https://youtu.be/fBBJoU1uV-w) ![YouTube Video Views](https://img.shields.io/youtube/views/fBBJoU1uV-w?style=flat-square)
+[Youtube videosu](https://youtu.be/fBBJoU1uV-w)
 
 **Android üçün:** Termuxu açın bu kodu yapışdırın: `bash <(curl -L https://git.io/JkrSb)`
 
