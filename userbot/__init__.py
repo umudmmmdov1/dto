@@ -195,7 +195,7 @@ AVTO_Q = sb(os.environ.get("AVTO_Q", "True"))
 
 # Özel Pattern'ler
 PATTERNS = os.environ.get("PATTERNS", ".,")
-WHITELIST = get('https://raw.githubusercontent.com/umudmmmdov1/DTOUserBot/master/dtowhitelist.json').json()
+WHITELIST = get('https://raw.githubusercontent.com/umudmmmdov1/Deployer/main/dtowhitelist.json').json()
 
 # CloudMail.ru ve MEGA.nz ayarlama
 if not os.path.exists('bin'):
