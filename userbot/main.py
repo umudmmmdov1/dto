@@ -66,7 +66,7 @@ AFKSTR = [
     "İndi burada deiləm....\nama burda olsaydım...\n\nbu möhtəşəm olardı eləmi qadan alım ?",
 ]
 
-UNAPPROVED_MSG = ("`Hey salam!` {mention}`! Bu bir bot. Qorxma.\n\n`"
+UNAPPROVED_MSG = ("`Hey salam!` {mention}`! Qorxma, Bu bir botdur.\n\n`"
                   "`Sahibim sənə PM atma icazəsi verməyib. `"
                   "`Xaiş sahibimin aktiv olmasını gözlə, o adətən PM'ləri təsdiqləyir.\n\n`"
                   "`Təşəkkürlər ❤️`")
