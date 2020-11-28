@@ -29,13 +29,13 @@
             "PREMOVE_DELETING": "`Plugin Silinir...`",
             "ALREADY_DELETED": "`Plugin faylı artıq silinib.`",
             "NOT_FOUND_PLUGIN": "`Belə bir plugin bəlkə var idi, bəlkədə yox. Ancaq hazırda olmadığı dəqiqdir.`",
-            "PLUG_DELETED": "`Plugin uğurla yükləndi!` **Tətbiq ediləcək əməliyyatlar üçün yenidən başlatmağınız lazımdır.**",
-            "DTO_PLUGIN_CAPTION": "Bu [DTÖUserBot](https://t.me/DTOUserBot) pluginidir."
+            "PLUG_DELETED": "`Plugin uğurla silindi!` **Tətbiq ediləcək əməliyyatlar üçün yenidən başlatmağınız lazımdır.**",
+            "DTO_PLUGIN_CAPTION": "`Bu` [DTÖUserBot](https://t.me/DTOUserBot) `pluginidir.`"
         },
         
         "__dto": {
-            "NEED_PLUGIN": "Zəhmət olmasa bir DTÖUserBot modulu adı yazın.",
-            "NEED_MODULE": "Zəhmət olmasa hansı DTÖUserBot modulu üçün kömək istədiyinizi qeyd edin !!\nİstifadəsi: .dto <modul adı>"
+            "NEED_PLUGIN": "`Zəhmət olmasa bir DTÖUserBot modulu adı yazın.`",
+            "NEED_MODULE": "`Zəhmət olmasa hansı DTÖUserBot modulu üçün kömək istədiyinizi qeyd edin !!\nİstifadəsi: .dto <modul adı>`"
         },
 
         "__helpme": {
@@ -103,14 +103,14 @@
         },
 
         "afk": {
-            "REASON": "Səbəb",
-            "AFK": "Sahibim hazırda Xətdə deyil.",
-            "IM_AFK": "Hazırda AFK-yam.",
-            "IM_NOT_AFK": "Artıq AFK deyiləm."
+            "REASON": "`Səbəb`",
+            "AFK": "`Sahibim hazırda Xətdə deyil.`",
+            "IM_AFK": "`Hazırda AFK-yam.`",
+            "IM_NOT_AFK": "`Artıq AFK deyiləm.`"
         },
 
         "auto": {
-            "INVALID_TYPE": "Naməlum növ. Mövcud növlər: `isim`, `bio`",
+            "INVALID_TYPE": "Naməlum növ. Mövcud növlər: `ad`, `bio`",
             "ALREADY": "`Hazırda %s onsuzda avtomatik olaraq dəyişir.`",
             "SETTING": "`%s hazırlanır...`",
             "BIO": "⌚️ Saat: {saat} | ",
@@ -148,10 +148,10 @@
             "INVALID_COMMAND": "**Bilinməyən komanda!** `İstifadəsi: .çevir foto/ses/gif`",
             "NEED_REPLY": "Zəhmət olmasa bir Sticker-ə cavab verin.",
             "CONVERTING_TO_PHOTO": "Fotoğraf'a çeviriliyor...",
-            "NEED_EFECT": "`Zəhmət olmasa bir effekt qeyd edin. İstifadə edilə biləcək effektlər: ``çocuk/robot/earrape/hızlı/parazit/yankı`",
+            "NEED_EFECT": "`Zəhmət olmasa bir effekt qeyd edin. İstifadə edilə biləcək effektlər: ``usaq/robot/earrape/suretli/parazit/yangi`",
             "NEED_SOUND": "`Zəhmət olmasa bir Səs-ə cavab verin.`",
             "EFECTING": "`Effekt hazırlanır...`",
-            "NOT_FOUND_EFECT": "**Qeyd etdiyiniz effekt tapılmadı! **`İstifadə edə biləcəyiniz effektlər: ``çocuk/robot/earrape/hızlı/parazit/yankı`",
+            "NOT_FOUND_EFECT": "**Qeyd etdiyiniz effekt tapılmadı! **`İstifadə edə biləcəyiniz effektlər: ``usaq/robot/earrape/suretli/parazit/yangi`",
             "NEED_VIDEO": "`Zəhmət olmasa bir videoya cavab verin!`",
             "WITH_DTO":"@DTOUserBot `ilə effekt hazırlandı.`",
             "WITH_DTO_GIF": "@DTOUserBot `ilə Gif'ə çevrildi.`",
