@@ -98,10 +98,10 @@
             "WARN": "times warned; be careful, please!"
         },
         "afk": {
-            "REASON": "Reason",
-            "AFK": "My owner AFK now.",
-            "IM_AFK": "I'm AFK now.",
-            "IM_NOT_AFK": "I'm not AFK anymore."
+            "REASON": "`Reason`",
+            "AFK": "`My owner AFK now.`",
+            "IM_AFK": "`I'm AFK now.`",
+            "IM_NOT_AFK": "`I'm not AFK anymore.`"
         },
         "auto": {
             "INVALID_TYPE": "Invalid type. Avaliable types: `isim` , `bio`",
