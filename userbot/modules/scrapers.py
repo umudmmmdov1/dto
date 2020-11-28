@@ -1,13 +1,8 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
+# Copyright (C) 2020
 # DTÖUserBot - Ümüd
 
 
-"""  """
+""" Scrapers """
 
 import twitter_scraper
 import os
@@ -55,7 +50,7 @@ from userbot.cmdhelp import CmdHelp
 
 CARBONLANG = "auto"
 TTS_LANG = "tr"
-TRT_LANG = "tr"
+TRT_LANG = "az"
 
 
 from telethon import events
@@ -861,7 +856,7 @@ CmdHelp('scrapers').add_command(
 ).add_command(
     'trt', '<mətin>', 'Asand bir tərcümə modulu.'
 ).add_command(
-    'yt', '<metin>', 'YouTube üzərində bir axtarış edər.'
+    'yt', '<mətin>', 'YouTube üzərində bir axtarış edər.'
 ).add_command(
     'imdb', '<film>', 'Film haqqında məlumat verər.'
 ).add_command(
