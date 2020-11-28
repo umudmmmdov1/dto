@@ -34,8 +34,8 @@
         },
         
         "__dto": {
-            "NEED_PLUGIN": "Lütfen bir DTÖUserBot modülü adı belirtin.",
-            "NEED_MODULE": "Lütfen hangi DTÖUserBot modülü için yardım istediğinizi belirtin !!\nKullanım: .dto <modül adı>"
+            "NEED_PLUGIN": "`Lütfen bir DTÖUserBot modülü adı belirtin.`",
+            "NEED_MODULE": "`Lütfen hangi DTÖUserBot modülü için yardım istediğinizi belirtin !!\nKullanım: .dto <modül adı>`"
         },
 
         "__helpme": {
@@ -103,10 +103,10 @@
         },
 
         "afk": {
-            "REASON": "Sebep",
-            "AFK": "Sahibim şu an AFK.",
-            "IM_AFK": "Artık AFK'yım.",
-            "IM_NOT_AFK": "Artık AFK değilim."
+            "REASON": "`Sebep`",
+            "AFK": "`Sahibim şu an AFK.`",
+            "IM_AFK": "`Artık AFK'yım.`",
+            "IM_NOT_AFK": "`Artık AFK değilim.`"
         },
 
         "auto": {
