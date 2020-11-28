@@ -1,9 +1,4 @@
 # Copyright (C) 2020
-#
-# Licensed under the GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
 # DTÖUserBot - Ümüd
 
 from pydub import AudioSegment
@@ -66,7 +61,7 @@ async def shazam(event):
             for metadata in sarki["track"]["sections"][0]["metadata"]:
                 Caption += f'**{"İl" if metadata["title"] == "Sorti" else metadata["title"]}:** `{metadata["text"]}`\n'
 
-        Caption += '\n**Müsiqi Platformları:** '
+        Caption += '\n**Musiqi Platformaları:** '
         for provider in sarki['track']['hub']['providers']:
             if provider['actions'][0]['uri'].startswith('spotify:track'):
                 Url = provider['actions'][0]['uri'].replace(
