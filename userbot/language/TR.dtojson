@@ -180,6 +180,22 @@
             "SETTED": "Plugin(`{plu}`) için mesajınız(`{msj}`) ayarlandı."
         },
 
+        "covid19": {
+            "SOME_ERRORS": "`Bir hata oluştu.`",
+            "DATA": "Koronavirüs Verileri",
+            "EARTH":"Dünya geneli",
+            "CASE": "🌎 Vaka:",
+            "DEATH": "🌎 Ölüm:",
+            "HEAL": "🌎 İyileşen:",
+            "AZ": "Azerbaycan",
+            "AZ_ALL_CASES": "Vaka (toplam):",
+            "AZ_CASES": "Vaka (bugün):",
+            "AZ_CASE": "Vaka (aktif):",
+            "AZ_ALL_DEATHS": "Ölüm (toplam):",
+            "AZ_DEATHS": "Ölüm (bugün):",
+            "AZ_HEAL": "İyileşen:"
+        },
+
         "deepfry":{
             "CANT_DEEPFRY":"`Bunu deepfry yapamam!`",
             "REPLY_PHOTO":"`Deepfry yapmam için bir resme veya çıkartmaya cevap verin!`",
