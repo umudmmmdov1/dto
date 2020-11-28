@@ -1,9 +1,3 @@
-# Copyright (C) 2020
-#
-# Licensed under the  GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
 # DTÖUserBot - Ümüd
 
 from userbot.cmdhelp import CmdHelp
@@ -21,7 +15,7 @@ async def dil(event):
 
     komut = event.pattern_match.group(1)
     if search(r"y[uü]kle|install", komut):
-        await event.edit("`Dil faylı yüklənir... Xaiş gözləyin.`")
+        await event.edit("`Dil faylı yüklənir... Xahiş gözləyin.`")
         if event.is_reply:
             reply = await event.get_reply_message()
             dosya = await reply.download_media()
