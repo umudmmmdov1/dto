@@ -1,50 +1,167 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
 # DTÖUserBot - Ümüd
 
-#
 
-from telethon.tl.types import ChannelParticipantsAdmins
-from userbot import CMD_HELP, bot
+""" Tarix/Saat """
+
+from datetime import datetime as dt
+
+from pytz import country_names as c_n
+from pytz import country_timezones as c_tz
+from pytz import timezone as tz
+
+from userbot import CMD_HELP, COUNTRY, TZ_NUMBER
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
-@register(outgoing=True, pattern="^.tagall$")
-async def _(event):
-    if event.fwd_from:
-        return
-    mentions = "@tag"
-    chat = await event.get_input_chat()
-    leng = 0
-    async for x in bot.iter_participants(chat):
-        if leng < 4092:
-            mentions += f"[\u2063](tg://user?id={x.id})"
-            leng += 1
-    await event.reply(mentions)
-    await event.delete()
+# ██████ LANGUAGE CONSTANTS ██████ #
 
-@register(outgoing=True, pattern="^.admin")
-async def _(event):
-    if event.fwd_from:
+from userbot.language import get_value
+LANG = get_value("time")
+
+# ████████████████████████████████ #
+
+async def get_tz(con):
+    """ . """
+    if "(Uk)" in con:
+        con = con.replace("Uk", "UK")
+    if "(Us)" in con:
+        con = con.replace("Us", "US")
+    if " Of " in con:
+        con = con.replace(" Of ", " of ")
+    if "(Western)" in con:
+        con = con.replace("(Western)", "(western)")
+    if "Minor Outlying Islands" in con:
+        con = con.replace("Minor Outlying Islands", "minor outlying islands")
+    if "Nl" in con:
+        con = con.replace("Nl", "NL")
+
+    for c_code in c_n:
+        if con == c_n[c_code]:
+            return c_tz[c_code]
+    try:
+        if c_n[con]:
+            return c_tz[con]
+    except KeyError:
         return
-    mentions = "@admin"
-    chat = await event.get_input_chat()
-    async for x in bot.iter_participants(chat, filter=ChannelParticipantsAdmins):
-        mentions += f"[\u2063](tg://user?id={x.id})"
-    reply_message = None
-    if event.reply_to_msg_id:
-        reply_message = await event.get_reply_message()
-        await reply_message.reply(mentions)
+
+
+@register(outgoing=True, pattern="^.time(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
+async def time_func(tdata):
+    """ .time """
+    con = tdata.pattern_match.group(1).title()
+    tz_num = tdata.pattern_match.group(2)
+
+    t_form = "%H:%M"
+    c_name = None
+
+    if len(con) > 4:
+        try:
+            c_name = c_n[con]
+        except KeyError:
+            c_name = con
+        timezones = await get_tz(con)
+    elif COUNTRY:
+        c_name = COUNTRY
+        tz_num = TZ_NUMBER
+        timezones = await get_tz(COUNTRY)
     else:
-        await event.reply(mentions)
-    await event.delete()
+        await tdata.edit(f"{LANG['CLOCK']}  **{dt.now().strftime(t_form)}** ")
+        return
 
-CmdHelp('tagall').add_command(
-    'tagall', None, 'Bu əmri işlətdiyinizdə söhbət içərisində ki hərkəsi etiketləyər.'
+    if not timezones:
+        await tdata.edit(LANG['INVALID_COUNTRY'])
+        return
+
+    if len(timezones) == 1:
+        time_zone = timezones[0]
+    elif len(timezones) > 1:
+        if tz_num:
+            tz_num = int(tz_num)
+            time_zone = timezones[tz_num - 1]
+        else:
+            return_str = f"`{c_name} {LANG['TOO_TIMEZONE']}:`\n\n"
+
+            for i, item in enumerate(timezones):
+                return_str += f"`{i+1}. {item}`\n"
+
+            return_str += f"\n`{LANG['CHOICE_TIMEZONE']}."
+            return_str += f"`{LANG['EXAMPLE']}: .time {c_name} 2`"
+
+            await tdata.edit(return_str)
+            return
+
+    dtnow = dt.now(tz(time_zone)).strftime(t_form)
+
+    if c_name != COUNTRY:
+        await tdata.edit(
+            f"{c_name} {LANG['IS_CLOCK']}  **{dtnow}**  ({time_zone} {LANG['IS_TZ']}).")
+        return
+
+    elif COUNTRY:
+        await tdata.edit(f"{COUNTRY} {LANG['IS_CLOCK']} **{dtnow}**  "
+                         f"({time_zone} {LANG['IS_TZ']}).")
+        return
+
+
+@register(outgoing=True, pattern="^.date(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
+async def date_func(dat):
+    """ .date """
+    con = dat.pattern_match.group(1).title()
+    tz_num = dat.pattern_match.group(2)
+
+    d_form = "%d/%m/%y - %A"
+    c_name = ''
+
+    if len(con) > 4:
+        try:
+            c_name = c_n[con]
+        except KeyError:
+            c_name = con
+        timezones = await get_tz(con)
+    elif COUNTRY:
+        c_name = COUNTRY
+        tz_num = TZ_NUMBER
+        timezones = await get_tz(COUNTRY)
+    else:
+        await dat.edit(f"{LANG['DATE']}: **{dt.now().strftime(d_form)}** ")
+        return
+
+    if not timezones:
+        await dat.edit(LANG['INVALID_COUNTRY'])
+        return
+
+    if len(timezones) == 1:
+        time_zone = timezones[0]
+    elif len(timezones) > 1:
+        if tz_num:
+            tz_num = int(tz_num)
+            time_zone = timezones[tz_num - 1]
+        else:
+            return_str = f"`{c_name} {LANG['TOO_TIMEZONE']}:`\n"
+
+            for i, item in enumerate(timezones):
+                return_str += f"`{i+1}. {item}`\n"
+
+            return_str += f"\n`{LANG['CHOICE_TIMEZONE']}"
+            return_str += f"{LANG['EXAMPLE']}: .date {c_name} 2"
+
+            await dat.edit(return_str)
+            return
+
+    dtnow = dt.now(tz(time_zone)).strftime(d_form)
+
+    if c_name != COUNTRY:
+        await dat.edit(
+            f"{c_name} {LANG['IS_DATE']}  **{dtnow}**  ({time_zone} {LANG['IS_TZ']}).`")
+        return
+
+    elif COUNTRY:
+        await dat.edit(f"{COUNTRY} {LANG['IS_DATE']} **{dtnow}**"
+                       f"({time_zone} {LANG['IS_TZ']}).")
+        return
+
+CmdHelp('time').add_command(
+    'time', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkənin saatınıı göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.'
 ).add_command(
-    'admin', None, 'Bu əmri işlətdiyinizdə söhbət içərisindəki ki idarəçiləri etiketləyər.'
+    'date', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkenin tarixini göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.'
 ).add()
