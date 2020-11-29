@@ -1181,7 +1181,7 @@ async def get_usersdel(show):
     """ .usersdel  """
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
-    mentions = '{} grubunda bulunan silinmiş hesaplar: \n'.format(title)
+    mentions = '{} qrupunda tapılman silinməyən hesablar: \n'.format(title)
     try:
         if not show.pattern_match.group(1):
             async for user in show.client.iter_participants(show.chat_id):
@@ -1203,14 +1203,14 @@ async def get_usersdel(show):
         await show.edit(mentions)
     except MessageTooLongError:
         await show.edit(
-            "Lənət olsun, bu böyük qrupdur. Silinən istifadəçilər listini fayl olaraq göndərirəm.")
+            "Lənət olsun, bu böyük qrupdur. Silinməyən istifadəçilər listini fayl olaraq göndərirəm.")
         file = open("userslist.txt", "w+")
         file.write(mentions)
         file.close()
         await show.client.send_file(
             show.chat_id,
             "deleteduserslist.txt",
-            caption='{} qrupuna aid olan silinmiş hesanlar:'.format(title),
+            caption='{} qrupuna aid olan silinmiş hesablar:'.format(title),
             reply_to=show.id,
         )
         remove("deleteduserslist.txt")
@@ -1233,7 +1233,7 @@ async def get_userdel_from_event(event):
             user = int(user)
 
         if not user:
-            await event.edit("`Silinən istifadəçinin istifadəçi adını, ID'sini vəya mesajını yönləndirin`")
+            await event.edit("`Silinməyən istifadəçinin istifadəçi adını, ID'sini vəya mesajını yönləndirin`")
             return
 
         if event.message.entities is not None:
@@ -1325,8 +1325,6 @@ CmdHelp('admin').add_command(
         'bots', None, 'Bir qrupdakı silinmiş hesabları axtarar. Əruptan silinən hesabları silmək üçün .zombies clean əmrini işlədin.'
     ).add_command(
         'users vəya .users', '<istifadəçi adı> <istifadəçu adı/cavablama>', 'Söhbətdəki bütün (vəya sorğulanan) istifadəçiləri alar.'
-    ).add_command(
-        'setgppic', '<cavablanan foto>', 'Ərupun fotosunu dəyişdirir.'
     ).add_command(
         'warn', '<istifadəçi adı/cavablamma> <səbəb (istəyə bağlı>', 'Seçdiyiniz istifadəçini xəbərdar edər.'
     ).add_command(
