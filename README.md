@@ -7,7 +7,7 @@
     <br>
 <a href="https://t.me/DTOSupport">Dəstək qrupu</a> |
 <a href="https://t.me/DTOUserBot">Yeniliklər haqda</a> |
-<a href="####">Qurulum sonrası əlavələr</a>
+<a href="https://github.com/umudmmmdov1/DTOUserBot/wiki/Qurulum-sonras%C4%B1-%C9%99lav%C9%99l%C9%99r">Qurulum sonrası əlavələr</a>
     <br>
 </p>
 
