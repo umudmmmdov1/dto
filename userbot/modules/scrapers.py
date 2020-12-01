@@ -583,7 +583,7 @@ async def translateme(trans):
 
     source_lan = LANGUAGES[f'{reply_text.src.lower()}']
     transl_lan = LANGUAGES[f'{reply_text.dest.lower()}']
-    reply_text = f"Bu dildən:**{source_lan.title()}**\nBu dilə:**{transl_lan.title()}:**\n\n{reply_text.text}"
+    reply_text = f"Bu dildən :**{source_lan.title()}**\nBu dilə :**{transl_lan.title()}**\n\n{reply_text.text}"
 
     await trans.edit(reply_text)
     if BOTLOG:
