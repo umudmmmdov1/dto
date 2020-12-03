@@ -1,8 +1,14 @@
-# Copyright (C) 2020
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
+#
+
 # DTÖUserBot - Ümüd
+#
 
 """
-Admin və başqa modullar
+
 """
 
 from asyncio import sleep
@@ -1175,7 +1181,7 @@ async def get_usersdel(show):
     """ .usersdel  """
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
-    mentions = '{} qrupunda tapılman silinmiş hesablar: \n'.format(title)
+    mentions = '{} qrupunda tapılman silinməyən hesablar: \n'.format(title)
     try:
         if not show.pattern_match.group(1):
             async for user in show.client.iter_participants(show.chat_id):
@@ -1197,13 +1203,14 @@ async def get_usersdel(show):
         await show.edit(mentions)
     except MessageTooLongError:
         await show.edit(
-            "Lənət olsun, bu böyük qrupdur. Silinmiş istifadəçilər listini fayl olaraq göndərirəm.")
-            with open("deleteduserslist.txt", "w+") as file:
-            file.write(mentions)
+            "Lənət olsun, bu böyük qrupdur. Silinməyən istifadəçilər listini fayl olaraq göndərirəm.")
+        file = open("userslist.txt", "w+")
+        file.write(mentions)
+        file.close()
         await show.client.send_file(
             show.chat_id,
             "deleteduserslist.txt",
-            caption='Users in {}'.format(title),
+            caption='{} qrupuna aid olan silinmiş hesablar:'.format(title),
             reply_to=show.id,
         )
         remove("deleteduserslist.txt")
