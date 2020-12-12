@@ -5,24 +5,24 @@
     "AUTHOR": "@Josephyton",
     "STRINGS": {
         "__plugin": {
-            "REPLY_FOR_PORT": "`Plugin-Port için lütfen bir dosyaya yanıt verin.`",
-            "DOWNLOADING": "`Dosya indiriliyor...`",
-            "UNIBORG": "`1. Tip UniBorg tespit edildi...`",
-            "TOO_MANY_PLUGIN": "`Bu dosyanın içinde birden fazla plugin var, bunu portlayamam!`",
-            "UPLOADING": "`Port başarılı dosya yükleniyor...`",
-            "UNIBORG2": "`2. Tip UniBorg tespit edildi...`",
-            "UNIBORG3": "`3. Tip UniBorg tespit edildi...`",
-            "UNIBORG_NOT_FOUND": "`UniBorg plugini tespit edilmedi.`",
-            "PLIST_CHECKING": "`Pluginler getiriliyor...`",
-            "PLIST": "**İşte Yüklenen Pluginler:**",
+            "REPLY_FOR_PORT": "`Plugin-Port için lütfen bir dosyaya yanıt verin 🎅`",
+            "DOWNLOADING": "`Dosya indiriliyor...🎄`",
+            "UNIBORG": "`1. Tip UniBorg tespit edildi...🎄`",
+            "TOO_MANY_PLUGIN": "`Bu dosyanın içinde birden fazla plugin var, bunu portlayamam!🎄`",
+            "UPLOADING": "`Port başarılı dosya yükleniyor...🎄`",
+            "UNIBORG2": "`2. Tip UniBorg tespit edildi...🎄`",
+            "UNIBORG3": "`3. Tip UniBorg tespit edildi...🎄`",
+            "UNIBORG_NOT_FOUND": "`UniBorg plugini tespit edilmedi.🎄`",
+            "PLIST_CHECKING": "`Pluginler getiriliyor...🎄`",
+            "PLIST": "**İşte Yüklenen Pluginler:❄️**",
             "TEMP_PLUGIN": "`Pluginleriniz kalıcı yüklenmiyor bu yüzden liste getiremem.`",
             "REPLY_TO_FILE": "`Yüklenecek modül dosyasına yanıt verin.`",
             "NOT_FOUND_PLUGIN_CHANNEL": "`Pluginlerin kalıcı olması için Id ayarlamamışsınız. Pluginleriniz yeniden başlatınca silinebilir!`",
             "PLUGIN_BUGGED": "`Yükleme başarısız! Plugin hatalı.\n\nHata: `",
             "PLUGIN_DESC": "Bu plugin dışarıdan botunuz için yüklenmiştir. Kullanım:",
-            "PLUGIN_DOWNLOADED": "`Modül başarıyla yüklendi! %s ile kullanmaya başlayabilirsiniz.`",
+            "PLUGIN_DOWNLOADED": "`Modül başarıyla yüklendi! 🎅 %s ile kullanmaya başlayabilirsiniz.`",
             "PLUGIN_WITHOUT_DESC": "Bu plugin dışarıdan yüklenmiştir. Kullanım: #KOMUT BULUNAMADI#",
-            "PLUGIN_DESCLESS": "`Modül başarıyla yüklendi! Fakat komutu bulamadım, üzgünüm.`",
+            "PLUGIN_DESCLESS": "`Modül başarıyla yüklendi! 🎅 Fakat komutu bulamadım, üzgünüm.`",
             "PLUG_DESC": "Bu plugin dışarıdan yüklenmiştir. Kullanım: .",
             "PLUG_MESSAGE": "`Modül başarıyla yüklendi! .%s ile kullanmaya başlayabilirsiniz.`",
             "PREMOVE_GIVE_NAME": "`Lütfen komutun yanına bir plugin belirtin.`",
@@ -103,10 +103,10 @@
         },
 
         "afk": {
-            "REASON": "`Sebep`",
-            "AFK": "`Sahibim şu an AFK.`",
-            "IM_AFK": "`Artık AFK'yım.`",
-            "IM_NOT_AFK": "`Artık AFK değilim.`"
+            "REASON": "`Sebep ❄️`",
+            "AFK": "`Sahibim şu an AFK ☃️`",
+            "IM_AFK": "`Artık AFK'yım 🎅`",
+            "IM_NOT_AFK": "`Artık AFK değilim 🎄`"
         },
 
         "auto": {
@@ -116,7 +116,7 @@
             "BIO": "⌚️ Saat: {saat} | ",
             "NICK": "@DTOUserBot",
             "SETTED": "`%s ayarlandı :)`",
-            "NAME": "| %s"
+            "NAME": "| 🎅 %s"
         },
 
         "autopp": {
