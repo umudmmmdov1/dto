@@ -1,10 +1,6 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
+# Copyright (C) 2020
+# DTÖUserBot - Ümüd
 
-# DTÖUserBot - Ümüx
 """ UserBot hazırlanışı. """
 
 import os
@@ -63,7 +59,7 @@ if not LANGUAGE in ["EN", "TR", "AZ", "UZ", "DEFAULT"]:
     LANGUAGE = "DEFAULT"
     
 # DTÖ Versiyası
-DTO_VERSION = "2.1"
+DTO_VERSION = "2.2"
 
 # Telegram API KEY ve HASH
 API_KEY = os.environ.get("API_KEY", None)
