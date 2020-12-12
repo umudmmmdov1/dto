@@ -4,26 +4,26 @@
     "AUTHOR": "@hus3ynx",
     "STRINGS": {
         "__plugin": {
-            "REPLY_FOR_PORT": "`Please give a file for Plugin-Port`",
-            "DOWNLOADING": "`File is downloading...`",
-            "UNIBORG": "`1. Type UniBorg found...`",
-            "TOO_MANY_PLUGIN": "`There is more than one plugin in this file, I cannot port it!`",
-            "UPLOADING": "`Port successful file is uploading...`",
-            "UNIBORG2": "2. Type UniBorg found...",
-            "UNIBORG3": "`3. Type UniBorg found...`",
-            "UNIBORG_NOT_FOUND": "`Uniborg plugin not found.`",
-            "PLIST_CHECKING": "`Getting plugins...`",
-            "PLIST": "**Here Are The Installed Plugins:**",
-            "TEMP_PLUGIN": "'Your plugins don't load permanently so I can't bring a list.`",
-            "REPLY_TO_FILE": "`Reply to the module file to be installed. '",
+            "REPLY_FOR_PORT": "`Please give a file for Plugin-Port🎅`",
+            "DOWNLOADING": "`File is downloading...`🎄",
+            "UNIBORG": "`1. Type UniBorg found...🎄`",
+            "TOO_MANY_PLUGIN": "`There is more than one plugin in this file, I cannot port it!🎄`",
+            "UPLOADING": "`Port successful file is uploading...🎄`",
+            "UNIBORG2": "2. Type UniBorg found...🎄",
+            "UNIBORG3": "`3. Type UniBorg found...🎄`",
+            "UNIBORG_NOT_FOUND": "`Uniborg plugin not found.🎄`",
+            "PLIST_CHECKING": "`Getting plugins...🎄`",
+            "PLIST": "**Here Are The Installed Plugins:❄️**",
+            "TEMP_PLUGIN": "'Your plugins don't load permanently so I can't bring a list.🎄`",
+            "REPLY_TO_FILE": "`Reply to the module file to be installed.🎄 '",
             "NOT_FOUND_PLUGIN_CHANNEL": "`You have not set an Id for the plugins to be permanent. Your plugins can be deleted after restarting! '",
             "PLUGIN_BUGGED": "`Upload failed! Plugin is wrong.\n\nError: `",
             "PLUGIN_DESC": "This plugin is externally installed for your bot. Use:\n",
             "PLUGIN_DOWNLOADED": "`Module installed successfully! you can start using %s.`",
             "PLUGIN_WITHOUT_DESC": "This plugin has been upgraded externally. Usage: #COMMAND NOT FOUND#",
-            "PLUGIN_DESCLESS": "`Module installed successfully! But I couldn't find the command, sorry.`",
+            "PLUGIN_DESCLESS": "`Module installed successfully! 🎅 But I couldn't find the command, sorry.`",
             "PLUG_DESC": "This plugin is installed externally. Use:",
-            "PLUG_MESSAGE": "`Module installed successfully! you can start using %s.`",
+            "PLUG_MESSAGE": "`Module installed successfully!🎅 you can start using %s.`",
             "PREMOVE_GIVE_NAME": "`Please specify a plugin next to the command.`",
             "PREMOVE_DELETING": "`Plugin Deleting...`",
             "ALREADY_DELETED": "`The Plugin file has already deleted.`",
@@ -98,10 +98,10 @@
             "WARN": "times warned; be careful, please!"
         },
         "afk": {
-            "REASON": "`Reason`",
-            "AFK": "`My owner AFK now.`",
-            "IM_AFK": "`I'm AFK now.`",
-            "IM_NOT_AFK": "`I'm not AFK anymore.`"
+            "REASON": "`Reason ❄️`",
+            "AFK": "`My owner AFK now. ☃️`",
+            "IM_AFK": "`I'm AFK now. 🎅`",
+            "IM_NOT_AFK": "`I'm not AFK anymore.🎄`"
         },
         "auto": {
             "INVALID_TYPE": "Invalid type. Avaliable types: `isim` , `bio`",
@@ -110,7 +110,7 @@
             "BIO": "@DTOUserBot | ⌚️ Time: {saat} | ",
             "NICK": "@DTOUserBot",
             "SETTED": "`%s set :)`",
-            "NAME": "%s"
+            "NAME": "| 🎅%s"
         },
         "autopp": {
             "VIDEO_ALREADY_CHANGING": "`It looks like profile video is already changing automatically. `",
