@@ -35,7 +35,7 @@
         
         "__dto": {
             "NEED_PLUGIN": "`Zəhmət olmasa bir DTÖUserBot modulu adı yazın.`",
-            "NEED_MODULE": "`Zəhmət olmasa hansı DTÖUserBot modulu üçün kömək istədiyinizi qeyd edin !!\nİstifadəsi: .dto <modul adı>`"
+            "NEED_MODULE": "`Modullar aşağıdadır 👇🏻 \nİstifadəsi: .dto <modul adı>`"
         },
 
         "__helpme": {
