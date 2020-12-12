@@ -5,36 +5,36 @@
     "AUTHOR": "@umudmmmdov1",
     "STRINGS": {
         "__plugin": {
-            "REPLY_FOR_PORT": "`Zəhmət olmasa Plugin-Port üçün bir fayla cavab yazın`",
-            "DOWNLOADING": "`Fayl Yüklənir...`",
-            "UNIBORG": "`1. Tip UniBorg aşkar edildi...`",
-            "TOO_MANY_PLUGIN": "`Bu faylın içində birdən çox plugin var, bunu port edə bilmərəm!`",
-            "UPLOADING": "`Port düzgündür fayl yüklənir...`",
-            "UNIBORG2": "`2. Tip UniBorg aşkar edildi...`",
-            "UNIBORG3": "`3. Tip UniBorg aşkar edildi...`",
-            "UNIBORG_NOT_FOUND": "`UniBorg plugini aşkar edilə bilmədi.`",
-            "PLIST_CHECKING": "`Pluginler çağırılır...`",
-            "PLIST": "**Hazırda Yüklənən Pluginlər:**",
-            "TEMP_PLUGIN": "`Pluginleriniz Həmişəlik olaraq yüklənmir, buna görə bir siyahı gətirə bilmirəm.`",
-            "REPLY_TO_FILE": "`Yüklənəcək modul faylına cavab yazın.`",
-            "NOT_FOUND_PLUGIN_CHANNEL": "`Pluginlərin həmişəlik olması üçün Id nizamlamamısınız. Pluginləriniz yenidən başladılan zaman silinə bilər!`",
-            "PLUGIN_BUGGED": "`Yükləmə uğurlu deyil! Plugində xəta aşkar edildi.\n\nXəta: `",
+            "REPLY_FOR_PORT": "`Zəhmət olmasa Plugin-Port üçün bir fayla cavab yazın 🎅`",
+            "DOWNLOADING": "`Fayl Yüklənir...🎄`",
+            "UNIBORG": "`1. Tip UniBorg aşkar edildi...🎄`",
+            "TOO_MANY_PLUGIN": "`Bu faylın içində birdən çox plugin var, bunu port edə bilmərəm!🎄`",
+            "UPLOADING": "`Port düzgündür fayl yüklənir...🎅`",
+            "UNIBORG2": "`2. Tip UniBorg aşkar edildi...🎄`",
+            "UNIBORG3": "`3. Tip UniBorg aşkar edildi...🎄`",
+            "UNIBORG_NOT_FOUND": "`UniBorg plugini aşkar edilə bilmədi.🎄`",
+            "PLIST_CHECKING": "`Pluginler çağırılır...🎄`",
+            "PLIST": "**Hazırda Yüklənən Pluginlər:❄️**",
+            "TEMP_PLUGIN": "`Pluginleriniz Həmişəlik olaraq yüklənmir, buna görə bir siyahı gətirə bilmirəm.🎅`",
+            "REPLY_TO_FILE": "`Yüklənəcək modul faylına cavab yazın.🎄`",
+            "NOT_FOUND_PLUGIN_CHANNEL": "`Pluginlərin həmişəlik olması üçün Id nizamlamamısınız. Pluginləriniz yenidən başladılan zaman silinə bilər!🎄`",
+            "PLUGIN_BUGGED": "`Yükləmə uğurlu deyil! Plugində xəta aşkar edildi.❄️\n\nXəta: `",
             "PLUGIN_DESC": "Bu plugin qırağdan botunuz üçün yüklənmişdir. İstifadəsi:",
             "PLUGIN_DOWNLOADED": "`Modul uğurla yükləndi! %s yazaraq istifadə edə bilərsiniz.`",
             "PLUGIN_WITHOUT_DESC": "Bu plugin qırağdan yüklənmişdir. İstifadəsi: #ƏMR TAPILMADI#",
-            "PLUGIN_DESCLESS": "`Modul uğurla yükləndi! Ancaq əmri təssüf ki, tapa bilmədim.`",
-            "PLUG_DESC": "Bu plugin qırağdan üçün yüklənmişdir. İstifadəsi: .",
-            "PLUG_MESSAGE": "`Modul uğurla yükləndi! .%s azaraq istifadə edə bilərsiniz.`",
+            "PLUGIN_DESCLESS": "`Modul uğurla yükləndi!🎅 Ancaq əmri təssüf ki, tapa bilmədim.`",
+            "PLUG_DESC": "Bu plugin qırağdan üçün yüklənmişdir.🎅 İstifadəsi: .",
+            "PLUG_MESSAGE": "`Modul uğurla yükləndi!🎅 .%s azaraq istifadə edə bilərsiniz.`",
             "PREMOVE_GIVE_NAME": "`Zəhmət olmasa əmrin yanına bir plugin qeyd edin.`",
             "PREMOVE_DELETING": "`Plugin Silinir...`",
             "ALREADY_DELETED": "`Plugin faylı artıq silinib.`",
             "NOT_FOUND_PLUGIN": "`Belə bir plugin bəlkə var idi, bəlkədə yox. Ancaq hazırda olmadığı dəqiqdir.`",
-            "PLUG_DELETED": "`Plugin uğurla silindi!` **Tətbiq ediləcək əməliyyatlar üçün yenidən başlatmağınız lazımdır.**",
+            "PLUG_DELETED": "`Plugin uğurla silindi!` **Tətbiq ediləcək əməliyyatlar üçün yenidən başlatmağınız lazımdır.**\n`restart`",
             "DTO_PLUGIN_CAPTION": "`Bu` [DTÖUserBot](https://t.me/DTOUserBot) `pluginidir.`"
         },
         
         "__dto": {
-            "NEED_PLUGIN": "`Zəhmət olmasa bir DTÖUserBot modulu adı yazın.`",
+            "NEED_PLUGIN": "`Zəhmət olmasa bir DTÖUserBot modulu adı yazın.🎅`",
             "NEED_MODULE": "`Modullar aşağıdadır 👇🏻 \nİstifadəsi: .dto <modul adı>`"
         },
 
@@ -103,20 +103,20 @@
         },
 
         "afk": {
-            "REASON": "`Səbəb`",
-            "AFK": "`Sahibim hazırda Xətdə deyil.`",
-            "IM_AFK": "`Hazırda AFK-yam.`",
-            "IM_NOT_AFK": "`Artıq AFK deyiləm.`"
+            "REASON": "`Səbəb ❄️`",
+            "AFK": "`Sahibim hazırda Xətdə deyil.☃️`",
+            "IM_AFK": "`Hazırda AFK-yam 🎅`",
+            "IM_NOT_AFK": "`Artıq AFK deyiləm 🎄`"
         },
 
         "auto": {
             "INVALID_TYPE": "Naməlum növ. Mövcud növlər: `ad`, `bio`",
             "ALREADY": "`Hazırda %s onsuzda avtomatik olaraq dəyişir.`",
-            "SETTING": "`%s hazırlanır...`",
+            "SETTING": "`%s hazırlanır ☃️...`",
             "BIO": "⌚️ Saat: {saat} | ",
             "NICK": "@DTOUserBot",
             "SETTED": "`%s hazırlandı :)`",
-            "NAME": "| %s"
+            "NAME": " | 🎅%s"
         },
 
         "autopp": {
@@ -170,14 +170,14 @@
         },
 
         "deyisdir": {
-            "SETTED_MEDIA": "üçün medianız qeydə alındı.",
-            "SETTED_REPLY": "üçün mesajınız qeydə alındı.",
-            "SUCCESS_DELETED": "`Plugin mesajı uğurla silindi.`",
-            "ERROR_DELETED": "Plugin mesajı silinə bilmədi.** Xəta",
-            "NOT_FOUND": "**Bilinməyən plugin.** Mesajını silə biləcəyiniz pluginlər",
-            "USAGE": "**Dəyişdir, botdaki plugin-mesajlarını dəyişdirə bilməyiniz üçündür.**\nNümunə İstifadəsi: `.değiştir afk \"Hazırda burda deyiləm... Bəlkədə heç gəlmədim\"`\nPlugin-mesajını silmək: `.değiştir afk`\nDəyişdirə biləcəyiniz plugin-mesajları (indiki): `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`",
-            "CANNOT_EMPTY": "Plugin mesajı boş ola bilməz.",
-            "SETTED": "Plugin(`{plu}`) üçün mesajınız(`{msj}`) təsdiqləndi."
+            "SETTED_MEDIA": "üçün medianız qeydə alındı.🎅",
+            "SETTED_REPLY": "üçün mesajınız qeydə alındı.☃️",
+            "SUCCESS_DELETED": "`Plugin mesajı uğurla silindi.❄️`",
+            "ERROR_DELETED": "Plugin mesajı silinə bilmədi.☃️** Xəta",
+            "NOT_FOUND": "**Bilinməyən plugin.** Mesajını silə biləcəyiniz pluginlər❄️",
+            "USAGE": "**Dəyişdir, botdaki plugin-mesajlarını dəyişdirə bilməyiniz üçündür.🎄**\nNümunə İstifadəsi: `.değiştir afk \"Hazırda burda deyiləm... Bəlkədə heç gəlmədim\"`\nPlugin-mesajını silmək: `.değiştir afk`\nDəyişdirə biləcəyiniz plugin-mesajları (indiki): `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`",
+            "CANNOT_EMPTY": "Plugin mesajı boş ola bilməz.❄️",
+            "SETTED": "Plugin(`{plu}`) üçün mesajınız(`{msj}`) təsdiqləndi.🎅"
         },
 
          "covid19": {
