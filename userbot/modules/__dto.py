@@ -24,14 +24,14 @@ async def dto(event):
             await event.edit(LANG["NEED_PLUGIN"])
     else:
         string = ""
-        sayfa = [list(CMD_HELP)[i:i + 4] for i in range(0, len(list(CMD_HELP)), 4)]
+        sayfa = [list(CMD_HELP)[i:i + 5] for i in range(0, len(list(CMD_HELP)), 5)]
         
         for i in sayfa:
             string += f'`🎅🎄 `'
             for sira, a in enumerate(i):
-                string += "`" + str(a)
+                string += "__" + str(a)
                 if sira == i.index(i[-1]):
-                    string += "`"
+                    string += "__"
                 else:
                     string += "`, "
             string += "\n"
