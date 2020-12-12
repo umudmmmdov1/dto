@@ -1,12 +1,5 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
+# Copyright (C) 2020
 # DTÖUserBot - Ümüd
-# Botu kopyalayan peysərdi.
-
 
 from userbot.cmdhelp import CmdHelp
 from userbot import cmdhelp
@@ -31,10 +24,10 @@ async def dto(event):
             await event.edit(LANG["NEED_PLUGIN"])
     else:
         string = ""
-        sayfa = [list(CMD_HELP)[i:i + 5] for i in range(0, len(list(CMD_HELP)), 5)]
+        sayfa = [list(CMD_HELP)[i:i + 4] for i in range(0, len(list(CMD_HELP)), 4)]
         
         for i in sayfa:
-            string += f'`➡️ `'
+            string += f'`🎅🎄 `'
             for sira, a in enumerate(i):
                 string += "`" + str(a)
                 if sira == i.index(i[-1]):
