@@ -33,7 +33,7 @@
         },
         "__dto": {
             "NEED_PLUGIN": "Please specify an DTÖUserBot module name.",
-            "NEED_MODULE": "Please specify which DTÖUserBot module you want help for !!\nUse: .dto <module name>"
+            "NEED_MODULE": "Modules are below 👇🏻\nUse: .dto <module name>"
         },
         "__helpme": {
             "NO_BOT": "`The Bot doesn't work! Please set the Bot token and Username correctly. Module aborted.`"
