@@ -1,9 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
+# Copyright (C) 2020
 # DTÖUserBot - Ümüd
 
 """ """
@@ -78,7 +73,7 @@ def register(**args):
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-                    text = "**DTÖUSERBOT XƏTA**\n"
+                    text = "**DTÖUSERBOT XƏTA ❄️**\n"
                     link = "[DTÖUserBot Dəstək Qrupu](https://t.me/DtoSupport)"
                     text += "İstərsəniz, bunu şikayət edə bilərsiz"
                     text += f"- sədəcə bu mesajı buraya yönləndirin {link}.\n"
