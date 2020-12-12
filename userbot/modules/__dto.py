@@ -27,7 +27,7 @@ async def dto(event):
         sayfa = [list(CMD_HELP)[i:i + 5] for i in range(0, len(list(CMD_HELP)), 5)]
         
         for i in sayfa:
-            string += f'`🎅🎄 `'
+            string += f'`❄️ `'
             for sira, a in enumerate(i):
                 string += "__" + str(a)
                 if sira == i.index(i[-1]):
