@@ -174,9 +174,9 @@ async def dyno_usage(dyno):
 
             await dyno.edit(
                 "**Dyno İstifadəsi**:\n\n"
-                f"-> `**{app.name}** İstifadə etdiyi dyno saatı':\n"
-                f"     •  **{AppHours} saat(s), "
-                f"{AppMinutes} dəqiqə(s)  -  {AppPercentage}%**"
+                f"-> `{app.name} İstifadə etdiyi dyno saatı':\n"
+                f"     •  {AppHours} saat(s), "
+                f"{AppMinutes} dəqiqə(s)  -  {AppPercentage}%"
                 "\n\n"
                 "-> `Bu ay qalan dyno saatı:\n"
                 f"     •  **{hours} saat(s), {minutes} dəqiqə(s)  "
@@ -208,7 +208,7 @@ async def _(dyno):
 
 Help = CmdHelp('heroku')
 Help.add_command('dyno',  None, 'Heroku hesabınızın dyno saatı haqqında məlumat əldə edin').add()
-Help.add_command('set var',  None, '.set var <Yeni Var adı> <Dəyər> \nBotunuza yeni VAR əlavə edər\n⚠️Diqqət: Əlavə etdikdən sonra botunuza .restart atın').add()
+Help.add_command('set var',  None, '.set var <Yeni Var adı> <Dəyər> \nBotunuza yeni VAR əlavə edər\n⚠️ Diqqət: Əlavə etdikdən sonra botunuza .restart atın').add()
 Help.add_command('get var',  None, 'Mövcud VAR`larınızı əldə edin, yalnız özəl qrupunuzda istifadə edin').add()
-Help.add_command('del var',  None, '.del var <Var adı> \nSeçdiyiniz VAR`ı silər\n⚠️Diqqət: sildikdən sonra botunuza .restart atın').add()
+Help.add_command('del var',  None, '.del var <Var adı> Seçdiyiniz VAR`ı silər\n⚠️ Diqqət: sildikdən sonra botunuza .restart atın').add()
 Help.add_command('loq',  None, 'Heroku loq`u əldə edin').add()
