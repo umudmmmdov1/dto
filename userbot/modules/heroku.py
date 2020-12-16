@@ -209,11 +209,11 @@ async def _(dyno):
 CmdHelp('heroku').add_command(
 'dyno', None, 'Heroku hesabınızın dyno saatı haqqında məlumat əldə edin.'
     ).add_command(
-        'set var', None, 'set var <Yeni Var adı> <Dəyər> \nBotunuza yeni VAR əlavə edər\n⚠️Diqqət: Əlavə etdikdən sonra botunuza .restart atın.'
+        'set var', None, 'set var <Yeni Var adı> <Dəyər> Botunuza yeni VAR əlavə edər Əlavə etdikdən sonra botunuza .restart atın.'
     ).add_command(
         'get var', None, 'Mövcud VARlarınızı əldə edin, yalnız özəl qrupunuzda istifadə edin.'
     ).add_command(
-        'del var', None, 'del var <Var adı> \nSeçdiyiniz VARı silər\n⚠️Diqqət: sildikdən sonra botunuza .restart atın.'
+        'del var', None, 'del var <Var adı> Seçdiyiniz VARı silər sildikdən sonra botunuza .restart atın.'
     ).add_command(
         'log', None, 'Heroku loqu əldə edin.'
     ).add()
