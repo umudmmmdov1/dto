@@ -9,8 +9,8 @@ import os
 import requests
 
 from userbot import (
-    HEROKU_APP_NAME,
-    HEROKU_API_KEY,
+    HEROKU_APPNAME,
+    HEROKU_APIKEY,
     BOTLOG,
     BOTLOG_CHATID
 )
@@ -19,9 +19,9 @@ from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
 heroku_api = "https://api.heroku.com"
-if HEROKU_APP_NAME is not None and HEROKU_API_KEY is not None:
-    Heroku = heroku3.from_key(HEROKU_API_KEY)
-    app = Heroku.app(HEROKU_APP_NAME)
+if HEROKU_APPNAME is not None and HEROKU_APIKEY is not None:
+    Heroku = heroku3.from_key(HEROKU_APIKEY)
+    app = Heroku.app(HEROKU_APPNAME)
     heroku_var = app.config()
 else:
     app = None
@@ -36,7 +36,7 @@ async def variable(var):
     exe = var.pattern_match.group(1)
     if app is None:
         await var.edit("`[HEROKU]"
-                       "\n**HEROKU_APP_NAME** quraşdırın.")
+                       "\n**HEROKU_APPNAME** quraşdırın.")
         return False
     if exe == "get":
         await var.edit("`Məlumatlar gətiririlir..`")
@@ -83,7 +83,7 @@ async def variable(var):
             if BOTLOG:
                 await var.client.send_message(
                     BOTLOG_CHATID, "#DELCONFIGVAR\n\n"
-                    "**Delete ConfigVar**:\n"
+                    "**ConfigVar Silindi**:\n"
                     f"`{variable}`"
                 )
             await var.edit("`Məlumatlar silindi...`")
@@ -102,7 +102,7 @@ async def set_var(var):
         if BOTLOG:
             await var.client.send_message(
                 BOTLOG_CHATID, "#SETCONFIGVAR\n\n"
-                "**Change ConfigVar**:\n"
+                "**ConfigVar Dəyişikliyi**:\n"
                 f"`{variable}` = `{value}`"
             )
         await var.edit("`Verilənlər yazılır...`")
@@ -110,7 +110,7 @@ async def set_var(var):
         if BOTLOG:
             await var.client.send_message(
                 BOTLOG_CHATID, "#ADDCONFIGVAR\n\n"
-                "**Add ConfigVar**:\n"
+                "**ConfigVar Əlavə**:\n"
                 f"`{variable}` = `{value}`"
             )
         await var.edit("`Verilənlər əlavə edildi...`")
@@ -134,7 +134,7 @@ async def dyno_usage(dyno):
         )
         headers = {
             'User-Agent': useragent,
-            'Authorization': f'Bearer {HEROKU_API_KEY}',
+            'Authorization': f'Bearer {HEROKU_APIKEY}',
             'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
         }
         async with session.get(heroku_api + path, headers=headers) as r:
@@ -188,8 +188,8 @@ async def dyno_usage(dyno):
 @register(outgoing=True, pattern=r"^\.loq")
 async def _(dyno):
     try:
-        Heroku = heroku3.from_key(HEROKU_API_KEY)
-        app = Heroku.app(HEROKU_APP_NAME)
+        Heroku = heroku3.from_key(HEROKU_APIKEY)
+        app = Heroku.app(HEROKU_APPNAME)
     except BaseException:
         return await dyno.reply(
             "`Zəhmət olmasa,Heroku VARS'da Heroku API Key və Heroku APP name'in düzgün olduğundan əmin olun.`"
