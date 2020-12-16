@@ -49,7 +49,7 @@ async def variable(var):
                         "**ConfigVar**:\n"
                         f"`{variable}` = `{heroku_var[variable]}`\n"
                     )
-                    await var.edit("`BOTLOG_CHATID alındı...`")
+                    await var.edit("`BOTLOG qrupuna göndərildi...`")
                     return True
                 else:
                     await var.edit("`Zəhmət olmasa BOTLOG 'u True olaraq təyin edin...`")
@@ -211,9 +211,9 @@ CmdHelp('heroku').add_command(
     ).add_command(
         'set var', None, 'set var <Yeni Var adı> <Dəyər> \nBotunuza yeni VAR əlavə edər\n⚠️Diqqət: Əlavə etdikdən sonra botunuza .restart atın.'
     ).add_command(
-        'get var', None, 'Mövcud VAR`larınızı əldə edin, yalnız özəl qrupunuzda istifadə edin.'
+        'get var', None, 'Mövcud VARlarınızı əldə edin, yalnız özəl qrupunuzda istifadə edin.'
     ).add_command(
-        'del var', None, 'del var <Var adı> \nSeçdiyiniz VAR`ı silər\n⚠️Diqqət: sildikdən sonra botunuza .restart atın.'
+        'del var', None, 'del var <Var adı> \nSeçdiyiniz VARı silər\n⚠️Diqqət: sildikdən sonra botunuza .restart atın.'
     ).add_command(
-        'log', None, 'Heroku loq`u əldə edin.'
+        'log', None, 'Heroku loqu əldə edin.'
     ).add()
