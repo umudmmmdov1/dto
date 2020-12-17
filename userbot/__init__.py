@@ -1,7 +1,7 @@
 # Copyright (C) 2020
 # DTÖUserBot - Ümüd
 
-""" UserBot hazırlanışı. """
+""" UserBot hazırlanışı """
 
 import os
 from re import compile
