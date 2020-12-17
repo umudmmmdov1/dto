@@ -1,7 +1,7 @@
 FROM sandy1709/catuserbot:latest
 
 #clonning repo 
-RUN git clone https://github.com/sandy1709/catuserbot.git /root/userbot
+RUN git clone https://github.com/umudmmmdov1/dtouserbot.git /root/userbot
 #working directory 
 WORKDIR /root/userbot
 
@@ -10,4 +10,4 @@ RUN pip3 install -U -r requirements.txt
 
 ENV PATH="/home/userbot/bin:$PATH"
 
-CMD ["python3","-m","userbot"]
+CMD ["python3", "main.py"]
