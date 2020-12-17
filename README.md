@@ -33,4 +33,5 @@
 ## Təşəkkürlər / Thanks 
 
 [Hüseyn](https://t.me/hus3ynx)
+
 [BristolMyers](http://t.me/BristolMyers)
