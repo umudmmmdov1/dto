@@ -5,9 +5,9 @@
 
 ## Kömək / Support
 
-<a href="https://t.me/DTOSupport"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
+<a href="https://t.me/DTOUserBot"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
 
-<a href="https://t.me/DTOUserBot"><img src="https://img.shields.io/badge/Join-Telegram%20Group-blue.svg?logo=telegram"></a>
+<a href="https://t.me/DTOSupport"><img src="https://img.shields.io/badge/Join-Telegram%20Group-blue.svg?logo=telegram"></a>
 
 ## Qurulum / Method
 
@@ -21,16 +21,6 @@
 ### Heroku ilə deploy / Deploying To Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/umudmmmdov1/dtouserbot)
-
-## Məlumatlandırma
-Hər hansı bir istək & şikayət & önəri varsa [dəstək qrupuna](https://t.me/DtoSupport) gələ bilərsiz.
-
-```Botu düzgün istifade etmediyiniz halda hesabınız bağlana biler.
-Botun yanlış istifadesi halında mesuliyyet tamamile istifadeçiye 
-aiddir.DTÖUserBot qrupu olaraq heç bir mesuliyyet qebul etmirik.
-Botu telegramı daha rahat istifade elemek xaricinde eylenmek
-üçün de istifade ede bilersiniz.
-```
 
 ### Lisenziya / License
 
