@@ -3,18 +3,18 @@ from pydrive.auth import GoogleAuth
 
 def main():
     gauth = GoogleAuth()
-    # Kayıtlı istemci kimlik bilgilerini yüklemeyi dene
+    # Qeydli
     gauth.LoadCredentialsFile("secret.json")
     if gauth.credentials is None:
-        # Orada değillerse kimlik doğrulaması yap
+        # Doğrulama
         gauth.LocalWebserverAuth()
     elif gauth.access_token_expired:
-        # Süresi dolmuşsa yenile
+        # Vaxt
         gauth.Refresh()
     else:
-        # Kaydedilen kimlik bilgilerini başlat
+        # Qeydedilən
         gauth.Authorize()
-    # Geçerli kimlik bilgilerini bir dosyaya kaydet
+    # Keçərli
     gauth.SaveCredentialsFile("secret.json")
 
 
