@@ -1,15 +1,10 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
+# Copyright (C) 2020
 # DTÖUserBot - Ümüd
 
 
 
 from userbot.events import register
-from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
+from userbot import bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
 from telethon.events import ChatAction
 from userbot.cmdhelp import CmdHelp
 
@@ -158,21 +153,6 @@ async def del_welcome(event):
         await event.edit("`Qarşılama mesajı bu söhbət üçün silindi.`")
     else:
         await event.edit("`Burda qarşılama notu var görəsən ?`")
-
-
-CMD_HELP.update({
-    "welcome":
-    "\
-.setwelcome <qarşılama mesajı> və ya .setwelcome ilə bir mesaja cavab olaraq yazın\
-\nİşlədilişi: Mesajı söhbətdə qarşılama notu olaraq qeyd edər.\
-\n\nQarşılama mesajlarını düzəltmək üçün işlədilə bilər dəyişkənlər :\
-\n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
-\n\n.checkwelcome\
-\nİşlədilişi: Söhbətdə qarşılama notu olub olmadığını yoxlayın.\
-\n\n.rmwelcome\
-\nİşlədilişi: Keçərli söhbət üçün qarşılama notunu silər.\
-"
-})
 
 CmdHelp('welcome').add_command(
     'setwelcome', '<qarşılama mesajı>', 'Mesajı söhbətə qarşılama notu olaraq qeyd edər.'
