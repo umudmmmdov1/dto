@@ -29,3 +29,8 @@
 ## Yaradıcı / Creator
 
 [Ümüd Məmmədov](https://t.me/umudmmmdov1)
+
+## Təşəkkürlər / Thanks 
+
+[Hüseyn](https://t.me/hus3ynx)
+[BristolMyers](http://t.me/BristolMyers)
