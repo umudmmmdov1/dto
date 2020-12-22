@@ -75,7 +75,7 @@ async def amireallyaliveuser(username):
     """ Alive """
     message = username.text
     output = ".alivead [mötərəzəsiz] və boş ad ola bilməz"
-    if message != ".alivead mesaj [7:8] == " ":
+    if message != ".alivead mesaj [7:8] == ":
         newuser = message[8:]
         global DEFAULTUSER
         DEFAULTUSER = newuser
