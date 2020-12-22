@@ -23,7 +23,7 @@ from json import loads, JSONDecodeError
 import re
 import userbot.cmdhelp
 
-StartTime = time.time()
+StartTime = time()
 
 DIZCILIK_STR = [
     "Stikeri fırladıram...",
