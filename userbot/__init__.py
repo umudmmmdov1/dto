@@ -4,6 +4,7 @@
 """ UserBot hazırlanışı """
 
 import os
+import time
 from re import compile
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
@@ -19,6 +20,8 @@ from telethon.events import callbackquery, InlineQuery, NewMessage
 from math import ceil
 
 load_dotenv("config.env")
+
+StartTime = time.time()
 
 # Bot log
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
