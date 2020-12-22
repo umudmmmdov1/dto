@@ -15,7 +15,7 @@ from shutil import which
 import psutil
 from telethon import __version__, version
 
-from userbot import ALIVE_NAME, IMG, bot
+from userbot import ALIVE_NAME, StartTime, IMG, bot
 from userbot.events import register
 
 # ================= CONSTANT =================
@@ -70,7 +70,7 @@ async def amireallyalive(alive):
     await alive.delete()
 
 
-@register(outgoing=True, pattern=r"^\.dtobot")
+@register(outgoing=True, pattern=r"^\.dtobotad")
 async def amireallyaliveuser(username):
     """ Alive """
     message = username.text
