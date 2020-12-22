@@ -91,8 +91,7 @@ async def amireallyalivereset(ureset):
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Uğurla alive ad silindi!" "`")
 
-CmdHelp('alive2').add_command(
-    'alive',  None, 'Botun işləyib işləmədiyini yoxlayar.'
-.add_command('aliveu',  None, 'Alivedəki adınızı dəyişdirər.')
-.add_command('alivesil',  None, 'Alivedəki adınızı silər.')
-).add()
+Help = CmdHelp('alive2')
+Help.add_command('alive',  None, 'Botun işləyib işləmədiyini yoxlayar').add()
+Help.add_command('aliveu adınız',  None, 'Alivedeki adınızı dəyişdirər').add()
+Help.add_command('alivesil',  None, 'Alivedəki adınızı silər').add()
