@@ -11,6 +11,7 @@ from datetime import datetime
 from os import remove
 from platform import python_version, uname
 from shutil import which
+from userbot.cmdhelp import CmdHelp
 
 import psutil
 from telethon import __version__, version
@@ -27,7 +28,7 @@ async def get_readable_time(seconds: int) -> str:
     count = 0
     up_time = ""
     time_list = []
-    time_suffix_list = ["saniyə", "dəqiqə", "saat", "gün"]
+    time_suffix_list = [" saniyə", " dəqiqə", " saat", " gün"]
 
     while count < 4:
         count += 1
@@ -50,7 +51,7 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
 
-@register(outgoing=True, pattern=r"^\.(?:alive2|on)\s?(.)?")
+@register(outgoing=True, pattern="^alive$")
 async def amireallyalive(alive):
     """ Alive  """
     uptime = await get_readable_time((time.time() - StartTime))
@@ -59,10 +60,10 @@ async def amireallyalive(alive):
         "`"
         "DTÖUserBot Əla işləyir ⚡\n"
         f"-------------------------------\n"
-        f"👤 Sahibim             : {DEFAULTUSER}\n\n"
+        f"👤 Mənim Ustam          : {DEFAULTUSER}\n\n"
         f"🐍 Python           : {python_version()}\n\n"
         f"💻 Telethon versiya : {version.__version__}\n\n"
-        f"🕒 Bot işləyir       : {uptime}\n"
+        f"🕒 Bot işləyir      : {uptime}\n"
         f"-------------------------------\n"
         "`"
     )
@@ -74,12 +75,12 @@ async def amireallyalive(alive):
 async def amireallyaliveuser(username):
     """ Alive """
     message = username.text
-    output = ".alivead [mötərəzəsiz] və boş ad ola bilməz"
+    output = ".aliveu yeni ad (boş ad ola bilməz)"
     if message != ".aliveu" and message[7:8] == " ":
         newuser = message[8:]
         global DEFAULTUSER
         DEFAULTUSER = newuser
-        output = "Uğurla bu " + newuser + " ada dəyişdirildi!"
+        output = "Uğurla " + newuser + " adına dəyişdirildi!"
     await username.edit("`" f"{output}" "`")
 
 
@@ -89,3 +90,9 @@ async def amireallyalivereset(ureset):
     global DEFAULTUSER
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Uğurla alive ad silindi!" "`")
+
+CmdHelp('alive2').add_command(
+    'alive',  None, 'Botun işləyib işləmədiyini yoxlayar.'
+.add_command('aliveu',  None, 'Alivedəki adınızı dəyişdirər.')
+.add_command('alivesil',  None, 'Alivedəki adınızı silər.')
+).add()
