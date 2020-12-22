@@ -27,7 +27,7 @@ async def get_readable_time(seconds: int) -> str:
     count = 0
     up_time = ""
     time_list = []
-    time_suffix_list = ["s", "m", "h", "days"]
+    time_suffix_list = ["saniyə", "dəqiqə", "saat", "gün"]
 
     while count < 4:
         count += 1
@@ -50,7 +50,7 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
 
-@register(outgoing=True, pattern=r"^\.(?:dtobot|on)\s?(.)?")
+@register(outgoing=True, pattern=r"^\.(?:alive2|on)\s?(.)?")
 async def amireallyalive(alive):
     """ Alive  """
     uptime = await get_readable_time((time.time() - StartTime))
@@ -70,12 +70,12 @@ async def amireallyalive(alive):
     await alive.delete()
 
 
-@register(outgoing=True, pattern=r"^\.dtobotad")
+@register(outgoing=True, pattern=r"^\.alivead")
 async def amireallyaliveuser(username):
     """ Alive """
     message = username.text
-    output = ".aliveu [new user without brackets] nor can it be empty"
-    if message != ".aliveu" and message[7:8] == " ":
+    output = ".alivead [yeni ad] boş ola bilməz"
+    if message != ".alivead" mesaj [7:8] == " ":
         newuser = message[8:]
         global DEFAULTUSER
         DEFAULTUSER = newuser
@@ -83,7 +83,7 @@ async def amireallyaliveuser(username):
     await username.edit("`" f"{output}" "`")
 
 
-@register(outgoing=True, pattern=r"^\.sildtobot$")
+@register(outgoing=True, pattern=r"^\.alivesil$")
 async def amireallyalivereset(ureset):
     """ Alive """
     global DEFAULTUSER
