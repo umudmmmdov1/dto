@@ -200,6 +200,11 @@
       "description": "UserBot'un hava statusun modulu üçün həmişəlik şəhər qeyd edin.",
       "required": false
     },
+    "WATCH_COUNTRY": {
+      "description": "Ölkə kodu üçün justwatch.com",
+      "value": "ID",
+      "required": false
+    },
     "LOGSPAMMER": {
       "description": "Xəta günlüklərinin, keçərli söhbətdə faylı göndərməsi yerinə UserBot günlük qrupunda saxlanmasını istəməniz anında bu dəyəri True olaraq qeyd edin. Keçərli bir BOTLOG_CHATID dəyərini qeyd etmək lazımdır.",
       "value": "False"
