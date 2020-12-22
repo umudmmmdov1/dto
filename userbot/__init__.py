@@ -135,8 +135,10 @@ WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY", None)
 # Lydia API
 LYDIA_API_KEY = os.environ.get("LYDIA_API_KEY", None)
 
-# JustWatch
-WATCH_COUNTRY = os.environ.get("WATCH_COUNTRY", None)
+# Alive şəkil
+IMG = os.environ.get(
+    "IMG",
+    "https://telegra.ph/file/e85ac1badf2bb2d98e854.jpg")
 
 # Anti Spambot
 ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
