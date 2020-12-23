@@ -62,7 +62,7 @@ if not LANGUAGE in ["EN", "TR", "AZ", "UZ", "DEFAULT"]:
     LANGUAGE = "DEFAULT"
     
 # DTÖ Versiyası
-DTO_VERSION = "2.4"
+DTO_VERSION = "2.5"
 
 # Telegram API KEY ve HASH
 API_KEY = os.environ.get("API_KEY", None)
