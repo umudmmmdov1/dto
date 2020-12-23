@@ -63,7 +63,7 @@ async def amireallyalive(alive):
         f"👤 Mənim Ustam       : {DEFAULTUSER}\n\n"
         f"🐍 Python versiya    : {python_version()}\n\n"
         f"💻 Telethon versiya  : {version.__version__}\n\n"
-        f"⚙️ DTÖUserBot versiya  : {DTO_VERSION}\n\n"
+        f"⚙️ DTÖUserBot versiya  : 2.5\n\n"
         f"🕒 Bot işləyir       : {uptime}\n"
         f"-------------------------------\n"
         "`"
