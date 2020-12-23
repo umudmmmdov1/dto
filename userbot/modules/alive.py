@@ -58,12 +58,13 @@ async def amireallyalive(alive):
     img = IMG
     caption = (
         "`"
-        "DTÖUserBot Əla işləyir ⚡\n"
+        "DTÖUserBot\n"
         f"-------------------------------\n"
-        f"👤 Mənim Ustam          : {DEFAULTUSER}\n\n"
-        f"🐍 Python           : {python_version()}\n\n"
-        f"💻 Telethon versiya : {version.__version__}\n\n"
-        f"🕒 Bot işləyir      : {uptime}\n"
+        f"👤 Mənim Ustam       : {DEFAULTUSER}\n\n"
+        f"🐍 Python versiya    : {python_version()}\n\n"
+        f"💻 Telethon versiya  : {version.__version__}\n\n"
+        f"⚙️ DTÖUserBot versiya  : {DTO_VERSION}\n\n"
+        f"🕒 Bot işləyir       : {uptime}\n"
         f"-------------------------------\n"
         "`"
     )
@@ -91,7 +92,7 @@ async def amireallyalivereset(ureset):
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Uğurla alive ad silindi!" "`")
 
-Help = CmdHelp('alive2')
+Help = CmdHelp('alive')
 Help.add_command('alive',  None, 'Botun işləyib işləmədiyini yoxlayar').add()
 Help.add_command('aliveu adınız',  None, 'Alivedeki adınızı dəyişdirər').add()
 Help.add_command('alivesil',  None, 'Alivedəki adınızı silər').add()
