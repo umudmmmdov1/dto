@@ -21,6 +21,7 @@ from userbot.events import register
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+IMG = Config.ALIVE_PIC
 # ============================================
 
 
@@ -28,7 +29,7 @@ async def get_readable_time(seconds: int) -> str:
     count = 0
     up_time = ""
     time_list = []
-    time_suffix_list = [" saniyə", " dəqiqə", " saat", " gün"]
+    time_suffix_list = [" saniyə ", " dəqiqə ", " saat ", " gün "]
 
     while count < 4:
         count += 1
@@ -58,17 +59,18 @@ async def amireallyalive(alive):
     img = IMG
     caption = (
         "`"
-        "DTÖUserBot\n"
+        "__**DTÖUserBot əla işləyir ⚡**__\n"
         f"-------------------------------\n"
-        f"👤 Mənim Ustam       : {DEFAULTUSER}\n\n"
-        f"🐍 Python versiya    : {python_version()}\n\n"
-        f"💻 Telethon versiya  : {version.__version__}\n\n"
-        f"⚙️ DTÖUserBot versiya  : 2.5\n\n"
-        f"🕒 Bot işləyir       : {uptime}\n"
+        f"👤 Mənim Ustam : {DEFAULTUSER}\n\n"
+        f"🐍 Python      : v{python_version()}\n\n"
+        f"💻 Telethon    : v{version.__version__}\n\n"
+        f"⚙️ DTÖUserBot  : v2.5\n\n"
+        f"🕒 Bot işləyir : {uptime}\n"
+        "DTÖUserBot [Səndə bizə qoşul](t.me/dtouserbot)"
         f"-------------------------------\n"
         "`"
     )
-    await bot.send_file(alive.chat_id, img, caption=caption)
+    await bot.send_file(alive.chat_id, DTO_IMG, caption=caption)
     await alive.delete()
 
 
