@@ -51,5 +51,5 @@ async def durums(event):
     """)
 
 CmdHelp('durum').add_command(
-    'durum', None, 'Əlavə edilən Apilər və versiyaları göstərir.'
+    {LANG['STATUS_01']}, None, {LANG['STATUS_1']}
 ).add()
