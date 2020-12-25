@@ -228,6 +228,8 @@
             "PERMAMENT": "Ömürlük",
             "PLUGINS": "Pluginlər",
             "OK": "Hər Şey Normaldır"
+            "STATUS_01" "`.status`"
+            "STATUS_1" "'Əlavə edilən Apilər və versiyaları göstərir.`"
         },
 
         "evaluators": {
