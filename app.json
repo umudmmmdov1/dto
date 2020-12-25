@@ -110,6 +110,11 @@
       "description": "Alive əmrində çıxacaq adınızı yazın",
       "value": ""
     },
+    "ALIVE_PIC": {
+      "description": "Alive əmrində görsənəcək medya (foto,gif video) linkini yazın",
+      "value": "https://telegra.ph/file/70ec56622b2e0f860b23b.mp4",
+      "required": false
+    },
     "BOTLOG_CHATID": {
       "description": "Günlük qrupunun ChatID'si. BOTLOG= False və / vəya LOGSPAMMER= False isə '0' olaraq qeyd edin...",
       "value": "0"
