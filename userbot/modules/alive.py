@@ -57,17 +57,15 @@ async def amireallyalive(alive):
     uptime = await get_readable_time((time.time() - StartTime))
     img = IMG
     caption = (
-        "`"
         "__**DTÖUserBot əla işləyir ⚡**__\n"
         f"-------------------------------\n"
-        f"👤 Mənim Ustam : {DEFAULTUSER}\n\n"
-        f"🐍 Python      : v{python_version()}\n\n"
-        f"💻 Telethon    : v{version.__version__}\n\n"
-        f"⚙️ DTÖUserBot  : v2.5\n\n"
-        f"🕒 Bot işləyir : {uptime}\n"
-        "DTÖUserBot [Səndə bizə qoşul](t.me/dtouserbot)"
+        f"`👤 Mənim Ustam :` **{DEFAULTUSER}**\n\n"
+        f"`🐍 Python      :` **v{python_version()}**\n\n"
+        f"`💻 Telethon    :` **v{version.__version__}**\n\n"
+        f"`⚙️ DTÖUserBot  :` **v2.5**\n\n"
+        f"`🕒 Bot işləyir :` **{uptime}**\n"
+        "__**DTÖUserBot**__ [Səndə bizə qoşul](t.me/dtouserbot)"
         f"-------------------------------\n"
-        "`"
     )
     await bot.send_file(alive.chat_id, img, caption=caption)
     await alive.delete()
