@@ -69,7 +69,7 @@ async def amireallyalive(alive):
         f"-------------------------------\n"
         "`"
     )
-    await bot.send_file(alive.chat_id, DTO_IMG, caption=caption)
+    await bot.send_file(alive.chat_id, img, caption=caption)
     await alive.delete()
 
 
