@@ -139,9 +139,7 @@ WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY", None)
 LYDIA_API_KEY = os.environ.get("LYDIA_API_KEY", None)
 
 # Alive şəkil
-IMG = os.environ.get(
-    "IMG",
-    "https://telegra.ph/file/e85ac1badf2bb2d98e854.jpg")
+ALIVE_PIC = os.environ.get("ALIVE_PIC", None)
 
 # Anti Spambot
 ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
