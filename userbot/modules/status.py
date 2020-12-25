@@ -51,5 +51,5 @@ async def durums(event):
     """)
 
 CmdHelp('durum').add_command(
-    {LANG['STATUS_01']}, None, {LANG['STATUS_1']}
+    'durum' None, {LANG['STATUS_1']}
 ).add()
