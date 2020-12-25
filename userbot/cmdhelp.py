@@ -33,7 +33,7 @@ class CmdHelp:
             self.FILE_AUTHOR = value
         return self
         
-    def add_command(self, command : str, params = None, usage: str = '', example = None):
+    def add_command(self, command : str, params = None, usage: str = "", example = None):
         """
         
         """
