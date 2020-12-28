@@ -32,7 +32,12 @@
             "PLUG_DELETED": "`Plugin uğurla silindi!` **Tətbiq ediləcək əməliyyatlar üçün yenidən başlatmağınız lazımdır.**\n`restart`",
             "DTO_PLUGIN_CAPTION": "`Bu` [DTÖUserBot](https://t.me/DTOUserBot) `pluginidir.`"
         },
-        
+
+       "__trdto": {
+            "NEED_PLUGIN": "`Lütfen bir DTÖUserBot modülü adı belirtin.`",
+            "NEED_MODULE": "`Modullar aşağıdadır 👇🏻\nKullanım: .tr <modül adı>`"
+        },
+
         "__dto": {
             "NEED_PLUGIN": "`Zəhmət olmasa bir DTÖUserBot modulu adı yazın.🎅`",
             "NEED_MODULE": "`Modullar aşağıdadır 👇🏻 \nİstifadəsi: .dto <modul adı>`"
