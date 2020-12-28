@@ -50,6 +50,11 @@ async def durums(event):
 **{LANG['OK']} ✅**
     """)
 
-CmdHelp('durum').add_command(
-    'durum', None, 'Əlavə edilən Apilər və versiyaları göstərir.'
+CmdHelp('status').add_command(
+    'status', None, 'Əlavə edilən Apilər və versiyaları göstərir.'
 ).add()
+CMD_HELP.update({
+    "status tr": 
+    ".status \
+    \nKullanım: Eklenen Apiler ve sürümleri gösterir.",
+})
