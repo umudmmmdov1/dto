@@ -1,7 +1,7 @@
 # Copyright (C) 2020
 # DTÖUserBot - Ümüd
 
-from userbot import PATTERNS, CMD_HELPTR, CMD_HELPTR_BOT, LANGUAGE
+from userbot import PATTERNS, CMD_HELP, CMD_HELP_BOT, LANGUAGE
 
 class CmdTr:
     """
@@ -87,8 +87,8 @@ class CmdTr:
         """
        
         """
-        CMD_HELPTR_BOT[self.FILE] = {'info': {'official': self.IS_OFFICIAL, 'warning': self.WARNING, 'info': self.INFO}, 'commands': self.COMMANDS}
-        CMD_HELPTR[self.FILE] = self.get_result()
+        CMD_HELP_BOT[self.FILE] = {'info': {'official': self.IS_OFFICIAL, 'warning': self.WARNING, 'info': self.INFO}, 'commands': self.COMMANDS}
+        CMD_HELP[self.FILE] = self.get_result()
         return True
     
     def getText(self, text : str):
