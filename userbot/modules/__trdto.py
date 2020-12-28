@@ -13,7 +13,7 @@ LANG = get_value("__trdto")
 
 # ████████████████████████████████ #
 
-@register(outgoing=True, pattern="^.trdto(?: |$)(.*)")
+@register(outgoing=True, pattern="^.tr(?: |$)(.*)")
 async def trdto(event):
 
     args = event.pattern_match.group(1).lower()
