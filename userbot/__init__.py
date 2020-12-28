@@ -421,14 +421,6 @@ Hesabınızı bot'a çevirə bilərsiz və bunları işlədə bilərsiz. Unutmay
                 link_preview=False
             )
 
-    try:
-        @tgbot.on(NewMessage(pattern='/start'))
-        async def start_bot_handler(event):
-            if not event.message.from_id == uid:
-                await event.reply(f'`Salam mən ` @DTOUserBot`! Mən sahibimə (`@{me.username}`) kömək olmaq üçün varam, yəni sənə köməkçi ola bilmərəm :/ Ama sən da bir DTÖUserBot quraşdıra bilərsən; Kanala bax` @DTOUserBot')
-            else:
-                await event.reply(f'`Allah Azərbaycanları qorusun DTÖUserBot Əla işləyir ⚡`')
-
         @tgbot.on(InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
             builder = event.builder
