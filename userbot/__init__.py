@@ -298,7 +298,7 @@ with bot:
         except:
             pass
 
-    moduller = CMD_HELP, CMDHELPTR
+    moduller = CMD_HELP, CMD_HELPTR
     me = bot.get_me()
     uid = me.id
 
