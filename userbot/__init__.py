@@ -420,7 +420,26 @@ Hesabınızı bot'a çevirə bilərsiz və bunları işlədə bilərsiz. Unutmay
                 buttons=[custom.Button.inline("◀️ Geri", data=f"bilgi[{sayfa}]({cmd})")],
                 link_preview=False
             )
-moduller = CMD_HELPTR
+def butonlastir(sayfa, modullar):
+    Satir = 5
+    Kolon = 2
+    
+    modullar = sorted([modul for modul in modullar if not modul.startswith("_")])
+    pairs = list(map(list, zip(modullar[::2], modullar[1::2])))
+    if len(modullar) % 2 == 1:
+        pairs.append([modullar[-1]])
+    max_pages = ceil(len(pairs) / Satir)
+    pairs = [pairs[i:i + Satir] for i in range(0, len(pairs), Satir)]
+    butonlar = []
+    for pairs in pairs[sayfa]:
+        butonlar.append([
+            custom.Button.inline("🔸 " + pair, data=f"bilgi[{sayfa}]({pair})") for pair in pairs
+        ])
+
+    butonlar.append([custom.Button.inline("◀️ Geri", data=f"sayfa({(max_pages - 1) if sayfa == 0 else (sayfa - 1)})"), custom.Button.inline("İrəli ▶️", data=f"sayfa({0 if sayfa == (max_pages - 1) else sayfa + 1})")])
+    return [max_pages, butonlar]
+
+modullar = CMD_HELPTR
     me = bot.get_me()
     uid = me.id
 
