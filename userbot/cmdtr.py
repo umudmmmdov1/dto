@@ -3,7 +3,7 @@
 
 from userbot import PATTERNS, CMD_HELP, CMD_HELP_BOT, LANGUAGE
 
-class CmdHelpTr:
+class CmdTr:
     """
     
     """
