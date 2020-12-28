@@ -6,7 +6,7 @@ from userbot.events import register
 from telethon import version
 from platform import python_version
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdhelptr import CmdHelpTr
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -54,6 +54,6 @@ async def durums(event):
 CmdHelp('status').add_command(
     'status', None, 'Əlavə edilən Apilər və versiyaları göstərir.'
 ).add()
-CmdHelpTr('status tr').add_command(
+CmdTr('status tr').add_command(
     'status', None, 'Eklenen Apiler ve sürümleri gösterir.'
 ).add()
