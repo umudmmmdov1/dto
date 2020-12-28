@@ -3,7 +3,7 @@
 
 from userbot.cmdtr import CmdTr
 from userbot import cmdhelp
-from userbot import CMD_HELP
+from userbot import CMD_HELPTR
 from userbot.events import register
 
 # ██████ LANGUAGE CONSTANTS ██████ #
@@ -18,13 +18,13 @@ async def trdto(event):
 
     args = event.pattern_match.group(1).lower()
     if args:
-        if args in CMD_HELP:
-            await event.edit(str(CMD_HELP[args]))
+        if args in CMD_HELPTR:
+            await event.edit(str(CMD_HELPTR[args]))
         else:
             await event.edit(LANG["NEED_PLUGIN"])
     else:
         string = ""
-        sayfa = [list(CMD_HELP)[i:i + 5] for i in range(0, len(list(CMD_HELP)), 5)]
+        sayfa = [list(CMD_HELPTR)[i:i + 5] for i in range(0, len(list(CMD_HELPTR)), 5)]
         
         for i in sayfa:
             string += f'`❄️ `'
