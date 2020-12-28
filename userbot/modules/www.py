@@ -10,7 +10,7 @@ from telethon import functions
 from userbot import CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdhelp import CmdTr
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
