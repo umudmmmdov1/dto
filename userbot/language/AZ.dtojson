@@ -38,11 +38,6 @@
             "NEED_MODULE": "`Modullar aşağıdadır 👇🏻 \nİstifadəsi: .dto <modul adı>`"
         },
 
-        "__trdto": {
-            "NEED_PLUGIN": "`Lütfen bir DTÖUserBot modülü adı belirtin.`",
-            "NEED_MODULE": "`Modullar aşağıdadır 👇🏻\nKullanım: .tr <modül adı>`"
-        },
-
         "__helpme": {
             "NO_BOT": "`Bot işləmir! Zəhmət olmasa Bot Tokeni və İstifadəçi adını düzgün yazın. Modul dayandırıldı.`"
         },
