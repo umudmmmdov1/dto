@@ -6,7 +6,6 @@ from userbot.events import register
 from telethon import version
 from platform import python_version
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
