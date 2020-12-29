@@ -33,11 +33,6 @@
             "DTO_PLUGIN_CAPTION": "Этот плагин принадлежит [DTÖUserBot](https://t.me/DTOUserbot."
         },
 
-        "__trdto": {
-            "NEED_PLUGIN": "`Lütfen bir DTÖUserBot modülü adı belirtin.`",
-            "NEED_MODULE": "`Modullar aşağıdadır 👇🏻\nKullanım: .tr <modül adı>`"
-        },
-
         "__dto": {
             "NEED_PLUGIN": "`Пожалуйста, введите имя модуля DTÖUserBot`",
             "NEED_MODULE": "`Модули ниже 👇🏻\n Использование: .dto <имя модуля>`"
