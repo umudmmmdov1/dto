@@ -53,6 +53,3 @@ async def durums(event):
 CmdHelp('status').add_command(
     'status', None, 'Əlavə edilən Apilər və versiyaları göstərir.'
 ).add()
-CmdTr('status').add_command(
-    'status', None, 'Eklenen Apiler ve sürümleri gösterir.'
-).add()
