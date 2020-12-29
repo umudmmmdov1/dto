@@ -22,7 +22,6 @@ import chromedriver_autoinstaller
 from json import loads, JSONDecodeError
 import re
 import userbot.cmdhelp
-import userbot.cmdtr
 
 
 DIZCILIK_STR = [
