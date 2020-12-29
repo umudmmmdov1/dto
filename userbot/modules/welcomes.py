@@ -7,7 +7,6 @@ from userbot.events import register
 from userbot import bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
 from telethon.events import ChatAction
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 @bot.on(ChatAction)
 async def welcome_to_chat(event):
@@ -163,14 +162,4 @@ CmdHelp('welcome').add_command(
     'rmwelcome', None, 'Keçərli söhbət üçün qarşılama notunu silər.'
 ).add_info(
     'Dəyişkənlər: `{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`'
-).add()
-
-CmdTr('welcome').add_command(
-    'setwelcome', '<karışlama mesajı>', 'Mesajı sohbete karşılama notu olarak kaydeder.'
-).add_command(
-    'checkwelcome', None, 'Sohbette karşılama notu olup olmadığını kontrol edin.'
-).add_command(
-    'rmwelcome', None, 'Geçerli sohbet için karşılama notunu siler.'
-).add_info(
-    'Değişkenler: `{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`'
 ).add()
