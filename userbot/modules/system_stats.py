@@ -1,13 +1,7 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
-""" . """
+""" Sistem Stats """
 
 from asyncio import create_subprocess_shell as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
@@ -20,6 +14,7 @@ from userbot.main import PLUGIN_MESAJLAR
 from telethon import version
 from platform import python_version
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ================= CONSTANT =================
 DEFAULTUSER = uname().node
@@ -167,9 +162,19 @@ async def amialive(e):
 CmdHelp('system_stats').add_command(
     'sysd', None, 'Neofetch modulunu işlədərək sistem məlumatlarını göstərər.'
 ).add_command(
-    'botver', None, 'DTÖUserBotun versiyasını göstərər.'
+    'botver', None, 'U S Σ R Δ T O R versiyasını göstərər.'
 ).add_command(
     'pip', '<modul(lar)>', 'Pip modullarında axtarış edər.'
 ).add_command(
-    'alive', None, 'DTÖUserBotunun işləyib işləmədiyini yoxlamaq üçün işlədilir.'
+    'alive', None, 'U S Σ R Δ T O R botunun işləyib işləmədiyini yoxlamaq üçün işlədilir.'
+).add()
+
+CmdTr('system_stats').add_command(
+    'sysd', None, 'Neofetch modülünü kullanarak sistem bilgisi gösterir.'
+).add_command(
+    'botver', None, 'U S Σ R Δ T O R sürümünü gösterir.'
+).add_command(
+    'pip', '<modül(ler)>', 'Pip modüllerinde arama yapar.'
+).add_command(
+    'alive', None, 'U S Σ R Δ T O R botunun çalışıp çalışmadığını kontrol etmek için kullanılır.'
 ).add()
