@@ -1,20 +1,4 @@
-# Copyright (C) 2020 TeamDerUntergang.
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
-# @NaytSeyd tarafından portlanmıştır.
-#
+# U S Σ R Δ T O R / Ümüd
 
 import time
 import requests
@@ -59,9 +43,14 @@ async def _(event):
         await event.reply(mentions)
     await event.delete()
 
-CMD_HELP.update({
-    "tagall":
-    ".tagall\
-    \nİşlədilişi: Bu əmri hər hansısa söhbətdə işlədəndə hərkəsi tağ edir.\n\n.admin \
-    \nİşlədilişi: Bu əmri hər hansıxa sohbətdə işlədəndə adminləri tağ edər."
-})
+CmdHelp('tagall').add_command(
+    'tagall', None, 'Bu əmri hər hansısa söhbətdə işlədəndə hərkəsi tağ edir.'
+).add_command(
+    'admin', None, 'Bu əmri hər hansıxa sohbətdə işlədəndə adminləri tağ edər.'
+).add()
+
+CmdTr('tagall').add_command(
+    'tagall', None, 'Bu komutu kullandığınızda sohbet içerisinde ki herkesi etiketler.'
+).add_command(
+    'admin', None, 'Bu komutu kullandığınızda sohbet içerisinde ki yöneticileri etiketler.'
+).add()
