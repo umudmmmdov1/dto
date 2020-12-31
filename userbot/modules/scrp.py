@@ -1,5 +1,5 @@
 # Copyright (C) 2020
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T Ω R / Ümüd
 
 import asyncio
 from asyncio.exceptions import TimeoutError
@@ -8,115 +8,141 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import bot
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern="^.ig (.*)")
-async def ig(event):
+async def instagram(event):
     if event.fwd_from:
         return
-    input_str = event.pattern_match.group(1)
-    reply_to_id = event.message
-    if event.reply_to_msg_id:
-        reply_to_id = await event.get_reply_message()
-    chat = "@instasavegrambot"
-    await event.edit("```Yüklənilir...```\nBu biraz zaman ala bilər")
-    async with event.client.conversation(chat) as conv:
+    ig = event.pattern_match.group(1)
+    if ".com" not in ig:
+        await event.edit("`Yükləmək üçün mənə düzgün bir link verin` ** -_- **")
+    else:
+        await event.edit("**Yükləmə başlanır!**📲")
+
+    async with bot.conversation("@SaveAsBot") as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=336056723)
+            await conv.send_message("/start")
+            await conv.get_response()
+            try:
+                await bot(ImportChatInviteRequest("AAAAAFZPuYvdW1A8mrT8Pg"))
+            except UserAlreadyParticipantError:
+                await asyncio.sleep(0.00000069420)
+            await conv.send_message(ig)
+            details = await conv.get_response()
+            await event.client.send_message(event.chat_id, details)
+            await conv.get_response()
+            video = await conv.get_response()
+            await event.client.send_file(
+                event.chat_id,
+                video,
+                caption="🐍 @UseratorOT `ilə yükləndi`"
             )
-            await event.client.send_message(chat, "{}".format(input_str))
-            response = await response
-        except YouBlockedUserError:
-            await event.reply("`Zəhmət olmasa` @instasavegrambot `blokdan çıxardın`")
-            return
-        if response.text.startswith("`salam`"):
-            await event.edit("`Xəta`")
-        else:
             await event.delete()
-            await event.client.send_file(event.chat_id, response.message, reply_to=reply_to_id)
-        
+        except YouBlockedUserError:
+            await event.edit("@SaveAsBot'u `blokdan çıxardıb yenidən yoxlayın`")
+            
 
 @register(outgoing=True, pattern="^.tt (.*)")
-async def tt(event):
+async def tiktok(event):
     if event.fwd_from:
         return
-    input_str = event.pattern_match.group(1)
-    reply_to_id = event.message
-    if event.reply_to_msg_id:
-        reply_to_id = await event.get_reply_message()
-    chat = "@HK_tiktok_BOT"
-    await event.edit("```Yüklənilir...```")
-    async with event.client.conversation(chat) as conv:
+    tt = event.pattern_match.group(1)
+    if ".com" not in tt:
+        await event.edit("`Yükləmək üçün mənə düzgün bir link verin` ** -_- **")
+    else:
+        await event.edit("**Yükləmə başlanır!**📲")
+
+    async with bot.conversation("@SaveAsBot") as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=1364056717)
+            await conv.send_message("/start")
+            await conv.get_response()
+            try:
+                await bot(ImportChatInviteRequest("AAAAAFZPuYvdW1A8mrT8Pg"))
+            except UserAlreadyParticipantError:
+                await asyncio.sleep(0.00000069420)
+            await conv.send_message(tt)
+            details = await conv.get_response()
+            await event.client.send_message(event.chat_id, details)
+            await conv.get_response()
+            video = await conv.get_response()
+            await event.client.send_file(
+                event.chat_id,
+                video,
+                caption="🐍 @UseratorOT `ilə yükləndi`",
             )
-            await event.client.send_message(chat, "{}".format(input_str))
-            response = await response
-        except YouBlockedUserError:
-            await event.reply("`Zəhmət olmasa` @HK_tiktok_BOT `blokdan çıxardın`")
-            return
-        if response.text.startswith("`salam`"):
-            await event.edit("`Gizlilik ayarlarınızı düzəldin`")
-        else:
             await event.delete()
-            await event.client.send_file(event.chat_id, response.message, reply_to=reply_to_id)
-
-
-@register(outgoing=True, pattern="^.muz ?(.*)")
-async def WooMai(dto):
-    if dto.fwd_from:
-        return
-    mahni = dto.pattern_match.group(1)
-    çat = "@WooMaiBot"
-    link = f"/netease {mahni}"
-    await dto.edit("```Mahnınız axtarılır```")
-    async with bot.conversation(çat) as conv:
-        await asyncio.sleep(2)
-        await dto.edit("`Yüklənilir... \nGözləyin :)`")
-        try:
-            msg = await conv.send_message(link)
-            response = await conv.get_response()
-            respond = await conv.get_response()
-            """ - bildiriş göndərməmək üçün - """
-            await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await dto.reply("@WooMaiBot'u blokdan çıxardıb yenidən yoxlayın")
-            return
-        await dto.edit("`Mahnınız göndərilir...`")
-        await asyncio.sleep(3)
-        await bot.send_file(dto.chat_id, respond)
-    await dto.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
-    await dto.delete()
- 
- 
-@register(outgoing=True, pattern="^.png1 (.*)")
-async def png(event):
+            await event.edit("@SaveAsBot'u `blokdan çıxardıb yenidən yoxlayın`")
+            
+            
+@register(outgoing=True, pattern="^.png")
+async def topng(event):
     if event.fwd_from:
         return
-    reply_to_id = event.message
-    if event.reply_to_msg_id:
-        reply_to_id = await event.get_reply_message()
-    cpt = f"@DTOUserBot `ilə yükləndi`"
+    if not event.reply_to_msg_id:
+        return await event.edit("`Bir media'a cavab verin.`")
+    reply_message = await event.get_reply_message()
+    if not reply_message.media:
+        return await event.edit("`Bir media'a cavab verin`")
     chat = "@NewStickerOptimizerBot"
-    await event.edit("```Yüklənilir...```")
-    async with event.client.conversation(chat) as conv:
+    await event.edit("`Hazırlanır...`")
+    try:
+        async with bot.conversation(chat) as conv:
+            try:
+                response = conv.wait_event(
+                    events.NewMessage(incoming=True, from_users=436288868)
+                )
+                await bot.forward_messages(chat, reply_message)
+                response = await response
+                await bot.send_read_acknowledge(conv.chat_id)
+
+            except YouBlockedUserError:
+                return await event.reply("@NewStickerOptimizerBot'u `blokdan çıxardın və yenidən cəhd edin.`")
+
+            if response.text.startswith("saam"):
+                await event.edit(
+                    "`Gizlilik ayarlarınızı dəyişin`"
+                )
+            else:
+                await event.delete()
+                await bot.send_message(event.chat_id, response.message)
+
+    except TimeoutError:
+        return await event.edit("`Botdan cavab ala bilmədim.`")
+
+
+@register(outgoing=True, pattern=".muz ?(.*)")
+async def deezload(event):
+    if event.fwd_from:
+        return
+    d_link = event.pattern_match.group(1)
+    if ".com" not in d_link:
+        await event.edit("` Yükləmək üçün mənə düzgün bir link verin.` **-_-**")
+    else:
+        await event.edit("🎶**Yüklənmə başladı...**")
+
+    async with bot.conversation("@DeezLoadBot") as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=436288868)
+            await conv.send_message("/start")
+            await conv.get_response()
+            try:
+                await bot(ImportChatInviteRequest("AAAAAFZPuYvdW1A8mrT8Pg"))
+            except UserAlreadyParticipantError:
+                await asyncio.sleep(0.00000069420)
+            await conv.send_message(d_link)
+            details = await conv.get_response()
+            await event.client.send_message(event.chat_id, details)
+            await conv.get_response()
+            songh = await conv.get_response()
+            await event.client.send_file(
+                event.chat_id,
+                songh,
+                caption="🐍 @UseratorOT `ilə yükləndi`",
             )
-            await event.client.send_message(chat, "{}".format(input_str))
-            response = await response
-        except YouBlockedUserError:
-            await event.reply("`Zəhmət olmasa` @NewStickerOptimizerBot `blokdan çıxardın`")
-            return
-        if response.text.startswith("`salam`"):
-            await event.edit("`Gizlilik ayarlarənızı düzəldin`")
-        else:
             await event.delete()
-            await event.client.send_file(event.chat_id, cpt,  response.message, reply_to=reply_to_id)
-
-
+        except YouBlockedUserError:
+            await event.edit("@DeezLoadBot'u blokdan çıxardıb yenidən yoxlayın.")
 
 CmdHelp('scrp').add_command(
     'ig', '<link>', 'Verdiyiniz İnstagram linkini mediaya çevirər.'
