@@ -1,16 +1,11 @@
-# Copyright (C) 2020
-#
-# Licensed under the  GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 import os
 from telethon.tl.types import InputMessagesFilterDocument
 from userbot.events import register
 from userbot import BOT_USERNAME, PATTERNS, CMD_HELP, PLUGIN_CHANNEL_ID
 import userbot.cmdhelp
+from userbot.cmdtr import CmdTr
 from random import choice, sample
 import importlib
 import re
@@ -27,7 +22,7 @@ LANG = get_value("__plugin")
 @register(outgoing=True, pattern="^.ma[gğ]aza ?(.*)")
 async def magaza(event):
     plugin = event.pattern_match.group(1)
-    await event.edit('**DTÖUserBot Plugin Mağazası 😈**\n__Versiya 1.0__\n\n`🔎 Plugin\'i axtarıram... Xaiş biraz gözlə.`')
+    await event.edit('**U S Σ R Δ T O R Plugin Mağazası**\n__Versiya 1.0__\n\n`🔎 Plugin\'i axtarıram... Xaiş biraz gözlə.`')
     split = plugin.split()
     if plugin == '':
         plugin = 'Son yüklənən'
@@ -42,7 +37,7 @@ async def magaza(event):
         random = choice(random)
         random_file = random.file.name
 
-    result = f'**DTÖUserBot Plugin Mağazası**\n__😈__\n\n**🔎 Axtarış:** `{plugin}`\n**🔢 Nəticələr: __({len(plugins)})__**\n➖➖➖➖➖\n\n'
+    result = f'**U S Σ R Δ T O R Plugin Mağazası**\n\n**🔎 Axtarış:** `{plugin}`\n**🔢 Nəticələr: __({len(plugins)})__**\n➖➖➖➖➖\n\n'
     
     if len(plugins) == 0:
         result += f'**Həç bir şey tapa bilmədim...**\n`{random_file}` __plugininə nə deirsən?__'
@@ -65,13 +60,13 @@ async def sinstall(event):
     try:
         plugin = int(plugin)
     except:
-        return await event.edit('**DTÖUserBot Plugin Mağazası**\n__Versiya 1.0__\n\n**⚠️ Xəta:** `Xaiş sadəcə rəqəm yazın. Əgəe Plugin axtarmaq istəyirsizsə .store əmrini işlədin.`')
+        return await event.edit('**U S Σ R Δ T O R Plugin Mağazası**\n__Versiya 1.0__\n\n**⚠️ Xəta:** `Xaiş sadəcə rəqəm yazın. Əgəe Plugin axtarmaq istəyirsizsə .store əmrini işlədin.`')
     
-    await event.edit('**DTÖUserBot Plugin Mağazası**\n__😈__\n\n`🔎 Plugin\'i gətirirəm... Xaiş biraz gözlə.`')
+    await event.edit('**U S Σ R Δ T O R Plugin Mağazası**\n\n`🔎 Plugin\'i gətirirəm... Xaiş biraz gözlə.`')
     plugin = await event.client.get_messages('@dtoplugin', ids=plugin)
-    await event.edit(f'**DTÖUserBot Plugin Mağazası**\n__😈__\n\n`✅ {plugin.file.name} plugini gətirildi!`\n`⬇️ Plugini yükləyirəm... Xaiş gözləyin.`')
+    await event.edit(f'**U S Σ R Δ T O R Plugin Mağazası**\n\n`✅ {plugin.file.name} plugini gətirildi!`\n`⬇️ Plugini yükləyirəm... Xaiş gözləyin.`')
     dosya = await plugin.download_media('./userbot/modules/')
-    await event.edit(f'**DTÖUserBot Plugin Mağazası**\n__😈__\n\n`✅ {plugin.file.name} yüklənmə uğurlu oldu!`\n`⬇️ Plugini yükləyirəm... Xaiş gözləyin.`')
+    await event.edit(f'**U S Σ R Δ T O R Plugin Mağazası**\n\n`✅ {plugin.file.name} yüklənmə uğurlu oldu!`\n`⬇️ Plugini yükləyirəm... Xaiş gözləyin.`')
     
     try:
         spec = importlib.util.spec_from_file_location(dosya, dosya)
@@ -79,7 +74,7 @@ async def sinstall(event):
         spec.loader.exec_module(mod)
     except Exception as e:
         os.remove("./userbot/modules/" + dosya)
-        return await event.edit(f'**DTÖUserBot Plugin Mağazası**\n__😈__\n\n**⚠️ Xəta:** `Plugin xətalıdır. {e}`\n**XAİŞ BUNU İDARƏÇİLƏRƏ BİLDİRİN!**')
+        return await event.edit(f'**U S Σ R Δ T O R Plugin Mağazası**\n\n**⚠️ Xəta:** `Plugin xətalıdır. {e}`\n**XAİŞ BUNU İDARƏÇİLƏRƏ BİLDİRİN!**')
 
     dosy = open(dosya, "r").read()
     if re.search(r"@tgbot\.on\(.*pattern=(r|)\".*\".*\)", dosy):
@@ -103,7 +98,7 @@ async def sinstall(event):
             if re.search(r'CmdHelp\(.*\)', dosy):
                 cmdhelp = re.findall(r"CmdHelp\([\"'](.*)[\"']\)", dosy)[0]
                 await plugin.forward_to(PLUGIN_CHANNEL_ID)
-                return await event.edit(f'**DTÖUserBot Plugin Mağazası**\n__😈__\n\n**✅ Modul uğurlar yükləndi!**\n__ℹ️ Modulun əmrləri və işlədilişi haqqında məlumat almaq üçün__ `.dto {cmdhelp}` __yazın.__')
+                return await event.edit(f'**U S Σ R Δ T O R Plugin Mağazası**\n\n**✅ Modul uğurlar yükləndi!**\n__ℹ️ Modulun əmrləri və işlədilişi haqqında məlumat almaq üçün__ `.dto {cmdhelp}` __yazın.__')
             else:
                 dosyaAdi = plugin.file.name.replace('.py', '')
                 CmdHelp = userbot.cmdhelp.CmdHelp(dosyaAdi, False)
@@ -145,7 +140,7 @@ async def sinstall(event):
                     CmdHelp.add_command(Komut, None, 'Bu plugin qırağdan yüklənib. Hər hansı bir açıqlama edilməyib.')
                 CmdHelp.add()
                 await plugin.forward_to(PLUGIN_CHANNEL_ID)
-                return await event.edit(f'**DTÖUserBot Plugin Mağazası**\n__Versiya 1.0__\n\n**✅ Modül uğurla yükləndi!**\n__ℹ️ Modulun əmrləri və işlədilişi haqqında məlumat almaq üçün` `.dto {dosyaAdi}` `yazın.__')
+                return await event.edit(f'**U S Σ R Δ T O R Plugin Mağazası**\n\n**✅ Modül uğurla yükləndi!**\n__ℹ️ Modulun əmrləri və işlədilişi haqqında məlumat almaq üçün` `.dto {dosyaAdi}` `yazın.__')
 
 userbot.cmdhelp.CmdHelp('store').add_command(
     'store', '<söz>', 'Plugin kanalına son atılan Pluginləri gətirər. Əgər söz yazarsanız axtarış edər.'
@@ -153,4 +148,12 @@ userbot.cmdhelp.CmdHelp('store').add_command(
     'store random', '<rəqəm>', 'Plugin kanalından təsadufi plugin gətirər.', 'store random 10'
 ).add_command(
     'sinstall', '<rəqəm>', 'Plugin kanalından tez olaraq Plugini yükləyər.'
+).add()
+
+CmdTr('store').add_command(
+    'store', '<kelime>', 'Plugin kanalına son atılan Pluginleri getirir. Eğer kelime yazarsanız arama yapar.'
+).add_command(
+    'store random', '<sayı>', 'Pluginden kanalından rastgele plugin getirir.', 'store random 10'
+).add_command(
+    'sinstall', '<sayı>', 'Plugin kanalından direkt olarak Plugini yükler.'
 ).add()
