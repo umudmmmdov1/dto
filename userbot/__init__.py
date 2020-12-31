@@ -1,5 +1,5 @@
 # Copyright (C) 2020
-# U S Σ R Δ T Ω R / Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 """ UserBot hazırlanışı """
 
@@ -30,11 +30,11 @@ ASYNC_POOL = []
 
 if CONSOLE_LOGGER_VERBOSE:
     basicConfig(
-        format="%(asctime)s - @DTOUserBot - %(levelname)s - %(message)s",
+        format="%(asctime)s - @UseratorOT - %(levelname)s - %(message)s",
         level=DEBUG,
     )
 else:
-    basicConfig(format="%(asctime)s - @DTOUserBot - %(levelname)s - %(message)s",
+    basicConfig(format="%(asctime)s - @UseratorOT - %(levelname)s - %(message)s",
                 level=INFO)
 LOGS = getLogger(__name__)
 
@@ -62,7 +62,7 @@ if not LANGUAGE in ["EN", "TR", "AZ", "UZ", "DEFAULT"]:
     LANGUAGE = "DEFAULT"
     
 # DTÖ Versiyası
-DTO_VERSION = "2.5"
+DTO_VERSION = "2.6"
 
 # Telegram API KEY ve HASH
 API_KEY = os.environ.get("API_KEY", None)
@@ -293,8 +293,8 @@ def butonlastir(sayfa, moduller):
 with bot:
     if AVTO_Q:
         try:
-            bot(JoinChannelRequest("@DTOUserBot"))
-            bot(JoinChannelRequest("@DTOSupport"))
+            bot(JoinChannelRequest("@UseratorOT"))
+            bot(JoinChannelRequest("@UseratorSUP"))
         except:
             pass
 
@@ -306,9 +306,9 @@ with bot:
         @tgbot.on(NewMessage(pattern='/start'))
         async def start_bot_handler(event):
             if not event.message.from_id == uid:
-                await event.reply(f'`Salam mən ` @DTOUserBot`! Mən sahibimə (`@{me.username}`) kömək olmaq üçün varam, yəni sənə köməkçi ola bilmərəm :/ Ama sən da bir DTÖUserBot quraşdıra bilərsən; Kanala bax` @DTOUserBot')
+                await event.reply(f'`Salam mən ` @UseratorOT`! Mən sahibimə (`@{me.username}`) kömək olmaq üçün varam, yəni sənə köməkçi ola bilmərəm :/ Ama sən da bir DTÖUserBot quraşdıra bilərsən; Kanala bax` @DTOUserBot')
             else:
-                await event.reply(f'`Allah Azərbaycanları qorusun DTÖUserBot Əla işləyir ⚡`')
+                await event.reply(f'`U S Σ R Δ T O R`')
 
         @tgbot.on(InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
@@ -320,7 +320,7 @@ with bot:
                 veriler = (butonlastir(0, sorted(CMD_HELP)))
                 result = await builder.article(
                     f"Xaiş sadəcə .kömek əmri ilə işladin",
-                    text=f"**Allah Azərbaycanları qorusun** [DTÖUserBot](https://t.me/DTOUserBot) __əla işləyir ⚡__\n\n**Yüklənən Modul Sayı:** `{len(CMD_HELP)}`\n**Səhifə:** 1/{veriler[0]}",
+                    text=f"**U S Σ R Δ T O R** [UseratorOT](https://t.me/UseratorOT) __⚡__\n\n**Yüklənən Modul Sayı:** `{len(CMD_HELP)}`\n**Səhifə:** 1/{veriler[0]}",
                     buttons=veriler[1],
                     link_preview=False
                 )
@@ -336,12 +336,12 @@ with bot:
                 )
             else:
                 result = builder.article(
-                    "@DTOUserBot",
-                    text="""@DTOUserBot'u işlətməyi yoxlayın!
+                    "@UseratorOT",
+                    text="""@UseratorOT'u işlətməyi yoxlayın!
 Hesabınızı bot'a çevirə bilərsiz və bunları işlədə bilərsiz. Unutmayın, siz başqasının botunu idarə edə bilmərsiz! Altdakı GitHub adresindən bütün qurulum haqda məlumat var.""",
                     buttons=[
-                        [custom.Button.url("Kanala Qatıl", "https://t.me/DTOUserBot"), custom.Button.url(
-                            "Qruba Qatıl", "https://t.me/DTOSupport")],
+                        [custom.Button.url("Kanala Qatıl", "https://t.me/UseratorOT"), custom.Button.url(
+                            "Qrupa Qatıl", "https://t.me/UseratorSUP")],
                         [custom.Button.url(
                             "GitHub", "https://github.com/umudmmmdov1/DTOUserBot")]
                     ],
@@ -356,7 +356,7 @@ Hesabınızı bot'a çevirə bilərsiz və bunları işlədə bilərsiz. Unutmay
             sayfa = int(event.data_match.group(1).decode("UTF-8"))
             veriler = butonlastir(sayfa, CMD_HELP)
             await event.edit(
-                f"**Allah Azərbaycanları qorusun** [DTÖUserBot](https://t.me/DTOUserBot) __əla işləyir ⚡__\n\n**Yüklənən Modil Sayı:** `{len(CMD_HELP)}`\n**Səhifə:** {sayfa + 1}/{veriler[0]}",
+                f"**U S Σ R Δ T O R** [UseratorOT](https://t.me/UseratorOT) __işləyir__\n\n**Yüklənən Modil Sayı:** `{len(CMD_HELP)}`\n**Səhifə:** {sayfa + 1}/{veriler[0]}",
                 buttons=veriler[1],
                 link_preview=False
             )
