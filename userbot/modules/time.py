@@ -1,4 +1,4 @@
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 """ Tarix/Saat """
@@ -12,6 +12,7 @@ from pytz import timezone as tz
 from userbot import CMD_HELP, COUNTRY, TZ_NUMBER
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -164,4 +165,10 @@ CmdHelp('time').add_command(
     'time', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkənin saatınıı göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.'
 ).add_command(
     'date', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkenin tarixini göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.'
+).add()
+
+CmdTr('time').add_command(
+    'time', '<ülke ismi/kodu> <saat dilimi numarası>', 'Bir ülkenin saatini gösterir. Eğer bir ülke birden fazla saat dilimine sahipse, tümü birden gösterilir ve seçim sana bırakılır.'
+).add_command(
+    'date', '<ülke ismi/kodu> <saat dilimi numarası>', 'Bir ülkenin tarihini gösterir. Eğer bir ülke birden fazla saat dilimine sahipse, tümü birden gösterilir. ve seçim sana bırakılır.'
 ).add()
