@@ -1,5 +1,5 @@
 # Copyright (C) 2020
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 """ UserBot başlanğıc """
 import importlib
@@ -156,7 +156,7 @@ try:
 
     # PLUGIN MESAJLARI AYARLIYORUZ
     PLUGIN_MESAJLAR = {}
-    ORJ_PLUGIN_MESAJLAR = {"alive": "`Ho-Ho-Ho! 🎅\nYeni iliniz mübarək 🎄`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Bye-bye mən qaçdım `🥰", "pm": UNAPPROVED_MSG, "dızcı": str(choice(DIZCILIK_STR)), "ban": "{mention}`, banlandı!`", "mute": "{mention}`, susduruldu!`", "approve": "{mention}`, mənə mesaj göndərə bilərsən!`", "disapprove": "{mention}`, artıq mənə mesaj göndərə bilmərsən!`", "block": "{mention}`, bloklandın!`"}
+    ORJ_PLUGIN_MESAJLAR = {"alive": "`🎅 U S Σ R Δ T O R 🎄`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Bye-bye mən qaçdım `🥰", "pm": UNAPPROVED_MSG, "dızcı": str(choice(DIZCILIK_STR)), "ban": "{mention}`, banlandı!`", "mute": "{mention}`, susduruldu!`", "approve": "{mention}`, mənə mesaj göndərə bilərsən!`", "disapprove": "{mention}`, artıq mənə mesaj göndərə bilmərsən!`", "block": "{mention}`, bloklandın!`"}
 
     PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "kickme", "pm", "dızcı", "ban", "mute", "approve", "disapprove", "block"]
     for mesaj in PLUGIN_MESAJLAR_TURLER:
@@ -233,8 +233,8 @@ for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
 LOGS.info("Botunuz işleyir! Her hansi bir söhbete .alive yazaraq Test edin."
-          " Yardıma ehtiyacınız varsa, Destek qrupumuza buyurun t.me/DTOSupport")
-LOGS.info(f"Bot versiyası: DTÖUserBot {DTO_VERSION}")
+          " Yardıma ehtiyacınız varsa, Destek qrupumuza buyurun t.me/UseratorSUP")
+LOGS.info(f"Bot versiyası: U S Σ R Δ T O R {DTO_VERSION}")
 
 """
 if len(argv) not in (1, 3, 4):
