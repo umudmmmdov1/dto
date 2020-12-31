@@ -1,4 +1,4 @@
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 """ DTÖ """
@@ -12,6 +12,7 @@ from telethon.utils import get_input_location
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -149,4 +150,8 @@ async def fetch_info(replied_user, event):
 
 CmdHelp('whois').add_command(
     'whois', ' <istifadəçi adı/cavab/id>', 'İstifadəçinin məlumatlarını göstərər.'
+).add()
+
+CmdTr('whois').add_command(
+    'whois', ' <kullanıcı adı/yanıt/id>', 'Kullanıcının bilgilerini alır.'
 ).add()
