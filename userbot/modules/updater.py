@@ -1,10 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 """
@@ -21,6 +15,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 from userbot import CMD_HELP, HEROKU_APIKEY, HEROKU_APPNAME, UPSTREAM_REPO_URL
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 requirements_path = path.join(
     path.dirname(path.dirname(path.dirname(__file__))), 'requirements.txt')
@@ -184,4 +179,10 @@ CmdHelp('update').add_command(
     'update', None, 'Botunuza siz quraşdırandan sonra hər hansı bir yenilənmə gəlib gəlmədiyini yoxlayar.'
 ).add_command(
     'update now', None, 'Botunuzu yeniləyər.'
+).add()
+
+CmdTr('update').add_command(
+    'update', None, 'Botunuza siz kurduktan sonra herhangi bir güncelleme gelip gelmediğini kontrol eder.'
+).add_command(
+    'update now', None, 'Botunuzu günceller.'
 ).add()
