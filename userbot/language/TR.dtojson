@@ -2,27 +2,27 @@
     "__DTOJSON__": true,
     "LANGUAGE": "Türkçe",
     "LANGCODE": "tr",
-    "AUTHOR": "@Josephyton",
+    "AUTHOR": "@thisisulvi",
     "STRINGS": {
         "__plugin": {
-            "REPLY_FOR_PORT": "`Plugin-Port için lütfen bir dosyaya yanıt verin 🎅`",
-            "DOWNLOADING": "`Dosya indiriliyor...🎄`",
-            "UNIBORG": "`1. Tip UniBorg tespit edildi...🎄`",
-            "TOO_MANY_PLUGIN": "`Bu dosyanın içinde birden fazla plugin var, bunu portlayamam!🎄`",
-            "UPLOADING": "`Port başarılı dosya yükleniyor...🎄`",
-            "UNIBORG2": "`2. Tip UniBorg tespit edildi...🎄`",
-            "UNIBORG3": "`3. Tip UniBorg tespit edildi...🎄`",
-            "UNIBORG_NOT_FOUND": "`UniBorg plugini tespit edilmedi.🎄`",
-            "PLIST_CHECKING": "`Pluginler getiriliyor...🎄`",
-            "PLIST": "**İşte Yüklenen Pluginler:❄️**",
+            "REPLY_FOR_PORT": "`Plugin-Port için lütfen bir dosyaya yanıt verin`",
+            "DOWNLOADING": "`Dosya indiriliyor...`",
+            "UNIBORG": "`1. Tip UniBorg tespit edildi...`",
+            "TOO_MANY_PLUGIN": "`Bu dosyanın içinde birden fazla plugin var, bunu portlayamam!`",
+            "UPLOADING": "`Port başarılı dosya yükleniyor...`",
+            "UNIBORG2": "`2. Tip UniBorg tespit edildi...`",
+            "UNIBORG3": "`3. Tip UniBorg tespit edildi...`",
+            "UNIBORG_NOT_FOUND": "`UniBorg plugini tespit edilmedi.`",
+            "PLIST_CHECKING": "`Pluginler getiriliyor...`",
+            "PLIST": "**İşte Yüklenen Pluginler:**",
             "TEMP_PLUGIN": "`Pluginleriniz kalıcı yüklenmiyor bu yüzden liste getiremem.`",
             "REPLY_TO_FILE": "`Yüklenecek modül dosyasına yanıt verin.`",
             "NOT_FOUND_PLUGIN_CHANNEL": "`Pluginlerin kalıcı olması için Id ayarlamamışsınız. Pluginleriniz yeniden başlatınca silinebilir!`",
             "PLUGIN_BUGGED": "`Yükleme başarısız! Plugin hatalı.\n\nHata: `",
             "PLUGIN_DESC": "Bu plugin dışarıdan botunuz için yüklenmiştir. Kullanım:",
-            "PLUGIN_DOWNLOADED": "`Modül başarıyla yüklendi! 🎅 %s ile kullanmaya başlayabilirsiniz.`",
+            "PLUGIN_DOWNLOADED": "`Modül başarıyla yüklendi!  %s ile kullanmaya başlayabilirsiniz.`",
             "PLUGIN_WITHOUT_DESC": "Bu plugin dışarıdan yüklenmiştir. Kullanım: #KOMUT BULUNAMADI#",
-            "PLUGIN_DESCLESS": "`Modül başarıyla yüklendi! 🎅 Fakat komutu bulamadım, üzgünüm.`",
+            "PLUGIN_DESCLESS": "`Modül başarıyla yüklendi!  Fakat komutu bulamadım, üzgünüm.`",
             "PLUG_DESC": "Bu plugin dışarıdan yüklenmiştir. Kullanım: .",
             "PLUG_MESSAGE": "`Modül başarıyla yüklendi! .%s ile kullanmaya başlayabilirsiniz.`",
             "PREMOVE_GIVE_NAME": "`Lütfen komutun yanına bir plugin belirtin.`",
@@ -30,15 +30,15 @@
             "ALREADY_DELETED": "`Plugin dosyası zaten silinmiş.`",
             "NOT_FOUND_PLUGIN": "`Böyle bir plugin belki vardı, belki de yoktu. Ama şu an olmadığı kesin.`",
             "PLUG_DELETED": "`Plugin başarıyla silindi!` **İşlemlerin uygulanabilmesi için yeniden başlatmanız gerekmetedir.**",
-            "DTO_PLUGIN_CAPTION": "Bu bir [DTÖUserBot](https://t.me/DTOUserBot) pluginidir."
+            "DTO_PLUGIN_CAPTION": "Bu bir [U S Σ R Δ T O R](https://t.me/UseratorOT) pluginidir."
         },
         
         "__dto": {
-            "NEED_PLUGIN": "`Lütfen bir DTÖUserBot modülü adı belirtin.`",
+            "NEED_PLUGIN": "`Lütfen bir U S Σ R Δ T O R modülü adı belirtin.`",
             "NEED_MODULE": "`Modullar aşağıdadır 👇🏻\nKullanım: .dto <modül adı>`"
         },
         "__tr": {
-            "NEED_PLUGIN": "`Lütfen bir DTÖUserBot modülü adı belirtin.`",
+            "NEED_PLUGIN": "`Lütfen bir U S Σ R Δ T O R modülü adı belirtin.`",
             "NEED_MODULE": "`Modullar aşağıdadır 👇🏻\nKullanım: .tr <modül adı>`"
         },
         "__helpme": {
@@ -56,7 +56,7 @@
             "INVALID_MEDIA": "```Medya geçerli değil.```",
             "PRIVATE": "`Bu komut özel mesajda kullanılamaz!`",
             "EKLE": "`Başarıyla eklendi`",
-            "BRAIN": "`Hata! Bu işlemi DTÖUserBot Yetkilisine yapamam.`",
+            "BRAIN": "`Hata! Bu işlemi U S Σ R Δ T O R Yetkilisine yapamam.`",
             "BANNING": "`Kullanıcı yasaklanıyor...`",
             "ALREADY_GBANNED": "`Hata! Kullanıcı zaten küresel olarak yasaklanmış.`",
             "GBANNED_REASON": "`Kullanıcı küresel olarak yasaklandı!`\n**Nedeni:**",
@@ -106,10 +106,10 @@
         },
 
         "afk": {
-            "REASON": "`Sebep ❄️`",
-            "AFK": "`Sahibim şu an AFK ☃️`",
-            "IM_AFK": "`Artık AFK'yım 🎅`",
-            "IM_NOT_AFK": "`Artık AFK değilim 🎄`"
+            "REASON": "`Sebep`",
+            "AFK": "`Sahibim şu an AFK`",
+            "IM_AFK": "`Artık AFK'yım.`",
+            "IM_NOT_AFK": "`Artık AFK değilim.`"
         },
 
         "auto": {
@@ -117,9 +117,9 @@
             "ALREADY": "`Görünüşe göre %s zaten otomatik olarak değişiyor.`",
             "SETTING": "`%s ayarlanıyor...`",
             "BIO": "⌚️ Saat: {saat} | ",
-            "NICK": "@DTOUserBot",
+            "NICK": "@UseratorOT",
             "SETTED": "`%s ayarlandı :)`",
-            "NAME": "| 🎅 %s"
+            "NAME": "| %s"
         },
 
         "autopp": {
@@ -156,8 +156,8 @@
             "EFECTING": "`Efekt uygulanıyor...`",
             "NOT_FOUND_EFECT": "**Belirttiğiniz efekt bulunamadı! **`Kullanılabileceğiniz efektler: ``çocuk/robot/earrape/hızlı/parazit/yankı`",
             "NEED_VIDEO": "`Lütfen bir videoya yanıt verin!`",
-            "WITH_DTO":"@DTOUserBot `ile efekt uygulandı.`",
-            "WITH_DTO_GIF": "@DTOUserBot `ile Gif'e çevirildi.`",
+            "WITH_DTO":"@UseratorOT `ile efekt uygulandı.`",
+            "WITH_DTO_GIF": "@UseratorOT `ile Gif'e çevirildi.`",
             "CONVERTING_TO_GIF": "Gif'e çeviriliyor...",
             "UPLOADING_GIF": "`Gif yükleniyor...`",
             "ERROR": "Gif'e çeviremedim :/"
@@ -353,10 +353,10 @@
             "GOODMORNIN_YALL": "`Günaydın!`",
             "GOODBYE_MFRS": "`Görüşürüz... *Windows XP kapanma sesi*`",
             "RESTARTING": "`Bot yeniden başlatılıyor...`",
-            "SUPPORT_GROUP": "[Buradan](http://t.me/DTOSupport) destek grubumuza ulaşabilirsiniz.",
+            "SUPPORT_GROUP": "[Buradan](http://t.me/UseratorSUP) destek grubumuza ulaşabilirsiniz.",
             "CREATOR": "Bu bot \n[Ümüd Məmmədov](https://t.me/umudmmmdov1) tarafından geliştirilmiştir. \n",
-            "README": "[DTÖUserBot README.md](https://github.com/umudmmmdov1/DTOUserBot/blob/master/README.md)",
-            "REPO": "[DTÖUserBot Repo](https://github.com/umudmmmdov1/dtouserbot)",
+            "README": "[U S Σ R Δ T O R README.md](https://github.com/umudmmmdov1/DTOUserBot/blob/master/README.md)",
+            "REPO": "[U S Σ R Δ T O R Repo](https://github.com/umudmmmdov1/dtouserbot)",
             "CHECK_LOGS": "`Çözülmüş mesaj için userbot loglarını kontrol et!`"
         },
 
@@ -517,7 +517,7 @@
             "SEARCHING": "`Şarkı aranıyor...`",
             "BLOCKED_DEEZER": "`Mmmh sanırım` @DeezerMusicBot `engellemişsin. Lütfen engeli aç.",
             "NOT_FOUND": "`Aradığınız şarkı bulunamadı! Üzgünüm.`",
-            "UPLOADED_WITH": "@DTOUserBot ile yüklendi.",
+            "UPLOADED_WITH": "@UseratorOT ile yüklendi.",
             "USAGE": "`Kullanım:` `.song şarkı ismi/youtube url/spotify url`",
             "SEARCHING_SPOT": "`Şarkı aranıyor ve indiriliyor lütfen bekleyin!",
             "DOWNLOADED": "`İndirme işlemi başarılı lütfen bekleyiniz.`",
@@ -573,16 +573,16 @@
             "NOT_FOUND": "klasörü bulunamadı.",
             "GIT_ERROR": "Git hatası!",
             "NOT_GIT": "klasörü bir git reposu gibi görünmüyor. \nFakat bu sorunu .update now komutuyla botu zorla güncelleyerek çözebilirsin.",
-            "INVALID_BRANCH": "**[UPDATER]:**` Galiba DTÖUserBot botunu modifiye ettin ve kendi branşını kullanıyorsun.\nBu durum güncelleyicinin kafasını karıştırıyor,\nGüncelleme nereden çekilecek?\nLütfen DTÖUserBotunu resmi repodan kullan.`",
+            "INVALID_BRANCH": "**[Güncelleyici]:**` Galiba U S Σ R Δ T O R botunu modifiye ettin ve kendi branşını kullanıyorsun.\nBu durum güncelleyicinin kafasını karıştırıyor,\nGüncelleme nereden çekilecek?\nLütfen DTÖUserBotunu resmi repodan kullan.`",
             "UPDATE": "\n`Botun` **tamamen güncel!** `Branch:` **{}**\n",
             "WAS_UPDATE": "**{} için yeni güncelleme mevcut!\n\nDeğişiklikler:**\n`{}`",
             "BIG": "`Değişiklik listesi çok büyük, dosya olarak görüntülemelisin.`",
             "DO_UPDATE": "`Güncellemeyi yapmak için \".update now\" komutunu kullan.`",
             "FORCE_UPDATE": "`Güncel stabil userbot kodu zorla eşitleniyor...`",
             "UPDATING": "`Bot güncelleştiriliyor...`",
-            "INVALID_APPNAME": "`[HEROKU UPDATER] Güncelleyiciyi kullanabilmek için HEROKU_APPNAME değişkenini tanımlamalısın.`",
+            "INVALID_APPNAME": "`[Güncelleyici] Güncelleyiciyi kullanabilmek için HEROKU_APPNAME değişkenini tanımlamalısın.`",
             "INVALID_HEROKU": "{}\n`Heroku değişkenleri yanlış veya eksik tanımlanmış.`",
-            "HEROKU_UPDATING": "`[HEROKU UPDATER]\nDTÖUserBotunuzun daha iyi olacağınıza emin olabilirsiniz :) Bu işlem maksimum 10 dakika sürmektedir.`",
+            "HEROKU_UPDATING": "`[Güncelleyici]\nU S Σ R Δ T O R UserBotun daha iyi olacağınıza emin olabilirsiniz :) Bu işlem maksimum 10 dakika sürmektedir.`",
             "ERRORS": "Karşılaşılan hatalar burada",
             "SUCCESSFULLY": "`Güncelleme başarıyla tamamlandı!\nYeniden başlatılıyor...`"
         },
