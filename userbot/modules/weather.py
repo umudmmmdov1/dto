@@ -1,10 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 """ Hava proqnozu """
@@ -20,6 +14,7 @@ from userbot import CMD_HELP, WEATHER_DEFCITY
 from userbot import OPEN_WEATHER_MAP_APPID as OWM_API
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ===== CONSTANT =====
 # ██████ LANGUAGE CONSTANTS ██████ #
@@ -147,4 +142,8 @@ async def get_weather(weather):
 
 CmdHelp('weather').add_command(
     'weather', '<şəhər>', 'Bir bölgənin hava proqnozunu göstərər.'
+).add()
+
+CmdTr('weather').add_command(
+    'weather', '<şehir>', 'Bir bölgenin hava durumunu verir.'
 ).add()
