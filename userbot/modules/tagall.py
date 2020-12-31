@@ -12,6 +12,8 @@ from re import sub
 from userbot import CMD_HELP, bot
 from userbot.events import register
 from userbot.modules.admin import get_user_from_event
+from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern="^.tagall$")
 async def _(event):
