@@ -1,10 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 """ QR kodları"""
@@ -18,6 +12,7 @@ from bs4 import BeautifulSoup
 from userbot import CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -144,4 +139,12 @@ CmdHelp('qrcode').add_command(
     'decode', '<cavab>', 'Barkod və ya QRCode həll etmək üçün.'
 ).add_command(
     'makeqr', '<cavab>', 'Verilən məzmundan bir QR kodu edin.', 'makeqr www.google.com'
+).add()
+
+CmdTr('qrcode').add_command(
+    'barcode', '<içerik>', 'Verilen içerikten bir barkod yapın.', 'barcode www.google.com'
+).add_command(
+    'decode', '<yanıt>', 'Barkod veya QRCode çözmek için.'
+).add_command(
+    'makeqr', '<içerik>', 'Verilen içerikten bir QR kodu yapın.', 'makeqr www.google.com'
 ).add()
