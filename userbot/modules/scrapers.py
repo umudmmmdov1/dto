@@ -1,5 +1,4 @@
-# Copyright (C) 2020
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 """ Scrapers """
@@ -47,6 +46,7 @@ from ImageDown import ImageDown
 import base64, binascii
 import random
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 CARBONLANG = "auto"
 TTS_LANG = "tr"
@@ -865,4 +865,40 @@ CmdHelp('scrapers').add_command(
     'ripvideo', '<link>', 'YouTube üzərindən (vəya digər saytlar) video endirər.'
 ).add_info(
     '[Rip əmrin dəstəklədiyi saytlar.](https://ytdl-org.github.io/youtube-dl/supportedsites.html)'
+).add()
+
+CmdTr('scrapers').add_command(
+    'img', '<limit> <kelime>', 'Google üzerinde hızlı bir resim araması yapar. Limit yazmazsanız 5 tane fotoğraf getirir.', 'img10 system of a down'
+).add_command(
+    'currency', '<miktar> <dönüştürülecek birim> <dönüşecek birim>', 'Para dönüştürücü.'
+).add_command(
+    'carbon', '<metin>', 'carbon.now.sh sitesini kullanarak yazdıklarının aşşşşşşırı şekil görünmesini sağlar.'
+).add_command(
+    'crblang', '<dil>', 'Carbon için dil ayarlar.'
+).add_command(
+    'karbon', '<metin>', 'Carbon ile aynı ama daha hızlımsı.'
+).add_command(
+    'google', '<kelime>', 'Hızlı bir Google araması yapar.'
+).add_command(
+    'wiki', '<terim>', 'Bir Vikipedi araması gerçekleştirir.'
+).add_command(
+    'ud', '<terim>', 'Urban Dictionary araması yapmanın kolay yolu?'
+).add_command(
+    'tts', '<metin>', 'Metni sese dönüştürür.'
+).add_command(
+    'lang', '<dil>', 'tts ve trt için dil ayarlayın.'
+).add_command(
+    'tts2', '<cinsiyet> <metin>', 'Metni sese dönüştürür.', 'tts2 kişi selam'
+).add_command(
+    'trt', '<metin>', 'Basit bir çeviri modülü.'
+).add_command(
+    'yt', '<metin>', 'YouTube üzerinde bir arama yapar.'
+).add_command(
+    'imdb', '<film>', 'Film hakkında bilgi verir.'
+).add_command(
+    'ripaudio', '<bağlantı>', 'YouTube üzerinden (veya diğer siteler) ses indirir.'
+).add_command(
+    'ripvideo', '<bağlantı>', 'YouTube üzerinden (veya diğer siteler) video indirir.'
+).add_info(
+    '[Rip komutunun desteklediği siteler.](https://ytdl-org.github.io/youtube-dl/supportedsites.html)'
 ).add()
