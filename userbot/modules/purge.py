@@ -1,10 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot + Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 """ . """
@@ -16,6 +10,7 @@ from telethon.errors import rpcbaseerrors
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -144,4 +139,16 @@ CmdHelp('purge').add_command(
     'edit', '<yeni mesaj>', 'Cavab verdiyiniz mesajı yeni mesaj ilə dəyişdirər.'
 ).add_command(
     'sd', '<x> <mesaj>', 'x saniyə içində özünü yox edən bir mesaj yaradar.'
+).add()
+
+CmdTr('purge').add_command(
+    'purge', None, 'Hedeflenen yanıttan başlayarak tüm mesajları temizler.'
+).add_command(
+    'purgeme', '<sayı>', 'Hedeflenen yanıttan başlayarak kendi mesajlarınızı temizler.'
+).add_command(
+    'del', '<yanıt>', 'Yanıt verilen mesajı siler.'
+).add_command(
+    'edit', '<yeni mesaj>', 'Yanıt verdiğiniz mesajı yeni mesaj ile değiştirir.'
+).add_command(
+    'sd', '<x> <mesaj>', 'x saniye içinde kendini yok eden bir mesaj oluşturur.'
 ).add()
