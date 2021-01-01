@@ -6,7 +6,7 @@
 from userbot.events import register
 from userbot import CMD_HELP, BOTLOG_CHATID
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdhelp import CmdTr
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
