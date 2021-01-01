@@ -1,3 +1,5 @@
+# U S Σ R Δ T O R / Ümüd
+
 from telethon.errors import (ChannelInvalidError, ChannelPrivateError, ChannelPublicGroupNaError)
 from emoji import emojize
 from telethon.tl.types import MessageActionChannelMigrateFrom, ChannelParticipantsAdmins
@@ -8,9 +10,9 @@ from math import sqrt
 from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantsRequest
 from telethon.utils import get_input_location
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
-# 
-@register(outgoing=True, pattern="^.qrupmelumat(?: |$)(.*)")
+@register(outgoing=True, pattern="^.qrup(?: |$)(.*)")
 async def info(event):
     await event.edit("`Qrup analiz edilir...`")
     chat = await get_chatinfo(event)
@@ -190,4 +192,6 @@ async def fetch_info(chat, event):
         caption += f"Açıqlama: \n<code>{description}</code>\n"
     return caption    
 
-CmdHelp('qrupmelumat').add_command('qrupmelumat', None, 'Qrup haqqında məlumat göstərir.').add()
+CmdHelp('qrup').add_command('qrup', None, 'Qrup haqqında məlumat göstərir.').add()
+
+CmdTr('qrup').add_command('qrup', None, 'Grup hakkında bilgi gösterir.').add()
