@@ -1,10 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 import io
@@ -15,6 +9,7 @@ from selenium.webdriver.chrome.options import Options
 from userbot.events import register
 from userbot import GOOGLE_CHROME_BIN, CHROME_DRIVER, CMD_HELP
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -73,4 +68,8 @@ async def capture(url):
 
 CmdHelp('ss').add_command(
     'ss', '<url>', 'Seçilən web saytından bir ekran görüntüsü alar və göndərər.', 'ss https://nexeber.com'
+).add()
+
+CmdTr('ss').add_command(
+    'ss', '<url>', 'Belirtilen web sitesinden bir ekran görüntüsü alır ve gönderir.', 'ss https://fusuf.codes'
 ).add()
