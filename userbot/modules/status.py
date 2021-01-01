@@ -53,6 +53,6 @@ CmdHelp('status').add_command(
     'status', None, 'Əlavə edilən Apilər və versiyaları göstərir.'
 ).add()
 
-CmdHelp('durum').add_command(
+CmdTr('durum').add_command(
     'durum', None, 'Eklenen Apiler ve sürümleri gösterir.'
 ).add()
