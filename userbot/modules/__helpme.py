@@ -1,10 +1,4 @@
-# Copyright (C) 2020
-#
-# Licensed under the GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 # Botu kopyalayan peysərdi.
 
 from userbot import BOT_USERNAME
@@ -23,7 +17,7 @@ async def yardim(event):
     if tgbotusername is not None:
         results = await event.client.inline_query(
             tgbotusername,
-            "@DTOUserBot"
+            "@UseratorOT"
         )
         await results[0].click(
             event.chat_id,
