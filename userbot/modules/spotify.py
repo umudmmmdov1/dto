@@ -1,11 +1,4 @@
-# Copyright (C) 2020 
-
-#
-# Licensed under the GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 from asyncio import sleep
 from json import loads
@@ -22,6 +15,7 @@ from userbot import (BIO_PREFIX, BOTLOG, BOTLOG_CHATID, CMD_HELP, DEFAULT_BIO,
                      SPOTIFY_DC, SPOTIFY_KEY, bot)
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # =================== CONSTANT ===================
 # ██████ LANGUAGE CONSTANTS ██████ #
@@ -157,3 +151,8 @@ CmdHelp('spotify').add_command(
 ).add_command(
     'disablespotify', None, 'Spotify bionu deaktivləşdirir.'
 ).add()
+
+CmdTr('spotify').add_command(
+    'enablespotify', None, 'Spotify bio aktifleştirir.'
+).add_command(
+    'disablespotify', None, 'Spotify bio devredışı bırakır.'
