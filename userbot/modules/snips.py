@@ -1,17 +1,12 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
-""" Küresel notlar tutmak için yapılmış olan UserBot modülü. """
+""" Notlar """
 
 from userbot.events import register
 from userbot import CMD_HELP, BOTLOG_CHATID
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdhelp import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -132,4 +127,14 @@ CmdHelp('snips').add_command(
     'snips', None, 'Qeyd edilən bütün snip\'ləri listini alar.'
 ).add_command(
     'remsnip', '<snip adı>', 'Seçilən snip\'i silər.'
+).add()
+
+CmdTr('snips').add_command(
+    '$<snip_adı>', None, 'Snipi çağırır.'
+).add_command(
+    'snip', '<isim> <veri/yanıt>', 'Bir snip (küresel not) olarak kaydeder. (Resimler, dokümanlar ve çıkartmalar ile çalışır !)'
+).add_command(
+    'snips', None, 'Kaydedilen tüm snip\'leri listeler.'
+).add_command(
+    'remsnip', '<snip adı>', 'Belirtilen snip\'i siler.'
 ).add()
