@@ -1,12 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
-
-#
+# U S Σ R Δ T O R / Ümüd
 
 import io
 import os
@@ -15,6 +7,7 @@ from userbot.events import register
 from telethon.tl.types import MessageMediaPhoto
 from userbot import CMD_HELP, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -103,4 +96,8 @@ async def ReTrieveURL(input_url):
 
 CmdHelp('rgb').add_command(
     'rbg', '<Foto linki/cavab>', 'remove.bg API işlədərək görüntülərin arxa planını silər.'
+).add()
+
+CmdTr('rgb').add_command(
+    'rbg', '<Resim bağlantısı/yanıt>', 'remove.bg API kullanarak görüntülerin arka planını kaldırır.'
 ).add()
