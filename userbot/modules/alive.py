@@ -1,7 +1,7 @@
 # U S Σ R Δ T O R / Ümüd
 
 """ Alive """
-import async
+import asyncio
 import platform
 import sys
 import time
