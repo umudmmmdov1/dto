@@ -1,18 +1,13 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
-""" . """
+""" Notes """
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 from asyncio import sleep
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -136,4 +131,14 @@ CmdHelp('notes').add_command(
     'notes', None, 'Bir söhbətdəki bütün notları çağırar.'
 ).add_command(
     'clear', '<not adı>', 'Seçilən notu silər.'
+).add()
+
+CmdTr('notes').add_command(
+    '#<notismi>', None, 'Belirtilen notu çağırır.'
+).add_command(
+    'save', '<not adı> <not olarak kaydedilecek şey> ya da bir mesajı .save <not adı> şeklinde yanıtlayarak kullanılır', 'Yanıtlanan mesajı ismiyle birlikte bir not olarak kaydeder. (Resimler, belgeler ve çıkartmalarda da çalışır.)'
+).add_command(
+    'notes', None, 'Bir sohbetteki tüm notları çağırır.'
+).add_command(
+    'clear', '<not adı>', 'Belirtilen notu siler.'
 ).add()
