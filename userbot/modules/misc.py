@@ -154,13 +154,13 @@ async def raw(event):
 CmdHelp('misc').add_command(
     'random', '<əşya1> <əşya2> ... <şyaN>', 'Əşya listindən təsadufi bir əşya seçər', 'random dto user bot'
 ).add_command(
-    'sleep', '<vaxt>', 'DTÖUserBot da bir insan, o da yorulur. Ara bir biraz yatmağına icazə ver.', 'sleep 30'
+    'sleep', '<vaxt>', 'U S Σ R Δ T O R da bir insandır, o da yorulur. Ara bir biraz yatmağına icazə ver.', 'sleep 30'
 ).add_command(
     'shutdown', None, 'Nostaljik bir şəkildə botunuzu söndürər.'
 ).add_command(
-    'repo', None, 'DTÖUserBot botunun GitHub\'dakı reposuna gedən bir link.'
+    'repo', None, 'U S Σ R Δ T O R botunun GitHub\'dakı reposuna gedən bir link.'
 ).add_command(
-    'readme', None, 'DTÖUserBot botunun GitHub\'dakı README.md faylına gedən bir link.'
+    'readme', None, 'U S Σ R Δ T O R botunun GitHub\'dakı README.md faylına gedən bir link.'
 ).add_command(
     'creator', None, 'Bu gözəl botu kimin yaratdığını öyrən :-)'
 ).add_command(
@@ -178,13 +178,13 @@ CmdHelp('misc').add_command(
 CmdTr('misc').add_command(
     'random', '<eşya1> <eşya2> ... <eşyaN>', 'Eşya listesinden rastgele bir eşya seçer', 'random asena uniborg userge'
 ).add_command(
-    'sleep', '<süre>', 'Asena de bir insan, o da yoruluyor. Ara sıra biraz uyumasına izin ver.', 'sleep 30'
+    'sleep', '<süre>', 'U S Σ R Δ T O R da bir insan, o da yoruluyor. Ara sıra biraz uyumasına izin ver.', 'sleep 30'
 ).add_command(
     'shutdown', None, 'Nostaljik bir şekilde botunuzu kapatın.'
 ).add_command(
-    'repo', None, 'Asena botunun GitHub\'daki reposuna giden bir bağlantı.'
+    'repo', None, 'U S Σ R Δ T O R botunun GitHub\'daki reposuna giden bir bağlantı.'
 ).add_command(
-    'readme', None, 'Asena botunun GitHub\'daki README.md dosyasına giden bir bağlantı.'
+    'readme', None, 'U S Σ R Δ T O R botunun GitHub\'daki README.md dosyasına giden bir bağlantı.'
 ).add_command(
     'creator', None, 'Bu güzel botu kimlerin oluşturduğunu öğren :-)'
 ).add_command(
