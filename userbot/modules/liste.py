@@ -1,10 +1,4 @@
-# Copyright (C) 2020
-#
-# Licensed under the GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 from userbot import CMD_HELP
 from userbot.events import register
@@ -13,6 +7,7 @@ import io
 import os
 import asyncio
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -71,4 +66,8 @@ async def liste(event):
 
 CmdHelp('list').add_command(
     'list', '<gmute/gban>', 'Gbanladığınız ya da Gmutelədiyiniz istifadəçiləri göstərər.'
+).add()
+
+CmdTr('list').add_command(
+    'list', '<gmute/gban>', 'Gbanladığınız ya da Gmutelediğiniz kişileri getirir.'
 ).add()
