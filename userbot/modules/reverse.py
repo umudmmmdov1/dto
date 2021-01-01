@@ -1,12 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
-
-#
+# U S Σ R Δ T O R / Ümüd
 
 """ Google """
 
@@ -21,6 +13,7 @@ from PIL import Image
 from userbot import bot, CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -152,4 +145,8 @@ async def scam(results, lim):
 
 CmdHelp('reverse').add_command(
     'reverse', '<cavab>', 'Foto vəya stikerə cavab verərək görüntünü Google üstündən axtara bilərsiz.'
+).add()
+
+CmdTr('reverse').add_command(
+    'reverse', '<yanıt>', 'Fotoğraf veya çıkartmaya yanıt vererek görüntüyü Google üzerniden arayabilirsiniz.'
 ).add()
