@@ -1,9 +1,6 @@
-# Copyright (C) 2020 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.d (the "License");
-# you may not use this file except in compliance with the License.
-#
-"""  """
+# U S Σ R Δ T O R / Ümüd
+
+""" Stickers """
 
 import io
 import math
@@ -19,6 +16,7 @@ from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from telethon import events
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 PACK_FULL = "Whoa! That's probably enough stickers for one pack, give it a break. \
 A pack can't have more than 120 stickers at the moment."
@@ -264,4 +262,14 @@ CmdHelp('stickers').add_command(
     'fırlat', '<nömrə>', 'Stikeri ya da fotunu seçilən paketə əlavə edir ancaq emoji olaraq bu işlədilir: 🤔 '
 ).add_command(
     'fırlat', '<emoji(lər)> <numara>', 'Stikeri ya da fotonu seçilən paketə əlavə edir və seçdiyiniz emoji stikerin emojisi olaraq işlədilir.'
+).add()
+
+CmdTr('stickers').add_command(
+    'dızla', None, 'Dızla ile bir çıkartmaya ya da resme yanıtlayarak kendi çıkartma paketinize çıkartma olarak ekleyebilirsiniz.'
+).add_command(
+    'dızla', '<emoji(ler)>', 'Dızla gibi çalışır fakat istediğiniz emojiyi çıkartmanın emojisi olarak belirtir.'
+).add_command(
+    'dızla', '<numara>', 'Çıkartmayı ya da resmi belirtilen pakete ekler fakat emoji olarak şu kullanılır: 🤔 '
+).add_command(
+    'dızla', '<emoji(ler)> <numara>', 'Çıkartmayı ya da resmi belirtilen pakete ekler ve belirttiğiniz emoji çıkartmanın emojisi olarak kullanılır.'
 ).add()
