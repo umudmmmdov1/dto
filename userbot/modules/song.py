@@ -1,10 +1,4 @@
-# Copyright (C) 2020 
-#
-# Licensed under the GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 import datetime
 import asyncio
@@ -18,6 +12,7 @@ import subprocess
 import glob
 from random import randint
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -150,4 +145,12 @@ CmdHelp('song').add_command(
     'song', '<musiqi adı/youtube/spotify>', 'Musiqi endirir.'
 ).add_command(
     'songpl', '<spotify playlist>', 'Spotify Playlist\'indən musiqi endirir'
+).add()
+
+CmdTr('song').add_command(
+    'deez', '<şarkı ismi/youtube/spotify/soundcloud>', 'Birçok siteden şarkıyı arayıp, şarkıyı indirir.'
+).add_command(
+    'song', '<şarkı ismi/youtube/spotify>', 'Şarkı indirir.'
+).add_command(
+    'songpl', '<spotify playlist>', 'Spotify Playlist\'inden şarkı indirir'
 ).add()
