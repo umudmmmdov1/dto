@@ -1,4 +1,3 @@
-# Copyright (C) 2020
 # U S Σ R Δ T Ω R / Ümüd
 
 from userbot import PATTERNS, CMD_HELPTR, CMD_HELPTR_BOT, LANGUAGE
@@ -57,30 +56,30 @@ class CmdTr:
 
         result = f"**📗 Dosya:** `{self.FILE}`\n"
         if self.WARNING == '' and self.INFO == '':
-            result += f"**🎅 Resmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
+            result += f"**♻️ Resmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
         else:
-            result += f"**🎅 Resmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n"
+            result += f"**♻️ Resmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n"
             
             if self.INFO == '':
                 if not self.WARNING == '':
-                    result += f"**❄️ Uyarı:** {self.WARNING}\n\n"
+                    result += f"**❗ Uyarı:** {self.WARNING}\n\n"
             else:
                 if not self.WARNING == '':
-                    result += f"**❄️ Uyarı:** {self.WARNING}\n"
+                    result += f"**❗ Uyarı:** {self.WARNING}\n"
                 result += f"**ℹ️ Bilgi:** {self.INFO}\n\n"
                      
         for command in self.COMMANDS:
             command = self.COMMANDS[command]
             if command['params'] == None:
-                result += f"**🎄 Komut:** `{PATTERNS[:1]}{command['command']}`\n"
+                result += f"**⌨️ Komut:** `{PATTERNS[:1]}{command['command']}`\n"
             else:
-                result += f"**🎄 Komut:** `{PATTERNS[:1]}{command['command']} {command['params']}`\n"
+                result += f"**⌨️ Komut:** `{PATTERNS[:1]}{command['command']} {command['params']}`\n"
                 
             if command['example'] == None:
-                result += f"**☃️ Açıklama:** `{command['usage']}`\n\n"
+                result += f"**📃 Açıklama:** `{command['usage']}`\n\n"
             else:
-                result += f"**☃️ Açıklama:** `{command['usage']}`\n"
-                result += f"**❄️ Örnek:** `{PATTERNS[:1]}{command['example']}`\n\n"
+                result += f"**📃 Açıklama:** `{command['usage']}`\n"
+                result += f"**➤ Örnek:** `{PATTERNS[:1]}{command['example']}`\n\n"
         return result
 
     def add(self):
