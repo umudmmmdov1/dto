@@ -156,3 +156,4 @@ CmdTr('spotify').add_command(
     'enablespotify', None, 'Spotify bio aktifleştirir.'
 ).add_command(
     'disablespotify', None, 'Spotify bio devredışı bırakır.'
+).add()
