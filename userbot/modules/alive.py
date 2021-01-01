@@ -1,10 +1,11 @@
-# Copyright (C) 2020
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 """ Alive """
+import async
 import platform
 import sys
 import time
+from telethon import events
 from asyncio import create_subprocess_exec as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
 from datetime import datetime
@@ -12,6 +13,7 @@ from os import remove
 from platform import python_version, uname
 from shutil import which
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 import psutil
 from telethon import __version__, version
@@ -57,13 +59,13 @@ async def amireallyalive(alive):
     uptime = await get_readable_time((time.time() - StartTime))
     img = IMG
     caption = (
-        "__**DTÖUSERBOT ƏLA İŞLƏYİR⚡**__\n\n"
-        f"`👤 Mənim Ustam :` **{DEFAULTUSER}**\n\n"
-        f"`🐍 Python      :` **v{python_version()}**\n\n"
-        f"`💻 Telethon    :` **v{version.__version__}**\n\n"
-        f"`⚙️ DTÖUserBot  :` **v2.5**\n\n"
-        f"`🕒 Bot işləyir :` **{uptime}**\n\n"
-        "💊 Kömək qrupu [qatıl 🥰](t.me/dtosupport)\n"
+        "__**U S Σ R Δ T O R**__\n\n"
+        f"`👤 Mənim Ustam      :` **{DEFAULTUSER}**\n\n"
+        f"`🐍 Python           :` **v{python_version()}**\n\n"
+        f"`💻 Telethon         :` **v{version.__version__}**\n\n"
+        f"`⚙️ U S Σ R Δ T O R  :` **v2.6**\n\n"
+        f"`🕒 Bot işləyir      :` **{uptime}**\n\n"
+        "💊 Dəstək qrupu [qatıl 🥰](t.me/useratorsup)\n"
         "💊 Github [dəyərləndir ✨](http://github.com/umudmmmdov1/dtouserbot)"
     )
     await bot.send_file(alive.chat_id, img, caption=caption)
@@ -90,7 +92,50 @@ async def amireallyalivereset(ureset):
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Uğurla alive ad silindi!" "`")
 
+@register(outgoing=True, pattern=".alive3")
+
+async def merkurkedissa(event):
+
+    if event.fwd_from:
+
+        return
+
+    animation_interval = 0.3
+
+    animation_ttl = range(0, 14)
+
+    animation_chars = [
+            "`𝐑  𝐎  𝐓  𝐀  𝐑  𝐄  𝐒  𝐔`",
+            "`𝐎  𝐓  𝐀  𝐑  𝐄  𝐒  𝐔`",
+            "`𝐓  𝐀  𝐑  𝐄  𝐒  𝐔`",
+            "`𝐑  𝐄  𝐒  𝐔`",
+            "`𝐄  𝐒  𝐔`",
+            "`𝐒  𝐔`",
+            "`𝐔`",
+            "`𝐔  𝐒`",
+            "`𝐔  𝐒  𝐄`",
+            "`𝐔  𝐒  𝐄  𝐑`",
+            "`𝐔  𝐒  𝐄  𝐑  𝐀`",
+            "`𝐔  𝐒  𝐄  𝐑  𝐀  𝐓`",
+            "`𝐔  𝐒  𝐄  𝐑  𝐀  𝐓  𝐎`",
+            "`𝐔  𝐒  𝐄  𝐑  𝐀  𝐓  𝐎  𝐑`"
+ ]
+
+    for i in animation_ttl:
+
+        await asyncio.sleep(animation_interval)
+
+        await event.edit(animation_chars[i % 14])
+
+
 Help = CmdHelp('alive')
 Help.add_command('alive',  None, 'Botun işləyib işləmədiyini yoxlayar').add()
-Help.add_command('aliveu adınız',  None, 'Alivedeki adınızı dəyişdirər').add()
+Help.add_command('aliveu adınız',  None, 'Alivedəki adınızı dəyişdirər').add()
 Help.add_command('alivesil',  None, 'Alivedəki adınızı silər').add()
+Help.add_command('userator',  None, 'U S Σ R Δ T O R').add()
+
+Help = CmdTr('alive')
+Help.add_command('alive',  None, 'Botun çalışıp çalışmadığına bakar').add()
+Help.add_command('aliveu adınız',  None, 'Alivedeki isminizi değiştirir').add()
+Help.add_command('alivesil',  None, 'Alivedeki isminizi siler').add()
+Help.add_command('userator',  None, 'U S Σ R Δ T O R').add()
