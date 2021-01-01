@@ -1,10 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
@@ -13,6 +7,7 @@ from telethon.tl.types import ChatBannedRights
 from userbot import CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -197,20 +192,18 @@ async def rem_locks(event):
             f"{LANG['INVALID_AUTHORITY']} {str(e)}")
         return
 
-
-CMD_HELP.update({
-    "locks":
-    ".lock <bağlanacaq medya tipi> vəya .unlock <bağlanacaq medya tipi>\
-\nİşlədilişi: Sıhbətdəki bir çox şeyləri əngəlləyə bilməni edər. (stiker atmaq, oyun oynamaq vs.)\
-[Not: İdarəçi icazələri lazımdır!]\
-\n\nBağlaya biləcəyin və bağlayıb aça biləcəyin bunlardır: \
-\n`all, msg, media, sticker, gif, game, inline, poll, invite, pin, info`"
-})
-
 CmdHelp('locks').add_command(
     'lock', '<bağlanacaq medya tipi> vəya .unlock <bağlanacaq medya tipi>', 'Söhbətdəki bir çox şeyləri əngəlləyə bilməni edər. (stiker atmaq, oyun oynamaq vs.)'
 ).add_info(
     'Bağlıya biləcəyin və bağlayıb aça biləcəyin bunlardır: all, msg, media, sticker, gif, game, inline, poll, invite, pin, info'
 ).add_warning(
     'İdarəçi icazələri lazımdır!'
+).add()
+
+CmdTr('locks').add_command(
+    'lock', '<kilitlenecek medya tipi> veya .unlock <kilitlenecek medya tipi>', 'Sohbetteki birtakım şeyleri engelleyebilmeni sağlar. (sticker atmak, oyun oynamak vs.)'
+).add_info(
+    'Kilitleyebileceğin ve kilidini açabileceklerin şunlardır: all, msg, media, sticker, gif, game, inline, poll, invite, pin, info'
+).add_warning(
+    'Yönetici hakları gerektirir!'
 ).add()
