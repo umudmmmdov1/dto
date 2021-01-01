@@ -1,10 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 from asyncio import sleep
@@ -22,6 +16,7 @@ from telethon.errors.rpcerrorlist import FloodWaitError
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, DEFAULT_BIO, BIO_PREFIX, lastfm, LASTFM_USERNAME, bot
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # =================== CONSTANT ===================
 # ██████ LANGUAGE CONSTANTS ██████ #
@@ -231,4 +226,12 @@ CmdHelp('lastfm').add_command(
     'lastbio', '<on/off>', 'last.fm\'dəki indi oynadılan parça göstərməsi aktivləşdirir/deaktivləşdirir.'
 ).add_command(
     'lastlog', '<on/off>', 'last.fm biyoqrafi loglamasını aktivləşdirir/deaktivləşdirir.'
+).add()
+
+CmdTr('lastfm').add_command(
+    'lastfm', None, 'Şu anlık oynatılan parça ya da en son oynatılan parça gösterilir.'
+).add_command(
+    'lastbio', '<on/off>', 'last.fm\'deki şu an oynatılan parça gösterimi etkinleştirilir/devre dışı bırakılır.'
+).add_command(
+    'lastlog', '<on/off>', 'last.fm biyografi loglamasını etkinleştirir/devre dışı bırakır.'
 ).add()
