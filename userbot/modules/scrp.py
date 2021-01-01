@@ -1,4 +1,3 @@
-# Copyright (C) 2020
 # U S Σ R Δ T Ω R / Ümüd
 
 import asyncio
@@ -152,4 +151,14 @@ CmdHelp('scrp').add_command(
     'muz', '<mahnı adı>', 'deez əmrinin başqa bir forması. Musiqi endirər.'
 ).add_command(
     'png', ' ', 'Cavab verdiyiniz şəkil/sticker’i PNG formatına çevirər.'
+).add()
+
+CmdTr('scrp').add_command(
+    'ig', '<bağlantı>', 'Instagram bağlantınızı medyaya çevirir.'
+).add_command(
+    'tt', '<bağlantı>', 'TikTok bağlantınızı medyaya çevirir..'
+).add_command(
+    'muz', '<şarkı ismi>', 'Deez düzeninin başka bir biçimi. Müzik indirir. .'
+).add_command(
+    'png', ' ', 'Yanıtladığınız resmi / çıkartmayı PNG formatına dönüştürür.'
 ).add()
