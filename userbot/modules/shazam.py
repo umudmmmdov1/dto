@@ -1,5 +1,4 @@
-# Copyright (C) 2020
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 from pydub import AudioSegment
 from json import dumps
@@ -10,6 +9,7 @@ from requests import get
 from os import remove
 import urllib.parse
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern="^.shazam")
 async def shazam(event):
@@ -100,4 +100,8 @@ async def shazam(event):
 
 CmdHelp('shazam').add_command(
     'shazam', '<cavab>', 'Cavab verdiyiniz səs faylını Shazamda axtarar.'
+).add()
+
+CmdTr('shazam').add_command(
+    'shazam', '<yanıt>', 'Yanıt verdiğiniz ses dosyasını Shazamda arar.'
 ).add()
