@@ -1,10 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 import io
 import os
@@ -16,6 +10,7 @@ from telethon.tl.types import InputMessagesFilterDocument
 from userbot.events import register 
 from userbot import CMD_HELP, bot
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -102,4 +97,8 @@ async def get_font_file(client, channel_id):
 
 CmdHelp('rgb').add_command(
     'rbg', '<cavab>', 'Mesajınızı RGB stikerə dəyişdirər'
+).add()
+
+CmdTr('rgb').add_command(
+    'rbg', '<yanıt>', 'Metninizi RGB çıkartmaya dönüştürün.'
 ).add()
