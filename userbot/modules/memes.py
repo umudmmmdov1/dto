@@ -1009,7 +1009,7 @@ CmdTr('memes').add_command(
 ).add_command(
     'cowsay', None, 'Bir şeyler söyleyen inek'
 ).add_command(
-    ':/', None, 'Rihad'ın 3 aydır kızın adını öğrenemediği aklına geliyor.'
+    ':/', None, 'Rihadın 3 aydır kızın adını öğrenemediği aklına geliyor.'
 ).add_command(
     'karar', None, 'Karar verin.'
 ).add_command(
