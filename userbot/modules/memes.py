@@ -1,13 +1,7 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
-""" . """
+""" Memes """
 
 from asyncio import sleep
 from random import choice, getrandbits, randint
@@ -25,6 +19,7 @@ from userbot import CMD_HELP, ZALG_LIST
 from userbot.events import register
 from userbot.modules.admin import get_user_from_event
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ================= CONSTANT =================
 EMOJIS = [
@@ -1007,4 +1002,76 @@ CmdHelp('memes').add_command(
     'boşluq', None, 'Boş mesaj.'
 ).add_command(
     'ğ', '<mesaj>', 'Ğ'
+).add()
+
+CmdTr('memes').add_command(
+    'heyvan', 'pisik/it/panda/qus/qurd', 'Rastgele bir hayvan fotoğrafı atar.'
+).add_command(
+    'cowsay', None, 'Bir şeyler söyleyen inek'
+).add_command(
+    ':/', None, 'Rihad'ın 3 aydır kızın adını öğrenemediği aklına geliyor.'
+).add_command(
+    'karar', None, 'Karar verin.'
+).add_command(
+    '-_-', None, 'Tamamdır.\n-Birtanem Usta'
+).add_command(
+    ';_;', None, 'Hüseyn 5 dakikadır kaynanasını görmediğini düşünün.'
+).add_command(
+    'cp', '<yanıt>', 'Emoji falan ekliyor.'
+).add_command(
+    'vapor', '<mesaj/yanıt>', 'Vaporlaştırın!'
+).add_command(
+    'str', '<yazı>', 'Yazıyı uzatın.'
+).add_command(
+    '10iq', None, 'Coşqun mesaj yazıyor.'
+).add_command(
+    'mizah', None, 'Tekerlek Ümüd Usta espri yaparsa hemen kullanın.'
+).add_command(
+    'zal', '<yanıtlama/mesaj>', 'Çok karmaşık! Her şey çok karmaşık.'
+).add_command(
+    'oof', None, 'of ya'
+).add_command(
+    'skrrt', None, 'sıkırt'
+).add_command(
+    'fuk', None, '+18'
+).add_command(
+    'kalp', '<isim>', 'Sevginizi gösterin.'
+).add_command(
+    'fp', None, 'Utanmak.'
+).add_command(
+    'moon', None, 'Ay animasyonu.'
+).add_command(
+    'clock', None, 'Hüseyn kaynanasını bekliyor. (Saat animasyonu)'
+).add_command(
+    'hi', None, 'Selam verin.'
+).add_command(
+    'owo', None, 'LOLcü Selin olur gibi'
+).add_command(
+    'react', None, 'Ayzırbotun her şeye tepki vermesini sağlayın.'
+).add_command(
+    'slap', '<yanıt>', 'Rastgele nesnelerle tokatlamak için mesaja cevap verin.'
+).add_command(
+    'cry', None, 'Ağlamak mı istiyorsun?'
+).add_command(
+    'shg', None, '¯\_(ツ)_/¯'
+).add_command(
+    'run', None, 'Koş!'
+).add_command(
+    'mock', '<yanıt/mesaj>', 'Yap ve gerçek eğlenceyi bul.'
+).add_command(
+    'clap', None, 'Beni, yapraklar değil Ayzırbotlar alkışlıyor!'
+).add_command(
+    'f', '<mesaj>', 'F'
+).add_command(
+    'type', '<yazı>', 'Daktilo gibi yazı yazın.'
+).add_command(
+    'lfy', '<sorgu>', 'Bırakın Google bunu sizin için araştırsın.'
+).add_command(
+    'scam', '<eylem> <süre>', 'Sahte eylemler oluşturun.\nMevcut eylemler: (typing, contact, game, location, voice, round, video, photo, document, cancel)'
+).add_command(
+    'lfy', '<sorgu>', 'Bırakın Google bunu sizin için araştırsın.'
+).add_command(
+    'boşluk', None, 'Boş mesaj. (Elon Musk\'tan öğrendim.)'
+).add_command(
+    'ğ', '<metin>', 'Ğ'
 ).add()
