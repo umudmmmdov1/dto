@@ -1,10 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 import os
@@ -12,6 +6,7 @@ from requests import post
 from userbot import bot, OCR_SPACE_API_KEY, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -74,4 +69,10 @@ CmdHelp('ocr').add_command(
     'ocr', '<dil>', 'Mətin aydınlatmaq üçün bir fotoya vəya stikerə cavab verin.'
 ).add_info(
     'Dil kodlarını [buradan](https://ocr.space/ocrapi) götürün.'
+).add()
+
+CmdTr('ocr').add_command(
+    'ocr', '<dil>', 'Metin ayıklamak için bir resme veya çıkartmaya cevap verin.'
+).add_info(
+    'Dil kodlarını [buradan](https://ocr.space/ocrapi) alın.'
 ).add()
