@@ -175,14 +175,14 @@
         },
 
         "deyisdir": {
-            "SETTED_MEDIA": "üçün medianız qeydə alındı.🎅",
-            "SETTED_REPLY": "üçün mesajınız qeydə alındı.☃️",
-            "SUCCESS_DELETED": "`Plugin mesajı uğurla silindi.❄️`",
-            "ERROR_DELETED": "Plugin mesajı silinə bilmədi.☃️** Xəta",
-            "NOT_FOUND": "**Bilinməyən plugin.** Mesajını silə biləcəyiniz pluginlər❄️",
-            "USAGE": "**Dəyişdir, botdaki plugin-mesajlarını dəyişdirə bilməyiniz üçündür.🎄**\nNümunə İstifadəsi: `.değiştir afk \"Hazırda burda deyiləm... Bəlkədə heç gəlmədim\"`\nPlugin-mesajını silmək: `.değiştir afk`\nDəyişdirə biləcəyiniz plugin-mesajları (indiki): `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`",
-            "CANNOT_EMPTY": "Plugin mesajı boş ola bilməz.❄️",
-            "SETTED": "Plugin(`{plu}`) üçün mesajınız(`{msj}`) təsdiqləndi.🎅"
+            "SETTED_MEDIA": "üçün medianız qeydə alındı.",
+            "SETTED_REPLY": "üçün mesajınız qeydə alındı.",
+            "SUCCESS_DELETED": "`Plugin mesajı uğurla silindi.`",
+            "ERROR_DELETED": "Plugin mesajı silinə bilmədi.** Xəta",
+            "NOT_FOUND": "**Bilinməyən plugin.** Mesajını silə biləcəyiniz pluginlər",
+            "USAGE": "**Dəyişdir, botdaki plugin-mesajlarını dəyişdirə bilməyiniz üçündür.**\nNümunə İstifadəsi: `.deyisdir afk \"Hazırda burda deyiləm... Bəlkədə heç gəlmədim\"`\nPlugin-mesajını silmək: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları (indiki): `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`",
+            "CANNOT_EMPTY": "Plugin mesajı boş ola bilməz.",
+            "SETTED": "Plugin(`{plu}`) üçün mesajınız(`{msj}`) təsdiqləndi."
         },
 
          "covid19": {
