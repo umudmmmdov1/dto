@@ -74,7 +74,7 @@ async def info(event):
                 await conv.get_response()
                 await conv.send_message("/info " + istifadeci)
                 audio = await conv.get_response()
-                await event.client.forward_message(event.chat_id, audio)
+                await event.client.forward_messages(event.chat_id, audio)
                 await event.delete()
             except YouBlockedUserError:
                 await event.edit("@MissRose_bot'u blokdan çıxardıb yenidən cəhd edin.")
@@ -85,7 +85,7 @@ async def info(event):
                 await conv.get_response()
                 await conv.send_message("/info " + dtoub)
                 audio = await conv.get_response()
-                await event.client.forward_message(event.chat_id, audio)
+                await event.client.forward_messages(event.chat_id, audio)
                 await event.delete()
             except YouBlockedUserError:
                 await event.edit("@MissRose_bot'u blokdan çıxardıb yenidən cəhd edin.")
@@ -103,7 +103,7 @@ async def fedinfo(event):
                 await conv.get_response()
                 await conv.send_message("/fedinfo")
                 fedinfo = await conv.get_response()
-                await event.client.forward_message(event.chat_id, fedinfo)
+                await event.client.forward_messages(event.chat_id, fedinfo)
                 await event.delete()
             except YouBlockedUserError:
                 await event.edit("@MissRose_bot'u blokdan çıxardıb yenidən cəhd edin.")
@@ -114,7 +114,7 @@ async def fedinfo(event):
                 await conv.get_response()
                 await conv.send_message("/fedinfo " + dtoub)
                 fedinfo = await conv.get_response()
-                await event.client.send_message(event.chat_id, fedinfo)
+                await event.client.forward_messages(event.chat_id, fedinfo)
                 await event.delete()
             except YouBlockedUserError:
                 await event.edit("@MissRose_bot'u blokdan çıxardıb yenidən cəhd edin.")
