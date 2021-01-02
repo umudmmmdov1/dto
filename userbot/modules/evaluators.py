@@ -1,13 +1,6 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
+# U S Σ R Δ T O R / Ümüd
 
-# DTÖUserBot - Ümüd
-
-
-"""  """
+""" Evaluator """
 
 import asyncio
 from getpass import getuser
@@ -16,6 +9,7 @@ from sys import executable
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -203,4 +197,12 @@ CmdHelp('evaluators').add_command(
     'exec', '<python kodu>', 'Kiçik python əmrləri işlədin.', 'exec print(\"DTÖUserBotdan Salamlar!\")'
 ).add_command(
     'term', '<istək>', 'Serverinizdə bash əmrlərini və əmr fayllarını işlədin.', 'term ls'
+).add()
+
+CmdTr('evaluators').add_command(
+    'eval', '<işlem>', 'Mini ifadeleri değerlendirin.', 'eval 2+3'
+).add_command(
+    'exec', '<python kodu>', 'Küçük python komutları yürütün.', 'exec print(\"AsenaUserbottan Selamlar!\")'
+).add_command(
+    'term', '<işlem>', 'Sunucunuzda bash komutlarını ve komut dosyalarını çalıştırın.', 'term ls'
 ).add()
