@@ -1,10 +1,4 @@
-# Copyright (C) 2020 
-#
-# Licensed under the GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 import re
 import asyncio
@@ -13,6 +7,7 @@ from userbot import CMD_HELP, ASYNC_POOL, GALERI_SURE
 from userbot.events import register
 from userbot.main import FotoDegistir
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -103,4 +98,12 @@ CmdHelp('galeri').add_command(
     'galeri list', None, 'Qaleri sırasını göstərir.'
 ).add_command(
     'galeri sil', '<sayı>', 'Qaleri sırasından bir fotonu silər.', 'galeri sil 4'
+).add()
+
+CmdTr('galeri').add_command(
+    'galeri elave', '<url>', 'Galeri sırasına fotoğraf ekler', 'galeri elave https://i.hizliresim.com/wFSVKd.jpg'
+).add_command(
+    'galeri list', None, 'Galeri sırasını gösterir.'
+).add_command(
+    'galeri sil', '<sayı>', 'Galeri sırasından bir resmi siler.', 'galeri sil 4'
 ).add()
