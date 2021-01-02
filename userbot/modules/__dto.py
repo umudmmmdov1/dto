@@ -1,5 +1,4 @@
-# Copyright (C) 2020
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 from userbot.cmdhelp import CmdHelp
 from userbot import cmdhelp
