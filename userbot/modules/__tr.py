@@ -1,4 +1,3 @@
-# Copyright (C) 2020
 # U S Σ R Δ T Ω R / Ümüd
 
 from userbot.cmdtr import CmdTr
