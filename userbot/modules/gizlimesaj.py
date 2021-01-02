@@ -1,5 +1,4 @@
-# Copyright (C) 2020
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 import asyncio
 import os
@@ -9,8 +8,7 @@ from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from userbot import bot
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-
-
+from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern="^.gizli ?(.*)")
 async def wspr(event):
@@ -26,3 +24,6 @@ async def wspr(event):
     
 Help = CmdHelp('gizli')
 Help.add_command('gizli mesaj @tag',  None, 'Qrupda sadəcə seçdiyiniz şəxs mesajı görər').add()
+
+Help = CmdTr('gizli')
+Help.add_command('gizli mesaj @tag',  None, 'Grupta sadece belirtdiyiniz kişi mesajı görür').add()
