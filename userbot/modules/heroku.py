@@ -1,5 +1,4 @@
-# Copyright (C) 2020
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 import codecs
 import heroku3
@@ -17,6 +16,7 @@ from userbot import (
 
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 heroku_api = "https://api.heroku.com"
 if HEROKU_APPNAME is not None and HEROKU_APIKEY is not None:
@@ -174,12 +174,12 @@ async def dyno_usage(dyno):
 
             await dyno.edit(
                 "**Dyno İstifadəsi**:\n\n"
-                f"-> `{app.name} İstifadə etdiyi dyno saatı':\n"
-                f"     •  {AppHours} saat(s), "
-                f"{AppMinutes} dəqiqə(s)  -  {AppPercentage}%"
+                f"➤ `{app.name} İstifadə etdiyi dyno saatı:\n"
+                f"•  {AppHours} saat, "
+                f"{AppMinutes} dəqiqə  -  {AppPercentage}%"
                 "\n\n"
-                "-> `Bu ay qalan dyno saatı:\n"
-                f"     •  **{hours} saat(s), {minutes} dəqiqə(s)  "
+                "➤ `Bu ay qalan dyno saatı:\n"
+                f"•  **{hours} saat, {minutes} dəqiqə  "
                 f"-  {percentage}%**"
             )
             return True
@@ -216,4 +216,16 @@ CmdHelp('heroku').add_command(
         'del var', None, 'del var <Var adı> Seçdiyiniz VARı silər sildikdən sonra botunuza .restart atın.'
     ).add_command(
         'log', None, 'Heroku loqu əldə edin.'
+    ).add()
+
+CmdTr('heroku').add_command(
+'dyno', None, 'Heroku hesabınızın dyno saatini bilgisini verir.'
+    ).add_command(
+        'set var', None, 'set var <Yeni Var ismi> <değer> Botunuza yeni VAR ekler ekledikten sonra botunuza .restart atın.'
+    ).add_command(
+        'get var', None, 'Mevcut VARlarınızı elde edin, yalnız özel grupunuzda kullanın.'
+    ).add_command(
+        'del var', None, 'del var <Var ismi> Belirtdiyiniz VARı silər sildikten sonra botunuza .restart atın.'
+    ).add_command(
+        'log', None, 'Heroku loqu alın.'
     ).add()
