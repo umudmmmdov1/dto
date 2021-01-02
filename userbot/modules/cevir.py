@@ -1,10 +1,4 @@
-# Copyright (C) 2020
-#
-# Licensed under the  GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 from userbot import CMD_HELP
 from userbot.events import register
@@ -13,6 +7,7 @@ import io
 import os
 import asyncio
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -139,4 +134,14 @@ CmdHelp('cevir').add_command(
     'çevir gif', None, 'Videonu və ya animasyonlu stickeri gifə çevirər.'
 ).add_command(
     'çevir ses', '<uşaq/robot/earrape/suretli/parazit/yangi>', 'Səsə efekt verər.'
+).add()
+
+CmdTr('cevir').add_command(
+    'çevir foto', '<yanıt>', 'Stickeri fotoğrafa çevirir.'
+).add_command(
+    'çevir gif', '<yanıt>', 'Videoyu veya animasyonlu stickeri gife çevirir.'
+).add_command(
+    'çevir ses', '<uşaq/robot/earrape/suretli/parazit/yangi>', 'Sese efekt uygular.'
+).add_command(
+    'çevir mp3', '<yanıt>', 'Yanıt verdiğiniz videoyu mp3 yapar.'
 ).add()
