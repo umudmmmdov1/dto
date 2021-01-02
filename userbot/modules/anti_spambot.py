@@ -1,13 +1,6 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
+# U S Σ R Δ T O R / Ümüd
 
-# DTÖUserBot - Ümüd
-#
-
-''' DTÖ '''
+''' AntiSpamBot '''
 
 from asyncio import sleep
 from requests import get
@@ -21,7 +14,7 @@ from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, ANTI_SPAMBOT, ANTI_SPAMBOT_
 @bot.on(ChatAction)
 async def anti_spambot(welcm):
     try:
-        ''' . '''
+        ''' AntiSpam '''
         if not ANTI_SPAMBOT:
             return
         if welcm.user_joined or welcm.user_added:
