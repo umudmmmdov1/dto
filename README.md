@@ -1,7 +1,7 @@
-<p align="center"><a href="https://t.me/useratorsup"><img src="https://telegra.ph/file/bfdeb79cc1e15d0155334.mp4" width="5000"></a></p> 
+<p align="center"><a href="https://t.me/useratorsup"><img src="https://telegra.ph/file/1bb657724f15165f795b3.jpg" width="5000"></a></p> 
 <h1 align="center"><b>U S Σ R Δ T O R</b></h1>
-<h3 align="center">U S Σ R Δ T O R, Telegram işlətməyinizi asandlaşdıran bir botdur. Tamamilə açıq qaynağlı və ödənişsizdir.</h3>
-<h3 align="center">U S Σ R Δ T O R is a bot that makes it easy to use Telegram. Completely open source and free.</h3>
+<h3 align="center">Userator, Telegram işlətməyinizi asandlaşdıran bir botdur. Tamamilə açıq qaynağlı və ödənişsizdir.</h3>
+<h3 align="center">Userator is a bot that makes it easy to use Telegram. Completely open source and free.</h3>
 
 ## Kömək / Support
 
