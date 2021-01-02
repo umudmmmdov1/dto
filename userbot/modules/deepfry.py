@@ -1,10 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 import io
@@ -15,6 +9,7 @@ from userbot.events import register
 from PIL import Image, ImageEnhance, ImageOps
 from telethon.tl.types import DocumentAttributeFilename
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -115,4 +110,8 @@ async def check_media(reply_message):
 
 CmdHelp('deepfry').add_command(
     'deepfry', '<rəqəm 1-5>', 'Seçilən görüntüyə deepfry efekti edər.', 'deepfry 5'
+).add()
+
+CmdTr('deepfry').add_command(
+    'deepfry', '<numara 1-5>', 'Belirlenen görüntüye deepfry efekti uygular.', 'deepfry 5'
 ).add()
