@@ -1,10 +1,4 @@
-# Copyright (C) 2020
-#
-# Licensed under the  GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 
@@ -15,6 +9,7 @@ from telethon.tl import functions
 from userbot import CMD_HELP, ASYNC_POOL
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -79,4 +74,8 @@ async def auto(event):
 
 CmdHelp('auto').add_command(
     'auto', 'ad ya da bio', 'Avtomatik saata görə dəyişdirir', '.auto ad'
+).add()
+
+CmdTr('auto').add_command(
+    'auto', 'ad ya da bio', 'Otomatik saate göre değiştirir', '.auto ad'
 ).add()
