@@ -1,11 +1,11 @@
-# Copyright (C) 2020
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 import json
 
 import requests
 
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 from userbot.events import register
 
 PLACE = ""
@@ -59,3 +59,6 @@ async def get_adzan(adzan):
 
 Help = CmdHelp('azan')
 Help.add_command('azan şəhər adı',  None, 'Namaz vaxtlarını göstərər').add()
+
+Help = CmdTr('azan')
+Help.add_command('azan şehir ismi',  None, 'Namaz vakitlerini gösterir').add()
