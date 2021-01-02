@@ -1,9 +1,10 @@
-# @UseratorOT - Coshgyn
+# U S Σ R Δ T O R / Coshgyn
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern=".ascii ?(.*)")
 async def asci(event):
@@ -169,7 +170,7 @@ async def picture(event):
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
-CmdHelp('effekt').add_command(
+CmdHelp('photos').add_command(
     'ascii', None, 'Cavab verdiyiniz şəkilə ASCII effekti verər.'
 ).add_command(
     'line', None, 'Cavab verdiyiniz şəkilə 50Lines effekti verər.'
@@ -177,4 +178,14 @@ CmdHelp('effekt').add_command(
     'colorize', None, 'Ağ-qara şəkilləri rəngləndirər'
 ).add_command(
     'pixel', None, 'Cavab verdiyiniz şəkilə pixel effekti verər.'
+).add()
+
+CmdTr('photos').add_command(
+    'ascii', None, 'Yanıt yaptığınız resime ASCII effekti yapar.'
+).add_command(
+    'line', None, 'Yanıt yaptığınız resime 50Lines effekti yapar.'
+).add_command(
+    'colorize', None, 'Siyah-Beyaz resimleri renkler'
+).add_command(
+    'pixel', None, 'Yanıt yaptığınız reaime pixel effekti yapar.'
 ).add()
