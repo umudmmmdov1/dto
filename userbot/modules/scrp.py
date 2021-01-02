@@ -5,6 +5,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 from userbot.cmdtr import CmdTr
+from userbot import bot
 
 @register(outgoing=True, pattern="^.pnt ?(.*)")
 @register(outgoing=True, pattern="^.tt ?(.*)")
