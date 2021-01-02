@@ -141,7 +141,7 @@ LYDIA_API_KEY = os.environ.get("LYDIA_API_KEY", None)
 # Alive şəkil
 IMG = os.environ.get(
     "IMG",
-    "https://telegra.ph/file/70ec56622b2e0f860b23b.mp4")
+    "https://telegra.ph/file/bfdeb79cc1e15d0155334.mp4")
 
 # Anti Spambot
 ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
