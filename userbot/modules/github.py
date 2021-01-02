@@ -1,16 +1,11 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 import aiohttp
 from userbot.events import register
 from userbot import CMD_HELP
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -65,4 +60,8 @@ async def github(event):
 
 CmdHelp('git').add_command(
     'git', '<istifadəçi adı>', 'Hədəflənən istifadəçinin GitHub məlumatlarını göstərər.', 'git umudmmmdov1'
+).add()
+
+CmdTr('git').add_command(
+    'git', '<kullanıcı adı>', 'Hedeflenen kişinin GitHub bilgilerini gösterir.', 'git quiec'
 ).add()
