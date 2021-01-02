@@ -1,4 +1,4 @@
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -13,6 +13,7 @@ from requests import get
 import pytz
 import flag
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern="^.covid ?(.*)$")
 async def covid(event):
@@ -47,4 +48,7 @@ async def covid(event):
 
 CmdHelp('covid19').add_command(
     'covid', '<ölkə kodu>', 'Həm Dünya həm də verdiyiniz ölkə üçün yenilənmiş Covid 19 statistikaları. Ölkəniz fərqlidisə əmrin yanına ölkə kodu əlavə etməyiniz lazımdır.'
+).add()
+CmdTr('covid19').add_command(
+    'covid', '<ülke kodu>', 'Hem Dünya geneli hem de verdiğiniz ülke için güncel Covid 19 istatistikleri. Ülkeniz farklı ise komutun yanına eklemeniz yeterlidir.',
 ).add()
