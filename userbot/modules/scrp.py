@@ -1,164 +1,167 @@
-# U S Σ R Δ T Ω R / Ümüd
+# @UseratorOT - Coshgyn
 
-import asyncio
-from asyncio.exceptions import TimeoutError
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
-@register(outgoing=True, pattern="^.ig (.*)")
-async def instagram(event):
-    if event.fwd_from:
-        return
-    ig = event.pattern_match.group(1)
-    if ".com" not in ig:
-        await event.edit("`Yükləmək üçün mənə düzgün bir link verin` ** -_- **")
-    else:
-        await event.edit("**Yükləmə başlanır!**📲")
-
-    async with bot.conversation("@SaveAsBot") as conv:
-        try:
-            await conv.send_message("/start")
-            await conv.get_response()
-            try:
-                await bot(ImportChatInviteRequest("AAAAAFZPuYvdW1A8mrT8Pg"))
-            except UserAlreadyParticipantError:
-                await asyncio.sleep(0.00000069420)
-            await conv.send_message(ig)
-            details = await conv.get_response()
-            await event.client.send_message(event.chat_id, details)
-            await conv.get_response()
-            video = await conv.get_response()
-            await event.client.send_file(
-                event.chat_id,
-                video,
-                caption="🐍 @UseratorOT `ilə yükləndi`"
-            )
-            await event.delete()
-        except YouBlockedUserError:
-            await event.edit("@SaveAsBot'u `blokdan çıxardıb yenidən yoxlayın`")
-            
-
-@register(outgoing=True, pattern="^.tt (.*)")
-async def tiktok(event):
-    if event.fwd_from:
-        return
-    tt = event.pattern_match.group(1)
-    if ".com" not in tt:
-        await event.edit("`Yükləmək üçün mənə düzgün bir link verin` ** -_- **")
-    else:
-        await event.edit("**Yükləmə başlanır!**📲")
-
-    async with bot.conversation("@SaveAsBot") as conv:
-        try:
-            await conv.send_message("/start")
-            await conv.get_response()
-            try:
-                await bot(ImportChatInviteRequest("AAAAAFZPuYvdW1A8mrT8Pg"))
-            except UserAlreadyParticipantError:
-                await asyncio.sleep(0.00000069420)
-            await conv.send_message(tt)
-            details = await conv.get_response()
-            await event.client.send_message(event.chat_id, details)
-            await conv.get_response()
-            video = await conv.get_response()
-            await event.client.send_file(
-                event.chat_id,
-                video,
-                caption="🐍 @UseratorOT `ilə yükləndi`",
-            )
-            await event.delete()
-        except YouBlockedUserError:
-            await event.edit("@SaveAsBot'u `blokdan çıxardıb yenidən yoxlayın`")
-            
-            
-@register(outgoing=True, pattern="^.png")
-async def topng(event):
+@register(outgoing=True, pattern=".ig (.*)")
+async def insta(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        return await event.edit("`Bir media'a cavab verin.`")
-    reply_message = await event.get_reply_message()
-    if not reply_message.media:
-        return await event.edit("`Bir media'a cavab verin`")
-    chat = "@NewStickerOptimizerBot"
-    await event.edit("`Hazırlanır...`")
-    try:
-        async with bot.conversation(chat) as conv:
-            try:
-                response = conv.wait_event(
-                    events.NewMessage(incoming=True, from_users=436288868)
-                )
-                await bot.forward_messages(chat, reply_message)
-                response = await response
-                await bot.send_read_acknowledge(conv.chat_id)
-
-            except YouBlockedUserError:
-                return await event.reply("@NewStickerOptimizerBot'u `blokdan çıxardın və yenidən cəhd edin.`")
-
-            if response.text.startswith("saam"):
-                await event.edit(
-                    "`Gizlilik ayarlarınızı dəyişin`"
-                )
-            else:
-                await event.delete()
-                await bot.send_message(event.chat_id, response.message)
-
-    except TimeoutError:
-        return await event.edit("`Botdan cavab ala bilmədim.`")
-
-
-@register(outgoing=True, pattern=".muz ?(.*)")
-async def deezload(event):
-    if event.fwd_from:
+        await event.edit("`Yükləmək üçün bir Instagram linkinə cavab verin.`")
         return
-    d_link = event.pattern_match.group(1)
-    if ".com" not in d_link:
-        await event.edit("` Yükləmək üçün mənə düzgün bir link verin.` **-_-**")
-    else:
-        await event.edit("🎶**Yüklənmə başladı...**")
-
-    async with bot.conversation("@DeezLoadBot") as conv:
+    reply_message = await event.get_reply_message()
+    if not reply_message.text:
+        await event.edit("`Bir linkə cavab olaraq istifadə edin.`")
+        return
+    chat = "@SaveAsbot"
+    reply_message.sender
+    if reply_message.sender.bot:
+        await event.edit("Real istifadəçilərə cavab olaraq istifadə edin.")
+        return
+    insta = await event.edit("`Yüklənilir...` 🔥")
+    async with event.client.conversation(chat) as conv:
         try:
-            await conv.send_message("/start")
-            await conv.get_response()
-            try:
-                await bot(ImportChatInviteRequest("AAAAAFZPuYvdW1A8mrT8Pg"))
-            except UserAlreadyParticipantError:
-                await asyncio.sleep(0.00000069420)
-            await conv.send_message(d_link)
-            details = await conv.get_response()
-            await event.client.send_message(event.chat_id, details)
-            await conv.get_response()
-            songh = await conv.get_response()
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=523131145)
+            )
+            await event.client.send_message(chat, reply_message)
+            response = await response
+        except YouBlockedUserError:
+            await event.edit("@SaveAsbot'u `blokdan çıxardın və yenidən yoxlayın`")
+            return
+        if response.text.startswith("Forward"):
+            await event.edit(
+                "gizlilik ayarlarınızı düzəldin."
+            )
+        else:
+            await event.delete()
             await event.client.send_file(
                 event.chat_id,
-                songh,
-                caption="🐍 @UseratorOT `ilə yükləndi`",
+                response.message.media,
+                caption=f"@UseratorOT 🐍",
             )
-            await event.delete()
+            await event.client.send_read_acknowledge(conv.chat_id)
+
+
+@register(outgoing=True, pattern=".tt (.*)")
+async def tiktok(event):
+    if event.fwd_from:
+        return
+    if not event.reply_to_msg_id:
+        await event.edit("`Yükləmək üçün bir TikTok linkinə cavab verin.`")
+        return
+    reply_message = await event.get_reply_message()
+    if not reply_message.text:
+        await event.edit("`Bir linkə cavab olaraq istifadə edin.`")
+        return
+    chat = "@SaveAsbot"
+    reply_message.sender
+    if reply_message.sender.bot:
+        await event.edit("Real istifadəçilərə cavab olaraq istifadə edin.")
+        return
+    tikt = await event.edit("`Yüklənilir...` 🔥")
+    async with event.client.conversation(chat) as conv:
+        try:
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=523131145)
+            )
+            await event.client.send_message(chat, reply_message)
+            response = await response
         except YouBlockedUserError:
-            await event.edit("@DeezLoadBot'u blokdan çıxardıb yenidən yoxlayın.")
-
-CmdHelp('scrp').add_command(
-    'ig', '<link>', 'Verdiyiniz İnstagram linkini mediaya çevirər.'
+            await event.edit("@SaveAsbot'u `blokdan çıxardın və yenidən yoxlayın`")
+            return
+        if response.text.startswith("Forward"):
+            await event.edit(
+                "gizlilik ayarlarınızı düzəldin."
+            )
+        else:
+            await event.delete()
+            await event.client.send_file(
+                event.chat_id,
+                response.message.media,
+                caption=f"@UseratorOT 🐍",
+            )
+            await event.client.send_read_acknowledge(conv.chat_id)
+            
+            
+@register(outgoing=True, pattern=".pnt (.*)")
+async def pinterest(event):
+    if event.fwd_from:
+        return
+    if not event.reply_to_msg_id:
+        await event.edit("`Yükləmək üçün bir Pinterest linkinə cavab verin.`")
+        return
+    reply_message = await event.get_reply_message()
+    if not reply_message.text:
+        await event.edit("`Bir linkə cavab olaraq istifadə edin.`")
+        return
+    chat = "@SaveAsbot"
+    reply_message.sender
+    if reply_message.sender.bot:
+        await event.edit("Real istifadəçilərə cavab olaraq istifadə edin.")
+        return
+    pint = await event.edit("`Yüklənilir...` 🔥")
+    async with event.client.conversation(chat) as conv:
+        try:
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=523131145)
+            )
+            await event.client.send_message(chat, reply_message)
+            response = await response
+        except YouBlockedUserError:
+            await event.edit("@SaveAsbot'u `blokdan çıxardın və yenidən yoxlayın`")
+            return
+        if response.text.startswith("Forward"):
+            await event.edit(
+                "gizlilik ayarlarınızı düzəldin."
+            )
+        else:
+            await event.delete()
+            await event.client.send_file(
+                event.chat_id,
+                response.message.media,
+                caption=f"@UseratorOT 🐍",
+            )
+            await event.client.send_read_acknowledge(conv.chat_id)
+            
+            
+@register(outgoing=True, pattern="^.dzd(?: |$)(.*)")
+async def DeezLoader(event):
+    if event.fwd_from:
+        return
+    dlink = event.pattern_match.group(1)
+    if ".com" not in dlink:
+        await event.edit("`Yükləmək üçün mənə bir link verin`")
+    else:
+        await event.edit("**Yükləmə başladı** 🎶")
+    chat = "@DeezLoadBot"
+    async with bot.conversation(chat) as conv:
+          try:
+              msg_start = await conv.send_message("/start")
+              response = await conv.get_response()
+              r = await conv.get_response()
+              msg = await conv.send_message(dlink)
+              details = await conv.get_response()
+              song = await conv.get_response()
+#                                   #
+              await bot.send_read_acknowledge(conv.chat_id)
+          except YouBlockedUserError:
+              await event.edit("@DeezLoadBot'u blokdan çıxardın və yenidən yoxlayın.")
+              return
+          await bot.send_file(event.chat_id, song, caption=details.text)
+          await event.client.delete_messages(conv.chat_id,
+                                             [msg_start.id, response.id, r.id, msg.id, details.id, song.id])
+          await event.delete()     
+          
+CmdHelp('socialdl').add_command(
+    'ig', '<link>', 'Cavab verdiyiniz Instagram linkini media olaraq göndərər\n⚠️Diqqət: Verdiyiniz linkdəki hesab gizli olmamalıdır.'
 ).add_command(
-    'tt', '<link>', 'Verdiyiniz TikTok linkini mediaya çevirər.'
+    'tt', '<link>', 'Cavab verdiyiniz TikTok linkini media olaraq göndərər.'
 ).add_command(
-    'muz', '<mahnı adı>', 'deez əmrinin başqa bir forması. Musiqi endirər.'
+    'pnt', '<link>', 'Cavab verdiyiniz Pinterest linkini media olaraq göndərər.'
 ).add_command(
-    'png', ' ', 'Cavab verdiyiniz şəkil/sticker’i PNG formatına çevirər.'
-).add()
-
-CmdTr('scrp').add_command(
-    'ig', '<bağlantı>', 'Instagram bağlantınızı medyaya çevirir.'
-).add_command(
-    'tt', '<bağlantı>', 'TikTok bağlantınızı medyaya çevirir..'
-).add_command(
-    'muz', '<şarkı ismi>', 'Deez düzeninin başka bir biçimi. Müzik indirir. .'
-).add_command(
-    'png', ' ', 'Yanıtladığınız resmi / çıkartmayı PNG formatına dönüştürür.'
+    'dzd', '<link>', 'Verdiyiniz spotify/deezer linkini musiqiyə çevirər.'
 ).add()
