@@ -12,7 +12,9 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
-@register(outgoing=True, pattern=".ig|tt|pnt ?(.*)")
+@register(outgoing=True, pattern="^.pnt ?(.*)")
+@register(outgoing=True, pattern="^.tt ?(.*)")
+@register(outgoing=True, pattern=".ig ?(.*)")
 async def insta(event):
     if event.fwd_from:
         return
