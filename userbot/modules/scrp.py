@@ -5,13 +5,6 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
-# @UseratorOT - Coshgyn
-
-from telethon import events
-from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot.events import register
-from userbot.cmdhelp import CmdHelp
-
 @register(outgoing=True, pattern="^.pnt ?(.*)")
 @register(outgoing=True, pattern="^.tt ?(.*)")
 @register(outgoing=True, pattern=".ig ?(.*)")
