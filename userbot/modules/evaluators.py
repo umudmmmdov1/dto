@@ -194,7 +194,7 @@ async def terminal_runner(term):
 CmdHelp('evaluators').add_command(
     'eval', '<istək>', 'Mini ifadələri dəyərləndirin.', 'eval 2+3'
 ).add_command(
-    'exec', '<python kodu>', 'Kiçik python əmrləri işlədin.', 'exec print(\"DTÖUserBotdan Salamlar!\")'
+    'exec', '<python kodu>', 'Kiçik python əmrləri işlədin.', 'exec print(\"U S Σ R Δ T O R dan Salamlar!\")'
 ).add_command(
     'term', '<istək>', 'Serverinizdə bash əmrlərini və əmr fayllarını işlədin.', 'term ls'
 ).add()
@@ -202,7 +202,7 @@ CmdHelp('evaluators').add_command(
 CmdTr('evaluators').add_command(
     'eval', '<işlem>', 'Mini ifadeleri değerlendirin.', 'eval 2+3'
 ).add_command(
-    'exec', '<python kodu>', 'Küçük python komutları yürütün.', 'exec print(\"AsenaUserbottan Selamlar!\")'
+    'exec', '<python kodu>', 'Küçük python komutları yürütün.', 'exec print(\"U S Σ R Δ T O R tan Selamlar!\")'
 ).add_command(
     'term', '<işlem>', 'Sunucunuzda bash komutlarını ve komut dosyalarını çalıştırın.', 'term ls'
 ).add()
