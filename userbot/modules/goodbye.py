@@ -1,16 +1,11 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
 from userbot.events import register
 from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
 from telethon.events import ChatAction
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 @bot.on(ChatAction)
 async def goodbye_to_chat(event):
@@ -164,4 +159,12 @@ CmdHelp('goodbye').add_command(
     'checkgoodbye', None, 'Söhbətdəe görüşərik notu olub olmadığını yoxlayın.'
 ).add_command(
     'rmgoodbye', None, 'Keçərli söhbət üçün görüşərik notunu silər.'
+).add()
+
+CmdTr('goodbye').add_command(
+    'setgoodbye', '<yanıt mesajı> veya .setgoodbye ile bir mesaja cevap verin', 'Mesajı sohbete görüşürüz notu olarak kaydeder.'
+).add_command(
+    'checkgoodbye', None, 'Sohbette görüşürz notu olup olmadığını kontrol edin.'
+).add_command(
+    'rmgoodbye', None, 'Geçerli sohbet için görüşürüz notunu siler.'
 ).add()
