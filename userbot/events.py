@@ -1,7 +1,6 @@
-# Copyright (C) 2020
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
-""" """
+""" Xeta """
 
 import sys
 from asyncio import create_subprocess_shell as asyncsubshell
@@ -73,8 +72,8 @@ def register(**args):
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-                    text = "**DTÖUSERBOT XƏTA ❄️**\n"
-                    link = "[DTÖUserBot Dəstək Qrupu](https://t.me/DtoSupport)"
+                    text = "**U S Σ R Δ T O R**\n"
+                    link = "[U S Σ R Δ T O R Support](https://t.me/UseratorSup)"
                     text += "İstərsəniz, bunu şikayət edə bilərsiz"
                     text += f"- sədəcə bu mesajı buraya yönləndirin {link}.\n"
                     text += "Xəta və Tarix xaricində heç birşey qeyd edilmir\n"
@@ -117,7 +116,7 @@ def register(**args):
 
                     if LOGSPAMMER:
                         await check.client.respond("`Təəsüf, UserBot'um çökdü.\
-                        \nXəta günlükləri DTÖUserBot günlük qrupunda saxlanılır.`")
+                        \nXəta günlükləri U S Σ R Δ T O R günlük qrupunda saxlanılır.`")
 
                     await check.client.send_file(send_to,
                                                  "error.log",
