@@ -1,11 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd 
-#
+# U S Σ R Δ T O R / Ümüd 
 
 """ AFK """
 
@@ -20,6 +13,7 @@ from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from time import time
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -330,4 +324,10 @@ CmdHelp('afk').add_command(
     'afk', 
     '<İstəyə bağlı səbəb>', 
     'AFK olduğunuzu bildirər. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.'
+    ).add()
+
+CmdTr('afk').add_command(
+    'afk', 
+    '<İsteğe bağlı sebep>', 
+    'AFK olduğunuzu belirtir. Kim size pm atarsa ya da sizi etiketlerse sizin AFK olduğunuzu ve belirlediğiniz sebebi gösterir. Herhangi bir yere mesaj yazdığınızda AFK modu kapanır.'
     ).add()
