@@ -1,13 +1,7 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
+# U S Σ R Δ T O R / Ümüd
 
 
-""" . """
+""" Hash """
 
 from subprocess import PIPE
 from subprocess import run as runapp
@@ -15,6 +9,7 @@ import pybase64
 from userbot import CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern="^.hash (.*)")
 async def gethash(hash_q):
@@ -66,4 +61,10 @@ CmdHelp('hash').add_command(
     'base64', None, 'Verilən dizenin base64 kodlamasını tapın'
 ).add_command(
     'hash', None, 'Bir txt faylın yazıldığında md5, sha1, sha256, sha512 dizelerini tapın.'
+).add()
+
+CmdTr('hash').add_command(
+    'base64', None, 'Verilen dizenin base64 kodlamasını bulun'
+).add_command(
+    'hash', None, 'Bir txt dosyası yazıldığında md5, sha1, sha256, sha512 dizelerini bulun.'
 ).add()
