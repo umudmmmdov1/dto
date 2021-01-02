@@ -1,11 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
-# DTÖUserBot - Ümüd
-#
+# U S Σ R Δ T O R / Ümüd
 
 import aria2p
 from asyncio import sleep
@@ -14,8 +7,8 @@ from userbot import LOGS, CMD_HELP
 from userbot.events import register
 from requests import get
 from userbot.cmdhelp import CmdHelp
+from userbot.cmdtr import CmdTr
 
-# 
 trackers_list = get(
     'https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt'
 ).text.replace('\n\n', ',')
@@ -211,4 +204,16 @@ CmdHelp('aria').add_command(
         'aclear', None, 'Endirmə quyruğunu təmizləyər, davam edən bütün endirmələri silər.'
     ).add_command(
         'ashow', None, 'Davam edən endirmələrin statusunu göstərər.'
+    ).add()
+
+CmdTr('aria').add_command(
+    'aurl', 
+    '[URL] (ya da) .amag [Magnet Linki] (ya da) .ator [torrent dosyasının yolu]', 
+    'Bir dosyayı userbot sunucusuna indirir.'
+    ).add_command(
+        'apause', None, 'Devam eden indirmeyi durdurur ya da devam ettirir.'
+    ).add_command(
+        'aclear', None, 'İndirme kuyruğunu temizler, devam eden tüm indirmeleri siler.'
+    ).add_command(
+        'ashow', None, 'Devam eden indirmelerin durumunu gösterir.'
     ).add()
