@@ -1,13 +1,13 @@
-<p align="center"><a href="https://t.me/dtosupport"><img src="https://i.imgyukle.com/2020/11/17/TYuenv.jpg" width="5000"></a></p> 
-<h1 align="center"><b>DTÖUserBot</b></h1>
-<h3 align="center">DTÖUserBot, Telegram işlətməyinizi asandlaşdıran bir botdur. Tamamilə açıq qaynağlı və ödənişsizdir.</h3>
-<h3 align="center">DTÖUserBot is a bot that makes it easy to use Telegram. Completely open source and free.</h3>
+<p align="center"><a href="https://t.me/useratorsup"><img src="https://telegra.ph/file/bfdeb79cc1e15d0155334.mp4" width="5000"></a></p> 
+<h1 align="center"><b>U S Σ R Δ T O R</b></h1>
+<h3 align="center">U S Σ R Δ T O R, Telegram işlətməyinizi asandlaşdıran bir botdur. Tamamilə açıq qaynağlı və ödənişsizdir.</h3>
+<h3 align="center">U S Σ R Δ T O R is a bot that makes it easy to use Telegram. Completely open source and free.</h3>
 
 ## Kömək / Support
 
-<a href="https://t.me/DTOUserBot"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
+<a href="https://t.me/UseratorOT"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
 
-<a href="https://t.me/DTOSupport"><img src="https://img.shields.io/badge/Join-Telegram%20Group-blue.svg?logo=telegram"></a>
+<a href="https://t.me/UseratorSup"><img src="https://img.shields.io/badge/Join-Telegram%20Group-blue.svg?logo=telegram"></a>
 
 ## Qurulum / Method
 
@@ -32,6 +32,6 @@
 
 ## Təşəkkürlər / Thanks 
 
-[Hüseyn Abbasov](https://t.me/hus3ynx)
+[Hüseyn Abbasov](https://t.me/hus3yns)
 
 [BristolMyers](http://t.me/BristolMyers)
