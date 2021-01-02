@@ -152,7 +152,7 @@ async def raw(event):
             caption="`Həll edilən mesaj`")
 
 CmdHelp('misc').add_command(
-    'random', '<əşya1> <əşya2> ... <şyaN>', 'Əşya listindən təsadufi bir əşya seçər', 'random dto user bot'
+    'random', '<əşya1> <əşya2> ... <şyaN>', 'Əşya listindən təsadufi bir əşya seçər', 'random userator uniborg userge'
 ).add_command(
     'sleep', '<vaxt>', 'U S Σ R Δ T O R da bir insandır, o da yorulur. Ara bir biraz yatmağına icazə ver.', 'sleep 30'
 ).add_command(
@@ -176,7 +176,7 @@ CmdHelp('misc').add_command(
 ).add()
 
 CmdTr('misc').add_command(
-    'random', '<eşya1> <eşya2> ... <eşyaN>', 'Eşya listesinden rastgele bir eşya seçer', 'random asena uniborg userge'
+    'random', '<eşya1> <eşya2> ... <eşyaN>', 'Eşya listesinden rastgele bir eşya seçer', 'random userator uniborg userge'
 ).add_command(
     'sleep', '<süre>', 'U S Σ R Δ T O R da bir insan, o da yoruluyor. Ara sıra biraz uyumasına izin ver.', 'sleep 30'
 ).add_command(
