@@ -1,7 +1,7 @@
 {
-  "name": "DTÖUserBot",
+  "name": "U S Σ R Δ T O R",
   "description": "Telegram UserBot",
-  "logo": "https://i.imgyukle.com/2020/11/17/TYuenv.jpg",
+  "logo": "https://telegra.ph/file/1bb657724f15165f795b3.jpg",
   "keywords": [
     "telegram",
     "userbot",
@@ -11,8 +11,8 @@
     "productivity"
   ],
   "repository": "https://github.com/umudmmmdov1/DTOUserBot",
-  "website":   "https://dto.com",
-  "success_url": "https://t.me/DTOSupport",
+  "website":   "https://t.me/UseratorOT",
+  "success_url": "https://t.me/UseratorSUP",
   "stack": "container",
   "env": {
     "API_KEY": {
