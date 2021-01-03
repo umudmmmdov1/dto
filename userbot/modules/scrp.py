@@ -9,7 +9,7 @@ from userbot import bot
 
 @register(outgoing=True, pattern="^.pnt ?(.*)")
 @register(outgoing=True, pattern="^.tt ?(.*)")
-@register(outgoing=True, pattern=".ig ?(.*)")
+@register(outgoing=True, pattern="^.ig ?(.*)")
 async def insta(event):
     if event.fwd_from:
         return
