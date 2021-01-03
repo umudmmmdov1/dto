@@ -80,7 +80,7 @@ async def DeezLoader(event):
 CmdHelp('sosial').add_command(
     'ig', '<link>', 'Cavab verdiyiniz Instagram linkini media olaraq göndərər\n⚠️Diqqət: Verdiyiniz linkdəki hesab gizli olmamalıdır.'
 ).add_command(
-    'tt', '<link>', 'Cavab verdiyiniz TikTok linkini media olaraq göndərər.'
+    'tik', '<link>', 'Cavab verdiyiniz TikTok linkini media olaraq göndərər.'
 ).add_command(
     'pnt', '<link>', 'Cavab verdiyiniz Pinterest linkini media olaraq göndərər.'
 ).add_command(
@@ -90,7 +90,7 @@ CmdHelp('sosial').add_command(
 CmdTr('sosial').add_command(
     'ig', '<bağlantı>', 'Yanıt verdiğiniz Instagram bağlantısını media olarak gönderir\n⚠️Uyarı: Verdiğiniz bağlantıda hesap gizli olmamalı.'
 ).add_command(
-    'tt', '<bağlantı>', 'Yanıt verdiğiniz TikTok bağlantısını media olarak gönderir.'
+    'tik', '<bağlantı>', 'Yanıt verdiğiniz TikTok bağlantısını media olarak gönderir.'
 ).add_command(
     'pnt', '<bağlantı>', 'Yanıt verdiğiniz Pinterest bağlantısını media olarak gönderir.'
 ).add_command(
