@@ -22,6 +22,12 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/umudmmmdov1/dtouserbot)
 
+## Məlumat / Info
+<h5 align="center">Botun yanlış istifadəsi halında məsuliyyət tamamilə istifadəçiyə
+aiddir.Userator idarəçiləri olaraq heç bir məsuliyyət qəbul etmirik.
+Botu telegramı daha rahat istifadə eləmək xaricində əylənmək
+üçün də istifadə edə bilərsiniz.</h5>
+
 ### Lisenziya / License
 
 <a href="https://tr.m.wikipedia.org/wiki/MIT_Lisans%C4%B1"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg"></a>
