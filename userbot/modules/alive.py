@@ -92,7 +92,7 @@ async def amireallyalivereset(ureset):
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Uğurla alive ad silindi!" "`")
 
-@register(outgoing=True, pattern=".userator")
+@register(outgoing=True, pattern="^.userator")
 
 async def merkurkedissa(event):
 
