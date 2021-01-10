@@ -133,7 +133,7 @@ async def dyno_usage(dyno):
     u_id = Heroku.account().id
     headers = {
      'User-Agent': useragent,
-     'Authorization': f'Bearer {HEROKU_API_KEY}',
+     'Authorization': f'Bearer {HEROKU_APIKEY}',
      'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
     }
     path = "/accounts/" + u_id + "/actions/get-quota"
@@ -168,7 +168,7 @@ async def dyno_usage(dyno):
     await asyncio.sleep(1.5)
 
     return await dyno.edit("**Dyno istifadəsi**:\n\n"
-                           f" ➤ `İstifadə edilən dyno`  **({HEROKU_APP_NAME})**:\n"
+                           f" ➤ `İstifadə edilən dyno`  **({HEROKU_APPNAME})**:\n"
                            f"     •  `{AppHours}`**h**  `{AppMinutes}`**m**  "
                            f"**|**  [`{AppPercentage}`**%**]"
                            "\n"
