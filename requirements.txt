@@ -20,7 +20,7 @@ httplib2
 humanize
 heroku3
 psutil
-lxml==4.5.2
+lxml==4.6.2
 git+https://github.com/johnwmillr/LyricsGenius.git
 lyricsgenius
 oauth2client
