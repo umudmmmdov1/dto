@@ -2,6 +2,7 @@
 
 import codecs
 import heroku3
+import asyncio
 import aiohttp
 import math
 import os
