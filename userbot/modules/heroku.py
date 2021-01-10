@@ -169,12 +169,12 @@ async def dyno_usage(dyno):
 
     return await dyno.edit("**Dyno istifadəsi**:\n\n"
                            f" ➤ `İstifadə edilən dyno`  **({HEROKU_APPNAME})**:\n"
-                           f"     •  `{AppHours}`**h**  `{AppMinutes}`**m**  "
-                           f"**|**  [`{AppPercentage}`**%**]"
+                           f"     •  `{AppHours}` **saat**  `{AppMinutes}` **dəqiqə**  "
+                           f"**|**  [`{AppPercentage}` **%**]"
                            "\n"
                            " ➤ `Bu ay istifadə olunan dyno`:\n"
-                           f"     •  `{hours}`**saat**  `{minutes}`**dəqiqə**  "
-                           f"**|**  [`{percentage}`**%**]"
+                           f"     •  `{hours}` **saat**  `{minutes}` **dəqiqə**  "
+                           f"**|**  [`{percentage}` **%**]"
                            )
 
 @register(outgoing=True, pattern=r"^\.loq")
