@@ -8,77 +8,48 @@ from telethon.events import ChatAction
 from userbot.cmdhelp import CmdHelp
 from userbot.cmdtr import CmdTr
 
-@bot.on(ChatAction)
-async def welcome_to_chat(event):
-    try:
-        from userbot.modules.sql_helper.welcome_sql import get_current_welcome_settings
-        from userbot.modules.sql_helper.welcome_sql import update_previous_welcome
-    except:
-        return
+@bot.on(events.ChatAction())  # pylint:disable=E0602
+async def _(event):
     cws = get_current_welcome_settings(event.chat_id)
     if cws:
-        """user_added=True,
+        # logger.info(event.stringify())
+        """user_added=False,
         user_joined=True,
         user_left=False,
-        user_kicked=False"""
-        if (event.user_joined
-                or event.user_added) and not (await event.get_user()).bot:
-            if CLEAN_WELCOME:
+        user_kicked=False,"""
+        if event.user_joined:
+            if cws.should_clean_welcome:
                 try:
-                    await event.client.delete_messages(event.chat_id,
-                                                       cws.previous_welcome)
-                except Exception as e:
-                    LOGS.warn(str(e))
+                    await bot.delete_messages(  # pylint:disable=E0602
+                        event.chat_id,
+                        cws.previous_welcome
+                    )
+                except Exception as e:  # pylint:disable=C0103,W0703
+                    logger.warn(str(e))  # pylint:disable=E0602
             a_user = await event.get_user()
             chat = await event.get_chat()
-            me = await event.client.get_me()
+            me = await bot.get_me()
 
             title = chat.title if chat.title else "this chat"
             participants = await event.client.get_participants(chat)
             count = len(participants)
-            mention = "[{}](tg://user?id={})".format(a_user.first_name,
-                                                     a_user.id)
+            mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
             first = a_user.first_name
             last = a_user.last_name
             if last:
                 fullname = f"{first} {last}"
             else:
                 fullname = first
-            username = f"@{a_user.username}" if a_user.username else mention
+            username = f"@{me.username}" if me.username else f"[Me](tg://user?id={me.id})"
             userid = a_user.id
-            my_first = me.first_name
-            my_last = me.last_name
-            if my_last:
-                my_fullname = f"{my_first} {my_last}"
-            else:
-                my_fullname = my_first
-            my_username = f"@{me.username}" if me.username else my_mention
-            file_media = None
-            current_saved_welcome_message = None
-            if cws and cws.f_mesg_id:
-                msg_o = await event.client.get_messages(entity=BOTLOG_CHATID,
-                                                        ids=int(cws.f_mesg_id))
-                file_media = msg_o.media
-                current_saved_welcome_message = msg_o.message
-            elif cws and cws.reply:
-                current_saved_welcome_message = cws.reply
+            current_saved_welcome_message = cws.custom_welcome_message
+            mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
+            
             current_message = await event.reply(
-                current_saved_welcome_message.format(mention=mention,
-                                                     title=title,
-                                                     count=count,
-                                                     first=first,
-                                                     last=last,
-                                                     fullname=fullname,
-                                                     username=username,
-                                                     userid=userid,
-                                                     my_first=my_first,
-                                                     my_last=my_last,
-                                                     my_fullname=my_fullname,
-                                                     my_username=my_username,
-                                                     my_mention=my_mention),
-                file=file_media)
+                current_saved_welcome_message.format(mention=mention, title=title, count=count, first=first, last=last, fullname=fullname, username=username, userid=userid),
+                file=cws.media_file_id
+            )
             update_previous_welcome(event.chat_id, current_message.id)
-
 
 @register(outgoing=True, pattern=r"^.setwelcome(?: |$)(.*)")
 async def save_welcome(event):
