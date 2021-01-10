@@ -125,67 +125,57 @@ async def set_var(var):
 @register(outgoing=True, pattern=r"^.dyno(?: |$)")
 async def dyno_usage(dyno):
     """İstifadə edilmiş Dyno'nu əldə edin"""
-    await dyno.edit("`Məlumatlar gətirilir...`")
-    user_id = Heroku.account().id
-    path = "/accounts/" + user_id + "/actions/get-quota"
-    async with aiohttp.ClientSession() as session:
-        useragent = (
-            'Mozilla/5.0 (Linux; Android 10; SM-G975F) '
-            'AppleWebKit/537.36 (KHTML, like Gecko) '
-            'Chrome/81.0.4044.117 Mobile Safari/537.36'
-        )
-        headers = {
-            'User-Agent': useragent,
-            'Authorization': f'Bearer {HEROKU_APIKEY}',
-            'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
-        }
-        async with session.get(heroku_api + path, headers=headers) as r:
-            if r.status != 200:
-                await dyno.client.send_message(
-                    dyno.chat_id,
-                    f"`{r.reason}`",
-                    reply_to=dyno.id
-                )
-                await dyno.edit("`Məıumat əldə etmək olmur...`")
-                return False
-            result = await r.json()
-            quota = result['account_quota']
-            quota_used = result['quota_used']
+    await dyno.edit("`Gözləyin...`")
+    useragent = ('Mozilla/5.0 (Linux; Android 10; SM-G975F) '
+                 'AppleWebKit/537.36 (KHTML, like Gecko) '
+                 'Chrome/80.0.3987.149 Mobile Safari/537.36'
+                 )
+    u_id = Heroku.account().id
+    headers = {
+     'User-Agent': useragent,
+     'Authorization': f'Bearer {HEROKU_API_KEY}',
+     'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
+    }
+    path = "/accounts/" + u_id + "/actions/get-quota"
+    r = requests.get(heroku_api + path, headers=headers)
+    if r.status_code != 200:
+        return await dyno.edit("`Error: something bad happened`\n\n"
+                               f">.`{r.reason}`\n")
+    result = r.json()
+    quota = result['account_quota']
+    quota_used = result['quota_used']
 
-            """- İstifadəçinin dyno limiti və istifadəsi -"""
-            remaining_quota = quota - quota_used
-            percentage = math.floor(remaining_quota / quota * 100)
-            minutes_remaining = remaining_quota / 60
-            hours = math.floor(minutes_remaining / 60)
-            minutes = math.floor(minutes_remaining % 60)
+    """ - Used - """
+    remaining_quota = quota - quota_used
+    percentage = math.floor(remaining_quota / quota * 100)
+    minutes_remaining = remaining_quota / 60
+    hours = math.floor(minutes_remaining / 60)
+    minutes = math.floor(minutes_remaining % 60)
 
-            """- İstifadə olunmuş dyno -"""
-            Apps = result['apps']
-            for apps in Apps:
-                if apps.get('app_uuid') == app.id:
-                    AppQuotaUsed = apps.get('quota_used') / 60
-                    AppPercentage = math.floor(
-                        apps.get('quota_used') * 100 / quota)
-                    break
-            else:
-                AppQuotaUsed = 0
-                AppPercentage = 0
+    """ - Current - """
+    App = result['apps']
+    try:
+        App[0]['quota_used']
+    except IndexError:
+        AppQuotaUsed = 0
+        AppPercentage = 0
+    else:
+        AppQuotaUsed = App[0]['quota_used'] / 60
+        AppPercentage = math.floor(App[0]['quota_used'] * 100 / quota)
+    AppHours = math.floor(AppQuotaUsed / 60)
+    AppMinutes = math.floor(AppQuotaUsed % 60)
 
-            AppHours = math.floor(AppQuotaUsed / 60)
-            AppMinutes = math.floor(AppQuotaUsed % 60)
+    await asyncio.sleep(1.5)
 
-            await dyno.edit(
-                "**Dyno İstifadəsi**:\n\n"
-                f"➤ `{app.name} İstifadə etdiyi dyno saatı:\n"
-                f"•  {AppHours} saat, "
-                f"{AppMinutes} dəqiqə  -  {AppPercentage}%"
-                "\n\n"
-                "➤ `Bu ay qalan dyno saatı:\n"
-                f"•  **{hours} saat, {minutes} dəqiqə  "
-                f"-  {percentage}%**"
-            )
-            return True
-
+    return await dyno.edit("**Dyno istifadəsi**:\n\n"
+                           f" ➤ `İstifadə edilən dyno`  **({HEROKU_APP_NAME})**:\n"
+                           f"     •  `{AppHours}`**h**  `{AppMinutes}`**m**  "
+                           f"**|**  [`{AppPercentage}`**%**]"
+                           "\n"
+                           " ➤ `Bu ay istifadə olunan dyno`:\n"
+                           f"     •  `{hours}`**saat**  `{minutes}`**dəqiqə**  "
+                           f"**|**  [`{percentage}`**%**]"
+                           )
 
 @register(outgoing=True, pattern=r"^\.loq")
 async def _(dyno):
@@ -204,7 +194,7 @@ async def _(dyno):
     key = (requests.post("https://nekobin.com/api/documents",
                          json={"content": data}) .json() .get("result") .get("key"))
     url = f"https://nekobin.com/raw/{key}"
-    await dyno.edit(f"`Heroku loq'u :`\n\n: [DTÖUserBot]({url})")
+    await dyno.edit(f"`Heroku loq'u :`\n\n: [U S E R A T O R]({url})")
     return os.remove("logs.txt")
 
 
