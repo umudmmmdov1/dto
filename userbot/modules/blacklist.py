@@ -75,7 +75,7 @@ async def on_add_black_list(addbl):
         sql.add_to_blacklist(addbl.chat_id, trigger)
     await addbl.edit("{} **{}**".format(len(to_blacklist), LANG['ADDED']))
 
-@register(outgoing=True, pattern="^.listblacklist(?: |$)(.*)")
+@register(outgoing=True, pattern="^.blacklist(?: |$)(.*)")
 async def on_view_blacklist(listbl):
     all_blacklisted = sql.get_chat_blacklist(listbl.chat_id)
     OUT_STR = f"**{LANG['BLACKLIST']}**\n"
@@ -110,7 +110,7 @@ async def on_delete_blacklist(rmbl):
     await rmbl.edit(LANG['REMOVED'])
     
 CmdHelp('blacklist').add_command(
-    'listblacklist', None, 'Bir söhbətdəki aktiv qara listi göstərər.'
+    'blacklist', None, 'Bir söhbətdəki aktiv qara listi göstərər.'
 ).add_command(
     'addblacklist', '<söz(lər)/cavab>', 'Yönləndirməni \'qara listə açar sözlərə\' qeyd edər. \'Qara listdə açar sözlərdən\' danışıldığında bot yönləndirməni silər.', '.addblacklist amk'
 ).add_command(
@@ -118,7 +118,7 @@ CmdHelp('blacklist').add_command(
 ).add_warning('Bu istəkləri etmək üçün idarəçi olmalı və **Mesaj Silmə** icazəniz olmalıdır.').add()
 
 CmdTr('blacklist').add_command(
-    'listblacklist', None, 'Bir sohbetteki etkin kara listeyi listeler.'
+    'blacklist', None, 'Bir sohbetteki etkin kara listeyi listeler.'
 ).add_command(
     'addblacklist', '<kelime(ler)/yanıt>', 'İletiyi \'kara liste anahtar kelimesine\' kaydeder. \'Kara liste anahtar kelimesinden\' bahsedildiğinde bot iletiyi siler.', '.addblacklist amk'
 ).add_command(
