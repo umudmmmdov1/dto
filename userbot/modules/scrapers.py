@@ -59,33 +59,6 @@ from telethon.errors import MessageEmptyError, MessageTooLongError, MessageNotMo
 import io
 import glob
 
-@register(pattern="^.tts2 (.*)", outgoing=True)
-async def tts2(query):
-    textx = await query.get_reply_message()
-    mesj = query.pattern_match.group(1)
-    parca = mesj.split(" ")[0]
-    if parca == "qadın":
-        cins = "female"
-    else:
-        cins = "male"
-
-    message = mesj.replace(parca, "")
-    if message:
-        pass
-    elif textx:
-        message = textx.text
-    else:
-        await query.edit(
-            "`Yazıdan səsə çevirmək üçün bir mətin yazın. İşlədilişi: .tts2 kişi/qadın salam`")
-        return
-
-    mp3 = get(f"https://texttospeech.responsivevoice.org/v1/text:synthesize?text={message}&lang={TTS_LANG}&engine=g3&name=&pitch=0.5&rate=0.5&volume=1&key=DTOUserbot&gender={cins}").content
-    with open("h.mp3", "wb") as audio:
-        audio.write(mp3)
-    await query.client.send_file(query.chat_id, "h.mp3", voice_note=True)
-    os.remove("h.mp3")
-    await query.delete()
-
 @register(pattern="^.reddit ?(.*)", outgoing=True)
 async def reddit(event):
     sub = event.pattern_match.group(1)
@@ -123,67 +96,7 @@ async def reddit(event):
             print(e)
             await event.edit(mesaj + "\n\n`" + veri["selftext"] + "`")
 
-@register(pattern="^.twit ?(.*)", outgoing=True)
-async def twit(event):
-    hesap = event.pattern_match.group(1)
-    if len(hesap) < 1:
-        await event.edit("`Xaiş bir Twitter hesabı seçin. Məsələn: ``.twit umudmmmdov1`")
-        return
-    try:
-        twits = list(twitter_scraper.get_tweets(hesap, pages=1))
-    except Exception as e:
-        await event.edit(f"`Deyəsənn belə bir hesab yoxdur. Çünki xəta yarandı. Xəta: {e}`")
-        return
 
-    if len(twits) > 2:
-        if twits[0]["tweetId"] < twits[1]["tweetId"]:
-            twit = twits[1]
-            fotolar = twit['entries']['photos']
-            sonuc = []
-            if len(fotolar) >= 1:
-                i = 0
-                while i < len(fotolar):
-                    with open(f"{hesap}-{i}.jpg", 'wb') as load:
-                        load.write(get(fotolar[i]).content)
-                    sonuc.append(f"{hesap}-{i}.jpg")
-                    i += 1
-                await event.client.send_file(event.chat_id, sonuc, caption=f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-                await event.delete()
-                return
-            await event.edit(f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-        else:
-            twit = twits[1]
-            fotolar = twit['entries']['photos']
-            sonuc = []
-            if len(fotolar) >= 1:
-                i = 0
-                while i < len(fotolar):
-                    with open(f"{hesap}-{i}.jpg", 'wb') as load:
-                        load.write(get(fotolar[i]).content)
-                    sonuc.append(f"{hesap}-{i}.jpg")
-                    i += 1
-                print(sonuc)
-                await event.client.send_file(event.chat_id, sonuc, caption=f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-                await event.delete()
-                return
-            await event.edit(f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-        return
-    else:
-        twit = twits[0]
-        fotolar = twit['entries']['photos']
-        sonuc = []
-        if len(fotolar) >= 1:
-            i = 0
-            while i < len(fotolar):
-                with open(f"{hesap}-{i}.jpg", 'wb') as load:
-                    load.write(get(fotolar[i]).content)
-                sonuc.append(f"{hesap}-{i}.jpg")
-                i += 1
-            await event.client.send_file(event.chat_id, sonuc, caption=f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-            await event.delete()
-            return
-        await event.edit(f"**{hesap}**\n{twit['time']}\n\n`{twit['text']}`\n\n💬{twit['replies']} 🔁{twit['retweets']} ❤️{twit['likes']}")
-        return
 
 @register(outgoing=True, pattern="^.karbon ?(.*)")
 async def karbon(e):
@@ -211,7 +124,6 @@ async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
     await prog.edit(f"Karbon modulu üçün həmişəki dil {CARBONLANG} olaraq qeyd edildi.")
-
 
 @register(outgoing=True, pattern="^.carbon")
 async def carbon_api(e):
@@ -325,7 +237,6 @@ async def moni(event):
     else:
         await event.edit("`Söz dizimi xətası.`")
         return
-
 
 @register(outgoing=True, pattern=r"^.google ?(.*)")
 async def gsearch(q_event):
@@ -627,77 +538,42 @@ async def lang(value):
             BOTLOG_CHATID,
             f"`{scraper} modulu üçün həmişəki dil {LANG.title()} dilinə dəyişildi.`")
 
-
 @register(outgoing=True, pattern="^.yt (.*)")
-async def yt_search(video_q):
-    """ .yt """
-    query = video_q.pattern_match.group(1)
-    result = ''
-
-    if not YOUTUBE_API_KEY:
-        await video_q.edit(
-            "`Xəta: YouTube API açarı tanınmayıb!`"
-        )
-        return
-
-    await video_q.edit("```İşlənir...```")
-
-    full_response = await youtube_search(query)
-    videos_json = full_response[1]
-
-    for video in videos_json:
-        title = f"{unescape(video['snippet']['title'])}"
-        link = f"https://youtu.be/{video['id']['videoId']}"
-        result += f"{title}\n{link}\n\n"
-
-    reply_text = f"**Axtarış sorğusu:**\n`{query}`\n\n**Nəticələr:**\n\n{result}"
-
-    await video_q.edit(reply_text)
-
-
-async def youtube_search(query,
-                         order="relevance",
-                         token=None,
-                         location=None,
-                         location_radius=None):
-    """ """
-    youtube = build('youtube',
-                    'v3',
-                    developerKey=YOUTUBE_API_KEY,
-                    cache_discovery=False)
-    search_response = youtube.search().list(
-        q=query,
-        type="video",
-        pageToken=token,
-        order=order,
-        part="id,snippet",
-        maxResults=10,
-        location=location,
-        locationRadius=location_radius).execute()
-
-    videos = []
-
-    for search_result in search_response.get("items", []):
-        if search_result["id"]["kind"] == "youtube#video":
-            videos.append(search_result)
+async def _(event):
     try:
-        nexttok = search_response["nextPageToken"]
-        return (nexttok, videos)
-    except HttpError:
-        nexttok = "last_page"
-        return (nexttok, videos)
-    except KeyError:
-        nexttok = "API açarı xətası, xaiş yenidən cəhd elə."
-        return (nexttok, videos)
-
+      from youtube_search import YoutubeSearch
+    except:
+      os.system("pip install youtube_search")
+    from youtube_search import YoutubeSearch
+    if event.fwd_from:
+        return
+    fin = event.pattern_match.group(1)
+    stark_result = await event.edit("`Axtarılır`")
+    results = YoutubeSearch(f"{fin}", max_results=5).to_dict()
+    noob = "<b>YOUTUBE Axtarışı</b> \n\n"
+    for moon in results:
+      hmm = moon["id"]
+      kek = f"https://www.youtube.com/watch?v={hmm}"
+      stark_name = moon["title"]
+      stark_chnnl = moon["channel"]
+      total_stark = moon["duration"]
+      stark_views = moon["views"]
+      noob += (
+        f"<b><u>Başlıq</u></b> ➠ <code>{stark_name}</code> \n"
+        f"<b><u>Link</u></b> ➠  {kek} \n"
+        f"<b><u>Kanal</u></b> ➠ <code>{stark_chnnl}</code> \n"
+        f"<b><u>Video Uzunluğu</u></b> ➠ <code>{total_stark}</code> \n"
+        f"<b><u>Baxış sayı</u></b> ➠ <code>{stark_views}</code> \n\n"
+        )
+      await stark_result.edit(noob, parse_mode="HTML")
 
 @register(outgoing=True, pattern=r".rip(audio|video) (.*)")
 async def download_video(v_url):
-    """ .rip  """
+    """ RipAudio/Video """
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
 
-    await v_url.edit("`Endirmə hazırlanır...`")
+    await v_url.edit("`Preparing to download...`")
 
     if type == "audio":
         opts = {
@@ -759,40 +635,41 @@ async def download_video(v_url):
         video = True
 
     try:
-        await v_url.edit("`Veri çəkilir, xaiş gözləyin...`")
+        await v_url.edit("`Endirilməyə hazırlanır gözləyin..`")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
         await v_url.edit(f"`{str(DE)}`")
         return
     except ContentTooShortError:
-        await v_url.edit("`Endirləcək məzmun çox qısadır.`")
+        await v_url.edit("`Endirmə məzmunu çox qısadı.`")
         return
     except GeoRestrictedError:
         await v_url.edit(
-            "`Təəsüf coğrafi əngəlləmələr səbəbi ilə bu video ilə heçnə edə bilmərsiz.`")
+            "`Bir veb sayt tərəfindən qoyulmuş coğrafi məhdudiyyətlər səbəbindən video coğrafi məkandan əldə edilə bilməz.`"
+        )
         return
     except MaxDownloadsReached:
-        await v_url.edit("`Maksimum endirmə limitini aşdın.`")
+        await v_url.edit("`Yüklənmə maks limitə çatdı.`")
         return
     except PostProcessingError:
-        await v_url.edit("`İstək işlənərkən bir xəta yarandı.`")
+        await v_url.edit("`İşlənmə zamanı xəta baş verdi.`")
         return
     except UnavailableVideoError:
-        await v_url.edit("`Medya seçilən fayl formatında mövcud deyil.`")
+        await v_url.edit("`Medya tələb olunan fornatda deil.`")
         return
     except XAttrMetadataError as XAME:
         await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
         return
     except ExtractorError:
-        await v_url.edit("`Məlumat çıxarılarkən bir xəta həyata keçirildi.`")
+        await v_url.edit("`Yüklənmə zamanı xəta yarandı.`")
         return
     except Exception as e:
         await v_url.edit(f"{str(type(e)): {str(e)}}")
         return
     c_time = time.time()
     if song:
-        await v_url.edit(f"`Musiqi yüklənməyə hazırlanır:`\
+        await v_url.edit(f"`Musiqi endirilməyə hazırlanır.`\
         \n**{rip_data['title']}**\
         \nby *{rip_data['uploader']}*")
         await v_url.client.send_file(
@@ -806,12 +683,12 @@ async def download_video(v_url):
             ],
             progress_callback=lambda d, t: asyncio.get_event_loop(
             ).create_task(
-                progress(d, t, v_url, c_time, "Qarşıya yüklənir...",
+                progress(d, t, v_url, c_time, "Endirilir..",
                          f"{rip_data['title']}.mp3")))
         os.remove(f"{rip_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await v_url.edit(f"`Video yüklənməyə hazırlanır:`\
+        await v_url.edit(f"`Video endirilməyə hazırlanır.`\
         \n**{rip_data['title']}**\
         \nby *{rip_data['uploader']}*")
         await v_url.client.send_file(
@@ -821,15 +698,16 @@ async def download_video(v_url):
             caption=rip_data['title'],
             progress_callback=lambda d, t: asyncio.get_event_loop(
             ).create_task(
-                progress(d, t, v_url, c_time, "Qarşıya yüklənir...",
+                progress(d, t, v_url, c_time, "Endirilir..",
                          f"{rip_data['title']}.mp4")))
         os.remove(f"{rip_data['id']}.mp4")
         await v_url.delete()
 
 
 def deEmojify(inputString):
-    """  """
+    """ .rip """
     return get_emoji_regexp().sub(u'', inputString)
+
 
 CmdHelp('scrapers').add_command(
     'img', '<limit> <söz>', 'Google üstündə sürətli bir foto axtarışı edər. Limit yazmazsanız 5 dənə foto gətirir.', 'img10 system of a down'
@@ -851,8 +729,6 @@ CmdHelp('scrapers').add_command(
     'tts', '<mətin>', 'Mətini səsə dəyişdirər.'
 ).add_command(
     'lang', '<dil>', 'tts və trt üçün dil tənzimləyin.'
-).add_command(
-    'tts2', '<cinsiyyət> <mətin>', 'Mətni səsə dəyişər.', 'tts2 kişi salam'
 ).add_command(
     'trt', '<mətin>', 'Asand bir tərcümə modulu.'
 ).add_command(
@@ -887,8 +763,6 @@ CmdTr('scrapers').add_command(
     'tts', '<metin>', 'Metni sese dönüştürür.'
 ).add_command(
     'lang', '<dil>', 'tts ve trt için dil ayarlayın.'
-).add_command(
-    'tts2', '<cinsiyet> <metin>', 'Metni sese dönüştürür.', 'tts2 kişi selam'
 ).add_command(
     'trt', '<metin>', 'Basit bir çeviri modülü.'
 ).add_command(
