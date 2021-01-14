@@ -3,7 +3,6 @@
 
 """ Scrapers """
 
-import twitter_scraper
 import os
 import time
 import asyncio
@@ -32,7 +31,7 @@ from google_trans_new import LANGUAGES, google_translator
 from gtts import gTTS
 from gtts.lang import tts_langs
 from emoji import get_emoji_regexp
-from youtube_dl import YoutubeDL
+from youtube_dl 2021.1.8 import YoutubeDL
 from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
                               MaxDownloadsReached, PostProcessingError,
