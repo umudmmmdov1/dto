@@ -190,8 +190,6 @@ BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
 GENIUS = os.environ.get("GENIUS", None)
 CMD_HELP = {}
 CMD_HELP_BOT = {}
-CMD_HELPTR = {}
-CMD_HELPTR_BOT = {}
 PM_AUTO_BAN_LIMIT = int(os.environ.get("PM_AUTO_BAN_LIMIT", 4))
 
 SPOTIFY_DC = os.environ.get("SPOTIFY_DC", None)
@@ -298,7 +296,7 @@ with bot:
         except:
             pass
 
-    moduller = CMD_HELP, CMD_HELPTR
+    moduller = CMD_HELP
     me = bot.get_me()
     uid = me.id
 
@@ -414,117 +412,6 @@ Hesabınızı bot'a çevirə bilərsiz və bunları işlədə bilərsiz. Unutmay
             else:
                 result += f"**💬 Açıqlama:** `{command['usage']}`\n"
                 result += f"**⌨️ Məsələn:** `{PATTERNS[:1]}{command['example']}`\n\n"
-
-            await event.edit(
-                result,
-                buttons=[custom.Button.inline("◀️ Geri", data=f"bilgi[{sayfa}]({cmd})")],
-                link_preview=False
-            )
-
-        @tgbot.on(InlineQuery)  # pylint:disable=E0602
-        async def inline_handler(event):
-            builder = event.builder
-            result = None
-            query = event.text
-            if event.query.user_id == uid and query == "@DTOUserBot":
-                rev_text = query[::-1]
-                veriler = (butonlastir(0, sorted(CMD_HELPTR)))
-                result = await builder.article(
-                    f"Xaiş sadəcə .kömek əmri ilə işladin",
-                    text=f"**Allah Azərbaycanları qorusun** [DTÖUserBot](https://t.me/DTOUserBot) __əla işləyir ⚡__\n\n**Yüklənən Modul Sayı:** `{len(CMD_HELPTR)}`\n**Səhifə:** 1/{veriler[0]}",
-                    buttons=veriler[1],
-                    link_preview=False
-                )
-            elif query.startswith("http"):
-                parca = query.split(" ")
-                result = builder.article(
-                    "Fayl Yükləndi",
-                    text=f"**Fayl uğurlu bir şəkildə {parca[2]} saytına yükləndi!**\n\nYükləmə zamanı: {parca[1][:3]} saniyə\n[‏‏‎ ‎]({parca[0]})",
-                    buttons=[
-                        [custom.Button.url('URL', parca[0])]
-                    ],
-                    link_preview=True
-                )
-            else:
-                result = builder.article(
-                    "@DTOUserBot",
-                    text="""@DTOUserBot'u işlətməyi yoxlayın!
-Hesabınızı bot'a çevirə bilərsiz və bunları işlədə bilərsiz. Unutmayın, siz başqasının botunu idarə edə bilmərsiz! Altdakı GitHub adresindən bütün qurulum haqda məlumat var.""",
-                    buttons=[
-                        [custom.Button.url("Kanala Qatıl", "https://t.me/DTOUserBot"), custom.Button.url(
-                            "Qruba Qatıl", "https://t.me/DTOSupport")],
-                        [custom.Button.url(
-                            "GitHub", "https://github.com/umudmmmdov1/DTOUserBot")]
-                    ],
-                    link_preview=False
-                )
-            await event.answer([result] if result else None)
-
-        @tgbot.on(callbackquery.CallbackQuery(data=compile(b"sayfa\((.+?)\)")))
-        async def sayfa(event):
-            if not event.query.user_id == uid: 
-                return await event.answer("❌ Hey! Mənim mesajlarımı düzəltməyə çalışma! Özünə bir @DTOUserBot qur.", cache_time=0, alert=True)
-            sayfa = int(event.data_match.group(1).decode("UTF-8"))
-            veriler = butonlastir(sayfa, CMD_HELPTR)
-            await event.edit(
-                f"**Allah Azərbaycanları qorusun** [DTÖUserBot](https://t.me/DTOUserBot) __əla işləyir ⚡__\n\n**Yüklənən Modil Sayı:** `{len(CMD_HELPTR)}`\n**Səhifə:** {sayfa + 1}/{veriler[0]}",
-                buttons=veriler[1],
-                link_preview=False
-            )
-        
-        @tgbot.on(callbackquery.CallbackQuery(data=compile(b"bilgi\[(\d*)\]\((.*)\)")))
-        async def bilgi(event):
-            if not event.query.user_id == uid: 
-                return await event.answer("❌  Hey! Mənim mesajlarımı düzəltməyə çalışma! Özünə bir @DTOUserBot qur.", cache_time=0, alert=True)
-
-            sayfa = int(event.data_match.group(1).decode("UTF-8"))
-            komut = event.data_match.group(2).decode("UTF-8")
-            try:
-                butonlar = [custom.Button.inline("🔹 " + cmd[0], data=f"komut[{komut}[{sayfa}]]({cmd[0]})") for cmd in CMD_HELPTR_BOT[komut]['commands'].items()]
-            except KeyError:
-                return await event.answer("❌ Bu modula açıqlama yazılmayıb.", cache_time=0, alert=True)
-
-            butonlar = [butonlar[i:i + 2] for i in range(0, len(butonlar), 2)]
-            butonlar.append([custom.Button.inline("◀️ Geri", data=f"sayfa({sayfa})")])
-            await event.edit(
-                f"**📗 Fayl:** `{komut}`\n**🔢 Əmr sayı:** `{len(CMD_HELP_BOT[komut]['commands'])}`",
-                buttons=butonlar,
-                link_preview=False
-            )
-        
-        @tgbot.on(callbackquery.CallbackQuery(data=compile(b"komut\[(.*)\[(\d*)\]\]\((.*)\)")))
-        async def komut(event):
-            if not event.query.user_id == uid: 
-                return await event.answer("❌ Hey! Mənim mesajlarımı düzəltməyə çalışma! Özünə bir @DTOUserBot qur.", cache_time=0, alert=True)
-
-            cmd = event.data_match.group(1).decode("UTF-8")
-            sayfa = int(event.data_match.group(2).decode("UTF-8"))
-            komut = event.data_match.group(3).decode("UTF-8")
-
-            result = f"**📗 Dosya:** `{cmd}`\n"
-            if CMD_HELPTR_BOT[cmd]['info']['info'] == '':
-                if not CMD_HELPTR_BOT[cmd]['info']['warning'] == '':
-                    result += f"**⬇️ Resmi:** {'✅' if CMD_HELPTR_BOT[cmd]['info']['official'] else '❌'}\n"
-                    result += f"**⚠️ Uyarı:** {CMD_HELPTR_BOT[cmd]['info']['warning']}\n\n"
-                else:
-                    result += f"**⬇️ Resmi:** {'✅' if CMD_HELPTR_BOT[cmd]['info']['official'] else '❌'}\n\n"
-            else:
-                result += f"**⬇️ Resmi:** {'✅' if CMD_HELPTR_BOT[cmd]['info']['official'] else '❌'}\n"
-                if not CMD_HELPTR_BOT[cmd]['info']['warning'] == '':
-                    result += f"**⚠️ Xəbərdarlıq:** {CMD_HELPTR_BOT[cmd]['info']['warning']}\n"
-                result += f"**ℹ️ Info:** {CMD_HELPTR_BOT[cmd]['info']['info']}\n\n"
-
-            command = CMD_HELPTR_BOT[cmd]['commands'][komut]
-            if command['params'] is None:
-                result += f"**🛠 Komut:** `{PATTERNS[:1]}{command['command']}`\n"
-            else:
-                result += f"**🛠 Komut:** `{PATTERNS[:1]}{command['command']} {command['params']}`\n"
-                
-            if command['example'] is None:
-                result += f"**💬 Açıklama:** `{command['usage']}`\n\n"
-            else:
-                result += f"**💬 Açıklama:** `{command['usage']}`\n"
-                result += f"**⌨️ Örnek:** `{PATTERNS[:1]}{command['example']}`\n\n"
 
             await event.edit(
                 result,
