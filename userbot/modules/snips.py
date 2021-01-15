@@ -6,7 +6,6 @@
 from userbot.events import register
 from userbot import CMD_HELP, BOTLOG_CHATID
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -127,14 +126,4 @@ CmdHelp('snips').add_command(
     'snips', None, 'Qeyd edilən bütün snip\'ləri listini alar.'
 ).add_command(
     'remsnip', '<snip adı>', 'Seçilən snip\'i silər.'
-).add()
-
-CmdTr('snips').add_command(
-    '$<snip_adı>', None, 'Snipi çağırır.'
-).add_command(
-    'snip', '<isim> <veri/yanıt>', 'Bir snip (küresel not) olarak kaydeder. (Resimler, dokümanlar ve çıkartmalar ile çalışır !)'
-).add_command(
-    'snips', None, 'Kaydedilen tüm snip\'leri listeler.'
-).add_command(
-    'remsnip', '<snip adı>', 'Belirtilen snip\'i siler.'
 ).add()
