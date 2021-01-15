@@ -7,7 +7,6 @@ import io
 import os
 import asyncio
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -66,8 +65,4 @@ async def liste(event):
 
 CmdHelp('list').add_command(
     'list', '<gmute/gban>', 'Gbanladığınız ya da Gmutelədiyiniz istifadəçiləri göstərər.'
-).add()
-
-CmdTr('list').add_command(
-    'list', '<gmute/gban>', 'Gbanladığınız ya da Gmutelediğiniz kişileri getirir.'
 ).add()
