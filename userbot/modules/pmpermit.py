@@ -13,7 +13,6 @@ from userbot import (COUNT_PM, CMD_HELP, BOTLOG, BOTLOG_CHATID,
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -407,17 +406,3 @@ CmdHelp('pmpermit').add_command(
 ).add_command(
     'notifon', None, 'İcazə verilməmiş özəl mesajların bildirişlərin göndərməsinə icazə verər.'
 ).add()
-
-CmdTr('pmpermit').add_command(
-    'approve', None, 'Yanıt verilen kullanıcıya PM atma izni verilir.', 
-).add_command(
-    'disapprove', None, 'Yanıt verilen kullanıcının PM onayını kaldırır.'
-).add_command(
-    'block', '<kullanıcı adı/yanıtlama>', 'Kullanıcıyı engeller.'
-).add_command(
-    'unblock', '<kullanıcı adı/yanıtlama>', 'Kullanıcının engellemesini kaldırır.'
-).add_command(
-    'notifoff', None, 'Onaylanmamış özel mesajların bildirimlerini temizler ya da devre dışı bırakır.'
-).add_command(
-    'notifon', None, 'Onaylanmamış özel mesajların bildirim göndermesine izin verir.'
-).add
