@@ -13,7 +13,6 @@ from os import remove
 from platform import python_version, uname
 from shutil import which
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 import psutil
 from telethon import __version__, version
@@ -132,10 +131,4 @@ Help = CmdHelp('alive')
 Help.add_command('alive',  None, 'Botun işləyib işləmədiyini yoxlayar').add()
 Help.add_command('aliveu adınız',  None, 'Alivedəki adınızı dəyişdirər').add()
 Help.add_command('alivesil',  None, 'Alivedəki adınızı silər').add()
-Help.add_command('userator',  None, 'U S Σ R Δ T O R').add()
-
-Help = CmdTr('alive')
-Help.add_command('alive',  None, 'Botun çalışıp çalışmadığına bakar').add()
-Help.add_command('aliveu adınız',  None, 'Alivedeki isminizi değiştirir').add()
-Help.add_command('alivesil',  None, 'Alivedeki isminizi siler').add()
 Help.add_command('userator',  None, 'U S Σ R Δ T O R').add()
