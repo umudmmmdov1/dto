@@ -30,7 +30,7 @@ pylast==4.1.0
 pySmartDL
 python-barcode
 python-dotenv
-youtube_dl > 2021.1.8
+youtube_dl
 pytz
 qrcode
 requests>=2.25.1
