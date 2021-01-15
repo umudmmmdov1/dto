@@ -12,7 +12,6 @@ import sys
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -173,28 +172,4 @@ CmdHelp('misc').add_command(
     'resend', None, 'Bir medyayı yenidən göndərər.'
 ).add_command(
     'raw', '<cavab>', 'Cavab verilən mesaj haqqında məlumat verər.'
-).add()
-
-CmdTr('misc').add_command(
-    'random', '<eşya1> <eşya2> ... <eşyaN>', 'Eşya listesinden rastgele bir eşya seçer', 'random userator uniborg userge'
-).add_command(
-    'sleep', '<süre>', 'U S Σ R Δ T O R da bir insan, o da yoruluyor. Ara sıra biraz uyumasına izin ver.', 'sleep 30'
-).add_command(
-    'shutdown', None, 'Nostaljik bir şekilde botunuzu kapatın.'
-).add_command(
-    'repo', None, 'U S Σ R Δ T O R botunun GitHub\'daki reposuna giden bir bağlantı.'
-).add_command(
-    'readme', None, 'U S Σ R Δ T O R botunun GitHub\'daki README.md dosyasına giden bir bağlantı.'
-).add_command(
-    'creator', None, 'Bu güzel botu kimlerin oluşturduğunu öğren :-)'
-).add_command(
-    'repeat', '<sayı> <metin>', 'Bir metni belli bir sayıda tekrar eder. Spam komutu ile karıştırma!'
-).add_command(
-    'restart', None, 'Botu yeniden başlatır.'
-).add_command(
-    'resend', None, 'Bir medyayı yeniden gönderir.'
-).add_command(
-    'resend', None, 'Bir medyayı yeniden gönderir.'
-).add_command(
-    'raw', '<yanıt>', 'Yanıt verilen mesaj hakkında bilgi verir.'
 ).add()
