@@ -10,7 +10,6 @@ from telethon import functions
 from userbot import CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -82,12 +81,3 @@ CmdHelp('www').add_command(
 ).add_command(
     'ping', None, 'Botun ping dəyərini göstərər.'
 ).add()
-
-CmdTr('www').add_command(
-    'speed', None, 'Bir speedtest uygular ve sonucu gösterir.'
-).add_command(
-    'dc', None, 'Sunucunuza en yakın datacenter\'ı gösterir.'
-).add_command(
-    'ping', None, 'Botun ping değerini gösterir.'
-).add()
-
