@@ -4,7 +4,6 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern=".stik ?(.*)")
 async def stik(event):
@@ -90,10 +89,4 @@ CmdHelp('stik').add_command(
     'stik', None, 'Fırlat əmrindən fərqli olaraq stickeri paket yaratmadan göndərər.'
 ).add_command(
     'png', None, 'Cavab verdiyiniz şəkil/stickeri PNG formatına çevirər.'
-).add()
-
-CmdTr('stik').add_command(
-    'stik', None, 'Fırlat komutundan farklı olarak çıkartmayı paket yaratmadan gönderir.'
-).add_command(
-    'png', None, 'Yanıt verdiyiniz resim/çıkarmayı PNG formatına çevirir.'
 ).add()
