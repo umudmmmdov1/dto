@@ -19,7 +19,6 @@ from mimetypes import guess_type
 import httplib2
 from userbot.modules.upload_download import progress, humanbytes
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # Json dosyasının yolu, script ile aynı dizinde bulunmalıdır.
 G_DRIVE_TOKEN_FILE = "./auth_token.txt"
@@ -444,16 +443,4 @@ CmdHelp('gdrive').add_command(
     'glist', '<sorğu>', 'Google Drive\'da tapılan fayllar və qovluqlarda axtarış edər.'
 ).add_command(
     'ggd', '<serverdəki-qovluq-yolu>', 'Seçilən qovluqdakı bütün faylları Google Drive\'a upload edər.'
-).add()
-
-CmdTr('gdrive').add_command(
-    'gdrive', '<dosya yolu / yanıtlayarak / URL|dosya-adı>', 'Belirtilen dosyayı Google Drive\'a uploadlar.'
-).add_command(
-    'gsetf', '<GDrive Klasör URL\'si>', 'Yeni dosyaların upladlanacağı klasörü belirler.'
-).add_command(
-    'gsetclear', None, 'Halihazırda kullanılan upload dizinini gösterir.'
-).add_command(
-    'list', '<sorgu>', 'Google Drive\'da bulunan dosyalar ve dizinlerde arama yapar.'
-).add_command(
-    'ggd', '<sunucudaki-klasör-yolu>', 'Belirtilen dizindeki tüm dosyaları Google Drive\'a uploadlar.'
 ).add()
