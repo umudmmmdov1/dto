@@ -9,7 +9,6 @@ from sys import executable
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -197,12 +196,4 @@ CmdHelp('evaluators').add_command(
     'exec', '<python kodu>', 'Kiçik python əmrləri işlədin.', 'exec print(\"U S Σ R Δ T O R dan Salamlar!\")'
 ).add_command(
     'term', '<istək>', 'Serverinizdə bash əmrlərini və əmr fayllarını işlədin.', 'term ls'
-).add()
-
-CmdTr('evaluators').add_command(
-    'eval', '<işlem>', 'Mini ifadeleri değerlendirin.', 'eval 2+3'
-).add_command(
-    'exec', '<python kodu>', 'Küçük python komutları yürütün.', 'exec print(\"U S Σ R Δ T O R tan Selamlar!\")'
-).add_command(
-    'term', '<işlem>', 'Sunucunuzda bash komutlarını ve komut dosyalarını çalıştırın.', 'term ls'
 ).add()
