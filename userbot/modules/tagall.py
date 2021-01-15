@@ -13,7 +13,6 @@ from userbot import CMD_HELP, bot
 from userbot.events import register
 from userbot.modules.admin import get_user_from_event
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern="^.tagall$")
 async def _(event):
@@ -49,10 +48,4 @@ CmdHelp('tagall').add_command(
     'tagall', None, 'Bu əmri hər hansısa söhbətdə işlədəndə hərkəsi tağ edir.'
 ).add_command(
     'admin', None, 'Bu əmri hər hansıxa sohbətdə işlədəndə adminləri tağ edər.'
-).add()
-
-CmdTr('tagall').add_command(
-    'tagall', None, 'Bu komutu kullandığınızda sohbet içerisinde ki herkesi etiketler.'
-).add_command(
-    'admin', None, 'Bu komutu kullandığınızda sohbet içerisinde ki yöneticileri etiketler.'
 ).add()
