@@ -20,7 +20,6 @@ from telethon.tl.types import DocumentAttributeVideo
 from userbot import LOGS, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, BOT_USERNAME
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
