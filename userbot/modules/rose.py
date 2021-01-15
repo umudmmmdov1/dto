@@ -6,7 +6,6 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.users import GetFullUserRequest
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 chat = "@MissRose_bot"
 
@@ -151,14 +150,4 @@ CmdHelp('rose').add_command(
     'fedinfo', '<fed id>', 'Federasiya haqda məlumat verər.'
 ).add_command(
     'myfeds', ' ', 'Sahib və ya səlahiyyətli olduğunuz fed’ləri göstərər.'
-).add()
-
-CmdTr('rose').add_command(
-    'fstat', '<tag/id>', 'Kullanıcı hangi federasiyalardan fban olduğu hakkında bilgi verir. \n Boş .fstat yazarsanız sizin fban olduğunuz fed’leri gösterir '
-).add_command(
-    'info', '<tag/id>', 'Verdiyiniz tag ve ya id’e göre bilgi verir. \n Boş .info yazarsanız sizin bilgiler verir.'
-).add_command(
-    'fedinfo', '<fed id>', 'Federasiya hakkında bilgi verir.'
-).add_command(
-    'myfeds', ' ', 'Sahip ve ya admin olduğunuz fed’leri gösterir.'
 ).add()
