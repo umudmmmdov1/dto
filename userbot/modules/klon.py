@@ -10,7 +10,6 @@ from userbot.events import register
 from telethon.tl import functions
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern="^.klon ?(.*)")
 async def clone(event):
@@ -119,8 +118,4 @@ async def get_full_user(event):
 
 CmdHelp('klon').add_command(
     'klon',  None, 'Seçdiyiniz istifadəçini klonlayar'
-).add()
-
-CmdTr('klon').add_command(
-    'klon',  None, 'Belirtdiyiniz kullanıcıyı klonlar'
 ).add()
