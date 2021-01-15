@@ -8,7 +8,6 @@ import os
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 DOGBIN_URL = "https://del.dog/"
 
@@ -130,10 +129,4 @@ CmdHelp('dogbin').add_command(
     'paste', '<söz/cavablama>', 'Dogbin işlədərək yapışdırılmış və ya qısadılmış url yaratma (https://del.dog/)'
 ).add_command(
     'getpaste', None, 'Dogbin url məzmuna mətin axtarır (https://del.dog/)'
-).add()
-
-CmdTr('dogbin').add_command(
-    'paste', '<metin/yanıtlama>', 'Dogbin kullanarak yapıştırılmış veya kısaltılmış url oluşturma (https://del.dog/)'
-).add_command(
-    'getpaste', None, 'Dogbin url içeriğini metne aktarır (https://del.dog/)'
 ).add()
