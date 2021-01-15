@@ -72,7 +72,7 @@ def register(**args):
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-                    text = "**U S Σ R Δ T O R**\n"
+                    text = "**U S Σ R Δ T O R XƏTA**\n"
                     link = "[U S Σ R Δ T O R Support](https://t.me/UseratorSup)"
                     text += "İstərsəniz, bunu şikayət edə bilərsiz"
                     text += f"- sədəcə bu mesajı buraya yönləndirin {link}.\n"
