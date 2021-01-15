@@ -1,7 +1,6 @@
 # U S Σ R Δ T O R / Ümüd
 
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 from userbot import PLUGIN_CHANNEL_ID, CMD_HELP
 from userbot.events import register
 from re import search
@@ -68,7 +67,7 @@ async def dil(event):
             f"**Dil Kodu: **`{LANGUAGE_JSON['LANGCODE']}`\n"
             f"**Tərcüməçi: **`{LANGUAGE_JSON ['AUTHOR']}`\n"
 
-            f"\n\nDigər dillər üçün @DTODil kanalına baxa bilərsiz."
+            f"\n\nDigər dillər üçün @UseratorLang kanalına baxa bilərsiz."
         )
 
 CmdHelp('dil').add_command(
@@ -77,12 +76,4 @@ CmdHelp('dil').add_command(
     'dil melumat', None, 'Cavab verdiyiniz dil faylı haqqında məlumat verər.'
 ).add_command(
     'dil yükle', None, 'Cavab verdiyiniz dil faylını yükləyər.'
-).add()
-
-CmdTr('dil').add_command(
-    'dil', None, 'Yüklediğiniz dil hakkında bilgi verir.'
-).add_command(
-    'dil info', None, 'Yanıt verdiğiniz dil dosyası hakkında bilgi verir.'
-).add_command(
-    'dil yükle', None, 'Yanıt verdiğiniz dil dosyasını yükler.'
 ).add()
