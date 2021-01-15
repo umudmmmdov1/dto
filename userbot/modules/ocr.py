@@ -6,7 +6,6 @@ from requests import post
 from userbot import bot, OCR_SPACE_API_KEY, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -69,10 +68,4 @@ CmdHelp('ocr').add_command(
     'ocr', '<dil>', 'Mətin aydınlatmaq üçün bir fotoya vəya stikerə cavab verin.'
 ).add_info(
     'Dil kodlarını [buradan](https://ocr.space/ocrapi) götürün.'
-).add()
-
-CmdTr('ocr').add_command(
-    'ocr', '<dil>', 'Metin ayıklamak için bir resme veya çıkartmaya cevap verin.'
-).add_info(
-    'Dil kodlarını [buradan](https://ocr.space/ocrapi) alın.'
 ).add()
