@@ -9,7 +9,6 @@ from telethon.tl import functions
 from userbot import CMD_HELP, ASYNC_POOL
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -74,8 +73,4 @@ async def auto(event):
 
 CmdHelp('auto').add_command(
     'auto', 'ad ya da bio', 'Avtomatik saata görə dəyişdirir', '.auto ad'
-).add()
-
-CmdTr('auto').add_command(
-    'auto', 'ad ya da bio', 'Otomatik saate göre değiştirir', '.auto ad'
 ).add()
