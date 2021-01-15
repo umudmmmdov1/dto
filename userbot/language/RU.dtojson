@@ -38,11 +38,6 @@
             "NEED_MODULE": "`Модули ниже 👇🏻\n Использование: .dto <имя модуля>`"
         },
 
-       "__tr": {
-            "NEED_PLUGIN": "`Lütfen bir U S Σ R Δ T O R modülü adı belirtin.`",
-            "NEED_MODULE": "`Modullar aşağıdadır 👇🏻\nKullanım: .tr <modül adı>`"
-        },
-
         "__helpme": {
             "NO_BOT": "`Бот не работает! Пожалуйста, введите токен бота и имя пользователя правильно. Модуль приостановлен..`"
         },
