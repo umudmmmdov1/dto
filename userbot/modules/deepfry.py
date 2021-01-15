@@ -9,7 +9,6 @@ from userbot.events import register
 from PIL import Image, ImageEnhance, ImageOps
 from telethon.tl.types import DocumentAttributeFilename
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -110,8 +109,4 @@ async def check_media(reply_message):
 
 CmdHelp('deepfry').add_command(
     'deepfry', '<rəqəm 1-5>', 'Seçilən görüntüyə deepfry efekti edər.', 'deepfry 5'
-).add()
-
-CmdTr('deepfry').add_command(
-    'deepfry', '<numara 1-5>', 'Belirlenen görüntüye deepfry efekti uygular.', 'deepfry 5'
 ).add()
