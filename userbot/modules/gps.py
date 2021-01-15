@@ -5,7 +5,6 @@ from telethon.tl import types
 
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern=r"^.gps (.*)")
 async def gps(event):
@@ -37,7 +36,3 @@ async def gps(event):
 
 Help = CmdHelp('gps')
 Help.add_command('gps <yer>',  None, 'Seçdiyiniz ərazini xəritədə göstərər').add()
-  
-Help = CmdTr('gps')
-Help.add_command('gps <konum>',  None, 'Belirtdiyiniz konumu haritada gösterir').add()
-  
