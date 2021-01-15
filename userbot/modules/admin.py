@@ -23,7 +23,6 @@ from userbot import BOTLOG, BOTLOG_CHATID, BRAIN_CHECKER, CMD_HELP, bot, WARN_MO
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 import datetime
 
 # =================== CONSTANT ===================
@@ -1335,48 +1334,4 @@ CmdHelp('admin').add_command(
         'pin', '<cavablama>', 'Cavab verdiyiniz mesajı pinləyər.'
     ).add_command(
         'setgpic', '<cavablama>', 'Qrup fotosunu dəyişdirər.'
-    ).add()
-
-CmdTr('admin').add_command(
-        'promote', '<kullanıcı adı/yanıtlama> <özel isim (isteğe bağlı)>', 'Sohbetteki kişiye yönetici hakları sağlar.'
-    ).add_command(
-        'demote', '<kullanıcı adı/yanıtlama>', 'Sohbetteki kişinin yönetici izinlerini iptal eder.'
-    ).add_command(
-        'ban', '<kullanıcı adı/yanıtlama> <nedeni (isteğe bağlı)>', 'Sohbetteki kişiyi susturur, yöneticilerde de çalışır.'
-    ).add_command(
-        'unban', '<kullanıcı adı/yanıtlama>', 'Sohbetteki kişinin yasağını kaldırır.'
-    ).add_command(
-        'kick', '<kullanıcı adı/yanıtlama> <nedeni (isteğe bağlı)>', 'Gruptan belirttiğiniz kişiyi tekmeler.'
-    ).add_command(
-        'gmute', '<kullanıcı adı/yanıtlama> <nedeni (isteğe bağlı)>', 'Kişiyi yönetici olduğunuz tüm gruplarda susturur.'
-    ).add_command(
-        'ungmute', '<kullanıcı adı/yanıtlama>', 'Kişiyi küresel olarak sessize alınanlar listesinden kaldırır.'
-    ).add_command(
-        'zombies', None, 'Bir gruptaki silinmiş hesapları arar. Gruptan silinen hesapları kaldırmak için .zombies clean komutunu kullanın.'
-    ).add_command(
-        'admins', None, 'Sohbet yöneticilerinin listesini alır.'
-    ).add_command(
-        'bots', None, 'Bir gruptaki silinmiş hesapları arar. Gruptan silinen hesapları kaldırmak için .zombies clean komutunu kullanın.'
-    ).add_command(
-        'users veya .users', '<kullanıcı adı> <kullanıcı adı/yanıtlama>', 'Sohbetteki tüm (veya sorgulanan) kullanıcıları alır.'
-    ).add_command(
-        'setgppic', '<yanıtlanan resim>', 'Grubun resmini değiştirir.'
-    ).add_command(
-        'warn', '<kullanıcı adı/yanıtlamma> <sebep (isteğe bağlı>', 'Belirttiğiniz kullanıcıyı uyarır.'
-    ).add_command(
-        'unwarn', '<kullanıcı adı/yanıtlamma> <sebep (isteğe bağlı>', 'Belirttiğiniz kullanıcının uyarısını kaldırır.'
-    ).add_command(
-        'warn', '<kullanıcı adı/yanıtlamma> <sebep (isteğe bağlı>', 'Belirttiğiniz kullanıcıyı uyarır.'
-    ).add_command(
-        'usersdel', None, 'Grup içerisinde silinen hesapları göstürür.'
-    ).add_command(
-        'ekle', '<kullanıcı ad(lar)ı>', 'Gruba üye ekler.'
-    ).add_command(
-        'gban', '<kullanıcı adı/yanıtlama>', 'Kullanıcıyı küresel olarak yasaklar.'
-    ).add_command(
-        'ungban', '<kullanıcı adı/yanıtlama>', 'Kullanıcının küresel yasaklamasını kaldırır.'
-    ).add_command(
-        'pin', '<yanıtlama>', 'Yanıt verdiğiniz mesajı başa sabitler.'
-    ).add_command(
-        'setgpic', '<yanıtlama>', 'Grup fotoğrafını değiştirir.'
     ).add()
