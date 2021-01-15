@@ -585,15 +585,3 @@ CmdHelp('updown').add_command(
 ).add_command(
     'uploadir', '<qovluq>', 'Bütün qovluğu yükləyər.'
 ).add()
-
-CmdTr('updown').add_command(
-    'download', '<bağlantı-dosya adı> (ya da bir şeye cevap vererek)', 'Sunucuya dosyayı indirir.'
-).add_command(
-    'upload', '<sunucudaki dosya yolu>', 'Sunucunuzdaki bir dosyayı sohbete upload eder.'
-).add_command(
-    'wupload', ' <dosyaya yanıt verin> anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare', 'Seçtiğiniz websiteye yükler.'
-).add_command(
-    'unzip', '<yanıt>', 'Yanıt verdiğiniz Zip dosyasını çıkarır.'
-).add_command(
-    'uploadir', '<klasör>', 'Tüm klasöru yükler.'
-).add()
