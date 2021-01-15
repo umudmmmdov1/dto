@@ -14,7 +14,6 @@ from userbot import CMD_HELP, WEATHER_DEFCITY
 from userbot import OPEN_WEATHER_MAP_APPID as OWM_API
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ===== CONSTANT =====
 # ██████ LANGUAGE CONSTANTS ██████ #
@@ -142,8 +141,4 @@ async def get_weather(weather):
 
 CmdHelp('weather').add_command(
     'weather', '<şəhər>', 'Bir bölgənin hava proqnozunu göstərər.'
-).add()
-
-CmdTr('weather').add_command(
-    'weather', '<şehir>', 'Bir bölgenin hava durumunu verir.'
 ).add()
