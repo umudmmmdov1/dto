@@ -14,7 +14,6 @@ from userbot.main import PLUGIN_MESAJLAR
 from telethon import version
 from platform import python_version
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ================= CONSTANT =================
 DEFAULTUSER = uname().node
@@ -167,14 +166,4 @@ CmdHelp('system_stats').add_command(
     'pip', '<modul(lar)>', 'Pip modullarında axtarış edər.'
 ).add_command(
     'alive', None, 'U S Σ R Δ T O R botunun işləyib işləmədiyini yoxlamaq üçün işlədilir.'
-).add()
-
-CmdTr('system_stats').add_command(
-    'sysd', None, 'Neofetch modülünü kullanarak sistem bilgisi gösterir.'
-).add_command(
-    'botver', None, 'U S Σ R Δ T O R sürümünü gösterir.'
-).add_command(
-    'pip', '<modül(ler)>', 'Pip modüllerinde arama yapar.'
-).add_command(
-    'alive', None, 'U S Σ R Δ T O R botunun çalışıp çalışmadığını kontrol etmek için kullanılır.'
 ).add()
