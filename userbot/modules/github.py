@@ -5,7 +5,6 @@ import aiohttp
 from userbot.events import register
 from userbot import CMD_HELP
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -60,8 +59,4 @@ async def github(event):
 
 CmdHelp('git').add_command(
     'git', '<istifadəçi adı>', 'Hədəflənən istifadəçinin GitHub məlumatlarını göstərər.', 'git umudmmmdov1'
-).add()
-
-CmdTr('git').add_command(
-    'git', '<kullanıcı adı>', 'Hedeflenen kişinin GitHub bilgilerini gösterir.', 'git quiec'
 ).add()
