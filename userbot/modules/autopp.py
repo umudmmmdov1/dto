@@ -15,7 +15,6 @@ import requests
 import time
 from telethon.errors import VideoFileInvalidError
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -139,15 +138,5 @@ CmdHelp('autopp').add_command(
 CmdHelp('autovideo').add_command(
     'autopp', None, 
     'Bu əmr cavab verdiyiniz videoyu profil video edər və bir saat vəya tarix vəya istədiyiniz bir yazı əlavə edər. Bu saat hər dəqiqə dəyişir. nƏgər botun öz yazısını işlətmək istiyirsizsə ekstradan bir şey yazmayın. Öz yazınızı əlavə etmək istəyirsizsə .autovideo yazı şəklində işlədin. ',
-    '.autovideo ahan saat $saat bu da tarih $tarih'
-).add()
-
-CmdTr('autopp').add_command(
-    'autopp', None, 'Bu komut belirlediğiniz fotoğrafı profil resmi yapar ve bir saat ekler. Bu saat her dakika değişir.', '.autopp'
-).add()
-
-CmdTr('autovideo').add_command(
-    'autopp', None, 
-    'Bu komut yanıt verdiğiniz videoyu profil video yapar ve bir saat veya tarih veya istediğiniz bir yazı ekler. Bu saat her dakika değişir. nEğer botun kendi yazısını kullanmak istiyorsanız ekstradan bir şey yazmayın. Kendi yazınızı eklemek istiyorsanız .autovideo yazı şeklinde kullanın. ',
     '.autovideo ahan saat $saat bu da tarih $tarih'
 ).add()
