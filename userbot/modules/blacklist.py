@@ -7,7 +7,6 @@ import userbot.modules.sql_helper.blacklist_sql as sql
 from userbot import CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -116,11 +115,3 @@ CmdHelp('blacklist').add_command(
 ).add_command(
     'rmblacklist', '<söz>', 'Seçilən qara listi dayandırar.', '.rmblacklist amk'
 ).add_warning('Bu istəkləri etmək üçün idarəçi olmalı və **Mesaj Silmə** icazəniz olmalıdır.').add()
-
-CmdTr('blacklist').add_command(
-    'blacklist', None, 'Bir sohbetteki etkin kara listeyi listeler.'
-).add_command(
-    'addblacklist', '<kelime(ler)/yanıt>', 'İletiyi \'kara liste anahtar kelimesine\' kaydeder. \'Kara liste anahtar kelimesinden\' bahsedildiğinde bot iletiyi siler.', '.addblacklist amk'
-).add_command(
-    'rmblacklist', '<kelime>', 'Belirtilen kara listeyi durdurur.', '.rmblacklist amk'
-).add_warning('Bu işlemleri gerçekleştirmek için yönetici olmalı ve **Mesaj Silme** yetkiniz olmalı.').add()
