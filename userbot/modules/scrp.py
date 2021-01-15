@@ -4,7 +4,6 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 from userbot import bot
 
 @register(outgoing=True, pattern="^.pnt ?(.*)")
@@ -85,14 +84,4 @@ CmdHelp('sosial').add_command(
     'pnt', '<link>', 'Cavab verdiyiniz Pinterest linkini media olaraq göndərər.'
 ).add_command(
     'dzd', '<link>', 'Verdiyiniz spotify/deezer linkini musiqiyə çevirər.'
-).add()
-
-CmdTr('sosial').add_command(
-    'ig', '<bağlantı>', 'Yanıt verdiğiniz Instagram bağlantısını media olarak gönderir\n⚠️Uyarı: Verdiğiniz bağlantıda hesap gizli olmamalı.'
-).add_command(
-    'tik', '<bağlantı>', 'Yanıt verdiğiniz TikTok bağlantısını media olarak gönderir.'
-).add_command(
-    'pnt', '<bağlantı>', 'Yanıt verdiğiniz Pinterest bağlantısını media olarak gönderir.'
-).add_command(
-    'dzd', '<bağlantı>', 'Verdiyiniz spotify/deezer bağlantısını şarkıya çevirir.'
 ).add()
