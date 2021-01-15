@@ -18,7 +18,6 @@ from userbot import (
 
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 heroku_api = "https://api.heroku.com"
 if HEROKU_APPNAME is not None and HEROKU_APIKEY is not None:
@@ -208,16 +207,4 @@ CmdHelp('heroku').add_command(
         'del var', None, 'del var <Var adı> Seçdiyiniz VARı silər sildikdən sonra botunuza .restart atın.'
     ).add_command(
         'log', None, 'Heroku loqu əldə edin.'
-    ).add()
-
-CmdTr('heroku').add_command(
-'dyno', None, 'Heroku hesabınızın dyno saatini bilgisini verir.'
-    ).add_command(
-        'set var', None, 'set var <Yeni Var ismi> <değer> Botunuza yeni VAR ekler ekledikten sonra botunuza .restart atın.'
-    ).add_command(
-        'get var', None, 'Mevcut VARlarınızı elde edin, yalnız özel grupunuzda kullanın.'
-    ).add_command(
-        'del var', None, 'del var <Var ismi> Belirtdiyiniz VARı silər sildikten sonra botunuza .restart atın.'
-    ).add_command(
-        'log', None, 'Heroku loqu alın.'
     ).add()
