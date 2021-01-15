@@ -13,7 +13,6 @@ from PIL import Image
 from userbot import bot, CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -145,8 +144,4 @@ async def scam(results, lim):
 
 CmdHelp('reverse').add_command(
     'reverse', '<cavab>', 'Foto vəya stikerə cavab verərək görüntünü Google üstündən axtara bilərsiz.'
-).add()
-
-CmdTr('reverse').add_command(
-    'reverse', '<yanıt>', 'Fotoğraf veya çıkartmaya yanıt vererek görüntüyü Google üzerniden arayabilirsiniz.'
 ).add()
