@@ -5,7 +5,6 @@ from userbot.events import register
 from telethon import version
 from platform import python_version
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -21,7 +20,7 @@ def durum(s):
         if s == False:
             return "🔴"
         else:
-            return "🟢"
+            return "🐍"
 
 @register(outgoing=True, pattern="^.durum|^.status")
 async def durums(event):
@@ -33,7 +32,6 @@ async def durums(event):
 `Spotify:` `{durum(SPOTIFY_DC)}`
 `GDrive:` `{durum(G_DRIVE_CLIENT_ID)}`
 `LastFm:` `{durum(lastfm)}`
-`YouTube ApiKey:` `{durum(YOUTUBE_API_KEY)}`
 `Lydia:` `{durum(LYDIA_API_KEY)}`
 `OpenWeather:` `{durum(OPEN_WEATHER_MAP_APPID)}`
 `AutoPP:` `{durum(AUTO_PP)}`
@@ -51,8 +49,4 @@ async def durums(event):
 
 CmdHelp('status').add_command(
     'status', None, 'Əlavə edilən Apilər və versiyaları göstərir.'
-).add()
-
-CmdTr('durum').add_command(
-    'durum', None, 'Eklenen Apiler ve sürümleri gösterir.'
 ).add()
