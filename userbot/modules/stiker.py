@@ -5,7 +5,6 @@ import re
 from asyncio import sleep
 
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 from userbot import bot
 from userbot.events import register
 
@@ -124,6 +123,3 @@ async def rastick(animu):
 
 Help = CmdHelp('stiker')
 Help.add_command('q2 yazı',  None, 'Fərqli maraqlı yazılı stikerlər edər').add()
-
-Help = CmdTr('stiker')
-Help.add_command('q2 yazı',  None, 'Farklı güzel yazılı şekilli şukullu çıkartmalar yapar').add()
