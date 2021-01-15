@@ -10,7 +10,6 @@ from math import sqrt
 from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantsRequest
 from telethon.utils import get_input_location
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern="^.qrup(?: |$)(.*)")
 async def info(event):
@@ -193,5 +192,3 @@ async def fetch_info(chat, event):
     return caption    
 
 CmdHelp('qrup').add_command('qrup', None, 'Qrup haqqında məlumat göstərir.').add()
-
-CmdTr('qrup').add_command('qrup', None, 'Grup hakkında bilgi gösterir.').add()
