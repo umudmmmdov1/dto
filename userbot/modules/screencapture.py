@@ -9,7 +9,6 @@ from selenium.webdriver.chrome.options import Options
 from userbot.events import register
 from userbot import GOOGLE_CHROME_BIN, CHROME_DRIVER, CMD_HELP
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -68,8 +67,4 @@ async def capture(url):
 
 CmdHelp('ss').add_command(
     'ss', '<url>', 'Seçilən web saytından bir ekran görüntüsü alar və göndərər.', 'ss https://nexeber.com'
-).add()
-
-CmdTr('ss').add_command(
-    'ss', '<url>', 'Belirtilen web sitesinden bir ekran görüntüsü alır ve gönderir.', 'ss https://fusuf.codes'
 ).add()
