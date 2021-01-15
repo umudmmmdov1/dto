@@ -7,7 +7,6 @@ import io
 import os
 import asyncio
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -40,7 +39,7 @@ async def cevir(event):
 
         im = Image.open(foto).convert("RGB")
         im.save("sticker.png", "png")
-        await event.client.send_file(event.chat_id, "sticker.png", reply_to=rep_msg, caption="@DTOUserBot `ilə fotoya çevrildi.`")
+        await event.client.send_file(event.chat_id, "sticker.png", reply_to=rep_msg, caption="@UseratorOT 🐍 `ilə fotoya çevirildi.`")
 
         await event.delete()
         os.remove("sticker.png")
@@ -134,14 +133,4 @@ CmdHelp('cevir').add_command(
     'çevir gif', None, 'Videonu və ya animasyonlu stickeri gifə çevirər.'
 ).add_command(
     'çevir ses', '<uşaq/robot/earrape/suretli/parazit/yangi>', 'Səsə efekt verər.'
-).add()
-
-CmdTr('cevir').add_command(
-    'çevir foto', '<yanıt>', 'Stickeri fotoğrafa çevirir.'
-).add_command(
-    'çevir gif', '<yanıt>', 'Videoyu veya animasyonlu stickeri gife çevirir.'
-).add_command(
-    'çevir ses', '<uşaq/robot/earrape/suretli/parazit/yangi>', 'Sese efekt uygular.'
-).add_command(
-    'çevir mp3', '<yanıt>', 'Yanıt verdiğiniz videoyu mp3 yapar.'
 ).add()
