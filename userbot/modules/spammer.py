@@ -7,7 +7,6 @@ import threading
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern="^.tspam")
 async def tmeme(e):
@@ -111,18 +110,4 @@ CmdHelp('spammer').add_command(
     'delayspam', '<gecikmə> <miqdar> <mətin>', 'Verilən miqdar və verilən gecikmə ilə gecikməli spam edər.'
 ).add_warning(
     'Məsuliyyət sizə aitdir!!'
-).add()
-
-CmdTr('spammer').add_command(
-    'tspam', '<metin>', 'Verilen mesajı tek tek göndererek spam yapar.'
-).add_command(
-    'spam', '<miktar> <metin>', 'Verilen miktarda spam gönderir.'
-).add_command(
-    'bigspam', '<miktar> <metin>', 'Verilen miktarda spam gönderir.'
-).add_command(
-    'picspam', '<miktar> <link>', 'Verilen miktarda resimli spam gönderir.'
-).add_command(
-    'delayspam', '<gecikme> <miktar> <metin>', 'Verilen miktar ve verilen gecikme ile gecikmeli spam yapar.'
-).add_warning(
-    'Sorumluluk size aittir!!'
 ).add()
