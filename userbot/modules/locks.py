@@ -7,7 +7,6 @@ from telethon.tl.types import ChatBannedRights
 from userbot import CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -198,12 +197,4 @@ CmdHelp('locks').add_command(
     'Bağlıya biləcəyin və bağlayıb aça biləcəyin bunlardır: all, msg, media, sticker, gif, game, inline, poll, invite, pin, info'
 ).add_warning(
     'İdarəçi icazələri lazımdır!'
-).add()
-
-CmdTr('locks').add_command(
-    'lock', '<kilitlenecek medya tipi> veya .unlock <kilitlenecek medya tipi>', 'Sohbetteki birtakım şeyleri engelleyebilmeni sağlar. (sticker atmak, oyun oynamak vs.)'
-).add_info(
-    'Kilitleyebileceğin ve kilidini açabileceklerin şunlardır: all, msg, media, sticker, gif, game, inline, poll, invite, pin, info'
-).add_warning(
-    'Yönetici hakları gerektirir!'
 ).add()
