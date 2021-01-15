@@ -17,7 +17,6 @@ from telethon.tl.types import InputPhoto, MessageMediaPhoto, User, Chat, Channel
 from userbot import bot, CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 # ====================== CONSTANT ===============================
 # ██████ LANGUAGE CONSTANTS ██████ #
@@ -191,20 +190,4 @@ CmdHelp('profile').add_command(
     'reserved', None, 'Rezerve etdiyiniz istifadəçi adlarını göstərər.'
 ).add_command(
     'count', None, 'Qruplarınızı, söhbətlərinizi, aktiv botları vs. sayar.'
-).add()
-
-CmdTr('profile').add_command(
-    'username', '<yeni kullanıcı adı>', 'Telegram\'daki kullanıcı adınızı değişir.'
-).add_command(
-    'name', '<isim> or .name <isim> <soyisim>', 'Telegram\'daki isminizi değişir. (Ad ve soyad ilk boşluğa dayanarak birleştirilir.)'
-).add_command(
-    'setpfp', None, 'Bir resmi Telegram\'da profil resmi yapmak için .setpfp komutuyla cevap verin.'
-).add_command(
-    'setbio', '<yeni biyografi>', 'Telegram\'daki biyografinizi bu komutu kullanarak değiştirin.'
-).add_command(
-    'delpfp', '<numara/all>', 'Telegram profil fotoğrafınızı kaldırır.'
-).add_command(
-    'reserved', None, 'Rezerve ettiğiniz kullanıcı adlarını gösterir.'
-).add_command(
-    'count', None, 'Gruplarınızı, sohbetlerinizi, aktif botları vs. sayar.'
 ).add()
