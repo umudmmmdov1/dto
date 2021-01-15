@@ -9,7 +9,6 @@ from coffeehouse.api import API
 import asyncio
 import logging
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.WARNING)
@@ -105,12 +104,4 @@ CmdHelp('lydia').add_command(
     'remcf', '<istifadəçi adı/cavablayaraq>', 'Lydia\'nın avtomatik söhbətini deaktivləşdirir.'
 ).add_command(
     'repcf', '<istifadəçi adı/cavablayaraq>', 'Lydia\'nın avtomatik söhbətini xüsusi istifadəçi üçün aktivləşdirir.'
-).add()
-
-CmdTr('lydia').add_command(
-    'addcf', '<kullanıcı adı/yanıtlayarak>', 'Lydia\'nın otomatik sohbetini etkinleştirir.'
-).add_command(
-    'remcf', '<kullanıcı adı/yanıtlayarak>', 'Lydia\'nın otomatik sohbetini devre dışı bırakır.'
-).add_command(
-    'repcf', '<kullanıcı adı/yanıtlayarak>', 'Lydia\'nın otomatik sohbetiini belli bir kişi için etkinleştirir.'
 ).add()
