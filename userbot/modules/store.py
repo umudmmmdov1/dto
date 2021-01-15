@@ -5,7 +5,6 @@ from telethon.tl.types import InputMessagesFilterDocument
 from userbot.events import register
 from userbot import BOT_USERNAME, PATTERNS, CMD_HELP, PLUGIN_CHANNEL_ID
 import userbot.cmdhelp
-from userbot.cmdtr import CmdTr
 from random import choice, sample
 import importlib
 import re
@@ -148,12 +147,4 @@ userbot.cmdhelp.CmdHelp('store').add_command(
     'store random', '<rəqəm>', 'Plugin kanalından təsadufi plugin gətirər.', 'store random 10'
 ).add_command(
     'sinstall', '<rəqəm>', 'Plugin kanalından tez olaraq Plugini yükləyər.'
-).add()
-
-CmdTr('store').add_command(
-    'store', '<kelime>', 'Plugin kanalına son atılan Pluginleri getirir. Eğer kelime yazarsanız arama yapar.'
-).add_command(
-    'store random', '<sayı>', 'Pluginden kanalından rastgele plugin getirir.', 'store random 10'
-).add_command(
-    'sinstall', '<sayı>', 'Plugin kanalından direkt olarak Plugini yükler.'
 ).add()
