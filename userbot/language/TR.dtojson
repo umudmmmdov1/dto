@@ -37,10 +37,7 @@
             "NEED_PLUGIN": "`Lütfen bir U S Σ R Δ T O R modülü adı belirtin.`",
             "NEED_MODULE": "`Modullar aşağıdadır 👇🏻\nKullanım: .dto <modül adı>`"
         },
-        "__tr": {
-            "NEED_PLUGIN": "`Lütfen bir U S Σ R Δ T O R modülü adı belirtin.`",
-            "NEED_MODULE": "`Modullar aşağıdadır 👇🏻\nKullanım: .tr <modül adı>`"
-        },
+   
         "__helpme": {
             "NO_BOT": "`Bot çalışmıyor! Lütfen Bot Tokeni ve Kullanıcı adını doğru ayarlayın. Modül durduruldu.`"
         },
