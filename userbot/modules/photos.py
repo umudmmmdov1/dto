@@ -4,7 +4,6 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-from userbot.cmdtr import CmdTr
 
 @register(outgoing=True, pattern=".ascii ?(.*)")
 async def asci(event):
@@ -178,14 +177,4 @@ CmdHelp('photos').add_command(
     'colorize', None, 'Ağ-qara şəkilləri rəngləndirər'
 ).add_command(
     'pixel', None, 'Cavab verdiyiniz şəkilə pixel effekti verər.'
-).add()
-
-CmdTr('photos').add_command(
-    'ascii', None, 'Yanıt yaptığınız resime ASCII effekti yapar.'
-).add_command(
-    'line', None, 'Yanıt yaptığınız resime 50Lines effekti yapar.'
-).add_command(
-    'colorize', None, 'Siyah-Beyaz resimleri renkler'
-).add_command(
-    'pixel', None, 'Yanıt yaptığınız reaime pixel effekti yapar.'
 ).add()
