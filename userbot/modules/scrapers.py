@@ -32,10 +32,16 @@ from gtts import gTTS
 from gtts.lang import tts_langs
 from emoji import get_emoji_regexp
 from youtube_dl import YoutubeDL
-from youtube_dl.utils import (DownloadError, ContentTooShortError,
-                              ExtractorError, GeoRestrictedError,
-                              MaxDownloadsReached, PostProcessingError,
-                              UnavailableVideoError, XAttrMetadataError)
+from youtube_dl.utils import (
+    ContentTooShortError,
+    DownloadError,
+    ExtractorError,
+    GeoRestrictedError,
+    MaxDownloadsReached,
+    PostProcessingError,
+    UnavailableVideoError,
+    XAttrMetadataError,
+)
 from asyncio import sleep
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.events import register
@@ -712,7 +718,7 @@ CmdHelp('scrapers').add_command(
 ).add_command(
     'currency', '<miqdar> <dəyişdirləcək döviz> <dəyişdirləcək döviz>', 'Pul məzənnə dəyişdirici.'
 ).add_command(
-    'carbon', '<mətin>', 'carbon.now.sh saytını işlədərək yazdıqlarının babat görsənməsi edər.'
+    'carbon', '<mətin>', 'carbon.now.sh saytını işlədərək yazdıqlarının babat görsənməsi təmin edər.'
 ).add_command(
     'crblang', '<dil>', 'Carbon üçün dil tənzimləmələri.'
 ).add_command(
