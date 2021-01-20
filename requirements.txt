@@ -17,7 +17,7 @@ google_images_download>=2.7.1
 gTTS>=2.1.1
 gTTS-token>=1.1.3
 hachoir
-httplib2==0.13.1
+httplib2==0.18.0
 humanize
 heroku3
 lxml==4.6.2
