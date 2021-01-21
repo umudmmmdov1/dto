@@ -27,7 +27,7 @@ from requests import get
 from search_engine_parser import GoogleSearch
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from google_trans_new import LANGUAGES, google_translator
+from googletrans import LANGUAGES, Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
 from emoji import get_emoji_regexp
@@ -475,38 +475,36 @@ async def imdb(e):
     except IndexError:
         await e.edit("Keçərli bir film adı yaz.")
 
-@register(outgoing=True, pattern=r"^\.trt(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
 async def translateme(trans):
-    """ .trt  """
-
-    if trans.is_reply and not trans.pattern_match.group(1):
-        message = await trans.get_reply_message()
-        message = str(message.message)
+    """ .trt """
+    translator = Translator()
+    textx = await trans.get_reply_message()
+    message = trans.pattern_match.group(1)
+    if message:
+        pass
+    elif textx:
+        message = textx.text
     else:
-        message = str(trans.pattern_match.group(1))
+        await trans.edit("`Mənə tərcümə olunacaq mesaj ver!`")
+        return
 
-    if not message:
-        return await trans.edit(
-            "`Mənə tərcümə olunacaq mətin ver!`")
-
-    await trans.edit("**Tərcümə edilir...**")
-    translator = google_translator()
     try:
-        reply_text = translator.translate(deEmojify(message),
-                                          lang_tgt=TRT_LANG)
+        reply_text = translator.translate(deEmojify(message), dest=TRT_LANG)
     except ValueError:
-        return await trans.edit(
-            "**Səhv dil.kodu, düzgün dil kodu seçin **`.lang tts/trt <dil kodu>`**.**"
-        )
+        await trans.edit("Ayarlanan hədəf dili keçərsizdir.")
+        return
 
-    try:
-        source_lan = translator.detect(deEmojify(message))[1].title()
-    except:
-        source_lan = "(Google bu məlumatı tapa bilmədi)"
-
-    reply_text = f"Bu dildən: **{source_lan}**\nBu dilə: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
+    source_lan = LANGUAGES[f'{reply_text.src.lower()}']
+    transl_lan = LANGUAGES[f'{reply_text.dest.lower()}']
+    reply_text = f"Bu dildən:**{source_lan.title()}**\nBu dilə:**{transl_lan.title()}**\n\n{reply_text.text}"
 
     await trans.edit(reply_text)
+    if BOTLOG:
+        await trans.client.send_message(
+            BOTLOG_CHATID,
+            f"Bu {source_lan.title()} söz az əvvəl {transl_lan.title()} dilinə tərcümə olundu.",
+        )
     
 @register(pattern=".lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
@@ -571,13 +569,13 @@ async def _(event):
         )
       await stark_result.edit(noob, parse_mode="HTML")
 
-@register(outgoing=True, pattern=r"^\.rip(a|v) (.*)")
+@register(outgoing=True, pattern=r"^\.rip(audio|video) (.*)")
 async def download_video(v_url):
     """ For media downloader command, download media from YouTube and many other sites. """
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
 
-    await v_url.edit("`Preparing to download...`")
+    await v_url.edit("`Atdığınız linkdən media yüklənir...`")
 
     if type == "a":
         opts = {
@@ -621,33 +619,33 @@ async def download_video(v_url):
         video = True
 
     try:
-        await v_url.edit("`Fetching data, please wait..`")
+        await v_url.edit("`Datalar əldə olunur, Gözləyin..`")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
         return await v_url.edit(f"`{str(DE)}`")
     except ContentTooShortError:
-        return await v_url.edit("`The download content was too short.`")
+        return await v_url.edit("`Endirmək üçün həcmi çox qısadır.`")
     except GeoRestrictedError:
         return await v_url.edit(
             "`Video is not available from your geographic location "
             "due to geographic restrictions imposed by a website.`"
         )
     except MaxDownloadsReached:
-        return await v_url.edit("`Max-downloads limit has been reached.`")
+        return await v_url.edit("`Maks yüklənmə limiti`")
     except PostProcessingError:
-        return await v_url.edit("`There was an error during post processing.`")
+        return await v_url.edit("`Yüklənmə zamanı xəta baş verdi.`")
     except UnavailableVideoError:
-        return await v_url.edit("`Media is not available in the requested format.`")
+        return await v_url.edit("`Media tapılmadı.`")
     except XAttrMetadataError as XAME:
         return await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
     except ExtractorError:
-        return await v_url.edit("`There was an error during info extraction.`")
+        return await v_url.edit("`Yalnış məlumat.`")
     except Exception as e:
         return await v_url.edit(f"{str(type(e)): {str(e)}}")
     c_time = time.time()
     if song:
-        await v_url.edit(f"`Preparing to upload song:`\n**{rip_data['title']}**")
+        await v_url.edit(f"`Musiqi yüklənir:`\n**{rip_data['title']}**")
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp3",
@@ -660,20 +658,20 @@ async def download_video(v_url):
                 )
             ],
             progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp3")
+                progress(d, t, v_url, c_time, "Endirilir...", f"{rip_data['title']}.mp3")
             ),
         )
         os.remove(f"{rip_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await v_url.edit(f"`Preparing to upload video:`\n**{rip_data['title']}**")
+        await v_url.edit(f"`Video yüklənilir:`\n**{rip_data['title']}**")
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp4",
             supports_streaming=True,
             caption=rip_data["title"],
             progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp4")
+                progress(d, t, v_url, c_time, "Endirilir...", f"{rip_data['title']}.mp4")
             ),
         )
         os.remove(f"{rip_data['id']}.mp4")
