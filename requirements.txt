@@ -6,13 +6,15 @@ beautifulsoup4>=4.8.1
 cowpy
 cryptg
 dnspython
-emoji==1.0.0
+emoji
 geopy
 psutil
 gitpython
 google-api-python-client
 google-auth-oauthlib
 googletrans
+google-trans-new
+langdetect
 google_images_download>=2.8.0
 gTTS>=2.1.1
 gTTS-token>=1.1.3
