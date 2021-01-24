@@ -6,7 +6,7 @@ beautifulsoup4>=4.8.1
 cowpy
 cryptg
 dnspython
-emoji==0.6.0
+emoji==1.0.0
 geopy
 psutil
 gitpython
