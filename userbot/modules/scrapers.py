@@ -27,7 +27,7 @@ from requests import get
 from search_engine_parser import GoogleSearch
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from google_trans_new import LANGUAGES, google_translator
+from googletrans import LANGUAGES, Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
 from emoji import get_emoji_regexp
@@ -477,36 +477,33 @@ async def imdb(e):
 
 @register(outgoing=True, pattern=r"^\.trt(?: |$)([\s\S]*)")
 async def translateme(trans):
-    """ .trt  """
-
-    if trans.is_reply and not trans.pattern_match.group(1):
-        message = await trans.get_reply_message()
-        message = str(message.message)
+    """ .trt """
+    translator = Translator()
+    textx = await trans.get_reply_message()
+    message = trans.pattern_match.group(1)
+    if message:
+        pass
+    elif textx:
+        message = textx.text
     else:
-        message = str(trans.pattern_match.group(1))
+        return await trans.edit("`Mənə tərcümə olunacaq mesaj ver!`")
 
-    if not message:
-        return await trans.edit(
-            "`Mənə tərcümə olunacaq mətin ver!`")
-
-    await trans.edit("**Tərcümə edilir...**")
-    translator = google_translator()
     try:
-        reply_text = translator.translate(deEmojify(message),
-                                          lang_tgt=TRT_LANG)
+        reply_text = translator.translate(deEmojify(message), dest=TRT_LANG)
     except ValueError:
-        return await trans.edit(
-            "**Səhv dil.kodu, düzgün dil kodu seçin **`.lang tts/trt <dil kodu>`**.**"
-        )
+        return await trans.edit("Yalnış dil kodu yazmısız təkrar edin.")
 
-    try:
-        source_lan = translator.detect(deEmojify(message))[1].title()
-    except:
-        source_lan = "(Google bu məlumatı tapa bilmədi)"
-
-    reply_text = f"Bu dildən: **{source_lan}**\nBu dilə: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
+    source_lan = LANGUAGES[f"{reply_text.src.lower()}"]
+    transl_lan = LANGUAGES[f"{reply_text.dest.lower()}"]
+    reply_text = f"Bu dildən ➡️ **{source_lan.title()}**\nBu dilə ➡️ **{transl_lan.title()}:**\n\n{reply_text.text}"
 
     await trans.edit(reply_text)
+    if BOTLOG:
+        await trans.client.send_message(
+            BOTLOG_CHATID,
+            f"Tərcümə olundu {source_lan.title()} bu {transl_lan.title()} sözə.",
+        )
+
     
 @register(pattern=".lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
