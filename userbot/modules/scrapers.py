@@ -27,7 +27,9 @@ from requests import get
 from search_engine_parser import GoogleSearch
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from googletrans import LANGUAGES, Translator
+from google_trans_new import google_translator
+from googletrans import LANGUAGES
+from langdetect import detect
 from gtts import gTTS
 from gtts.lang import tts_langs
 from emoji import get_emoji_regexp
@@ -494,7 +496,7 @@ async def _(event):
 
     lan = lan.strip()
     try:
-        translator = Translator()
+        translator = google_translator()
         translated = translator.translate(text, lang_tgt=lan)
         lmao = detect(text)
         after_tr_text = lmao
@@ -657,7 +659,7 @@ async def download_video(v_url):
         return await v_url.edit(f"{str(type(e)): {str(e)}}")
     c_time = time.time()
     if song:
-        await v_url.edit(f"`Seçdiyiniz musiqi yüklənilir:`\n**{rip_data['title']}**")
+        await v_url.edit(f"`Seçdiyiniz musiqi yüklənilir`\n**{rip_data['title']}**")
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp3",
@@ -676,7 +678,7 @@ async def download_video(v_url):
         os.remove(f"{rip_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await v_url.edit(f"`Seçdiyiniz video yüklənir:`\n**{rip_data['title']}**")
+        await v_url.edit(f"`Seçdiyiniz video yüklənir`\n**{rip_data['title']}**")
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp4",
