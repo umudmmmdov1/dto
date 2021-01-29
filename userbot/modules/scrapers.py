@@ -3,6 +3,7 @@
 
 """ Scrapers """
 
+import emoji
 import os
 import time
 import asyncio
@@ -478,48 +479,37 @@ async def imdb(e):
         await e.edit("Keçərli bir film adı yaz.")
 
 @register(outgoing=True, pattern=r"^\.trt(?: |$)([\s\S]*)")
-async def _(event):
-    if event.fwd_from:
-        return
-    if "trim" in event.raw_text:
-        return
-    input_str = event.pattern_match.group(1)
-    if event.reply_to_msg_id:
-        previous_message = await event.get_reply_message()
-        text = previous_message.message
-        lan = input_str or "en"
-    elif "|" in input_str:
-        lan, text = input_str.split("|")
+async def translateme(trans):
+    """ .trt  """
+
+    if trans.is_reply and not trans.pattern_match.group(1):
+        message = await trans.get_reply_message()
+        message = str(message.message)
     else:
-        await edit_or_reply(event, "`Mənə tərcümə olunacaq mesaj ver!`")
-        return
+        message = str(trans.pattern_match.group(1))
 
-    lan = lan.strip()
+    if not message:
+        return await trans.edit(
+            "`Mənə tərcümə olunacaq mətin ver!`")
+
+    await trans.edit("**Tərcümə edilir...**")
+    translator = google_translator()
     try:
-        translator = google_translator()
-        translated = translator.translate(text, lang_tgt=lan)
-        lmao = detect(text)
-        after_tr_text = lmao
-        source_lan = LANGUAGES[after_tr_text]
-        transl_lan = LANGUAGES[lan]
-        output_str = f"""**Tərcümə olunur...**
-**Bu dildən ({source_lan})**:
-`{text}`
-**Bu dilə ({transl_lan})**:
-`{translated}`"""
+        reply_text = translator.translate(deEmojify(message),
+                                          lang_tgt=TRT_LANG)
+    except ValueError:
+        return await trans.edit(
+            "**Yalnış dil kodu, düzgün dil kodu seçin **`.lang tts/trt <dil kodu>`**.**"
+        )
 
-        if len(output_str) >= 4096:
-            out_file = output_str
-            url = "https://del.dog/documents"
-            r = requests.post(url, data=out_file.encode("UTF-8")).json()
-            url2 = f"https://del.dog/{r['key']}"
-            starky = f"Tərcümə olunacaq mesaj çox böyükd7r, Ama bunu linklə yollaya bilərsən [tıkla]({url2})"
-        else:
-            starky = output_str
-        await edit_or_reply(event, starky)
-    except Exception as e:
-        print(e)
+    try:
+        source_lan = translator.detect(deEmojify(message))[1].title()
+    except:
+        source_lan = "(Google bu məlumatı tapa bilmədi)"
 
+    reply_text = f"Bu dildən: **{source_lan}**\nBu dilə: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
+
+    await trans.edit(reply_text)
     
 @register(pattern=".lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
