@@ -193,7 +193,7 @@ async def carbon_api(e):
     # 
     await e.delete()  # 
 
-@register(outgoing=True, pattern=r"^.img(?: |$)(\d*)? ?(.*)"))
+@register(outgoing=True, pattern="^.img(?: |$)(\d*)? ?(.*)"))
 async def img_sampler(event):
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
