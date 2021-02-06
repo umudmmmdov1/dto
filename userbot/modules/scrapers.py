@@ -44,7 +44,7 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 from asyncio import sleep
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
+from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN, deEmojify
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.modules.upload_download import progress, humanbytes, time_formatter
@@ -493,7 +493,7 @@ async def translateme(trans):
     await trans.edit("**Tərcümə edilir...**")
     translator = google_translator()
     try:
-        reply_text = translator.translate(message),
+        reply_text = translator.translate(deEmojify(message),
                                           lang_tgt=TRT_LANG)
     except ValueError:
         return await trans.edit(
