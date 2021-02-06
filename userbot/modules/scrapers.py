@@ -47,6 +47,7 @@ from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRI
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.modules.upload_download import progress, humanbytes, time_formatter
+from userbot.utils import chrome, googleimagesdownload, progress
 from ImageDown import ImageDown
 import base64, binascii
 import random
@@ -105,8 +106,8 @@ async def reddit(event):
 @register(outgoing=True, pattern="^.karbon ?(.*)")
 async def karbon(e):
     cmd = e.pattern_match.group(1)
-    if os.path.exists("@DTOUserBot-Karbon.jpg"):
-        os.remove("@DTOUserBot-Karbon.jpg")
+    if os.path.exists("@Userator-Karbon.jpg"):
+        os.remove("@Userator-Karbon.jpg")
 
     if len(cmd) < 1:
         await e.edit("İşlədilişi: .karbon mesaj")    
@@ -120,7 +121,7 @@ async def karbon(e):
     with open("@DTOUserBot-Karbon.jpg", 'wb') as f:
         f.write(r.content)    
 
-    await e.client.send_file(e.chat_id, file="@DTOUserBot-Karbon.jpg", force_document=True, caption="[DTÖUserBot](https://t.me/dtouserbot) ilə yaradıldı.")
+    await e.client.send_file(e.chat_id, file="@Userator-Karbon.jpg", force_document=True, caption="[U S E R A T O R](https://t.me/useratorot) ilə yaradıldı.")
     await e.delete()
 
 @register(outgoing=True, pattern="^.crblang (.*)")
@@ -192,28 +193,52 @@ async def carbon_api(e):
     # 
     await e.delete()  # 
 
-@register(outgoing=True, pattern="^.img((\d*)| ) ?(.*)")
+@register(outgoing=True, pattern=r"^\.img(?: |$)(\d*)? ?(.*)")
 async def img_sampler(event):
-    """ .img"""
-    await event.edit("`İşlənir...`")
-    query = event.pattern_match.group(3)
-    if event.pattern_match.group(2):
-        try:
-            limit = int(event.pattern_match.group(2))
-        except:
-            return await event.edit('**Xaiş düzgün bir şəkildə sözü yazın!**\nMəsələn: `.img system of a down`')
-    else:
-        limit = 5
-    await event.edit(f"`{limit} ədəd {query} şəkil yüklənir...`")
-    ig = ImageDown().Yandex(query, limit)
-    ig.get_urls()
-    paths = ig.download()
-    await event.edit('`Telegram\'a Yüklənir...`')
-    await event.client.send_file(event.chat_id, paths, caption=f'**İstək** `{limit}` **ədəd** `{query}` **şəkili**')
-    await event.delete()
+    """ .img """
 
-    for path in paths:
-        os.remove(path)
+    if event.is_reply and not event.pattern_match.group(2):
+        query = await event.get_reply_message()
+        query = str(query.message)
+    else:
+        query = str(event.pattern_match.group(2))
+
+    if not query:
+        return await event.edit(
+            "**Axtarmaq üçün mesajı düzgün yaz! .img söz**")
+
+    await event.edit("**Axtarılır...**")
+
+    if event.pattern_match.group(1) != "":
+        counter = int(event.pattern_match.group(1))
+        if counter > 10:
+            counter = int(10)
+        if counter <= 0:
+            counter = int(1)
+    else:
+        counter = int(3)
+
+    response = googleimagesdownload()
+
+    # yarat
+    arguments = {
+        "keywords": query,
+        "limit": counter,
+        "format": "png",
+        "no_directory": "no_directory",
+    }
+
+    # img
+    try:
+        paths = response.download(arguments)
+    except Exception as e:
+        return await event.edit(f"**Xəta:** `{e}`")
+
+    lst = paths[0][query]
+    await event.client.send_file(
+        await event.client.get_input_entity(event.chat_id), lst)
+    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
+    await event.delete()
 
 @register(outgoing=True, pattern="^.currency ?(.*)")
 async def moni(event):
