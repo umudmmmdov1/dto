@@ -193,41 +193,44 @@ async def carbon_api(e):
     # 
     await e.delete()  # 
 
-@register(outgoing=True, pattern=r"^\.img(?: |$)(\d*)? ?(.*)")
+@register(outgoing=True, pattern=r"^.img(?: |$)(\d*)? ?(.*)"))
 async def img_sampler(event):
-    await eor(event, "`Axtar ...`")
-    reply = await event.get_reply_message()
-    if event.pattern_match.group(1):
-        query = event.pattern_match.group(1)
-    elif reply:
-        query = reply.message
+    reply_to_id = event.message.id
+    if event.reply_to_msg_id:
+        reply_to_id = event.reply_to_msg_id
+    if event.is_reply and not event.pattern_match.group(2):
+        query = await event.get_reply_message()
+        query = str(query.message)
     else:
-        await eor(event, "`Nə axtardığını başa düşənmədim.`")
-        return
-
-    lim = findall(r"lim=\d+", query)
-    # lim = event.pattern_match.group(1)
-    try:
-        lim = lim[0]
-        lim = lim.replace("lim=", "")
-        query = query.replace("lim=" + lim[0], "")
-    except IndexError:
-        lim = 5
+        query = str(event.pattern_match.group(2))
+    if not query:
+        return await event.edit("`Mesaja cavab olaraq yazın və ya əmrin yanına söz yazın.`"
+        )
+    cat = await event.edit( "`Axtarılır...`")
+    if event.pattern_match.group(1) != "":
+        lim = int(event.pattern_match.group(1))
+        if lim > 10:
+            lim = int(10)
+        if lim <= 0:
+            lim = int(1)
+    else:
+        lim = int(3)
     response = googleimagesdownload()
-
-    # yarat
+    # creating list of arguments
     arguments = {
         "keywords": query,
         "limit": lim,
         "format": "jpg",
         "no_directory": "no_directory",
     }
-
-    # arqument
-    paths = response.download(arguments)
+    # passing the arguments to the function
+    try:
+        paths = response.download(arguments)
+    except Exception as e:
+        return await event.edit(f"Error: \n{e}")
     lst = paths[0][query]
-    await event.client.send_file(
-        await event.client.get_input_entity(event.chat_id), lst
+    await bot.send_file(
+        await bot.get_input_entity(event.chat_id), lst, reply_to=reply_to_id
     )
     shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
     await event.delete()
