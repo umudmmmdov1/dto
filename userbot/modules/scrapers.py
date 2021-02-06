@@ -47,7 +47,7 @@ from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRI
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.modules.upload_download import progress, humanbytes, time_formatter
-from userbot.utils import chrome, googleimagesdownload, progress
+from userbot.google_images_download import googleimagesdownload
 from ImageDown import ImageDown
 import base64, binascii
 import random
@@ -195,48 +195,40 @@ async def carbon_api(e):
 
 @register(outgoing=True, pattern=r"^\.img(?: |$)(\d*)? ?(.*)")
 async def img_sampler(event):
-    """ .img """
-
-    if event.is_reply and not event.pattern_match.group(2):
-        query = await event.get_reply_message()
-        query = str(query.message)
+    await eor(event, "`Axtar ...`")
+    reply = await event.get_reply_message()
+    if event.pattern_match.group(1):
+        query = event.pattern_match.group(1)
+    elif reply:
+        query = reply.message
     else:
-        query = str(event.pattern_match.group(2))
+        await eor(event, "`Nə axtardığını başa düşənmədim.`")
+        return
 
-    if not query:
-        return await event.edit(
-            "**Axtarmaq üçün mesajı düzgün yaz! .img söz**")
-
-    await event.edit("**Axtarılır...**")
-
-    if event.pattern_match.group(1) != "":
-        counter = int(event.pattern_match.group(1))
-        if counter > 10:
-            counter = int(10)
-        if counter <= 0:
-            counter = int(1)
-    else:
-        counter = int(3)
-
+    lim = findall(r"lim=\d+", query)
+    # lim = event.pattern_match.group(1)
+    try:
+        lim = lim[0]
+        lim = lim.replace("lim=", "")
+        query = query.replace("lim=" + lim[0], "")
+    except IndexError:
+        lim = 5
     response = googleimagesdownload()
 
     # yarat
     arguments = {
         "keywords": query,
-        "limit": counter,
-        "format": "png",
+        "limit": lim,
+        "format": "jpg",
         "no_directory": "no_directory",
     }
 
-    # img
-    try:
-        paths = response.download(arguments)
-    except Exception as e:
-        return await event.edit(f"**Xəta:** `{e}`")
-
+    # arqument
+    paths = response.download(arguments)
     lst = paths[0][query]
     await event.client.send_file(
-        await event.client.get_input_entity(event.chat_id), lst)
+        await event.client.get_input_entity(event.chat_id), lst
+    )
     shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
     await event.delete()
 
