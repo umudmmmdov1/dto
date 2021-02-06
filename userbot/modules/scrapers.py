@@ -3,7 +3,6 @@
 
 """ Scrapers """
 
-import emojify
 import emoji
 import os
 import time
