@@ -492,10 +492,19 @@ async def translateme(trans):
 
     await trans.edit("**Tərcümə edilir...**")
     translator = google_translator()
+    try:
+        reply_text = translator.translate(deEmojify(message),
+                                          lang_tgt=TRT_LANG)
     except ValueError:
         return await trans.edit(
-            "**Yalnış dil kodu, düzgün dil kodu seçin **`.lang tts/trt <dil kodu>`**.**"
+            "**Səhv dil kodu, düzgün dil kodu seçin **`.lang tts/trt <dil kodu>`**.**"
         )
+
+    try:
+        source_lan = translator.detect(deEmojify(message))[1].title()
+    except:
+        source_lan = "(Google bu məlumatı tapa bilmədi)"
+
     reply_text = f"Bu dildən: **{source_lan}**\nBu dilə: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
 
     await trans.edit(reply_text)
