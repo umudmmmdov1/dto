@@ -2,6 +2,7 @@
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.functions.messages import DeleteHistoryRequest
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 from userbot import bot
@@ -47,6 +48,8 @@ async def insta(event):
                 caption=f"@UseratorOT 🐍",
             )
             await event.client.send_read_acknowledge(conv.chat_id)
+            await bot(functions.messages.DeleteHistoryRequest(peer=chat, max_id=0))
+            await event.delete()
             
 @register(outgoing=True, pattern="^.dzd(?: |$)(.*)")
 async def DeezLoader(event):
