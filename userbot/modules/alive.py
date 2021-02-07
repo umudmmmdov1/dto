@@ -62,7 +62,7 @@ async def amireallyalive(alive):
         f"`👤 Mənim Ustam      :` **{DEFAULTUSER}**\n\n"
         f"`🐍 Python           :` **v{python_version()}**\n\n"
         f"`💻 Telethon         :` **v{version.__version__}**\n\n"
-        f"`⚙️ U S Σ R Δ T O R  :` **v2.6**\n\n"
+        f"`⚙️ U S Σ R Δ T O R  :` **v2.7.5**\n\n"
         f"`🕒 Bot işləyir      :` **{uptime}**\n\n"
         "💊 Dəstək qrupu [qatıl 🥰](t.me/useratorsup)\n"
         "💊 Github [dəyərləndir ✨](http://github.com/umudmmmdov1/dtouserbot)"
