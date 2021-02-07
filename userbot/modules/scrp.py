@@ -2,7 +2,6 @@
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.functions.messages import DeleteHistoryRequest
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 from userbot import bot
@@ -74,10 +73,7 @@ async def DeezLoader(event):
           except YouBlockedUserError:
               await event.edit("@DeezLoadBot'u blokdan çıxardın və yenidən yoxlayın.")
               return
-          await bot.send_file(event.chat_id, song, caption=details.text)
-          await event.client.delete_messages(conv.chat_id,
-                                             [msg_start.id, response.id, r.id, msg.id, details.id, song.id])
-          await event.delete()     
+          await bot.send_file(event.chat_id, song, caption=details.text)     
           
 CmdHelp('sosial').add_command(
     'ig', '<link>', 'Cavab verdiyiniz Instagram linkini media olaraq göndərər\n⚠️Diqqət: Verdiyiniz linkdəki hesab gizli olmamalıdır.'
