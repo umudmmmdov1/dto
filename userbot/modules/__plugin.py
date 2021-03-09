@@ -202,12 +202,12 @@ async def premove(event):
         await event.edit(LANG['NOT_FOUND_PLUGIN'])
     else:
         await event.edit(LANG['PLUG_DELETED'])
- time.sleep(2) 
+        time.sleep(2) 
         await event.edit(LANGG['RESTARTING'])
         try: 
             if BOTLOG:
-                await event.client.send_message(BOTLOG_CHATID, "#AVTORESTART \n"
-                                        "Plugin silənnən sonra bot yenidən başladıldı.")
+                await event.client.send_message(BOTLOG_CHATID, "#AVTORESTART\n"
+                                        "Plugin silinənnən sonra bot yenidən başladıldı.")
 
             await bot.disconnect()
         except:
