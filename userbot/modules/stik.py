@@ -118,7 +118,7 @@ async def itos(event):
     else:
         await event.edit("**Cavab verdiyiniz şəkili stickerə çevirər**")
 
-CmdHelp('stikfrom userbot.cmdhelp import CmdHelp').add_command(
+CmdHelp('stik').add_command(
     'sinfo', None, 'Stiker haqqında məlumat verər.'
 ).add_command(
     'spng', None, 'Stikeri png kimi göndərər.'
