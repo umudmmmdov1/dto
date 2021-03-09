@@ -29,7 +29,7 @@
             "PREMOVE_DELETING": "`Plugin Silinir...`",
             "ALREADY_DELETED": "`Plugin faylı artıq silinib.`",
             "NOT_FOUND_PLUGIN": "`Belə bir plugin bəlkə var idi, bəlkədə yox. Ancaq hazırda olmadığı dəqiqdir.`",
-            "PLUG_DELETED": "`Plugin uğurla silindi!` **Tətbiq ediləcək əməliyyatlar üçün yenidən başlatmağınız lazımdır.**\n`restart`",
+            "PLUG_DELETED": "`Plugin uğurla silindi!` **Yenidən başladılır.**",
             "DTO_PLUGIN_CAPTION": "`Bu` [U S Σ R Δ T O R](https://t.me/UseratorOT) `pluginidir.`"
         },
         
