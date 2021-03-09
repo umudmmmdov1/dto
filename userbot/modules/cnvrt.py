@@ -9,7 +9,7 @@ from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
-@register(outgoing=True, pattern="^.donder (.*)")  # pylint:disable=E0602
+@register(outgoing=True, pattern="^.cnvrt (.*)")  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
