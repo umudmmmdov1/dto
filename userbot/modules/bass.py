@@ -93,7 +93,6 @@ async def bassbooster(e):
             ],
             caption="[U S Σ R Δ T O R](t.me/UseratorOT) `ilə bass gücləndirildi`",
         )
-        os.remove(m)
     await e.delete()
     os.remove(fname)
     
