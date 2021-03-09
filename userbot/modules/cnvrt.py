@@ -45,7 +45,7 @@ async def _(event):
         force_document = False
         voice_note = False
         supports_streaming = False
-        if input_str == "voice":
+        if input_str == "ses":
             new_required_file_caption = "AUDIO" + str(round(time.time())) + ".ogg"
             new_required_file_name = (
                 TEMP_DOWNLOAD_DIRECTORY + "/" + new_required_file_caption
@@ -116,5 +116,5 @@ async def _(event):
             await event.edit(f"`{ms_two}` saniyədə mp3'ə çevrildi")
 
 CmdHelp('cnvrt').add_command(
-    'cnvrt', '<medya>', 'Cavab verdiyiniz səsi mp3ə mp3ü səsə videonu mp3 çevirər.'
+    'cnvrt', '<ses/mp3>', 'Cavab verdiyiniz səsi mp3ə mp3ü səsə videonu mp3 və ya səsə çevirər.'
 ).add()
