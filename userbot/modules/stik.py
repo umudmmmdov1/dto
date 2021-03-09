@@ -1,6 +1,7 @@
 # U S Σ R Δ T O R / Ümüd
 
 import io
+import os
 import math
 import urllib.request
 from os import remove
