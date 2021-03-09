@@ -115,6 +115,6 @@ async def _(event):
             os.remove(new_required_file_name)
             await event.edit(f"`{ms_two}` saniyədə mp3'ə çevrildi")
 
-CmdHelp('donder').add_command(
-    'donder', '<medya>', 'Cavab verdiyiniz səsi mp3ə mp3ü səsə videonu mp3 çevirər.'
+CmdHelp('cnvrt').add_command(
+    'cnvrt', '<medya>', 'Cavab verdiyiniz səsi mp3ə mp3ü səsə videonu mp3 çevirər.'
 ).add()
