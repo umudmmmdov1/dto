@@ -1,18 +1,18 @@
 # U S Σ R Δ T O R / Ümüd
 
-import io
-import os
-import math
-import urllib.request
+import asyncio, time, random
+import os, io
 from os import remove
+from datetime import datetime
+from io import BytesIO
 from PIL import Image
-import random
-from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto
-from userbot import bot
+from telethon import functions, types
+from telethon.errors import PhotoInvalidDimensionsError
+from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto, InputStickerSetID, DocumentAttributeSticker
+from telethon.tl.functions.messages import GetStickerSetRequest, SendMediaRequest
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from telethon.tl.functions.messages import GetStickerSetRequest
-from telethon.tl.types import InputStickerSetID
-from telethon.tl.types import DocumentAttributeSticker
+from userbot import bot
 from userbot.cmdhelp import CmdHelp
 
 @register(outgoing=True, pattern="^.sinfo$")
@@ -118,7 +118,7 @@ async def itos(event):
     else:
         await event.edit("**Cavab verdiyiniz şəkili stickerə çevirər**")
 
-CmdHelp('sinfo').add_command(
+CmdHelp('stikfrom userbot.cmdhelp import CmdHelp').add_command(
     'sinfo', None, 'Stiker haqqında məlumat verər.'
 ).add_command(
     'spng', None, 'Stikeri png kimi göndərər.'
