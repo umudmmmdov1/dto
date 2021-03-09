@@ -1,7 +1,7 @@
 {
     "LANGUAGE": "English",
     "LANGCODE": "en",
-    "AUTHOR": "@hus3ynx",
+    "AUTHOR": "@husevn",
     "STRINGS": {
         "__plugin": {
             "REPLY_FOR_PORT": "`Please give a file for Plugin-Port`",
@@ -28,7 +28,7 @@
             "PREMOVE_DELETING": "`Plugin Deleting...`",
             "ALREADY_DELETED": "`The Plugin file has already deleted.`",
             "NOT_FOUND_PLUGIN": "`Maybe there was such a plugin, maybe there wasn't. But it's definitely not right now.`",
-            "PLUG_DELETED": "`Plugin deleted successfully!` '**You need to restart operations to be implemented.**",
+            "PLUG_DELETED": "`Plugin deleted successfully!` '**Restarting.**",
             "DTO_PLUGIN_CAPTION": "This is a plugin of [U S Σ R Δ T O R](https://t.me/UseratorOT)."
         },
         "__dto": {
