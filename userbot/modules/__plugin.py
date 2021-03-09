@@ -7,7 +7,7 @@ import importlib
 import time
 import traceback
 
-from userbot import CMD_HELP, bot, tgbot, PLUGIN_CHANNEL_ID, PATTERNS
+from userbot import CMD_HELP, bot, tgbot, PLUGIN_CHANNEL_ID, PATTERNS, BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 from userbot.main import extractCommands
 import userbot.cmdhelp
@@ -16,6 +16,7 @@ import userbot.cmdhelp
 
 from userbot.language import get_value
 LANG = get_value("__plugin")
+LANGG = get_value("misc")
 
 # ████████████████████████████████ #
 
