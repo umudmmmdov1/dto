@@ -106,10 +106,10 @@
       "description": "Autopp modulun işləməsi üçün lazım olan dəyişkəndir. İşləməsi üçün işlədəcəyiniz fotonun linkini bura yazmaq lazımdır.",
       "required": false      
     },
-    "ALIVE_NAME": {
-      "description": "Alive əmrində çıxacaq adınızı yazın",
-      "value": ""
-    },
+   "DEFAULT_NAME": {
+      "description": "Klon modulunu işlətdikdən sonra hesabınızın köhnə halına dönməsi üçün Telegram adınız.",
+      "required": false
+   },
     "BOTLOG_CHATID": {
       "description": "Günlük qrupunun ChatID'si. BOTLOG= False və / vəya LOGSPAMMER= False isə '0' olaraq qeyd edin...",
       "value": "0"
