@@ -8,8 +8,9 @@ from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 from userbot.events import register
 from telethon.tl import functions
-from userbot import TEMP_DOWNLOAD_DIRECTORY
+from userbot import TEMP_DOWNLOAD_DIRECTORY, bot, DEFAULT_BIO,DEFAULT_NAME
 from userbot.cmdhelp import CmdHelp
+
 
 @register(outgoing=True, pattern="^.klon ?(.*)")
 async def clone(event):
@@ -58,9 +59,34 @@ async def clone(event):
     await event.delete()
     await event.client.send_message(
       event.chat_id,
-      "`Profilivi kopyaladım hahaha 😜.`",
+      "`Profilivi kopyaladım ahahaha 🤠`",
       reply_to=reply_message
       )
+
+
+@register(outgoing=True, pattern="^.revert ?(.*)")
+async def revert(event):
+    if event.fwd_from:
+        return
+
+    if DEFAULT_NAME:
+        name = f"{DEFAULT_NAME}"
+    else:
+        await event.edit("**Zəhmət olmasa hər hansı bir söhbətdə** `.set var DEFAULT_NAME adınız` **yazıb göndərin, adınız yazan yerə öz adınızı yazmağı unutmayaq :)**")
+        return
+
+
+    n = 1
+    try:
+        await bot(functions.photos.DeletePhotosRequest(await event.client.get_profile_photos("me", limit=n)))
+        await bot(functions.account.UpdateProfileRequest(first_name=DEFAULT_NAME))
+        await bot(functions.account.UpdateProfileRequest(about=DEFAULT_BIO))
+        await event.edit(f"`{DEFAULT_NAME}, hesabınız köhnə halına uğurla qayıtdı!`")
+    except AboutTooLongError:
+        srt_bio = "U S E R A T O R @UseratorOT"
+        await bot(functions.account.UpdateProfileRequest(about=srt_bio))
+        await event.edit("`Hesabınız əvvəlki vəziyyətinə geri döndürüldü, ama bionuz çox uzun olduğuna görə hazır bio istifadə etdim.`")
+
 
 async def get_full_user(event):
     if event.reply_to_msg_id:
@@ -116,6 +142,9 @@ async def get_full_user(event):
             except Exception as e:
                 return None, e
 
+
 CmdHelp('klon').add_command(
     'klon',  None, 'Seçdiyiniz istifadəçini klonlayar'
+).add_command(
+    'revert',  None, 'Əvvəlki vəziyyətinə döndərər.'
 ).add()
