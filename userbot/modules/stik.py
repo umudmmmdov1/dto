@@ -84,8 +84,43 @@ async def sticker_to_png(sticker):
             await sticker.delete()
     return
 
+@register(outgoing=True, pattern=".stik ?(.*)")
+async def itos(event):
+    if event.fwd_from:
+        return
+    reply_to_id = event.message.id
+    if event.reply_to_msg_id:
+        reply_to_id = event.reply_to_msg_id
+    event = await event.edit("__Çevrilir...___")
+    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
+    if event.reply_to_msg_id:
+        filename = "hi.webp"
+        file_name = filename
+        reply_message = await event.get_reply_message()
+        to_download_directory = TEMP_DOWNLOAD_DIRECTORY
+        downloaded_file_name = os.path.join(to_download_directory, file_name)
+        downloaded_file_name = await event.client.download_media(
+            reply_message, downloaded_file_name
+        )
+        if os.path.exists(downloaded_file_name):
+            caat = await event.client.send_file(
+                event.chat_id,
+                downloaded_file_name,
+                force_document=False,
+                reply_to=reply_to_id,
+            )
+            os.remove(downloaded_file_name)
+            await event.delete()
+        else:
+            await event.edit("`Çevirə bilmədim`")
+    else:
+        await event.edit("**Cavab verdiyiniz şəkili stickerə çevirər**")
+
 CmdHelp('sinfo').add_command(
     'sinfo', None, 'Stiker haqqında məlumat verər.'
 ).add_command(
     'spng', None, 'Stikeri png kimi göndərər.'
+).add_command(
+    'stik', None, 'Fırlat əmrindən fərqli olaraq stickeri paket yaratmadan göndərər.'
 ).add()
