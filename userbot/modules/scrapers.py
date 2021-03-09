@@ -47,7 +47,7 @@ from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRI
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.modules.upload_download import progress, humanbytes, time_formatter
-from userbot.google_images_download import googleimagesdownload
+from userbot.google_imgs import googleimagesdownload
 from ImageDown import ImageDown
 import base64, binascii
 import random
@@ -195,26 +195,44 @@ async def carbon_api(e):
 
 @register(outgoing=True, pattern="^.img ?(.*)")
 async def img_sampler(event):
-    """ .img  """
-    await event.edit("`İşleniyor...`")
-    query = event.pattern_match.group(3)
-    if event.pattern_match.group(2):
-        try:
-            limit = int(event.pattern_match.group(2))
-        except:
-            return await event.edit('**Xaiş düzgün nəsə yazın!**\nMəsələn: `.img tapmaca`')
+    if event.fwd_from:
+        return
+    reply_to_id = await reply_id(event)
+    if event.is_reply and not event.pattern_match.group(2):
+        query = await event.get_reply_message()
+        query = str(query.message)
     else:
-        limit = 5
-    await event.edit(f"`{limit} ədəd {query} şəkil yüklənilir...`")
-    ig = ImageDown().Yandex(query, limit)
-    ig.get_urls()
-    paths = ig.download()
-    await event.edit('`Telegram\'a yüklənilir...`')
-    await event.client.send_file(event.chat_id, paths, caption=f' `{limit}` **ədəd** `{query}` **şəkili**')
-    await event.delete()
-
-    for path in paths:
-        os.remove(path)
+        query = str(event.pattern_match.group(2))
+    if not query:
+        return await edit_or_reply(
+            event, "Axtarış üçün bir mesajı cavablandırın və ya sorğu göndərin."
+        )
+    cat = await edit_or_reply(event, "`Processing...`")
+    if event.pattern_match.group(1) != "":
+        lim = int(event.pattern_match.group(1))
+        if lim > 10:
+            lim = int(10)
+        if lim <= 0:
+            lim = int(1)
+    else:
+        lim = int(5)
+    response = googleimagesdownload()
+    # creating list of arguments
+    arguments = {
+        "keywords": query,
+        "limit": lim,
+        "format": "jpg",
+        "no_directory": "no_directory",
+    }
+    # passing the arguments to the function
+    try:
+        paths = response.download(arguments)
+    except Exception as e:
+        return await cat.edit(f"Error: \n`{e}`")
+    lst = paths[0][query]
+    await event.client.send_file(event.chat_id, lst, reply_to=reply_to_id)
+    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
+    await cat.delete()
 
 @register(outgoing=True, pattern="^.currency ?(.*)")
 async def moni(event):
@@ -243,9 +261,13 @@ async def moni(event):
         await event.edit("`Söz dizimi xətası.`")
         return
 
+
+def progress(current, total):
+    logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
+
 @register(outgoing=True, pattern=r"^.google ?(.*)")
 async def gsearch(q_event):
-    """ .google  """
+    """ google """
     match = q_event.pattern_match.group(1)
     page = findall(r"page=\d+", match)
     try:
@@ -258,7 +280,7 @@ async def gsearch(q_event):
     gsearch = GoogleSearch()
     gresults = await gsearch.async_search(*search_args)
     msg = ""
-    for i in range(10):
+    for i in range(len(gresults["links"])):
         try:
             title = gresults["titles"][i]
             link = gresults["links"][i]
@@ -266,15 +288,9 @@ async def gsearch(q_event):
             msg += f"[{title}]({link})\n`{desc}`\n\n"
         except IndexError:
             break
-    await q_event.edit("**Axtardığın şey:**\n`" + match + "`\n\n**Tapılan:**\n" +
+    await q_event.edit("**Axtardığın şey:**\n`" + match + "`\n\n**Tapılanlar**\n" +
                        msg,
                        link_preview=False)
-
-    if BOTLOG:
-        await q_event.client.send_message(
-            BOTLOG_CHATID,
-            match + "`Sözü uğurla Googledə axtarıldı!`",
-        )
 
 
 @register(outgoing=True, pattern=r"^.wiki (.*)")
@@ -350,47 +366,125 @@ async def urban_dict(ud_e):
 
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
-async def text_to_speech(query):
-    """ .tts """
-    textx = await query.get_reply_message()
-    message = query.pattern_match.group(1)
-    if message:
-        pass
-    elif textx:
-        message = textx.text
-    else:
-        await query.edit(
-            "`Yazıdan səsə çevirmək üçün nəsə yazın.`")
+async def _(event):
+
+    if event.fwd_from:
+
         return
 
+    input_str = event.pattern_match.group(1)
+
+    start = datetime.now()
+
+    if event.reply_to_msg_id:
+
+        previous_message = await event.get_reply_message()
+
+        text = previous_message.message
+
+        lan = input_str
+
+    elif "|" in input_str:
+
+        lan, text = input_str.split("|")
+
+    else:
+
+        await event.edit("Invalid Syntax. Module stopping.")
+
+        return
+
+    text = text.strip()
+
+    lan = lan.strip()
+
+    if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
+
+        os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
+
+    required_file_name = Config.TMP_DOWNLOAD_DIRECTORY + "voice.ogg"
+
     try:
-        gTTS(message, lang=TTS_LANG)
-    except AssertionError:
-        await query.edit(
-            'Birşey yazın.'
+
+        tts = gTTS(text, lang=lan)
+
+        tts.save(required_file_name)
+
+        command_to_execute = [
+
+            "ffmpeg",
+
+            "-i",
+
+             required_file_name,
+
+             "-map",
+
+             "0:a",
+
+             "-codec:a",
+
+             "libopus",
+
+             "-b:a",
+
+             "100k",
+
+             "-vbr",
+
+             "on",
+
+             required_file_name + ".opus"
+
+        ]
+
+        try:
+
+            t_response = subprocess.check_output(command_to_execute, stderr=subprocess.STDOUT)
+
+        except (subprocess.CalledProcessError, NameError, FileNotFoundError) as exc:
+
+            await event.edit(str(exc))
+
+            # continue sending required_file_name
+
+        else:
+
+            os.remove(required_file_name)
+
+            required_file_name = required_file_name + ".opus"
+
+        end = datetime.now()
+
+        ms = (end - start).seconds
+
+        await borg.send_file(
+
+            event.chat_id,
+
+            required_file_name,
+
+            # caption="Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms),
+
+            reply_to=event.message.reply_to_msg_id,
+
+            allow_cache=False,
+
+            voice_note=True
+
         )
-        return
-    except ValueError:
-        await query.edit('Bu dil hələ dəstəklənmir.')
-        return
-    except RuntimeError:
-        await query.edit('Dilin sözlüyünü baxmaq xəta baş verdi.')
-        return
-    tts = gTTS(message, lang=TTS_LANG)
-    tts.save("h.mp3")
-    with open("h.mp3", "rb") as audio:
-        linelist = list(audio)
-        linecount = len(linelist)
-    if linecount == 1:
-        tts = gTTS(message, lang=TTS_LANG)
-        tts.save("h.mp3")
-    with open("h.mp3", "r"):
-        await query.client.send_file(query.chat_id, "h.mp3", voice_note=True)
-        os.remove("h.mp3")
-        if BOTLOG:
-            await query.client.send_message(
-                BOTLOG_CHATID, "Söz səsə çevrildi!")
-        await query.delete()
+
+        os.remove(required_file_name)
+
+        await event.edit("Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms))
+
+        await asyncio.sleep(5)
+
+        await event.delete()
+
+    except Exception as e:
+
+        await event.edit(str(e))
 
 
 @register(outgoing=True, pattern="^.imdb (.*)")
