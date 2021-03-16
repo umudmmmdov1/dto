@@ -43,7 +43,7 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 from asyncio import sleep
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
+from userbot import CMD_HELP, bot, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.modules.upload_download import progress, humanbytes, time_formatter
@@ -56,7 +56,9 @@ from userbot.cmdhelp import CmdHelp
 CARBONLANG = "auto"
 TTS_LANG = "tr"
 TRT_LANG = "az"
-
+LAN = {"Dillər":
+      [{"Azərbaycanca":"az",
+       "İngiliscə" : "en"}]}
 
 from telethon import events
 import subprocess
@@ -118,7 +120,7 @@ async def karbon(e):
 
     r = get(f"https://carbonnowsh.herokuapp.com/?code={cmd}")
 
-    with open("@DTOUserBot-Karbon.jpg", 'wb') as f:
+    with open("@Userator-Karbon.jpg", 'wb') as f:
         f.write(r.content)    
 
     await e.client.send_file(e.chat_id, file="@Userator-Karbon.jpg", force_document=True, caption="[U S E R A T O R](https://t.me/useratorot) ilə yaradıldı.")
@@ -195,44 +197,27 @@ async def carbon_api(e):
 
 @register(outgoing=True, pattern="^.img ?(.*)")
 async def img_sampler(event):
-    if event.fwd_from:
-        return
-    reply_to_id = await reply_id(event)
-    if event.is_reply and not event.pattern_match.group(2):
-        query = await event.get_reply_message()
-        query = str(query.message)
+    """ .img  """
+    await event.edit("`İşlənilir...`")
+    query = event.pattern_match.group(3)
+    if event.pattern_match.group(2):
+        try:
+            limit = int(event.pattern_match.group(2))
+        except:
+            return await event.edit('**Xaiş düzgün yazın!**\nMəsələn: `.img Azərbaycan`')
     else:
-        query = str(event.pattern_match.group(2))
-    if not query:
-        return await edit_or_reply(
-            event, "Axtarış üçün bir mesajı cavablandırın və ya sorğu göndərin."
-        )
-    cat = await edit_or_reply(event, "`Processing...`")
-    if event.pattern_match.group(1) != "":
-        lim = int(event.pattern_match.group(1))
-        if lim > 10:
-            lim = int(10)
-        if lim <= 0:
-            lim = int(1)
-    else:
-        lim = int(5)
-    response = googleimagesdownload()
-    # creating list of arguments
-    arguments = {
-        "keywords": query,
-        "limit": lim,
-        "format": "jpg",
-        "no_directory": "no_directory",
-    }
-    # passing the arguments to the function
-    try:
-        paths = response.download(arguments)
-    except Exception as e:
-        return await cat.edit(f"Error: \n`{e}`")
-    lst = paths[0][query]
-    await event.client.send_file(event.chat_id, lst, reply_to=reply_to_id)
-    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
-    await cat.delete()
+        limit = 5
+    await event.edit(f"`{limit} adet {query} resimi indiriliyor...`")
+    ig = ImageDown().Yandex(query, limit)
+    ig.get_urls()
+    paths = ig.download()
+    await event.edit('`Telegram\'a yüklənilir...`')
+    await event.client.send_file(event.chat_id, paths, caption=f' `{limit}` **ədəd** `{query}` **şəkili**')
+    await event.delete()
+
+    for path in paths:
+        os.remove(path)
+
 
 @register(outgoing=True, pattern="^.currency ?(.*)")
 async def moni(event):
@@ -267,7 +252,7 @@ def progress(current, total):
 
 @register(outgoing=True, pattern=r"^.google ?(.*)")
 async def gsearch(q_event):
-    """ google """
+    """ .google  """
     match = q_event.pattern_match.group(1)
     page = findall(r"page=\d+", match)
     try:
@@ -280,7 +265,7 @@ async def gsearch(q_event):
     gsearch = GoogleSearch()
     gresults = await gsearch.async_search(*search_args)
     msg = ""
-    for i in range(len(gresults["links"])):
+    for i in range(10):
         try:
             title = gresults["titles"][i]
             link = gresults["links"][i]
@@ -288,9 +273,15 @@ async def gsearch(q_event):
             msg += f"[{title}]({link})\n`{desc}`\n\n"
         except IndexError:
             break
-    await q_event.edit("**Axtardığın şey:**\n`" + match + "`\n\n**Tapılanlar**\n" +
+    await q_event.edit("**Axtardığın şey:**\n`" + match + "`\n\n**Tapılan:**\n" +
                        msg,
                        link_preview=False)
+
+    if BOTLOG:
+        await q_event.client.send_message(
+            BOTLOG_CHATID,
+            match + "`Sözlük googledə axtarıldı!`",
+        )
 
 
 @register(outgoing=True, pattern=r"^.wiki (.*)")
@@ -366,125 +357,45 @@ async def urban_dict(ud_e):
 
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
-async def _(event):
-
+async def text_to_speech(event):
+    """ .tts """
     if event.fwd_from:
-
         return
-
-    input_str = event.pattern_match.group(1)
-
-    start = datetime.now()
-
-    if event.reply_to_msg_id:
-
-        previous_message = await event.get_reply_message()
-
-        text = previous_message.message
-
-        lan = input_str
-
-    elif "|" in input_str:
-
-        lan, text = input_str.split("|")
-
-    else:
-
-        await event.edit("Invalid Syntax. Module stopping.")
-
-        return
-
-    text = text.strip()
-
-    lan = lan.strip()
-
-    if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
-
-        os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
-
-    required_file_name = Config.TMP_DOWNLOAD_DIRECTORY + "voice.ogg"
-
-    try:
-
-        tts = gTTS(text, lang=lan)
-
-        tts.save(required_file_name)
-
-        command_to_execute = [
-
-            "ffmpeg",
-
-            "-i",
-
-             required_file_name,
-
-             "-map",
-
-             "0:a",
-
-             "-codec:a",
-
-             "libopus",
-
-             "-b:a",
-
-             "100k",
-
-             "-vbr",
-
-             "on",
-
-             required_file_name + ".opus"
-
-        ]
-
-        try:
-
-            t_response = subprocess.check_output(command_to_execute, stderr=subprocess.STDOUT)
-
-        except (subprocess.CalledProcessError, NameError, FileNotFoundError) as exc:
-
-            await event.edit(str(exc))
-
-            # continue sending required_file_name
-
+    ttss = event.pattern_match.group(1)
+    rep_msg = None
+    if event.is_reply:
+        rep_msg = await event.get_reply_message()
+    if len(ttss) < 1:
+        if event.is_reply:
+            sarki = rep_msg.text
         else:
+            await event.edit("`Səsə çevirmək üçün mesaj daxil etməlisən.`")
+            return
 
-            os.remove(required_file_name)
+    await event.edit(f"__Mesajınız səsə çevrilir...__")
+    chat = "@MrTTSbot"
+    async with bot.conversation(chat) as conv:
+        try:     
+            await conv.send_message(f"/tomp3 {ttss}")
+        except YouBlockedUserError:
+            await event.reply(f"`Deyəsən` {chat} `botu bloklamısan. Xaiş bloku aç.`")
+            return
+        ses = await conv.wait_event(events.NewMessage(incoming=True,from_users=1678833172))
+        await event.client.send_read_acknowledge(conv.chat_id)
+        indir = await ses.download_media()
+        voice = await asyncio.create_subprocess_shell(f"ffmpeg -i '{indir}' -c:a libopus 'MrTTSbot.ogg'")
+        await voice.communicate()
+        if os.path.isfile("MrTTSbot.ogg"):
+            await event.client.send_file(event.chat_id, file="MrTTSbot.ogg", voice_note=True, reply_to=rep_msg)
+            await event.delete()
+            os.remove("MrTTSbot.ogg")
+        else:
+            await event.edit("`Bir xəta yarandı.`")
 
-            required_file_name = required_file_name + ".opus"
 
-        end = datetime.now()
-
-        ms = (end - start).seconds
-
-        await borg.send_file(
-
-            event.chat_id,
-
-            required_file_name,
-
-            # caption="Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms),
-
-            reply_to=event.message.reply_to_msg_id,
-
-            allow_cache=False,
-
-            voice_note=True
-
-        )
-
-        os.remove(required_file_name)
-
-        await event.edit("Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms))
-
-        await asyncio.sleep(5)
-
-        await event.delete()
-
-    except Exception as e:
-
-        await event.edit(str(e))
+        if BOTLOG:
+            await event.client.send_message(
+                BOTLOG_CHATID, "Mesaj uğurla səsə çevrildi!")
 
 
 @register(outgoing=True, pattern="^.imdb (.*)")
@@ -589,9 +500,11 @@ EMOJI_PATTERN = re.compile(
 def deEmojify(inputString: str) -> str:
     return re.sub(EMOJI_PATTERN, "", inputString)
 
-@register(outgoing=True, pattern=r"^\.trt(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
 async def translateme(trans):
     """ .trt  """
+    if trans.fwd_from:
+        return
 
     if trans.is_reply and not trans.pattern_match.group(1):
         message = await trans.get_reply_message()
@@ -601,26 +514,33 @@ async def translateme(trans):
 
     if not message:
         return await trans.edit(
-            "`Mənə tərcümə olunacaq mətin ver!`")
+            "`Mənə mesaj ver!`")
 
-    await trans.edit("**Tərcümə edilir...**")
+    await trans.edit("**Tərcümə edilir.**")
     translator = google_translator()
     try:
         reply_text = translator.translate(deEmojify(message),
                                           lang_tgt=TRT_LANG)
     except ValueError:
         return await trans.edit(
-            "**Səhv dil kodu, düzgün dil kodu seçin **`.lang tts/trt <dil kodu>`**.**"
+            "**Xətalı dil kodu, düzgün dil kodu seçin **`.lang tts/trt <dil kodu>`**.**"
         )
 
     try:
         source_lan = translator.detect(deEmojify(message))[1].title()
     except:
-        source_lan = "(Google bu məlumatı tapa bilmədi)"
+        source_lan = "(Google bu mesajı çeviremedi)"
 
     reply_text = f"Bu dildən: **{source_lan}**\nBu dilə: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
 
     await trans.edit(reply_text)
+    
+    if BOTLOG:
+        await trans.client.send_message(
+            BOTLOG_CHATID,
+            f"`{message} sözü {reply_text} bu sözə tərcümə olundu.`")
+
+
     
 @register(pattern=".lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
