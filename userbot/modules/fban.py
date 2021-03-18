@@ -1,3 +1,4 @@
+# U S Σ R Δ T O R / Ümüd
 
 from sqlalchemy.exc import IntegrityError
 
@@ -143,8 +144,80 @@ async def unfban(event):
         f"**UnFBAN** {user_link}!\n**Səbəb:** {reason}\n**Status:** {status}"
     )
 
+@register(outgoing=True, pattern=r"^\.addf(?: |$)(.*)")
+async def addf(event):
+    """Adds current chat to connected federations."""
+    try:
+        from userbot.modules.sql_helper.fban_sql import add_flist
+    except IntegrityError:
+        return await event.edit("**Sql modda işləyir!**")
+
+    if not (fed_name := event.pattern_match.group(1)):
+        return await event.edit("**Bu qrupa qoşulmaq üçün ad verin!**")
+
+    try:
+        add_flist(event.chat_id, fed_name)
+    except IntegrityError:
+        return await event.edit(
+            "**Bu qrup artıq federasiyalar siyahısına bağlıdır.**"
+        )
+
+    await event.edit("**Bu qrup federasiyalar siyahısına əlavə edildi!**")
+
+
+@register(outgoing=True, pattern=r"^\.delf$")
+async def delf(event):
+    """Removes current chat from connected federations."""
+    try:
+        from userbot.modules.sql_helper.fban_sql import del_flist
+    except IntegrityError:
+        return await event.edit("**Sql modda işləyir**")
+
+    del_flist(event.chat_id)
+    await event.edit("**Bu qrup federasiyalar siyahısından silindi!**")
+
+
+@register(outgoing=True, pattern=r"^\.listf$")
+async def listf(event):
+    """List fed"""
+    try:
+        from userbot.modules.sql_helper.fban_sql import get_flist
+    except IntegrityError:
+        return await event.edit("**Sql modda işləyir!**")
+
+    if len(fed_list := get_flist()) == 0:
+        return await event.edit("**Hələ heç bir federasiyaya qoşulmamısınız!**")
+
+    msg = "**Qoşulmuş federasiyalar:**\n\n"
+
+    for i in fed_list:
+        msg += "• " + str(i.fed_name) + "\n"
+
+    await event.edit(msg)
+
+
+@register(outgoing=True, disable_edited=True, pattern=r"^\.silf$")
+async def clearf(event):
+    """ """
+    try:
+        from userbot.modules.sql_helper.fban_sql import del_flist_all
+    except IntegrityError:
+        return await event.edit("**Sql modda işləyir!**")
+
+    del_flist_all()
+    await event.edit("**Bütün əlaqəli federasiyalarla əlaqəsi kəsildi!**")
+
+
 CmdHelp('fban').add_command(
     'fban', None, 'Admin olduğunuz federasiyalardan banlıyar.'
 ).add_command(
     'unfban', None, 'Admin olduğunuz federasiyalardan bandan çıxardar.'
+).add_command(
+    'addf', None, '.addf federasiya linki yazaraq əlavə edin'
+).add_command(
+    'delf', None, '.delf federasiya linki yazaraq listdən silin'
+).add_command(
+    'listf', None, 'Qoşulmuş federasiyalarınızı göstərər.'
+).add_command(
+    'silf', None, 'Listi silər.'
 ).add()
