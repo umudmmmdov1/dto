@@ -1,6 +1,5 @@
 # U S Σ R Δ T O R / Ümüd
 
-
 """ Scrapers """
 
 import os
