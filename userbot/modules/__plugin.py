@@ -117,7 +117,7 @@ async def plist(event):
                 continue
 
             if dosyaismi == "py":
-                yuklenen += f"⬇️ {plugin.file.name}\n"
+                yuklenen += f"▶️ {plugin.file.name}\n"
         await event.edit(yuklenen)
     else:
         await event.edit(LANG["TEMP_PLUGIN"])
@@ -131,14 +131,8 @@ async def pins(event):
         return
 
     await event.edit(LANG["DOWNLOADING"])
-    edizin = f".userbot/modules/{reply_message.file.name}"
-
-    if os.path.exists(edizin):
-        await event.edit(LANG["ALREADY_INSTALLED"]
-        return
-
     dosya = await event.client.download_media(reply_message, "./userbot/modules/")
-
+    
     try:
         spec = importlib.util.spec_from_file_location(dosya, dosya)
         mod = importlib.util.module_from_spec(spec)
@@ -160,7 +154,7 @@ async def pins(event):
             i += 1
         await event.edit(LANG['PLUGIN_DOWNLOADED'] % komutlar)
     else:
-        Pattern = re.findall(r"@register\(.*pattern=(r|)\"(.*)\".*\)", dosy)⬇️
+        Pattern = re.findall(r"@register\(.*pattern=(r|)\"(.*)\".*\)", dosy)
 
         if (not type(Pattern) == list) or (len(Pattern) < 1 or len(Pattern[0]) < 1):
             if re.search(r'CmdHelp\(.*\)', dosy):
