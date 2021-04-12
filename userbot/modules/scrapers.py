@@ -197,22 +197,22 @@ async def carbon_api(e):
 
 @register(outgoing=True, pattern="^.img ?(.*)")
 async def img_sampler(event):
-    """ .img  """
-    await event.edit("`İşlənilir...`")
+    """ .img """
+    await event.edit("`İşleniyor...`")
     query = event.pattern_match.group(3)
     if event.pattern_match.group(2):
         try:
             limit = int(event.pattern_match.group(2))
         except:
-            return await event.edit('**Xaiş düzgün yazın!**\nMəsələn: `.img Azərbaycan`')
+            return await event.edit('**Xaiş düzgün şəkildə sözü yazın!**\nMəsələn: `.img tapmaca`')
     else:
         limit = 5
-    await event.edit(f"`{limit} adet {query} resimi indiriliyor...`")
+    await event.edit(f"`{limit} ədə {query} şəkil yüklənir...`")
     ig = ImageDown().Yandex(query, limit)
     ig.get_urls()
     paths = ig.download()
-    await event.edit('`Telegram\'a yüklənilir...`')
-    await event.client.send_file(event.chat_id, paths, caption=f' `{limit}` **ədəd** `{query}` **şəkili**')
+    await event.edit('`Telegram\'a yüklənir...`')
+    await event.client.send_file(event.chat_id, paths, caption=f'**AHA!** `{limit}` **ədəd** `{query}` **şəkili**')
     await event.delete()
 
     for path in paths:
@@ -607,110 +607,143 @@ async def _(event):
 
 @register(outgoing=True, pattern=r"^\.rip(a|v) (.*)")
 async def download_video(v_url):
-    """ .ripav """
+    """ .rip  """
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
 
-    await v_url.edit("`Gözləyin...`")
+    await v_url.edit("`Yüklənmə hazırlanır...`")
 
-    if type == "a":
+    if type == "audio":
         opts = {
-            "format": "bestaudio",
-            "addmetadata": True,
-            "key": "FFmpegMetadata",
-            "writethumbnail": True,
-            "prefer_ffmpeg": True,
-            "geo_bypass": True,
-            "nocheckcertificate": True,
-            "postprocessors": [
-                {
-                    "key": "FFmpegExtractAudio",
-                    "preferredcodec": "mp3",
-                    "preferredquality": "320",
-                }
-            ],
-            "outtmpl": "%(id)s.mp3",
-            "quiet": True,
-            "logtostderr": False,
+            'format':
+            'bestaudio',
+            'addmetadata':
+            True,
+            'key':
+            'FFmpegMetadata',
+            'writethumbnail':
+            True,
+            'prefer_ffmpeg':
+            True,
+            'geo_bypass':
+            True,
+            'nocheckcertificate':
+            True,
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '320',
+            }],
+            'outtmpl':
+            '%(id)s.mp3',
+            'quiet':
+            True,
+            'logtostderr':
+            False
         }
         video = False
         song = True
 
-    elif type == "v":
+    elif type == "video":
         opts = {
-            "format": "best",
-            "addmetadata": True,
-            "key": "FFmpegMetadata",
-            "prefer_ffmpeg": True,
-            "geo_bypass": True,
-            "nocheckcertificate": True,
-            "postprocessors": [
-                {"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}
-            ],
-            "outtmpl": "%(id)s.mp4",
-            "logtostderr": False,
-            "quiet": True,
+            'format':
+            'best',
+            'addmetadata':
+            True,
+            'key':
+            'FFmpegMetadata',
+            'prefer_ffmpeg':
+            True,
+            'geo_bypass':
+            True,
+            'nocheckcertificate':
+            True,
+            'postprocessors': [{
+                'key': 'FFmpegVideoConvertor',
+                'preferedformat': 'mp4'
+            }],
+            'outtmpl':
+            '%(id)s.mp4',
+            'logtostderr':
+            False,
+            'quiet':
+            True
         }
         song = False
         video = True
 
     try:
-        await v_url.edit("`Məlumatlar oxunur...`")
+        await v_url.edit("`Məlumat alınır, xahiş edirəm gözləyin...`")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
-        return await v_url.edit(f"`{str(DE)}`")
+        await v_url.edit(f"`{str(DE)}`")
+        return
     except ContentTooShortError:
-        return await v_url.edit("`Yükləmək üçün video çox qısadır.`")
+        await v_url.edit("`Endiriləcək məzmun çox qısadır.`")
+        return
     except GeoRestrictedError:
-        return await v_url.edit(
-            "`Video geoqrafiya səbəbləri ilə yüklənə bilməz`"
-        )
+        await v_url.edit(
+            "`Üzr istəyirik, coğrafi məhdudiyyətlər səbəbindən bu videonu ticarət edə bilməzsiniz..`")
+        return
     except MaxDownloadsReached:
-        return await v_url.edit("`Maks yüklənmə limiti.`")
+        await v_url.edit("`Maksimum yüklənmə limitini aşdınız.`")
+        return
     except PostProcessingError:
-        return await v_url.edit("`Axtararkən xəta yarandı.`")
+        await v_url.edit("`İstək işlənərkən bir xəta yarandı.`")
+        return
     except UnavailableVideoError:
-        return await v_url.edit("`Media formatı tapılmadı.`")
+        await v_url.edit("`Medya seçilən fayl formatında mövcud deil.`")
+        return
     except XAttrMetadataError as XAME:
-        return await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
+        await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
+        return
     except ExtractorError:
-        return await v_url.edit("`XƏTA! Səhv məlumat.`")
+        await v_url.edit("`Məlumat toplanarkən xəta yarandı.`")
+        return
     except Exception as e:
-        return await v_url.edit(f"{str(type(e)): {str(e)}}")
+        await v_url.edit(f"{str(type(e)): {str(e)}}")
+        return
     c_time = time.time()
     if song:
-        await v_url.edit(f"`Seçdiyiniz musiqi yüklənilir`\n**{rip_data['title']}**")
+        await v_url.edit(f"`Musiqi yüklənməyə hazırlanır:`\
+        \n**{rip_data['title']}**\
+        \nby *{rip_data['uploader']}*")
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp3",
             supports_streaming=True,
             attributes=[
-                DocumentAttributeAudio(
-                    duration=int(rip_data["duration"]),
-                    title=str(rip_data["title"]),
-                    performer=str(rip_data["uploader"]),
-                )
+                DocumentAttributeAudio(duration=int(rip_data['duration']),
+                                       title=str(rip_data['title']),
+                                       performer=str(rip_data['uploader']))
             ],
-            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, v_url, c_time, "Yüklənilir...", f"{rip_data['title']}.mp3")
-            ),
-        )
+            progress_callback=lambda d, t: asyncio.get_event_loop(
+            ).create_task(
+                progress(d, t, v_url, c_time, "Qarşıya yüklənir...",
+                         f"{rip_data['title']}.mp3")))
         os.remove(f"{rip_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await v_url.edit(f"`Seçdiyiniz video yüklənir`\n**{rip_data['title']}**")
+        await v_url.edit(f"`Video yüklənməyə hazırlanır:`\
+        \n**{rip_data['title']}**\
+        \nby *{rip_data['uploader']}*")
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp4",
             supports_streaming=True,
-            caption=rip_data["title"],
-            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, v_url, c_time, "Yüklənilir..", f"{rip_data['title']}.mp4")
-            ),
-        )
+            caption=rip_data['title'],
+            progress_callback=lambda d, t: asyncio.get_event_loop(
+            ).create_task(
+                progress(d, t, v_url, c_time, "Qarşıya yüklənir...",
+                         f"{rip_data['title']}.mp4")))
         os.remove(f"{rip_data['id']}.mp4")
         await v_url.delete()
+
+
+def deEmojify(inputString):
+
+    return get_emoji_regexp().sub(u'', inputString)
 
 CmdHelp('scrapers').add_command(
     'img', '<limit> <söz>', 'Google üstündə sürətli bir foto axtarışı edər. Limit yazmazsanız 5 dənə foto gətirir.', 'img10 system of a down'
