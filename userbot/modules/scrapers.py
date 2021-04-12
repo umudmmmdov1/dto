@@ -195,28 +195,42 @@ async def carbon_api(e):
     # 
     await e.delete()  # 
 
-@register(outgoing=True, pattern="^.img ?(.*)")
+@register(outgoing=True, pattern=r"^.img(?: |$)(\d*)? ?(.*)")
 async def img_sampler(event):
-    """ .img """
-    await event.edit("`İşleniyor...`")
-    query = event.pattern_match.group(3)
-    if event.pattern_match.group(2):
-        try:
-            limit = int(event.pattern_match.group(2))
-        except:
-            return await event.edit('**Xaiş düzgün şəkildə sözü yazın!**\nMəsələn: `.img tapmaca`')
+    if event.fwd_from:
+        return
+    if event.is_reply and not event.pattern_match.group(2):
+        query = await event.get_reply_message()
+        query = str(query.message)
     else:
-        limit = 5
-    await event.edit(f"`{limit} ədə {query} şəkil yüklənir...`")
-    ig = ImageDown().Yandex(query, limit)
-    ig.get_urls()
-    paths = ig.download()
-    await event.edit('`Telegram\'a yüklənir...`')
-    await event.client.send_file(event.chat_id, paths, caption=f'**AHA!** `{limit}` **ədəd** `{query}` **şəkili**')
-    await event.delete()
-
-    for path in paths:
-        os.remove(path)
+        query = str(event.pattern_match.group(2))
+    if not query:
+        return await event.edit("Axtarmaq üçün bir söz verin!")
+    msj = await event.edit("`Gətirilir...`")
+    if event.pattern_match.group(1) != "":
+        lim = int(event.pattern_match.group(1))
+        if lim > 10:
+            lim = int(10)
+        if lim <= 0:
+            lim = int(1)
+    else:
+        lim = int(3)
+    response = googleimagesdownload()
+    arguments = {
+        "keywords": query,
+        "limit": lim,
+        "format": "jpg",
+        "no_directory": "no_directory",
+    }
+ 
+    try:
+        paths = response.download(arguments)
+    except Exception as e:
+        return await msj.edit(f"Xəta: \n`{e}`")
+    lst = paths[0][query]
+    await event.client.send_file(event.chat_id, lst, )
+    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
+    await msj.delete()
 
 
 @register(outgoing=True, pattern="^.currency ?(.*)")
@@ -356,44 +370,62 @@ async def urban_dict(ud_e):
         await ud_e.edit(query + "**üçün heçbir nəticə tapılmadı**")
 
 
-@register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
-async def text_to_speech(event):
-    """ .tts """
-    if event.fwd_from:
+@register(outgoing=True, pattern="^.tts ?(.*)")
+async def text2speech(event):
+    rtext = await event.get_reply_message()
+    message = event.pattern_match.group(1)
+    if message:
+        pass
+    elif rtext:
+        message = rtext.text
+    else:
+        await event.edit(
+            "`Yazıdan səsə çevirmək üçün bir mətn ver.`")
         return
-    ttss = event.pattern_match.group(1)
-    rep_msg = None
-    if event.is_reply:
-        rep_msg = await event.get_reply_message()
-    if len(ttss) < 1:
-        if event.is_reply:
-            sarki = rep_msg.text
+    if not os.path.isdir('downloads/'):
+        os.makedirs('downloads/')
+    required_file_name = "downloads/voice.ogg"
+    try:
+        tts = gTTS(message, lang=TTS_LANG)
+        tts.save(required_file_name)
+        command_to_execute = [
+            "ffmpeg",
+            "-i",
+            required_file_name,
+            "-map",
+            "0:a",
+            "-codec:a",
+            "libopus",
+            "-b:a",
+            "100k",
+            "-vbr",
+            "on",
+            required_file_name + ".opus",
+        ]
+        try:
+            subprocess.check_output(
+                command_to_execute, stderr=subprocess.STDOUT
+            )
+        except (subprocess.CalledProcessError,
+                NameError,
+                FileNotFoundError) as exc:
+            await event.edit(str(exc))
         else:
-            await event.edit("`Səsə çevirmək üçün mesaj daxil etməlisən.`")
-            return
-
-    await event.edit(f"__Mesajınız səsə çevrilir...__")
-    chat = "@MrTTSbot"
-    async with bot.conversation(chat) as conv:
-        try:     
-            await conv.send_message(f"/tomp3 {ttss}")
-        except YouBlockedUserError:
-            await event.reply(f"`Deyəsən` {chat} `botu bloklamısan. Xaiş bloku aç.`")
-            return
-        ses = await conv.wait_event(events.NewMessage(incoming=True,from_users=1678833172))
-        await event.client.send_read_acknowledge(conv.chat_id)
-        indir = await ses.download_media()
-        voice = await asyncio.create_subprocess_shell(f"ffmpeg -i '{indir}' -c:a libopus 'MrTTSbot.ogg'")
-        await voice.communicate()
-        if os.path.isfile("MrTTSbot.ogg"):
-            await event.client.send_file(event.chat_id, file="MrTTSbot.ogg", voice_note=True, reply_to=rep_msg)
-            await event.delete()
-            os.remove("MrTTSbot.ogg")
-        else:
-            await event.edit("`Bir xəta yarandı.`")
-
-
-        if BOTLOG:
+            os.remove(required_file_name)
+            required_file_name = required_file_name + ".opus"
+        await bot.send_file(
+            event.chat_id,
+            required_file_name,
+            reply_to=event.message.reply_to_msg_id,
+            allow_cache=False,
+            voice_note=True,
+        )
+        os.remove(required_file_name)
+        await event.delete()
+    except Exception as e:
+        await event.edit(str(e))     
+  
+     if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID, "Mesaj uğurla səsə çevrildi!")
 
@@ -605,15 +637,16 @@ async def _(event):
         )
       await stark_result.edit(noob, parse_mode="HTML")
 
-@register(outgoing=True, pattern=r"^\.rip(a|v) (.*)")
+
+@register(outgoing=True, pattern="^.rip(a|v) (.*)")
 async def download_video(v_url):
-    """ .rip  """
+    """ YouTube'dan video/musiqi yükləmək üçün """
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
 
-    await v_url.edit("`Yüklənmə hazırlanır...`")
+    await v_url.edit("`Yüklənməyə hazırlanır...`")
 
-    if type == "audio":
+    if type == "a":
         opts = {
             'format':
             'bestaudio',
@@ -644,7 +677,7 @@ async def download_video(v_url):
         video = False
         song = True
 
-    elif type == "video":
+    elif type == "v":
         opts = {
             'format':
             'best',
@@ -673,73 +706,74 @@ async def download_video(v_url):
         video = True
 
     try:
-        await v_url.edit("`Məlumat alınır, xahiş edirəm gözləyin...`")
-        with YoutubeDL(opts) as rip:
-            rip_data = rip.extract_info(url)
+        await v_url.edit("`Məlumatlar oxunur, gözləyin...`")
+        with YoutubeDL(opts) as ytdl:
+            ytdl_data = ytdl.extract_info(url)
     except DownloadError as DE:
         await v_url.edit(f"`{str(DE)}`")
         return
     except ContentTooShortError:
-        await v_url.edit("`Endiriləcək məzmun çox qısadır.`")
+        await v_url.edit("`Yüklənəcək media çox qısadır`")
         return
     except GeoRestrictedError:
         await v_url.edit(
-            "`Üzr istəyirik, coğrafi məhdudiyyətlər səbəbindən bu videonu ticarət edə bilməzsiniz..`")
+            "`Coğrafi səbəblərə görə videonu yükləyə bilmədim`"
+        )
         return
     except MaxDownloadsReached:
-        await v_url.edit("`Maksimum yüklənmə limitini aşdınız.`")
+        await v_url.edit("`Max yüklənmə limitinə çatmısız`")
         return
     except PostProcessingError:
-        await v_url.edit("`İstək işlənərkən bir xəta yarandı.`")
+        await v_url.edit("`Bir xəta baş verdi.`")
         return
     except UnavailableVideoError:
-        await v_url.edit("`Medya seçilən fayl formatında mövcud deil.`")
+        await v_url.edit("`Media verdiyiniz formatda mövcud deyil.`")
         return
     except XAttrMetadataError as XAME:
         await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
         return
     except ExtractorError:
-        await v_url.edit("`Məlumat toplanarkən xəta yarandı.`")
+        await v_url.edit("`Yükləmə zamanı bir xəta baş verdi`")
         return
     except Exception as e:
         await v_url.edit(f"{str(type(e)): {str(e)}}")
         return
     c_time = time.time()
     if song:
-        await v_url.edit(f"`Musiqi yüklənməyə hazırlanır:`\
-        \n**{rip_data['title']}**\
-        \nby *{rip_data['uploader']}*")
+        await v_url.edit(f"`Yüklənməyə hazırlanır:`\
+        \n**{ytdl_data['title']}**\
+        \nby *{ytdl_data['uploader']}*")
         await v_url.client.send_file(
             v_url.chat_id,
-            f"{rip_data['id']}.mp3",
+            f"{ytdl_data['id']}.mp3",
             supports_streaming=True,
             attributes=[
-                DocumentAttributeAudio(duration=int(rip_data['duration']),
-                                       title=str(rip_data['title']),
-                                       performer=str(rip_data['uploader']))
+                DocumentAttributeAudio(duration=int(ytdl_data['duration']),
+                                       title=str(ytdl_data['title']),
+                                       performer=str(ytdl_data['uploader']))
             ],
             progress_callback=lambda d, t: asyncio.get_event_loop(
             ).create_task(
-                progress(d, t, v_url, c_time, "Qarşıya yüklənir...",
-                         f"{rip_data['title']}.mp3")))
-        os.remove(f"{rip_data['id']}.mp3")
+                progress(d, t, v_url, c_time, "Yüklənir...",
+                         f"{ytdl_data['title']}.mp3")))
+        os.remove(f"{ytdl_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await v_url.edit(f"`Video yüklənməyə hazırlanır:`\
-        \n**{rip_data['title']}**\
-        \nby *{rip_data['uploader']}*")
+        await v_url.edit(f"`Yüklənməyə hazırlanır:`\
+        \n**{ytdl_data['title']}**\
+        \nby *{ytdl_data['uploader']}*")
         await v_url.client.send_file(
             v_url.chat_id,
-            f"{rip_data['id']}.mp4",
+            f"{ytdl_data['id']}.mp4",
             supports_streaming=True,
-            caption=rip_data['title'],
+            caption=ytdl_data['title'],
             progress_callback=lambda d, t: asyncio.get_event_loop(
             ).create_task(
-                progress(d, t, v_url, c_time, "Qarşıya yüklənir...",
-                         f"{rip_data['title']}.mp4")))
-        os.remove(f"{rip_data['id']}.mp4")
+                progress(d, t, v_url, c_time, "Yüklənir...",
+                         f"{ytdl_data['title']}.mp4")))
+        os.remove(f"{ytdl_data['id']}.mp4")
         await v_url.delete()
-
+        
 
 def deEmojify(inputString):
 
