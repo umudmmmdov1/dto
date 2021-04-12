@@ -5,8 +5,10 @@
 
 import os
 import time
+import math
 import asyncio
 import shutil
+from datetime import datetime
 from bs4 import BeautifulSoup
 import re
 from time import sleep
@@ -44,6 +46,7 @@ from youtube_dl.utils import (
 )
 from asyncio import sleep
 from userbot import CMD_HELP, bot, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.modules.upload_download import progress, humanbytes, time_formatter
@@ -638,9 +641,9 @@ async def _(event):
       await stark_result.edit(noob, parse_mode="HTML")
 
 
-@register(outgoing=True, pattern="^.yt(a|v) (.*)")
+@register(outgoing=True, pattern="^.rip(a|v) (.*)")
 async def download_video(v_url):
-    """ .yta , .ytv """
+    """ .ripa , .ripv """
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
 
@@ -807,9 +810,9 @@ CmdHelp('scrapers').add_command(
 ).add_command(
     'imdb', '<film>', 'Film haqqında məlumat verər.'
 ).add_command(
-    'yta', '<link>', 'YouTube üzərindən (vəya digər saytlar) səs endirər.'
+    'ripa', '<link>', 'YouTube üzərindən (vəya digər saytlar) səs endirər.'
 ).add_command(
-    'ytv', '<link>', 'YouTube üzərindən (vəya digər saytlar) video endirər.'
+    'ripv', '<link>', 'YouTube üzərindən (vəya digər saytlar) video endirər.'
 ).add_info(
-    '[yta/v əmrinin dəstəklədiyi saytlar.](https://ytdl-org.github.io/youtube-dl/supportedsites.html)'
+    '[rip əmrinin dəstəklədiyi saytlar.](https://ytdl-org.github.io/youtube-dl/supportedsites.html)'
 ).add()
