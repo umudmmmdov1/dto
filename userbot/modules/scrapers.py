@@ -425,7 +425,7 @@ async def text2speech(event):
     except Exception as e:
         await event.edit(str(e))     
   
-     if BOTLOG:
+    if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID, "Mesaj uğurla səsə çevrildi!")
 
