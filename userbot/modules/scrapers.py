@@ -638,9 +638,9 @@ async def _(event):
       await stark_result.edit(noob, parse_mode="HTML")
 
 
-@register(outgoing=True, pattern="^.rip(a|v) (.*)")
+@register(outgoing=True, pattern="^.yt(a|v) (.*)")
 async def download_video(v_url):
-    """ YouTube'dan video/musiqi yükləmək üçün """
+    """ .yta , .ytv """
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
 
@@ -717,17 +717,17 @@ async def download_video(v_url):
         return
     except GeoRestrictedError:
         await v_url.edit(
-            "`Coğrafi səbəblərə görə videonu yükləyə bilmədim`"
+            "`Coğrafi səbəblərə görə yüklənə bilmədi`"
         )
         return
     except MaxDownloadsReached:
-        await v_url.edit("`Max yüklənmə limitinə çatmısız`")
+        await v_url.edit("`Max yükləmə limitini aşdınız.`")
         return
     except PostProcessingError:
         await v_url.edit("`Bir xəta baş verdi.`")
         return
     except UnavailableVideoError:
-        await v_url.edit("`Media verdiyiniz formatda mövcud deyil.`")
+        await v_url.edit("`Media verilmiş formatda yüklənə bilmədi.`")
         return
     except XAttrMetadataError as XAME:
         await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
@@ -774,6 +774,7 @@ async def download_video(v_url):
         os.remove(f"{ytdl_data['id']}.mp4")
         await v_url.delete()
         
+                  
 
 def deEmojify(inputString):
 
@@ -806,9 +807,9 @@ CmdHelp('scrapers').add_command(
 ).add_command(
     'imdb', '<film>', 'Film haqqında məlumat verər.'
 ).add_command(
-    'ripa', '<link>', 'YouTube üzərindən (vəya digər saytlar) səs endirər.'
+    'yta', '<link>', 'YouTube üzərindən (vəya digər saytlar) səs endirər.'
 ).add_command(
-    'ripv', '<link>', 'YouTube üzərindən (vəya digər saytlar) video endirər.'
+    'ytv', '<link>', 'YouTube üzərindən (vəya digər saytlar) video endirər.'
 ).add_info(
-    '[Rip əmrin dəstəklədiyi saytlar.](https://ytdl-org.github.io/youtube-dl/supportedsites.html)'
+    '[yta/v əmrinin dəstəklədiyi saytlar.](https://ytdl-org.github.io/youtube-dl/supportedsites.html)'
 ).add()
