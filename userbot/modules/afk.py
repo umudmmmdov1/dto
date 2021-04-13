@@ -319,4 +319,4 @@ async def type_afk_is_not_true(notafk):
         USERS = {}
         AFKREASON = None
 
-CmdHelp('afk').add_command('afk', None, {LANG[AFK]}).add()
+CmdHelp('afk').add_command('afk', None, (LANG['AFK'])).add()
