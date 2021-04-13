@@ -104,7 +104,8 @@
 
         "afk": {
             "REASON": "`Səbəb`",
-            "AFK1": "<İstəyə bağlı səbəb>, AFK olduğunuzu bildirər. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.",
+            "AFK1": "<İstəyə bağlı səbəb>",
+            "AFK2": "AFK olduğunuzu bildirər. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.",
             "AFK": "`Sahibim hazırda Xətdə deyil.`",
             "IM_AFK": "`Hazırda AFK-yam.`",
             "IM_NOT_AFK": "`Artıq AFK deyiləm.`"
