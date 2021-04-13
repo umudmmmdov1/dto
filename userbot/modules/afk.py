@@ -320,7 +320,4 @@ async def type_afk_is_not_true(notafk):
         AFKREASON = None
 
 CmdHelp('afk').add_command(
-    'afk', 
-    '<İstəyə bağlı səbəb>', 
-    'AFK olduğunuzu bildirər. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.'
-    ).add()
+    'afk', `{LANG['AFK1']})`.add()
