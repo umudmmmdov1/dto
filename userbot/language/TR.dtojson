@@ -155,7 +155,7 @@
             "BIO": "⌚️ Saat: {saat} | ",
             "NICK": "@UseratorOT",
             "SETTED": "`%s ayarlandı :)`",
-            "NAME": "| %s"
+            "NAME": "| %s",
             "AUTO1": "ad ya da bio",
             "AUTO2": "Otomatik saate göre değiştirir",
             "AUTO3": "auto ad"
