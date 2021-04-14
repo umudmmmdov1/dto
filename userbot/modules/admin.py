@@ -70,7 +70,7 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
-@register(outgoing=True, pattern="^.elave ?(.*)")
+@register(outgoing=True, pattern="^.add ?(.*)")
 async def ekle(event):
     if event.fwd_from:
         return
@@ -1296,43 +1296,45 @@ async def get_bots(show):
         remove("botlist.txt")
 
 CmdHelp('admin').add_command(
-        'promote', '<istifadəçi adı/cavablama> <özəl ad (istəyə bağlı)>', 'Söhbətdəki istifadəçiyə idarəçi haqqları verir.'
+        'promote', (LANG['PROMOTE1']), (LANG['PROMOTE2'])
     ).add_command(
-        'demote', '<istifadəçi adı/cavablama>', 'Söhbətdəki istifadəçinin idarəçi icazələrini ləğv edər.'
+        'demote', (LANG['DEMOTE1']), (LANG['DEMOTE2'])
     ).add_command(
-        'ban', '<istifadəçi adı/cavablama> <səbəbi (istəyə bağlı)>', 'Söhbətdəki istifadəçimi susdurar, idarəçilərədə işləyir.'
+        'ban', (LANG['BAN1']), (LANG['BAN2'])
     ).add_command(
-        'unban', '<istifadəçi adı/cavablama>', 'Söhbətdəki istifadəçinin bandan çıxardar.'
+        'unban', (LANG['UNBAN1']), (LANG['UNBAN2'])
     ).add_command(
-        'kick', '<istifadəçi adı/cavablama> <səbəbi (istəyə bağlı)>', 'Qrupdan seçdiyiniz istifadəçini qrupdan atar.'
+        'mute', (LANG['MUTE1']), (LANG['MUTE2'])
     ).add_command(
-        'gmute', '<istifadəçi adı/cavablama> <səbəbi (istəyə bağlı)>', 'İstifadəçini idarəçi olduğunuz bütün qruplarda susdurar.'
+        'unmute', (LANG['UNMUTE1']), (LANG['UNMUTE2'])
     ).add_command(
-        'ungmute', '<istifadəçi adı/cavablama>', 'İstifadəçiyi qlobal olaraq səssizə alınanlar listindən silər.'
+        'kick', (LANG['KICK1']), (LANG['KICK2'])
     ).add_command(
-        'zombies', None, 'Bir qrupdakı silinmiş hesabları axtarar. Qrupdan silinən hesabları silmək üçün .zombies clean əmrini işlədin.'
+        'gmute', (LANG['GMUTE1']), (LANG['GMUTE2'])
     ).add_command(
-        'admins', None, 'Söhbət idarəçilərinin listini göstərir.'
+        'ungmute', (LANG['UNGMUTE1']), (LANG['UNGMUTE2'])
     ).add_command(
-        'bots', None, 'Bir qrupdakı silinmiş hesabları axtarar. Əruptan silinən hesabları silmək üçün .zombies clean əmrini işlədin.'
+        'zombies', None, (LANG['ZOMBI1'])
     ).add_command(
-        'users vəya .users', '<istifadəçi adı> <istifadəçu adı/cavablama>', 'Söhbətdəki bütün (vəya sorğulanan) istifadəçiləri alar.'
+        'admins', None, (LANG['ADMINS1'])
     ).add_command(
-        'warn', '<istifadəçi adı/cavablamma> <səbəb (istəyə bağlı>', 'Seçdiyiniz istifadəçini xəbərdar edər.'
+        'bots', None, (LANG['BOTS1'])
     ).add_command(
-        'unwarn', '<istifadəçi adı/cavablamma> <səbəb (istəyə bağlı>', 'Seçdiyiniz istifadəçinin xəbərdarlığını silər.'
+        'users', None, (LANG['USERS1'])
     ).add_command(
-        'warn', '<istifadəçi adı/cavablamma> <səbəb (istəyə bağlı>', 'Seçdiyiniz istifadəçiyi xəbərdar edər.'
+        'usersdel', None, (LANG['USERDEL1'])
     ).add_command(
-        'usersdel', None, 'Qrup içərisində silinən hesabları göstərər.'
+        'warn', (LANG['WARN1']), (LANG['WARN2'])
     ).add_command(
-        'elave', '<istifadəçi ad(lar)ı>', 'Qrupa istifadəçi əlavə edər.'
+        'unwarn', (LANG['UNWARN1']), (LANG['UNWARN2'])
     ).add_command(
-        'gban', '<istifadəçi adı/cavablama>', 'İstifadəçiyi qlobal olaraq banlayar.'
+        'add', (LANG['ELAVE1']), (LANG['ELAVE2'])
     ).add_command(
-        'ungban', '<istifadəçi adı/cavablama>', 'İstifadəçiyi qlobal bandan çıxardar.'
+        'gban', (LANG['GBAN1']), (LANG['GBAN2'])
     ).add_command(
-        'pin', '<cavablama>', 'Cavab verdiyiniz mesajı pinləyər.'
+        'ungban', (LANG['UNGBAN1']), (LANG['UNGBAN2'])
     ).add_command(
-        'setgpic', '<cavablama>', 'Qrup fotosunu dəyişdirər.'
+        'pin', (LANG['PIN1']), (LANG['PIN2'])
+    ).add_command(
+        'setgpic', (LANG['QS1']), (LANG['QS2'])
     ).add()
