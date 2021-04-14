@@ -132,11 +132,9 @@ async def get_font_file(client, channel_id):
     return await client.download_media(font_file_message)
 
 CmdHelp('autopp').add_command(
-    'autopp', None, 'Bu əmr seçdiyiniz fotonu profil şəkili edər və bir saat əlavə edəe. Bu saat hər dəqiqə dəyişər.', 'autopp'
+    'autopp', None, (LANG['AUTOPP1'])
 ).add()
 
 CmdHelp('autovideo').add_command(
-    'autopp', None, 
-    'Bu əmr cavab verdiyiniz videoyu profil video edər və bir saat vəya tarix vəya istədiyiniz bir yazı əlavə edər. Bu saat hər dəqiqə dəyişir. nƏgər botun öz yazısını işlətmək istiyirsizsə ekstradan bir şey yazmayın. Öz yazınızı əlavə etmək istəyirsizsə .autovideo yazı şəklində işlədin. ',
-    '.autovideo ahan saat $saat bu da tarih $tarih'
+    'autopp', None, (LANG['AUTOPP2']), (LANG['AUTOPP3'])
 ).add()
