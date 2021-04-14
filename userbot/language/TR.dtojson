@@ -99,12 +99,51 @@
             "UNWARNED": "`Bu kişi zaten hiç uyarılmamış!`",
             "UNWARN": "uyarın kaldırıldı ama gene de dikkatli ol lütfen! Yeni durum:",
             "WARNING": "`Uyarı atılıyor...`",
-            "WARN": "kere uyarıldı; dikkatli ol lütfen!"
+            "WARN": "kere uyarıldı; dikkatli ol lütfen!",
+            "PROMOTE1": "<kullanıcı adı/yanıtlama> <özel isim (isteğe bağlı)>",
+            "PROMOTE2": "Sohbetteki kişiye yönetici hakları sağlar.",
+            "DEMOTE1": "<kullanıcı adı/yanıtlama>",
+            "DEMOTE2": "Sohbetteki kişinin yönetici izinlerini iptal eder.",
+            "BAN1": "<kullanıcı adı/yanıtlama> <nedeni (isteğe bağlı)>",
+            "BAN2": "Sohbetteki kişiyi banlar.",
+            "UNBAN1": "<kullanıcı adı/yanıtlama>",
+            "UNBAN2": "Sohbetteki kişinin yasağını kaldırır.",
+            "UNMUTE1": "<kullanıcı adı/yanıtlama>",
+            "UNMUTE2": "Sessizten çıkarır.",
+            "MUTE1": "<kullanıcı adı/yanıtlama> <nedeni (isteğe bağlı)>",
+            "MUTE2": "Sohbetteki kişiyi susturur, yöneticilerde de çalışır.",
+            "KICK1": "<kullanıcı adı/yanıtlama> <nedeni (isteğe bağlı)>",
+            "KICK2": "Gruptan belirttiğiniz kişiyi tekmeler.",
+            "GMUTE1": "<kullanıcı adı/yanıtlama> <nedeni (isteğe bağlı)>",
+            "GMUTE2": "Kişiyi yönetici olduğunuz tüm gruplarda susturur.",
+            "UNGMUTE1": "<kullanıcı adı/yanıtlama>",
+            "UNGMUTE2": "Kişiyi küresel olarak sessize alınanlar listesinden kaldırır.",
+            "ZOMBI1": "Bir gruptaki silinmiş hesapları arar. Gruptan silinen hesapları kaldırmak için .zombies clean komutunu kullanın.",
+            "ADMINS1": "Sohbet yöneticilerinin listesini alır.",
+            "BOTS1": "Gruptaki botları gösterir.",
+            "USERS1": "Sohbetteki tüm kullanıcıları alır.",
+            "USERDEL1": "Grup içerisinde silinen hesapları gösterir.",
+            "WARN1": "<kullanıcı adı/yanıtlamma> <sebep (isteğe bağlı>",
+            "WARN2": "Belirttiğiniz kullanıcıyı uyarır.",
+            "UNWARN1": "<kullanıcı adı/yanıtlama>",
+            "UNWARN2": "Belirttiğiniz kullanıcının uyarısını kaldırır.",
+            "ELAVE1": "<kullanıcı adı>",
+            "ELAVE2": "Gruba üye ekler.",
+            "GBAN1": "<kullanıcı adı/yanıtlama>",
+            "GBAN2": "Kullanıcıyı küresel olarak yasaklar.",
+            "UNGBAN1": "<kullanıcı adı/yanıtlama>",
+            "UNGBAN2": "Kullanıcının küresel yasaklamasını kaldırır.",
+            "PIN1": "<yanıtlama>",
+            "PIN2": "Yanıt verdiğiniz mesajı başa sabitler.",
+            "QS1": "<yanıtlama>",
+            "QS2": "Grup fotoğrafını değiştirir."
         },
 
         "afk": {
             "REASON": "`Sebep`",
             "AFK": "`Sahibim şu an AFK`",
+            "AFK1": "<İsteğe bağlı sebep>",
+            "AFK2": "AFK olduğunuzu belirtir. Kim size pm atarsa ya da sizi etiketlerse sizin AFK olduğunuzu ve belirlediğiniz sebebi gösterir. Herhangi bir yere mesaj yazdığınızda AFK modu kapanır.",
             "IM_AFK": "`Artık AFK'yım.`",
             "IM_NOT_AFK": "`Artık AFK değilim.`"
         },
@@ -117,6 +156,9 @@
             "NICK": "@UseratorOT",
             "SETTED": "`%s ayarlandı :)`",
             "NAME": "| %s"
+            "AUTO1": "ad ya da bio",
+            "AUTO2": "Otomatik saate göre değiştirir",
+            "AUTO3": "auto ad"
         },
 
         "autopp": {
@@ -127,7 +169,10 @@
             "STARTED_VIDEO": "`Profil videosu değişmeye başladı :)!`",
             "PHOTO_ALREADY_CHANGING": "`Görünüşe göre profil fotoğrafınız zaten otomatik olarak değişiyor.`",
             "SETTING": "`Profil fotoğrafınız ayarlanıyor...`",
-            "SETTED": "`Profil fotoğrafınız ayarlandı :)`"
+            "SETTED": "`Profil fotoğrafınız ayarlandı :)`",
+            "AUTOPP1": "Bu komut belirlediğiniz fotoğrafı profil resmi yapar ve bir saat ekler. Bu saat her dakika değişir.",
+            "AUTOPP2": "Bu komut yanıt verdiğiniz videoyu profil video yapar ve bir saat veya tarih veya istediğiniz bir yazı ekler. Bu saat her dakika değişir. Eğer botun kendi yazısını kullanmak istiyorsanız ekstradan bir şey yazmayın. Kendi yazınızı eklemek istiyorsanız .autovideo yazı şeklinde kullanın.",
+            "AUTOPP3": ".autovideo ahan saat $saat bu da tarih $tarih"
         },
 
         "blacklist": {
