@@ -155,7 +155,10 @@
             "BIO": "⌚️ Saat: {saat} | ",
             "NICK": "@UseratorOT",
             "SETTED": "`%s hazırlandı :)`",
-            "NAME": " | %s"
+            "NAME": " | %s",
+            "AUTO1": "ad ya da bio",
+            "AUTO2": "Avtomatik saata görə dəyişdirir",
+            "AUTO3": "auto ad"
         },
 
         "autopp": {
@@ -167,9 +170,6 @@
             "PHOTO_ALREADY_CHANGING": "`Görülənə görə profil şəkiliniz onsuzda avtomatik olaraq dəyişir.`",
             "SETTING": "`Profil şəkiliniz...`",
             "SETTED": "`Profil şəkiliniz nizamlandı :)`",
-            "AUTO1": "ad ya da bio",
-            "AUTO2": "Avtomatik saata görə dəyişdirir",
-            "AUTO3": "auto ad",
             "AUTOPP1": "Bu əmr seçdiyiniz fotonu profil şəkili edər və bir saat əlavə edəe. Bu saat hər dəqiqə dəyişər.",
             "AUTOPP2": "Bu əmr cavab verdiyiniz videoyu profil video edər və bir saat vəya tarix vəya istədiyiniz bir yazı əlavə edər. Bu saat hər dəqiqə dəyişir, Əgər botun öz yazısını işlətmək istiyirsizsə ekstradan bir şey yazmayın. Öz yazınızı əlavə etmək istəyirsizsə .autovideo yazı şəklində işlədin.",
             "AUTOPP3": ".autovideo bu saat $saat bu da tarix $tarih"
