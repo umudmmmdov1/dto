@@ -99,11 +99,50 @@
             "UNWARNED": "`Bu şəxsə onsuzda heç vaxt xəbərdarlıq edilməyib!`",
             "UNWARN": "Xəbərdarlığınız silindi, amma yenə də diqqətli olun! Yeni vəziyyət:",
             "WARNING": "`Xəbərdarlıq göndərilir...`",
-            "WARN": "dəfə xəbərdar edildi; xaiş edirik diqqətli olun!"
+            "WARN": "dəfə xəbərdar edildi; xaiş edirik diqqətli olun!",
+            "PROMOTE1": "<istifadəçi adı/cavablama> <özəl ad (istəyə bağlı)>",
+            "PROMOTE2": "Söhbətdəki istifadəçiyə idarəçi haqqları verir.",
+            "DEMOTE1": "<istifadəçi adı/cavablama>",
+            "DEMOTE2": "Söhbətdəki istifadəçinin idarəçi icazələrini ləğv edər.",
+            "BAN1": "<istifadəçi adı/cavablama> <səbəbi (istəyə bağlı)>",
+            "BAN2": "Söhbətdəki istifadəçini banlayar.",
+            "UNBAN1": "<istifadəçi adı/cavablama>",
+            "UNBAN2": "Söhbətdəki istifadəçinin bandan çıxardar.",
+            "UNMUTE1": "<istifadəçi adı/cavablama>",
+            "UNMUTE2": "Səssizdən çıxarar.",
+            "MUTE1": "<istifadəçi adı/cavablama> <səbəbi (istəyə bağlı)>",
+            "MUTE2": "Söhbətdəki istifadəçimi susdurar, idarəçilərədə işləyir.",
+            "KICK1": "<istifadəçi adı/cavablama> <səbəbi (istəyə bağlı)>",
+            "KICK2": "Qrupdan seçdiyiniz istifadəçini qrupdan atar.",
+            "GMUTE1": "<istifadəçi adı/cavablama> <səbəbi (istəyə bağlı)>",
+            "GMUTE2": "İstifadəçini idarəçi olduğunuz bütün qruplarda susdurar.",
+            "UNGMUTE1": "<istifadəçi adı/cavablama>",
+            "UNGMUTE2": "İstifadəçiyi qlobal olaraq səssizə alınanlar listindən silər.",
+            "ZOMBI1": "Bir qrupdakı silinmiş hesabları axtarar. Qrupdan silinən hesabları silmək üçün .zombies clean əmrini işlədin.",
+            "ADMINS1": "Söhbət idarəçilərinin listini göstərir.",
+            "BOTS1": "Qrupdakı botları göstərər.",
+            "USERS1": "Söhbətdəki bütün istifadəçiləri göstərər.",
+            "USERDEL1": "Qrup içərisində silinən hesabları göstərər.",
+            "WARN1": "<istifadəçi adı/cavablamma> <səbəb (istəyə bağlı>",
+            "WARN2": "Seçdiyiniz istifadəçiyi xəbərdar edər.",
+            "UNWARN1": "<istifadəçi adı/cavablamma>",
+            "UNWARN2": "Seçdiyiniz istifadəçinin xəbərdarlığını silər.",
+            "ELAVE1": "<istifadəçi adı>",
+            "ELAVE2": "Qrupa istifadəçi əlavə edər.",
+            "GBAN1": "<istifadəçi adı/cavablama>",
+            "GBAN2": "İstifadəçiyi qlobal olaraq banlayar.",
+            "UNGBAN1": "<istifadəçi adı/cavablama>",
+            "UNGBAN2": "İstifadəçiyi qlobal bandan çıxardar.",
+            "PIN1": "<cavablama>",
+            "PIN2": "Cavab verdiyiniz mesajı pinləyər.",
+            "QS1": "<cavablama>",
+            "QS2": "Qrup fotosunu dəyişdirər."
         },
 
         "afk": {
             "REASON": "`Səbəb`",
+            "AFK1": "<İstəyə bağlı səbəb>",
+            "AFK2": "AFK olduğunuzu bildirər. Kim sizə pm atarsa ya da sizi etiketlərsə sizin AFK olduğunuzu və yazdığınız səbəbi göstərər. Hər hansı bir yerə mesaj yazdığınızda AFK modu sönər.",
             "AFK": "`Sahibim hazırda Xətdə deyil.`",
             "IM_AFK": "`Hazırda AFK-yam.`",
             "IM_NOT_AFK": "`Artıq AFK deyiləm.`"
@@ -116,7 +155,10 @@
             "BIO": "⌚️ Saat: {saat} | ",
             "NICK": "@UseratorOT",
             "SETTED": "`%s hazırlandı :)`",
-            "NAME": " | %s"
+            "NAME": " | %s",
+            "AUTO1": "ad ya da bio",
+            "AUTO2": "Avtomatik saata görə dəyişdirir",
+            "AUTO3": "auto ad"
         },
 
         "autopp": {
@@ -127,7 +169,10 @@
             "STARTED_VIDEO": "`Profil videosu dəyişməyə başladı :)!`",
             "PHOTO_ALREADY_CHANGING": "`Görülənə görə profil şəkiliniz onsuzda avtomatik olaraq dəyişir.`",
             "SETTING": "`Profil şəkiliniz...`",
-            "SETTED": "`Profil şəkiliniz nizamlandı :)`"
+            "SETTED": "`Profil şəkiliniz nizamlandı :)`",
+            "AUTOPP1": "Bu əmr seçdiyiniz fotonu profil şəkili edər və bir saat əlavə edəe. Bu saat hər dəqiqə dəyişər.",
+            "AUTOPP2": "Bu əmr cavab verdiyiniz videoyu profil video edər və bir saat vəya tarix vəya istədiyiniz bir yazı əlavə edər. Bu saat hər dəqiqə dəyişir, Əgər botun öz yazısını işlətmək istiyirsizsə ekstradan bir şey yazmayın. Öz yazınızı əlavə etmək istəyirsizsə .autovideo yazı şəklində işlədin.",
+            "AUTOPP3": ".autovideo bu saat $saat bu da tarix $tarih"
         },
 
         "blacklist": {
