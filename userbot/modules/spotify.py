@@ -146,7 +146,7 @@ async def set_biodgraph(setdbio):
     await setdbio.edit(SPO_BIO_DISABLED)
 
 CmdHelp('spotify').add_command(
-    'enablespotify', None, 'Spotify bionu aktivləşdirir.'
+    'enablespotify', None, (LANG['SPOTI1'])
 ).add_command(
-    'disablespotify', None, 'Spotify bionu deaktivləşdirir.'
+    'disablespotify', None, (LANG['SPOTI2'])
 ).add()
