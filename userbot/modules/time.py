@@ -161,7 +161,7 @@ async def date_func(dat):
         return
 
 CmdHelp('time').add_command(
-    'time', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkənin saatınıı göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.'
+    'time', (LANG['TIME1']), (LANG['TIME2'])
 ).add_command(
-    'date', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkenin tarixini göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.'
+    'date', (LANG['TIME3']), (LANG['TIME4'])
 ).add()
