@@ -38,6 +38,16 @@
             "NEED_MODULE": "`Modullar aşağıdadır 👇🏻 \nİstifadəsi: .dto <modul adı>`"
         },
 
+       "cmdhelp": {
+            "EMR": "**⌨️ Əmr:**",
+            "RESMI": "**♻️ Rəsmi:**",
+            "FAYL": "**📗 Fayl:**",
+            "MES": "**➤ Məsələn:**",
+            "XEBER": "**❗ Xəbərdarlıq:**",
+            "INFOM": "**ℹ️ Məlumat:**",
+            "AC": "**📃 Açıqlama:**`"
+        },
+
         "__helpme": {
             "NO_BOT": "`Bot işləmir! Zəhmət olmasa Bot Tokeni və İstifadəçi adını düzgün yazın. Modul dayandırıldı.`"
         },
