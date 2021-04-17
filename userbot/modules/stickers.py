@@ -254,11 +254,5 @@ async def resize_photo(photo):
     return image
 
 CmdHelp('stickers').add_command(
-    'fırlat', None, 'Fırlat ilə bir stikeri ya da fotonu cavablayaraq öz stiker paketinizə stiker olaraq əlavə edə bilərsiz.'
-).add_command(
-    'fırlat', '<emoji(lər)>', 'Fırlat kimi işləyir ancaq istədiyiniz emojiyi stikerin emojisi olaraq qeyd edir.'
-).add_command(
-    'fırlat', '<nömrə>', 'Stikeri ya da fotunu seçilən paketə əlavə edir ancaq emoji olaraq bu işlədilir: 🤔 '
-).add_command(
-    'fırlat', '<emoji(lər)> <numara>', 'Stikeri ya da fotonu seçilən paketə əlavə edir və seçdiyiniz emoji stikerin emojisi olaraq işlədilir.'
+    'fırlat', None, (LANG['STIK1'])
 ).add()
