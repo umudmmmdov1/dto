@@ -175,7 +175,7 @@ async def upstream(ups):
         return
 
 CmdHelp('update').add_command(
-    'update', None, 'Botunuza siz quraşdırandan sonra hər hansı bir yenilənmə gəlib gəlmədiyini yoxlayar.'
+    'update', None, (LANG['UPDATE1'])
 ).add_command(
-    'update now', None, 'Botunuzu yeniləyər.'
+    'update now', None, (LANG['UPDATE2'])
 ).add()
