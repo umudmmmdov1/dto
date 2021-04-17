@@ -2,6 +2,13 @@
 
 from userbot import PATTERNS, CMD_HELP, CMD_HELP_BOT, LANGUAGE
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("cmdhelp")
+
+# ████████████████████████████████ #
+
 class CmdHelp:
     """
     
@@ -54,32 +61,32 @@ class CmdHelp:
         
         """
 
-        result = f"**📗 Fayl:** `{self.FILE}`\n"
+        result = f"{LANG['FAYL']} `{self.FILE}`\n"
         if self.WARNING == '' and self.INFO == '':
-            result += f"**♻️ Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
+            result += f"{LANG['RESMI']} {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
         else:
-            result += f"**♻️ Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n"
+            result += f"{LANG['RESMI']} {'✅' if self.IS_OFFICIAL else '❌'}\n"
             
             if self.INFO == '':
                 if not self.WARNING == '':
-                    result += f"**❗ Xəbərdarlıq:** {self.WARNING}\n\n"
+                    result += f"{LANG['XEBER']} {self.WARNING}\n\n"
             else:
                 if not self.WARNING == '':
-                    result += f"**❗ Xəbərdarlıq:** {self.WARNING}\n"
-                result += f"**ℹ️ Məlumat:** {self.INFO}\n\n"
+                    result += f"{LANG['XEBER']} {self.WARNING}\n"
+                result += f"{LANG['INFOM']} {self.INFO}\n\n"
                      
         for command in self.COMMANDS:
             command = self.COMMANDS[command]
             if command['params'] == None:
-                result += f"**⌨️ Əmr:** `{PATTERNS[:1]}{command['command']}`\n"
+                result += f"{LANG['EMR']} `{PATTERNS[:1]}{command['command']}`\n"
             else:
-                result += f"**⌨️ Əmr:** `{PATTERNS[:1]}{command['command']} {command['params']}`\n"
+                result += f"{LANG['EMR']} `{PATTERNS[:1]}{command['command']} {command['params']}`\n"
                 
             if command['example'] == None:
-                result += f"**📃 Açıqlama:** `{command['usage']}`\n\n"
+                result += f"{LANG['AC']} `{command['usage']}`\n\n"
             else:
-                result += f"**📃 Açıqlama:** `{command['usage']}`\n"
-                result += f"**➤ Məsələn:** `{PATTERNS[:1]}{command['example']}`\n\n"
+                result += f"{LANG['AC']} `{command['usage']}`\n"
+                result += f"{LANG['MES']} `{PATTERNS[:1]}{command['example']}`\n\n"
         return result
 
     def add(self):
