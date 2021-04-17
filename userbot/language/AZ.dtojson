@@ -671,7 +671,7 @@
             "INVALID_HEROKU": "{}\n`Heroku dəyişənləri səhv və ya müəyyənləşdirilmişdir.`",
             "HEROKU_UPDATING": "`[Yenilənmə]\nU S Σ R Δ T O R UserBotunun daha yaxşı olacağına əmin ola bilərsiniz :) Bu müddət maksimum 10 dəqiqə çəkir.`",
             "ERRORS": "Qarşılaşdığımız səhflər bunlardır",
-            "UPDATE1: "Botunuza siz quraşdırandan sonra hər hansı bir yenilənmə gəlib gəlmədiyini yoxlayar.",
+            "UPDATE1": "Botunuza siz quraşdırandan sonra hər hansı bir yenilənmə gəlib gəlmədiyini yoxlayar.",
             "UPDATE2": "Botunuzu yeniləyər.",
             "SUCCESSFULLY": "`Yeniləmə uğurla başa çatdı! \nYenidən yüklənir ...`"
         },
