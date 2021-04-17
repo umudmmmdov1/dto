@@ -2,7 +2,7 @@
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
-from userbot.language import get_value
+from .language import get_value
 LANG = get_value("cmdhelp")
 
 # ████████████████████████████████ #
