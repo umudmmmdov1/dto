@@ -672,7 +672,7 @@
             "INVALID_HEROKU": "{}\n`Heroku değişkenleri yanlış veya eksik tanımlanmış.`",
             "HEROKU_UPDATING": "`[Güncelleyici]\nU S Σ R Δ T O R UserBotun daha iyi olacağınıza emin olabilirsiniz :) Bu işlem maksimum 10 dakika sürmektedir.`",
             "ERRORS": "Karşılaşılan hatalar burada",
-            "UPDATE1: "Botunuza siz kurduktan sonra herhangi bir güncelleme gelip gelmediğini kontrol eder.",
+            "UPDATE1": "Botunuza siz kurduktan sonra herhangi bir güncelleme gelip gelmediğini kontrol eder.",
             "UPDATE2": "Botunuzu günceller.",
             "SUCCESSFULLY": "`Güncelleme başarıyla tamamlandı!\nYeniden başlatılıyor...`"
         },
