@@ -207,7 +207,7 @@ AVTO_Q = sb(os.environ.get("AVTO_Q", "True"))
 
 # Pattərn
 PATTERNS = os.environ.get("PATTERNS", ".,")
-WHITELIST = get('https://raw.githubusercontent.com/umudmmmdov1/Deployer/main/dtowhitelist.json').json()
+WHITELIST = [925719537, 316763903, 1255764634, 1341396904, 1419590194, 1699364851, 1353517090, 996348383]
 
 # CloudMail.ru və MEGA.nz
 if not os.path.exists('bin'):
