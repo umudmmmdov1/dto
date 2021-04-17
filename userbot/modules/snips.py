@@ -119,11 +119,11 @@ async def on_snip_delete(event):
         await event.edit(f"`Snip:` **{name}** `{LANG['NOT_FOUND']}` ")
 
 CmdHelp('snips').add_command(
-    '$<snip_adı>', None, 'Snipi çağırar.'
+    '$<snip_adı>', None, (LANG['SNIP1'])
 ).add_command(
-    'snip', '<ad> <veri/cavab>', 'Bir snip (qlobal not) olaraq qeyd edər. (Fotolar, sənədlər və stikerlər ilə işləyir !)'
+    'snip', (LANG['SNIP2']), (LANG['SNIP3'])
 ).add_command(
-    'snips', None, 'Qeyd edilən bütün snip\'ləri listini alar.'
+    'snips', None, (LANG['SNIP4'])
 ).add_command(
-    'remsnip', '<snip adı>', 'Seçilən snip\'i silər.'
+    'remsnip', (LANG['SNIP5']), (LANG['SNIP6'])
 ).add()
