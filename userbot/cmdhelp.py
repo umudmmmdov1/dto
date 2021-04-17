@@ -1,6 +1,7 @@
 # U S Σ R Δ T O R / Ümüd
 
 from userbot import PATTERNS, CMD_HELP, CMD_HELP_BOT, LANGUAGE
+from userbot.cmdhelp import CmdHelp
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
