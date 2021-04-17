@@ -2,7 +2,6 @@
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
-from .language import get_value
 LANG = get_value("cmdhelp")
 
 # ████████████████████████████████ #
