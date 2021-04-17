@@ -66,5 +66,5 @@ async def capture(url):
                                    reply_to=message_id)
 
 CmdHelp('ss').add_command(
-    'ss', '<url>', 'Seçilən web saytından bir ekran görüntüsü alar və göndərər.', 'ss https://nexeber.com'
+    'ss', (LANG['S1']), (LANG['S2']), (LANG['S3'])
 ).add()
