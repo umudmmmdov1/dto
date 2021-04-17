@@ -701,7 +701,7 @@
             "UPDOWN1": "<bağlantı-dosya adı> (ya da bir şeye cevap vererek)",
             "UPDOWN2": "Sunucuya dosyayı indirir.",
             "UPDOWN3": "<sunucudaki dosya yolu>",
-            "UPDWON4": "Sunucunuzdaki bir dosyayı sohbete upload eder.",
+            "UPDOWN4": "Sunucunuzdaki bir dosyayı sohbete upload eder.",
             "UPDOWN5": "<dosyaya yanıt verin> anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare",
             "UPDOWN6": "Seçtiğiniz websiteye yükler.",
             "UPDOWN7": "<yanıt>",
