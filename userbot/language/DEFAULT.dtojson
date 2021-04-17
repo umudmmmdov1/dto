@@ -479,11 +479,15 @@
             "FUCKOFF": "Google mənə onun olduğu yerdən çıxıb getməyimi dedi",
             "SEARCHING_PHOTO": "Şəkil axtarıram",
             "NOT_FOUND": "`Heçnə tapa bilmədim`",
+            "REV1": "<cavab>",
+            "REV2": "Foto vəya stikerə cavab verərək görüntünü Google üstündən axtara bilərsiz.",
             "SIMILAR": "Oxşar görüntülər"
         },
 
         "rgb": {
             "NEED_TEXT": "`Zəhmət olmasa komandanın yanında bir mətn yazın`",
+            "RGB1": "<cavab>",
+            "RGB2": "`Mesajınızı RGB stikerə dəyişdirər",
             "CONVERTING": "`Şəkilə çevrilir...`"
         },
         
@@ -528,6 +532,21 @@
             "CANT_REPLY_BOTS": "`Siz botlara cavab verə bilməzsiniz.`",
             "QUOTING": "`Sitat gətirir ...`",
             "UNBLOCK_QUOTLY": "`Xahiş edirəm @QuotLyBot'u blokdan çıxarın və yenidən cəhd edin '",
+            "SANG1": "<cavab>",
+            "SANG2": "Seçilən istifadəçinin ad keçmişinə baxmaq",
+            "DR1": "<cavab>",
+            "DR2": "Seçilən faylda virus olub olmadığına baxın.",
+            "MEME1": "<font> <üst;alt>",
+            "MEME2": "Fotoya yazı əlavə edin. İstəyirsinizsə font böyüklüyünüdə  yaza bilərsiz.",
+            "MEME3": "meme 30 dto;umud",
+            "VO1": "<cavab>",
+            "VO2": "Səsi yazıya çevirin.",
+            "Q1": "<rəqəm>",
+            "Q2": "Mətini stikerə çəvirin.",
+            "OCR1": "<cavab>",
+            "OCR2": "Fotodakı yazını oxuyun.",
+            "CR1": "<cavab>",
+            "CR2": "Cavab verdiyiniz insanın hesabının yaradılış tarixini öyrənin.",
             "QUOTLY_VALUE_ERR": "`Yalnız rəqəmlər daxil edə bilərsiniz! Nümunə: ``.q 2`"
         },
 
@@ -539,6 +558,9 @@
             "HEIGHT": "Səhifənin hündürlüyü",
             "WIDTH": "Səhifənin eni",
             "WAIT": "\n`Səhifənin yüklənməsi üçün %s saniyə gözləndi`",
+            "S1": "<url>",
+            "S2": "Seçilən web saytından bir ekran görüntüsü alar və göndərər.",
+            "S3": "ss https://xeberimvar.com",
             "UPLOADING": "`Ekran görüntüsü yüklənir ...`"
         },
 
@@ -551,6 +573,12 @@
             "NO_SNIP": "`Hazırda heçbir snip yoxdur.`",
             "SNIPS": "Mövcud sniplər",
             "DELETED": "Uğurla silindi",
+            "SNIP1": "Snipi çağırar.",
+            "SNIP2": "<ad> <veri/cavab>",
+            "SNIP3": "Bir snip (qlobal not) olaraq qeyd edər. (Fotolar, sənədlər və stikerlər ilə işləyir !)",
+            "SNIP4": "Qeyd edilən bütün snipləri listini alar.",
+            "SNIP5": "<snip adı>",
+            "SNIP6": "Seçilən snipi silər.",
             "NOT_FOUND": "Tapılmadı"
         },
 
@@ -559,7 +587,7 @@
             "SEARCHING": "`Musiqi axtarılır...`",
             "BLOCKED_DEEZER": "`Mmmh deyəsən` @DeezerMusicBot `bloklamısan zəhmət olmasa bloku aç",
             "NOT_FOUND": "`Axtardığınız mahnı tapılmadı! Bağışlayın.`",
-            "UPLOADED_WITH": "@DTOUserBot ilə yükləndi",
+            "UPLOADED_WITH": "@UseratorOT ilə yükləndi",
             "USAGE": "`İstifadəsi:` `.song mahnı ad/youtube url/spotify url`",
             "SEARCHING_SPOT": "`Mahnıların axtarışı və yüklənməsini gözləyin!",
             "DOWNLOADED": "`Yükləmə uğurlu oldu, xahiş edirəm gözləyin.`",
@@ -567,6 +595,12 @@
             "USAGE_PL": "`İstifadəsi: .songpl spotify playlist url`",
             "SEARCHING_PL": "`Playlist axtarılır və yüklənir zəhmət olmasa gözləyin`",
             "SENDING_SONGS": "Mahnı göndərilir Mahnı:",
+            "DEEZ1": "<musiqi adı/youtube/spotify/soundcloud>",
+            "DEEZ2": "Bir çox saytdan musiqini axtarıb, musiqini endirir.",
+            "SONG1": "<musiqi adı/youtube/spotify>",
+            "SONG2": "Musiqi endirər.",
+            "SONG3": "<spotify playlist>",
+            "SONG4": "Spotify Playlist\'indən musiqi endirir",
             "NOT_FOUND_PL": "`Axtardığınız playlist tapılmadı.Bağışayın.`"
         },
 
@@ -574,6 +608,8 @@
             "BIO_ENABLED": "`Spotify plagini aktivdir. Spotify-da dinlədiyiniz mahnılar tərcümeyi-halınıza yazılacaq.`",
             "BIO_DISABLED": "`Spotify plagini deaktivdir. Bioqrafiya əvvəlki halına qayıtdı.`",
             "BIO_RUNNING": "`Spotify plagini artıq işləyir.`",
+            "SPOTI1": "Spotify bionu aktivləşdirir.",
+            "SPOTI2": "Spotify bionu deaktivləşdirir.",
             "ERROR": "`Spotify plagini dayandı. Xəta alındı.`"
         },
 
@@ -581,6 +617,7 @@
             "GIVE_STICKER": "`Dızlaya bilməyim üçün bir Sticker və ya şəkil verməlisən`",
             "FAIL_DOWNLOAD": "`Sticker yüklənə bilmədi! Bir şəkil və ya Sticker göndərdiyinizə əmin olun.`",
             "NEW_PACK": "`Sticker paket yaradılmadı! Yeni bir paket yaradılır ...`",
+            "STIK1": "Fırlat ilə bir stikeri ya da fotonu cavablayaraq öz stiker paketinizə stiker olaraq əlavə edə bilərsiz.",
             "TOO_STICKERS": "`Paket sahəsi yetərli olmadığı üçün nömrələnmiş paketə {} keçid edilir ...`"
         },
 
@@ -593,6 +630,11 @@
             "QUERY": "Sorğu",
             "RESULT": "Nəticə",
             "NOT_FOUND": "Heçnə tapılmadı",
+            "SS1": "Neofetch modulunu işlədərək sistem məlumatlarını göstərər.",
+            "SS2": "U S Σ R Δ T O R versiyasını göstərər.",
+            "SS3": "<modul(lar)>",
+            "SS4": "Pip modullarında axtarış edər.",
+            "SS5": "U S Σ R Δ T O R botunun işləyib işləmədiyini yoxlamaq üçün işlədilir.",
             "EXAMPLE": "`Bir nümunə görmək üçün .dto pip əmrindən istifadə edin.`"
 
         },
@@ -606,6 +648,10 @@
             "IS_CLOCK": "ölkəsində saat",
             "IS_TZ": "saat zonanısında",
             "DATE": "Burada tarix",
+            "TIME1": "<ölkə adı/kodu> <saat dilimi nömrəsi>",
+            "TIME2": "Bir ölkənin saatınıı göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.",
+            "TIME3": "<ölkə adı/kodu> <saat dilimi nömrəsi>",
+            "TIME4": "Bir ölkənin saatınıı göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.",
             "IS_DATE": "ölkəsində tarix"
         },
 
@@ -626,6 +672,8 @@
             "INVALID_HEROKU": "{}\n`Heroku dəyişənləri səhv və ya müəyyənləşdirilmişdir.`",
             "HEROKU_UPDATING": "`[Yenilənmə]\nU S Σ R Δ T O R UserBotunun daha yaxşı olacağına əmin ola bilərsiniz :) Bu müddət maksimum 10 dəqiqə çəkir.`",
             "ERRORS": "Qarşılaşdığımız səhflər bunlardır",
+            "UPDATE1: "Botunuza siz quraşdırandan sonra hər hansı bir yenilənmə gəlib gəlmədiyini yoxlayar.",
+            "UPDATE2": "Botunuzu yeniləyər.",
             "SUCCESSFULLY": "`Yeniləmə uğurla başa çatdı! \nYenidən yüklənir ...`"
         },
 
@@ -650,6 +698,16 @@
             "REPLY_TO_ZIP": "`Xahiş edirəm bir Zip-ə cavab verin!`",
             "NOT_FOUND_HOST": "Göstərilən host tapılmadı! Tapılan hostlar: anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare`",
             "WUPLOADING": "`Fayl yüklənmə uğurludur. Yüklənir...`",
+            "UPDOWN1": "<link-fayl adı> (ya da nəyəsə cavab verərək)",
+            "UPDOWN2": "Serverə faylı yükləyər.",
+            "UPDOWN3": "<serverdəki fayl yolu>",
+            "UPDWON4": "Serverinizdəki bir faylı söhbətə yükləyər.",
+            "UPDOWN5": "<fayla cavab olaraq yazın> anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare",
+            "UPDOWN6": "Seçdiyiniz web sayta yükləyər.",
+            "UPDOWN7": "<cavab>",
+            "UPDWON8": "Cavab verdiyiniz Zip faylını çıxardar.",
+            "UPDOWN9": "<qovluq>",
+            "UPDWON10": "Bütün qovluğu yükləyər.",
             "GETTING_LINK": "`Uğurla quraşdırıldı. Link əldə edilir...`"
         },
 
@@ -663,6 +721,8 @@
             "HUMIDITY": "Nəm",
             "WIND_SPEED": "Külək sürrəti",
             "SUNRISE": "Gündoğumu",
+            "HAVA1": "<şəhər>",
+            "HAVA2": "Bir bölgənin hava proqnozunu göstərər.",
             "SUNSET": "Günbatımı"
         },
 
@@ -686,6 +746,8 @@
             "IS_VERIFIED": "Telegram tərəfindən təsdiqləndimi",
             "BIO": "Biosu",
             "COMMON_CHAT": "Bu istifadəçi ilə ortaq söhbətlər",
+            "WHOIS1": "<istifadəçi adı/cavab/id>",
+            "WHOIS2": "İstifadəçinin məlumatlarını göstərər.",
             "LINK": "Profil üçün daimi əlaqə"
         },
         "www": {
@@ -693,6 +755,9 @@
             "STARTED_TIME": "Başlama Tarixi: ",
             "DOWNLOAD_SPEED": "Yükləmə Sürrəti: ",
             "UPLOAD_SPEED": "Upload Sürrəti: ",
+            "WWW1": "Bir speedtest edər və nəticəni göstərər.",
+            "WWW2": "Serverinizə ən yaxın datacenterı göstərər.",
+            "WWW3": "Botun ping dəyərini göstərər.",
             "ISP": "İnternet xidməti təminatçısı: "
         }
     }
