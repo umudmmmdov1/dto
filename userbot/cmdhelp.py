@@ -1,11 +1,5 @@
 # U S Σ R Δ T O R / Ümüd
 
-# ██████ LANGUAGE CONSTANTS ██████ #
-
-LANG = get_value("cmdhelp")
-
-# ████████████████████████████████ #
-
 from userbot import PATTERNS, CMD_HELP, CMD_HELP_BOT, LANGUAGE
 
 class CmdHelp:
