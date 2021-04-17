@@ -661,13 +661,13 @@
             "UPDOWN1": "<link-file name> (or in response to something)",
             "UPDOWN2": "Uploads the file to the server.",
             "UPDOWN3": "<file path on the server>",
-            "UPDWON4": "Uploads a file from your server to the chat.",
+            "UPDOWN4": "Uploads a file from your server to the chat.",
             "UPDOWN5": "<write in response to the file> anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare",
             "UPDOWN6": "Uploads to the website of your choice.",
             "UPDOWN7": "<answer>",
-            "UPDWON8": "Extracts the Zip file you replied to.",
+            "UPDOWN8": "Extracts the Zip file you replied to.",
             "UPDOWN9": "<folder>",
-            "UPDWON10": "Loads the entire folder.",
+            "UPDOWN10": "Loads the entire folder.",
             "GETTING_LINK": "`Successfully loaded. Getting link...`"
         },
         "weather": {
