@@ -75,9 +75,9 @@ async def pingme(pong):
     await pong.edit("`Pinginiz!\n%sms`" % (duration))
 
 CmdHelp('www').add_command(
-    'speed', None, 'Bir speedtest edər və nəticəni göstərər.'
+    'speed', None, (LANG['WWW1'])
 ).add_command(
-    'dc', None, 'Serverinizə ən yaxın datacenter\'ı göstərər.'
+    'dc', None, (LANG['WWW2'])
 ).add_command(
-    'ping', None, 'Botun ping dəyərini göstərər.'
+    'ping', None, (LANG['WWW3'])
 ).add()
