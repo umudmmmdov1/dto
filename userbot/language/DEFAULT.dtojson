@@ -700,13 +700,13 @@
             "UPDOWN1": "<link-fayl adı> (ya da nəyəsə cavab verərək)",
             "UPDOWN2": "Serverə faylı yükləyər.",
             "UPDOWN3": "<serverdəki fayl yolu>",
-            "UPDWON4": "Serverinizdəki bir faylı söhbətə yükləyər.",
+            "UPDOWN4": "Serverinizdəki bir faylı söhbətə yükləyər.",
             "UPDOWN5": "<fayla cavab olaraq yazın> anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare",
             "UPDOWN6": "Seçdiyiniz web sayta yükləyər.",
             "UPDOWN7": "<cavab>",
-            "UPDWON8": "Cavab verdiyiniz Zip faylını çıxardar.",
+            "UPDOWN8": "Cavab verdiyiniz Zip faylını çıxardar.",
             "UPDOWN9": "<qovluq>",
-            "UPDWON10": "Bütün qovluğu yükləyər.",
+            "UPDOWN10": "Bütün qovluğu yükləyər.",
             "GETTING_LINK": "`Uğurla quraşdırıldı. Link əldə edilir...`"
         },
 
