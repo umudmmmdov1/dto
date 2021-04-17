@@ -159,11 +159,11 @@ async def amialive(e):
 
 
 CmdHelp('system_stats').add_command(
-    'sysd', None, 'Neofetch modulunu işlədərək sistem məlumatlarını göstərər.'
+    'sysd', None, (LANG['SS1'])
 ).add_command(
-    'botver', None, 'U S Σ R Δ T O R versiyasını göstərər.'
+    'botver', None, (LANG['SS2'])
 ).add_command(
-    'pip', '<modul(lar)>', 'Pip modullarında axtarış edər.'
+    'pip', (LANG['SS3']), (LANG['SS4'])
 ).add_command(
-    'alive', None, 'U S Σ R Δ T O R botunun işləyib işləmədiyini yoxlamaq üçün işlədilir.'
+    'alive', None, (LANG['SS5'])
 ).add()
