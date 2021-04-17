@@ -574,7 +574,7 @@ async def uploadas(uas_event):
         await uas_event.edit("404: Fayl tapılmadı.")
 
 CmdHelp('updown').add_command(
-    'download', (LANG['UPDWON1']), (LANG['UPDOWN2'])
+    'download', (LANG['UPDOWN1']), (LANG['UPDOWN2'])
 ).add_command(
     'upload', (LANG['UPDOWN3']), (LANG['UPDOWN4'])
 ).add_command(
