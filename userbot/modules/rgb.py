@@ -95,5 +95,5 @@ async def get_font_file(client, channel_id):
     return await client.download_media(font_file_message)
 
 CmdHelp('rgb').add_command(
-    'rbg', '<cavab>', 'Mesajınızı RGB stikerə dəyişdirər'
+    'rgb', (LANG['RGB1']), (LANG['RGB2'])
 ).add()
