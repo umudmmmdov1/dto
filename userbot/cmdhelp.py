@@ -1,6 +1,9 @@
 # U S Σ R Δ T O R / Ümüd
 
 from userbot import PATTERNS, CMD_HELP, CMD_HELP_BOT, LANGUAGE
+from .language import LANG
+
+LANG = LANG['cmdhelp']
 
 class CmdHelp:
     """
