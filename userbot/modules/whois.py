@@ -148,5 +148,5 @@ async def fetch_info(replied_user, event):
     return photo, caption
 
 CmdHelp('whois').add_command(
-    'whois', ' <istifadəçi adı/cavab/id>', 'İstifadəçinin məlumatlarını göstərər.'
+    'whois', (LANG['WHOIS1']), (LANG['WHOIS2'])
 ).add()
