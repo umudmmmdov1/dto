@@ -139,9 +139,9 @@ async def songpl(event):
     subprocess.check_output(f"rm -rf {klasor}/*.pl",shell=True)
 
 CmdHelp('song').add_command(
-    'deez', '<musiqi adı/youtube/spotify/soundcloud>', 'Bir çox saytdan musiqini axtarıb, musiqini endirir.'
+    'deez', (LANG['DEEZ1']), (LANG['DEEZ2'])
 ).add_command(
-    'song', '<musiqi adı/youtube/spotify>', 'Musiqi endirir.'
+    'song', (LANG['SONG1']), (LANG['SONG2'])
 ).add_command(
-    'songpl', '<spotify playlist>', 'Spotify Playlist\'indən musiqi endirir'
+    'songpl', (LANG['SONG3']), (LANG['SONG4'])
 ).add()
