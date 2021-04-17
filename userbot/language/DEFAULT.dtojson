@@ -600,7 +600,7 @@
             "SONG1": "<musiqi adı/youtube/spotify>",
             "SONG2": "Musiqi endirər.",
             "SONG3": "<spotify playlist>",
-            "SONG4": "Spotify Playlist\'indən musiqi endirir",
+            "SONG4": "Spotify Playlistindən musiqi endirir",
             "NOT_FOUND_PL": "`Axtardığınız playlist tapılmadı.Bağışayın.`"
         },
 
@@ -636,7 +636,6 @@
             "SS4": "Pip modullarında axtarış edər.",
             "SS5": "U S Σ R Δ T O R botunun işləyib işləmədiyini yoxlamaq üçün işlədilir.",
             "EXAMPLE": "`Bir nümunə görmək üçün .dto pip əmrindən istifadə edin.`"
-
         },
 
         "time": {
