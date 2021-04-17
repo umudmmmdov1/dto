@@ -574,13 +574,13 @@ async def uploadas(uas_event):
         await uas_event.edit("404: Fayl tapılmadı.")
 
 CmdHelp('updown').add_command(
-    'download', '<link-fayl adı> (ya da nəyəsə cavab verərək)', 'Serverə faylı yükləyər.'
+    'download', (LANG['UPDWON1']), (LANG['UPDOWN2'])
 ).add_command(
-    'upload', '<serverdəki fayl yolu>', 'Serverinizdəki bir faylı söhbətə yükləyər.'
+    'upload', (LANG['UPDOWN3']), (LANG['UPDOWN4'])
 ).add_command(
-    'wupload', ' <fayla cavab olaraq yazın> anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare', 'Seçdiyiniz web sayta yükləyər.'
+    'wupload', (LANG['UPDOWN5']), (LANG['UPDOWN6'])
 ).add_command(
-    'unzip', '<cavab>', 'Cavab verdiyiniz Zip faylını çıxardar.'
+    'unzip', (LANG['UPDOWN7']), (LANG['UPDOWN8'])
 ).add_command(
-    'uploadir', '<qovluq>', 'Bütün qovluğu yükləyər.'
+    'uploadir', (LANG['UPDOWN9']), (LANG['UPDOWN10'])
 ).add()
