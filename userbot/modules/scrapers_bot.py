@@ -377,17 +377,17 @@ async def quotly(event):
         await conv.cancel_all()
 
 CmdHelp('scrapers_bot').add_command(
-    'sangmata', '<cavab>', 'Seçilən istifadəçinin ad keçmişinə baxmaq.'
+    'sangmata', (LANG['SANG1']), (LANG['SANG2'])
 ).add_command(
-    'drweb', '<cavab>', 'Seçilən faylda virus olub olmadığına baxın.'
+    'drweb', (LANG['DR1']), (LANG['DR2'])
 ).add_command(
-    'meme', '<font> <üst;alt>', 'Fotoya yazı əlavə edin. İstəyirsinizsə font böyüklüyünüdə  yaza bilərsiz.', 'meme 30 dto;umud'
+    'meme', (LANG['MEME1']), (LANG['MEME2']), (LANG['MEME3'])
 ).add_command(
-    'voicy', '<cavab>', 'Səsi yazıya çevirin.'
+    'voicy', (LANG['VO1']), (LANG['VO2'])
 ).add_command(
-    'q', '<rəqəm>', 'Mətini stikerə çəvirin.'
+    'q', (LANG['Q1']), (LANG['Q2'])
 ).add_command(
-    'ocr2', '<cavab>', 'Fotodakı yazını oxuyun.'
+    'ocr2', (LANG['OCR1']), (LANG['OCR2'])
 ).add_command(
-    'creation', '<cavab>', 'Cavab verdiyiniz insanın hesabının yaradılış tarixini öyrənin.'
+    'creation', (LANG['CR1']), (LANG['CR2'])
 ).add()
