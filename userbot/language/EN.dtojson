@@ -447,10 +447,14 @@
             "FUCKOFF": "Google told me to fuck off.",
             "SEARCHING_PHOTO": "Looking for photos",
             "NOT_FOUND": "`I couldn't find anything for your ugly ass.`",
+            "REV1": "<reply>",
+            "REV2": "By responding to the photo or sticker, you can search for the image on Google.",
             "SIMILAR": "Similar photos"
         },
         "rgb": {
             "NEED_TEXT": "`Please write a text next to the command`",
+            "RGB1": "<reply>",
+            "RGB2": "Convert your text into RGB stickers.",
             "CONVERTING": "`It's being transformed into a picture...`"
         },
         "scrapers_bot": {
@@ -494,6 +498,21 @@
             "CANT_REPLY_BOTS": "You can't answer bots.",
             "QUOTING": "Quoting...",
             "UNBLOCK_QUOTLY": "`Please unblock @QuotLyBot and try again`",
+            "SANG1": "<reply>",
+            "SANG2": "View the username of the selected user",
+            "DR1": "<reply>",
+            "DR2": "See if the selected file contains a virus.",
+            "MEME1": "<font> <over;under>",
+            "MEME2": "Add a caption to the photo. You can type in font size if you wish..",
+            "MEME3": "meme 30 dto;umud",
+            "VO1": "<reply>",
+            "VO2": "Convert voice to text.",
+            "Q1": "<figure>",
+            "Q2": "Turn the text into a sticker.",
+            "OCR1": "<reply>",
+            "OCR2": "Read the caption on the photo.",
+            "CR1": "<reply>",
+            "CR2": "Find out the history of the account of the person you answered.",
             "QUOTLY_VALUE_ERR": "`You can only enter a number! Example: `` .q 2 `"
         },
         "screencapture": {
@@ -504,6 +523,9 @@
             "HEIGHT": "Height",
             "WIDTH": "Width",
             "WAIT": "\n`Waiting %s seconds for the page to load.`",
+            "S1": "<url>",
+            "S2": "Takes and sends a screenshot from the selected website.",
+            "S3": "ss https://xeberimvar.com",
             "UPLOADING": "`Uploading screenshot...`"
         },
         "snips": {
@@ -515,6 +537,12 @@
             "NO_SNIP": "`Currently no snips are available.`",
             "SNIPS": "Avaliable snips",
             "DELETED": "Successfully deleted",
+            "SNIP1": "Calls Snip.",
+            "SNIP2": "<name> <data/answer>",
+            "SNIP3": "Saves it as a snip (global note). (Works with pictures, documents and stickers!)",
+            "SNIP4": "Gets a list of all the listed snips.",
+            "SNIP5": "<snip name>",
+            "SNIP6": "Deletes the specified snip.",
             "NOT_FOUND": "Not found"
         },
         "song": {
@@ -530,6 +558,12 @@
             "USAGE_PL": "`Usage: .songpl spotify playlist url`",
             "SEARCHING_PL": "`Playlist searching and downloading please wait!`",
             "SENDING_SONGS": "Song sending! Song:",
+            "DEEZ1": "<song title/youtube/spotify/soundcloud>",
+            "DEEZ2": "Searches for the song from many sites and downloads the song.",
+            "SONG1": "<song title/youtube/spotify>",
+            "SONG2": "Download songs.",
+            "SONG3": "<spotify playlist>",
+            "SONG4": "Загружает песни из плейлиста Spotify",
             "NOT_FOUND_PL": "`The playlist you were looking for was not found! Sorry.`"
         },
         "spotify": {
@@ -540,12 +574,15 @@
             "ERROR_NP": "`Hata! Spotify'da çalan şarkı getirilemedi!`",
             "ERROR_TOKEN": "`Bot Spotify ayarları yapılmamış!`",
             "NP_NONE": "`Şu anda Spotify'da bir şey dinlemiyorum!`",
-            "NP_GET": "`Spotify'da dinlediğim şarkı getiriliyor...`"			
+            "SPOTI1": "Spotify bio activates.",
+            "SPOTI2": "Spotify bio disables.",
+            "NP_GET": "`The song I'm listening to on Spotify is fetching ...`"			
         },
         "stickers": {
             "GIVE_STICKER": "`I need you to give me a sticker or a picture so I can be able to!`",
             "FAIL_DOWNLOAD": "`Failed to download Sticker! Make sure you send a photo or a sticker. `",
             "NEW_PACK": "`Sticker package is not created! Creating new package...`",
+            "STIK1": "You can add a sticker or a photo as a sticker to your sticker package by responding with a throw.",
             "TOO_STICKERS": "`Switching to package {} due to insufficient package space... `"
         },
         "system_stats": {
@@ -557,6 +594,11 @@
             "QUERY": "Query",
             "RESULT": "Result",
             "NOT_FOUND": "Nothing found",
+            "SS1": "Displays system information using the Neofetch module.",
+            "SS2": "U S Σ R Δ T O R shows the version.",
+            "SS3": "<modul(s)>",
+            "SS4": "Searches in Pip modules.",
+            "SS5": "U S Σ R Δ T O R is used to check if the bot is working.",
             "EXAMPLE": "`Use the .dto pip command to see an example. `"
         },
         "time": {
@@ -568,6 +610,10 @@
             "IS_CLOCK": "hour in country",
             "IS_TZ": "in time zone",
             "DATE": "Date here",
+            "TIME1": "<country name/code> <time zone number>",
+            "TIME2": "Shows the time of a country. If a country has more than one time zone, all are displayed at once and the choice is yours.",
+            "TIME3": "<ölkə adı/kodu> <saat dilimi nömrəsi>",
+            "TIME4": "Shows the time of a country. If a country has more than one time zone, all are displayed at once and the choice is yours.",
             "IS_DATE": "date in country"
         },
         "updater": {
@@ -587,6 +633,8 @@
             "INVALID_HEROKU": "{}\n`Heroku variables are defined incorrectly or incomplete.`",
             "HEROKU_UPDATING": "`[UPDATER]\nYour userbot is sure to get better :) This process takes a maximum of 10 minutes.`",
             "ERRORS": "Errors here",
+            "UPDATE1: "Checks if any updates have arrived on your bot since you installed it.",
+            "UPDATE2": "Updates your bot.",
             "SUCCESSFULLY": "`Update completed successfully!\nRebooting...`"
         },
         "upload_download": {
@@ -610,6 +658,16 @@
             "REPLY_TO_ZIP": "`Please reply to Zip!`",
             "NOT_FOUND_HOST": "The specified host could not be found! Hosts found:\nanonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare`",
             "WUPLOADING": "`File successfully downloaded. Uploading...`",
+            "UPDOWN1": "<link-file name> (or in response to something)",
+            "UPDOWN2": "Uploads the file to the server.",
+            "UPDOWN3": "<file path on the server>",
+            "UPDWON4": "Uploads a file from your server to the chat.",
+            "UPDOWN5": "<write in response to the file> anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare",
+            "UPDOWN6": "Uploads to the website of your choice.",
+            "UPDOWN7": "<answer>",
+            "UPDWON8": "Extracts the Zip file you replied to.",
+            "UPDOWN9": "<folder>",
+            "UPDWON10": "Loads the entire folder.",
             "GETTING_LINK": "`Successfully loaded. Getting link...`"
         },
         "weather": {
@@ -622,6 +680,8 @@
             "HUMIDITY": "Humidity",
             "WIND_SPEED": "Wind speed",
             "SUNRISE": "Sunrise",
+            "HAVA1": "<city>",
+            "HAVA2": "Shows the weather forecast for a region.",
             "SUNSET": "Sunset"
         },
         "whois": {
@@ -644,6 +704,8 @@
             "IS_VERIFIED": "Confirmed by Telegram ?",
             "BIO": "Biography",
             "COMMON_CHAT": "Common chats with this user",
+            "WHOIS1": "<username/answer/id>",
+            "WHOIS2": "Displays user information.",
             "LINK": "Permanent link to profile"
         },
         "www": {
@@ -651,6 +713,9 @@
             "STARTED_TIME": "Started Time: ",
             "DOWNLOAD_SPEED": "Download Speed: ",
             "UPLOAD_SPEED": "Upload Speed: ",
+            "WWW1": "Takes a speedtest and shows the result",
+            "WWW2": "Shows the nearest datacenter to your server.",
+            "WWW3": "Displays the ping value of the bot.",
             "ISP": "ISP:"
         }
     }
