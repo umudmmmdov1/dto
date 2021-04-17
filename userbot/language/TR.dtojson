@@ -479,11 +479,15 @@
             "FUCKOFF": "Google siktirip gitmemi söyledi.",
             "SEARCHING_PHOTO": "Resim arıyorum",
             "NOT_FOUND": "`Çirkin kıçın için bir şey bulamadım.`",
+            "REV1": "<yanıt",
+            "REV2": "Fotoğraf veya çıkartmaya yanıt vererek görüntüyü Google üzerniden arayabilirsiniz.",
             "SIMILAR": "Benzer görüntüler"
         },
 
         "rgb": {
             "NEED_TEXT": "`Lütfen komutun yanına bir metin yazın`",
+            "RGB1": "<yanıt>",
+            "RGB2": "Metninizi RGB çıkartmaya dönüştürün.",
             "CONVERTING": "`Resme dönüştürülüyor...`"
         },
         
@@ -528,6 +532,21 @@
             "CANT_REPLY_BOTS": "Botlara cevap veremezsiniz.",
             "QUOTING": "`Alıntı yapılıyor...`",
             "UNBLOCK_QUOTLY": "`Lütfen @QuotLyBot engelini kaldırın ve tekrar deneyin`",
+            "SANG1": "<yanıt>",
+            "SANG2": "Belirtilen kullanıcının isim geçmişini görüntüleyin.",
+            "DR1": "<yanıt>",
+            "DR2": "Belirtilen dosyada virüs var mı yok mu bakın.",
+            "MEME1": "<font> <üst;alt>",
+            "MEME2": "Fotoğrafa yazı ekleyin. İsterseniz font büyüklüğünü de yazabilirsiniz..",
+            "MEME3": "meme 30 dto;umud",
+            "VO1": "<yanıt>",
+            "VO2": "Sesi yazıya çevirin.",
+            "Q1": "<sayı>",
+            "Q2": "Metninizi çıkartmaya dönüştürün.",
+            "OCR1": "<yanıt>",
+            "OCR2": "Fotoğraftaki metini okuyun.",
+            "CR1": "<yanıt>",
+            "CR2": "Yanıt verdiğiniz kişinin hesabı oluşturma tarihinin öğrenin.",
             "QUOTLY_VALUE_ERR": "`Sadece sayı girebilirsiniz! Örnek: ``.q 2`"
         },
 
@@ -539,6 +558,9 @@
             "HEIGHT": "Sayfanın yüksekliği",
             "WIDTH": "Sayfanın genişliği",
             "WAIT": "\n`Sayfanın yüklenmesi için %s saniye beklendi.`",
+            "S1": "<url>",
+            "S2": "Belirtilen web sitesinden bir ekran görüntüsü alır ve gönderir.",
+            "S3": "ss https://xeberimvar.com",
             "UPLOADING": "`Ekran görüntüsü karşıya yükleniyor...`"
         },
 
@@ -551,6 +573,12 @@
             "NO_SNIP": "`Şu anda hiçbir snip mevcut değil.`",
             "SNIPS": "Mevcut snipler",
             "DELETED": "Başarıyla silindi",
+            "SNIP1": "Snipi çağırır",
+            "SNIP2": "<isim> <veri/yanıt>",
+            "SNIP3": "Bir snip (küresel not) olarak kaydeder. (Resimler, dokümanlar ve çıkartmalar ile çalışır !)",
+            "SNIP4": "Kaydedilen tüm snipleri listeler.",
+            "SNIP5": "<snip adı>",
+            "SNIP6": "Belirtilen snipi siler.",
             "NOT_FOUND": "Bulunamadı"
         },
 
@@ -567,6 +595,12 @@
             "USAGE_PL": "`Kullanım: .songpl spotify playlist url`",
             "SEARCHING_PL": "`Playlist aranıyor ve indiriliyor lütfen bekleyin!`",
             "SENDING_SONGS": "Şarkı gönderiliyor! Şarkı:",
+            "DEEZ1": "<şarkı ismi/youtube/spotify/soundcloud>",
+            "DEEZ2": "Birçok siteden şarkıyı arayıp, şarkıyı indirir.",
+            "SONG1": "<şarkı ismi/youtube/spotify>",
+            "SONG2": "Şarkı indirir.",
+            "SONG3": "<spotify playlist>",
+            "SONG4": "Spotify Playlistinden şarkı indirir",
             "NOT_FOUND_PL": "`Aradığınız playlist bulunamadı! Üzgünüm.`"
         },
 
@@ -574,6 +608,8 @@
             "BIO_ENABLED": "`Spotify plugini aktif. Spotify'da dinlediğiniz şarkılar biyografinize yazılacak.`",
             "BIO_DISABLED": "`Spotify plugini devre dışı. Biyografi orijinal haline döndü.`",
             "BIO_RUNNING": "`Spotify plugini zaten çalışıyor.`",
+            "SPOTI1": "Spotify bio aktifleştirir.",
+            "SPOTI2": "Spotify bio devredışı bırakır.",
             "ERROR": "`Spotify plugini durdu. Bir hata alındı.`"
         },
 
@@ -581,6 +617,7 @@
             "GIVE_STICKER": "`Dızlayabilmem için bana sticker veya fotoğraf vermen gerek!`",
             "FAIL_DOWNLOAD": "`Sticker indirilemedi! Fotoğraf veya sticker gönderdiğinize emin olun.`",
             "NEW_PACK": "`Sticker paketi oluşturulmamış! Yeni paket oluşturuluyor...`",
+            "STIK1": "Fırlat ile bir çıkartmaya ya da resme yanıtlayarak kendi çıkartma paketinize çıkartma olarak ekleyebilirsiniz.",
             "TOO_STICKERS": "`Yetersiz paket alanından dolayı {} sayılı pakete geçiliyor...`"
         },
 
@@ -593,6 +630,11 @@
             "QUERY": "Sorgu",
             "RESULT": "Sonuç",
             "NOT_FOUND": "Bir şey bulunamadı",
+            "SS1": "Neofetch modülünü kullanarak sistem bilgisi gösterir.",
+            "SS2": "U S Σ R Δ T O R sürümünü gösterir.",
+            "SS3": "<modül(ler)>",
+            "SS4": "Pip modüllerinde arama yapar.",
+            "SS5": "U S Σ R Δ T O R botunun çalışıp çalışmadığını kontrol etmek için kullanılır.",
             "EXAMPLE": "`Bir örnek görmek için .dto pip komutunu kullanın.`"
 
         },
@@ -606,6 +648,10 @@
             "IS_CLOCK": "ülkesinde saat",
             "IS_TZ": "saat diliminde",
             "DATE": "Burada tarih",
+            "TIME1": "<ülke ismi/kodu> <saat dilimi numarası>",
+            "TIME2": "Bir ülkenin saatini gösterir. Eğer bir ülke birden fazla saat dilimine sahipse, tümü birden gösterilir ve seçim sana bırakılır.",
+            "TIME3": "<ülke ismi/kodu> <saat dilimi numarası>",
+            "TIME4": "Bir ülkenin saatini gösterir. Eğer bir ülke birden fazla saat dilimine sahipse, tümü birden gösterilir ve seçim sana bırakılır.",
             "IS_DATE": "ülkesinde tarih"
         },
 
@@ -626,6 +672,8 @@
             "INVALID_HEROKU": "{}\n`Heroku değişkenleri yanlış veya eksik tanımlanmış.`",
             "HEROKU_UPDATING": "`[Güncelleyici]\nU S Σ R Δ T O R UserBotun daha iyi olacağınıza emin olabilirsiniz :) Bu işlem maksimum 10 dakika sürmektedir.`",
             "ERRORS": "Karşılaşılan hatalar burada",
+            "UPDATE1: "Botunuza siz kurduktan sonra herhangi bir güncelleme gelip gelmediğini kontrol eder.",
+            "UPDATE2": "Botunuzu günceller.",
             "SUCCESSFULLY": "`Güncelleme başarıyla tamamlandı!\nYeniden başlatılıyor...`"
         },
 
@@ -650,6 +698,16 @@
             "REPLY_TO_ZIP": "`Lütfen bir Zip'e yanıt verin!`",
             "NOT_FOUND_HOST": "Belirtilen host bulunamadı! Bulunan hostlar: anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare`",
             "WUPLOADING": "`Dosya indirme işlemi başarılı. Yükleniyor...`",
+            "UPDOWN1": "<bağlantı-dosya adı> (ya da bir şeye cevap vererek)",
+            "UPDOWN2": "Sunucuya dosyayı indirir.",
+            "UPDOWN3": "<sunucudaki dosya yolu>",
+            "UPDWON4": "Sunucunuzdaki bir dosyayı sohbete upload eder.",
+            "UPDOWN5": "<dosyaya yanıt verin> anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare",
+            "UPDOWN6": "Seçtiğiniz websiteye yükler.",
+            "UPDOWN7": "<yanıt>",
+            "UPDWON8": "Yanıt verdiğiniz Zip dosyasını çıkarır.",
+            "UPDOWN9": "<klasör>",
+            "UPDWON10": "Tüm klasöru yükler.",
             "GETTING_LINK": "`Başarılı bir şekilde yüklendi. Link alınıyor...`"
         },
 
@@ -663,6 +721,8 @@
             "HUMIDITY": "Nem",
             "WIND_SPEED": "Rüzgar Hızı",
             "SUNRISE": "Gündoğumu",
+            "HAVA1": "<şehir>",
+            "HAVA2": "Bir bölge için hava tahminini gösterir.",
             "SUNSET": "Günbatımı"
         },
 
@@ -686,6 +746,8 @@
             "IS_VERIFIED": "Telegram tarafından doğrulandı mı",
             "BIO": "Biyografi",
             "COMMON_CHAT": "Bu kullanıcı ile ortak sohbetler",
+            "WHOIS1": "<kullanıcı adı/yanıt/id>",
+            "WHOIS2": "Kullanıcının bilgilerini alır.",
             "LINK": "Profil için kalıcı bağlantı"
         },
         "www": {
@@ -693,6 +755,9 @@
             "STARTED_TIME": "Başlama Tarihi: ",
             "DOWNLOAD_SPEED": "İndirme Hızı: ",
             "UPLOAD_SPEED": "Yükleme Hızı: ",
+            "WWW1": "Bir speedtest uygular ve sonucu gösterir.",
+            "WWW2": "Sunucunuza en yakın datacenterı gösterir.",
+            "WWW3": "Botun ping değerini gösterir",
             "ISP": "İnternet Servis Sağlayıcısı: "
         }
     }
