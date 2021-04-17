@@ -705,9 +705,9 @@
             "UPDOWN5": "<dosyaya yanıt verin> anonfiles|transfer|filebin|tmpninja|anonymousfiles|megaupload|bayfiles|letsupload|vshare",
             "UPDOWN6": "Seçtiğiniz websiteye yükler.",
             "UPDOWN7": "<yanıt>",
-            "UPDWON8": "Yanıt verdiğiniz Zip dosyasını çıkarır.",
+            "UPDOWN8": "Yanıt verdiğiniz Zip dosyasını çıkarır.",
             "UPDOWN9": "<klasör>",
-            "UPDWON10": "Tüm klasöru yükler.",
+            "UPDOWN10": "Tüm klasöru yükler.",
             "GETTING_LINK": "`Başarılı bir şekilde yüklendi. Link alınıyor...`"
         },
 
