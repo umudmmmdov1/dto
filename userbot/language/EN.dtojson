@@ -633,7 +633,7 @@
             "INVALID_HEROKU": "{}\n`Heroku variables are defined incorrectly or incomplete.`",
             "HEROKU_UPDATING": "`[UPDATER]\nYour userbot is sure to get better :) This process takes a maximum of 10 minutes.`",
             "ERRORS": "Errors here",
-            "UPDATE1:" "Checks if any updates have arrived on your bot since you installed it.",
+            "UPDATE1": "Checks if any updates have arrived on your bot since you installed it.",
             "UPDATE2": "Updates your bot.",
             "SUCCESSFULLY": "`Update completed successfully!\nRebooting...`"
         },
