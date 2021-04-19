@@ -11,6 +11,7 @@ import shutil
 from datetime import datetime
 from bs4 import BeautifulSoup
 import re
+import urllib.request
 from time import sleep
 from html import unescape
 from re import findall
@@ -611,6 +612,25 @@ async def lang(value):
             BOTLOG_CHATID,
             f"`{scraper} modulu üçün həmişəki dil {LANG.title()} dilinə dəyişildi.`")
 
+@register(outgoing=True, pattern=r"^.spack (.*)")
+async def search_pack(event):
+    query = event.pattern_match.group(1)
+    if not query:
+        return await event.edit("`Axtardığınız paketin adını daxil edin`")
+    await event.edit("`Axtarılır...`")
+    text = requests.get("https://combot.org/telegram/stickers?q=" + query).text
+    soup = BeautifulSoup(text, "lxml")
+    results = soup.find_all("div", {"class": "sticker-pack__header"})
+    if not results:
+        return await event.edit("**Nəticə tapılmadı**")
+    reply = f"**Axtarış:**\n `{query}`\n\n**Nəticələr:**\n"
+    for pack in results:
+        if pack.button:
+            packtitle = (pack.find("div", "sticker-pack__title")).get_text()
+            packlink = (pack.a).get("href")
+            reply += f" ➤ [{packtitle}]({packlink})\n\n"
+    await event.edit(reply)
+
 @register(outgoing=True, pattern="^.yt (.*)")
 async def _(event):
     try:
@@ -661,6 +681,8 @@ CmdHelp('scrapers').add_command(
     'wiki', '<terim>', 'Bir Vikipedi axtarışı həyata keçirər.'
 ).add_command(
     'ud', '<terim>', 'Urban Dictionary axtarışı etməyin asand yolu.'
+).add_command(
+    'spack', '<axtarış>', 'Verdiyiniz sözə uyğun Stiker paketləri axtarar'
 ).add_command(
     'tts', '<mətin>', 'Mətini səsə dəyişdirər.'
 ).add_command(
