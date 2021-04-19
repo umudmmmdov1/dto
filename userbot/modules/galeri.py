@@ -92,9 +92,9 @@ async def galeri(event):
         await event.edit(LANG['INVALID'])
 
 CmdHelp('galeri').add_command(
-    'galeri elave', '<url>', 'Qaleri sırasına foto əlavə edər', 'galeri elave https://i.hizliresim.com/wFSVKd.jpg'
+    'galeri elave', (LANG['GE1']), (LANG['GE2']), (LANG['GE3'])
 ).add_command(
-    'galeri list', None, 'Qaleri sırasını göstərir.'
+    'galeri list', None, (LANG['GL'])
 ).add_command(
-    'galeri sil', '<sayı>', 'Qaleri sırasından bir fotonu silər.', 'galeri sil 4'
+    'galeri sil', (LANG['GS1']), (LANG['GS2']), (LANG['GS3'])
 ).add()
