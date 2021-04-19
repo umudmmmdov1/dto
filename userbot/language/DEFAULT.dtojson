@@ -186,6 +186,12 @@
             "BLACKLIST": "Bu qrup üçün qeyd edilən qara siyahı:",
             "NOT_FOUND": "**Qaralistə əlavə edilmiş söz tapılmadı...** `.addblacklist` **komandası ilə əlavə edə bilərsiniz.**",
             "BLACKLIST_FILE": "Bu qrup üçün qeyd edilən qara siyahı:",
+            "BL1": "Bir söhbətdəki aktiv qara listi göstərər.",
+            "BL2": "<söz(lər)/cavab>",
+            "BL3": "Yönləndirməni qara listə açar sözlərə qeyd edər. Qara listdə açar sözlərdən danışıldığında bot yönləndirməni silər",
+            "BL4": "<söz>",
+            "BL5": "Seçilən qara listi dayandırar.",
+            "BL6": "Bu istəkləri etmək üçün idarəçi olmalı və Mesaj Silmə icazəniz olmalıdır.",
             "REMOVED": "**Söz qara siyahıdan çıxardıldı.**"
         },
 
@@ -202,6 +208,10 @@
             "WITH_DTO_GIF": "@UseratorOT `ilə Gif'ə çevrildi.`",
             "CONVERTING_TO_GIF": "Gif'ə çevrilir...",
             "UPLOADING_GIF": "`Gif yüklənir...`",
+            "CV1":"Stickeri fotoğrafa çevirər.",
+            "CV2": "Videonu və ya animasyonlu stickeri gifə çevirər",
+            "CV3": "<uşaq/robot/earrape/suretli/parazit/yangi>",
+            "CV4": "Səsə efekt verər.",
             "ERROR": "Gif'ə çevirə bilmədim :/"
         },
 
@@ -222,6 +232,10 @@
             "NOT_FOUND": "**Bilinməyən plugin.** Mesajını silə biləcəyiniz pluginlər",
             "USAGE": "**Dəyişdir, botdaki plugin-mesajlarını dəyişdirə bilməyiniz üçündür.**\nNümunə İstifadəsi: `.deyisdir afk \"Hazırda burda deyiləm... Bəlkədə heç gəlmədim\"`\nPlugin-mesajını silmək: `.deyisdir afk`\nDəyişdirə biləcəyiniz plugin-mesajları (indiki): `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`",
             "CANNOT_EMPTY": "Plugin mesajı boş ola bilməz.",
+            "DY1": "<modul> <mesaj/cavab>",
+            "DY2": "Dəyişdir, botdakı plugin-mesajlarını dəyişdirmənizə yarayır. Əgər mesaj yazmazsanız Plugin mesajını orijinal halına döndərər.",
+            "DY3": "deyisdir afk \"İndi burada deiləm... Bəlkə heç vaxt gəlmədim\"",
+            "DY4": "**Dəstəklənən Pluginlər:** `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`\n**Alive Dəyişkənləri:** `{plugin}, {telethon}, {dto}, {python}`\n**Ban/Mute Dəyişkənləri:** `{id}, {username}, {first_name}, {last_name}, {mention}, {date}, {count}`\n**AFK Dəyişkənləri:** `{username}, {mention}, {first_name}, {last_name}, {last_seen_seconds}, {last_seen}, {last_seen_long}`\n**PMpermit Dəyişkənlər(pm, block, approve, disapprove):** `{id}, {username}, {mention}, {first_name}, {last_name}`\n**Kickme Dəyişkənləri:** `{title}`",
             "SETTED": "Plugin(`{plu}`) üçün mesajınız(`{msj}`) təsdiqləndi."
         },
 
@@ -238,6 +252,8 @@
             "AZ_CASE": "Xəstə (aktiv):",
             "AZ_ALL_DEATHS": "Ölüm (ümumi):",
             "AZ_DEATHS": "Ölüm (bugün):",
+            "CVD1": "<ölkə kodu>",
+            "CVD2": "Həm Dünya həm də verdiyiniz ölkə üçün yenilənmiş Covid 19 statistikaları. Ölkəniz fərqlidisə əmrin yanına ölkə kodu əlavə etməyiniz lazımdır.",
             "AZ_HEAL": "Sağalan:"
         },
 
@@ -245,7 +261,9 @@
             "CANT_DEEPFRY":"`Bunu deepfry edə bilmərəm!`",
             "REPLY_PHOTO":"`Deepfry edə bilməyim üçün bir şəkilə və yaxud çıkartmaya cavab yazın!`",
             "MEDIA_DOWNLOADING":"`Media yüklənir...`",
-			"APPLYING_DEEPFRY":"`Media deepfry uyğulanır...`"
+            "DF1":"<rəqəm 1-5>",
+            "DF2":"Seçilən görüntüyə deepfry efekti edər.",
+	    "APPLYING_DEEPFRY":"`Media deepfry uyğulanır...`"
         },
 
         "dogbin": {
@@ -264,6 +282,9 @@
             "TIMEOUT": "İstək vaxtı gözlədiyimizdən gec oldu.",
             "TOO_MANY_REDIRECTS": "İstək maksimum konfiqurasiya edilmiş yönləndirmələri keçdi.",
             "DOGBIN_DATA": "`Dogbin URL məzmunu uğurla gətirildi!`\n\n`Məzmun:`",
+            "DG1": "<söz/cavablama>",
+            "DG2": "Dogbin işlədərək yapışdırılmış və ya qısadılmış url yaratma (https://del.dog/)",
+            "DG3": "Dogbin url məzmuna mətin axtarır (https://del.dog/)",
             "DOGBIN_ENDED": "Dogbin məzmun ötürülməsi uğurla həyata keçirildi"
         },
 
@@ -272,6 +293,7 @@
             "PLUGIN_COUNT": "Plugin Sayı",
             "PERMAMENT": "Ömürlük",
             "PLUGINS": "Pluginlər",
+            "STS": "Əlavə edilən Apilər və versiyaları göstərir.",
             "OK": "Hər Şey Normaldır"
         },
 
@@ -283,6 +305,11 @@
             "QUERY": "Sorğu",
             "RESULT": "Nəticə",
             "EMPTY_RESULT": "Nəticə qaytarıla bilmədi / Səhfdir",
+            "EV1": "<istək>",
+            "EV2": "Mini ifadələri dəyərləndirin.",
+            "EX1": "<python kodu>",
+            "EX2": "Kiçik python əmrləri işlədin.",
+            "TM": "Serverinizdə bash əmrlərini və əmr fayllarını işlədin.",
             "ERROR": "İstisna"
         },
 
@@ -298,6 +325,15 @@
             "GENEL_FILTERS": "Ümumi filtrlər:",
             "FILTERS": "`Bu çatda heç bir filter yoxdur.`",
             "_FILTERS": "Çatdakı filtlər:",
+            "FR": "Bir söhbətdəki bütün userbot filterlərini listini alar.",
+            "FR1": "<filtərlənəcək söz> <cavablanacaq söz> ya da bir mesajı .filter <filterlənəcək söz>",
+            "FR2": "Filteri əlavə edər. Nə zaman əlavə etdiyiniz söz/cümlə yazılarsa bot cavab verir.",
+            "SP1": "<filter>",
+            "SP2": "Seçilən filteri dayandırır.",
+            "GF1": "<filterlənəcək söz> <cavablanacaq söz> ya da bir mesajı .genelfilter <filterlənəcək söz>",
+            "GF2": "Genel filterə əlavə edər. Bütün qruplarda işləyər.",
+            "GS1": "<filter>",
+            "GS2": "Seçilən genel filteri dayandırır.",
             "NEED_BOTLOG": "`BOTLOG_CHATID dəyəri filtrə cavab olaraq bir medianın qeyd olunmasından əvvəl təyin olunmalıdır.`"
         },
 
@@ -314,6 +350,13 @@
             "NEED_PHOTO": "Qalereya işi üçün fotoşəkillər əlavə etməlisiniz. Əlavə etməyi bilmirsinizsə, .dto galeri ilə istifadəsini öyrənə bilərsiniz.",
             "STOPPED": "`Qalereya dayandı!`",
             "ALREADY_STOP": "`Qalareya onsuzda işləmir.`",
+            "GE1": "<url>",
+            "GE2": "Qaleri sırasına foto əlavə edər",
+            "GE3": "galeri elave https://bit.ly/3x7YIrt",
+            "GL": "Qaleri sırasını göstərir.",
+            "GS1": "<sayı>",
+            "GS2": "Qaleri sırasından bir fotonu silər.",
+            "GS3": "galeri sil 4",
             "INVALID": "**Bilinməyən komanda** İstifadəsi:\n\nQalareyaya şəkil əlavə etmək: `.galeri ekle https://i.resimyukle.xyz/7Qbbc9.jpeg`\nQalareya siyahısını görmək: `.galeri liste`\nSıradan bir şəkil silmək: `.galeri sil <sıra sayı>`"
         },
 
@@ -323,6 +366,9 @@
             "COMPANY": "Şirkət",
             "CREATED": "Hesabı yaratma tarixi",
             "REPOS": "Repolar:",
+            "GT1": "<istifadəçi adı>",
+            "GT2": "Hədəflənən istifadəçinin GitHub məlumatlarını göstərər.",
+            "GT3": "git umudmmmdov1",
             "NOT_FOUND": " tapılmadı`"
         },
 
@@ -334,6 +380,11 @@
            "LOG_ENABLED": "```last.fm bot qeydləri hazırda aktivdir.```",
            "LOG_DISABLED": "```last.fm bot qeydləri deaktivdir.```",
            "LOG_ERR": "```Seçim göstərilməyib.```",
+           "LF1": "Yeni oynadılan parça ya da ən son oynadılan parça göstərilir.",
+           "LF2": "<on/off>",
+           "LF3": "last.fmdəki indi oynadılan parça göstərməsi aktivləşdirir/deaktivləşdirir.",
+           "LF4": "<on/off>",
+           "LF5": "last.fm biyoqrafi loglamasını aktivləşdirir/deaktivləşdirir.",
            "ERROR_MSG": "```last.fm modulu gözlənilməz bir səhvə görə dayandırıldı.```"
         },
 
@@ -348,6 +399,8 @@
             "GMUTE_LIST_MESSAGE": "**ID: **`%s`\n",
             "TOO_MANY_GMUTED": "`Vay! Vay! Bir çox insana susdurulma vermisiniz. Fayl kimi göndərirəm...`",
             "GMUTE_LIST": "**Qlobal olaraq səssizləşdirdiyiniz istifadəçilər:**\n%s\n\n**Kömək:** Susdurduğunuz istifadəçilər haqqında daha çox məlumat əldə etmək üçün `.whois id` istifadə edə bilərsiniz.",
+            "LT1": "<gmute/gban>",
+            "LT2": "Gbanladığınız ya da Gmutelədiyiniz istifadəçiləri göstərər.",
             "GMUTE_TXT": "**Qlobal olaraq səssizləşdirdiyiniz istifadəçilər**\n\n**Kömək:** Susdurduğunuz istifadəçilər haqqında daha çox məlumat əldə etmək üçün `.whois id` istifadə edə bilərsiniz."
         },
 
@@ -360,6 +413,12 @@
             "LYDIA_ACTIVATED": "Lydia, {} istifadəçisi üçün {} çatında uğurla aktiv edildi!",
             "REPLY_FOR_ACTIVATE": "Lydia AI-nı aktivləşdirmək üçün bir istifadəçiyə cavab verin",
             "LYDIA_DEACTIVATED": "Lidiya, {} istifadəçi üçün {} çatında uğurla deaktiv edildi!",
+            "AD1": "<istifadəçi adı/cavablayaraq>",
+            "AD2": "Lydianın avtomatik söhbətini aktivləşdirir.",
+            "RM1": "<istifadəçi adı/cavablayaraq>",
+            "RM2": "Lydianın avtomatik söhbətini deaktivləşdirir.",
+            "RP1": "<istifadəçi adı/cavablayaraq>",
+            "RP2": "Lydianın avtomatik söhbətini xüsusi istifadəçi üçün aktivləşdirir.",
             "LYDIA_OFF_FOR_USER": "Lydia bu istifadəçidə aktiv deyil."
         },
 
@@ -373,16 +432,26 @@
             "LYRICS": "**Axtarış sorğusu**:",
             "SINGER_ERROR": "`Xəta: zəhmət olmasa <müğənni> və <mahnı> üçün bölücü olaraq '-' istifadə edin`\nNümunə: `Duman - Haberin Yok Ölüyorum`",
             "SINGER_LYRICS": "🎙 Qulaqlarınızın paslarını siləcəm! {}'dan {} gəlir!",
+            "LY1": "<sənədçi adı> - <musiqi adı>",
+            "LY2": "Musiqi sözlərini gətirər.",
+            "LY3": "lyrics Bigieyy ft. DTÖ Family - DTÖ",
+            "SG1": "<sənədçi adı> - <musiqi adı>",
+            "SG2": "Musiqi oxuyar.",
+            "SG3": "singer Bigieyy ft. DTÖ Family - DTÖ",
             "SINGER_ENDED": "🎙Çox yaxşı dedim, düzdü?"
         },
 
         "locks":{
-		    "EVERYTHING_LOCK": "`Dostum olmayan birşeyi qıfıllaya bilmirəm!`",
-			"INVALID_MEDIA_TYPE": "`Səhf media növü: %s`",
-			"LOCK": "`%s bu çat üçün qıfıllandı`",
-			"INVALID_AUTHORITY": "`Bunu etmək hüququna sahib olduğunuzdan əminsiniz?`\n**Xəta:**",
-			"EVERYTHING_UNLOCK": "`Olmayan birşeyin qıfılını aça bilmirəm!`",
-			"UNLOCK": "`Bu çat üçün %s qıfılı açıldı`"
+	  "EVERYTHING_LOCK": "`Dostum olmayan birşeyi qıfıllaya bilmirəm!`",
+	  "INVALID_MEDIA_TYPE": "`Səhf media növü: %s`",
+	  "LOCK": "`%s bu çat üçün qıfıllandı`",
+	  "INVALID_AUTHORITY": "`Bunu etmək hüququna sahib olduğunuzdan əminsiniz?`\n**Xəta:**",
+	  "EVERYTHING_UNLOCK": "`Olmayan birşeyin qıfılını aça bilmirəm!`",
+	  "LK1": "<bağlanacaq medya tipi> vəya .unlock <bağlanacaq medya tipi>",
+	  "LK2": "Söhbətdəki bir çox şeyləri əngəlləyə bilməni edər. (stiker atmaq, oyun oynamaq vs.)",
+	  "LK3": "Bağlıya biləcəyin və bağlayıb aça biləcəyin bunlardır: all, msg, media, sticker, gif, game, inline, poll, invite, pin, info",
+	  "LK4": "İdarəçi icazələri lazımdır!",
+	  "UNLOCK": "`Bu çat üçün %s qıfılı açıldı`"
         },
 
         "misc": {
@@ -399,6 +468,22 @@
             "CREATOR": "Bu bot \n[Ümüd Məmmədov](https://t.me/umudmmmdov1) tərəfindən hazırlanmışdır. \n",
             "README": "[U S Σ R Δ T O R README.md](https://github.com/umudmmmdov1/DTOUserBot/blob/master/README.md)",
             "REPO": "[U S Σ R Δ T O R Repo](https://github.com/umudmmmdov1/dtouserbot)",
+            "RD1": "<əşya1> <əşya2>",
+            "RD2": "Əşya listindən təsadufi bir əşya seçər",
+            "RD3": "random dəftər qələm karandaş",
+            "SP1": "<vaxt>",
+            "SP2": "U S Σ R Δ T O R da bir insandır, o da yorulur. Ara bir biraz yatmağına icazə ver.",
+            "SP3": "sleep 30",
+            "SD": "Nostaljik bir şəkildə botunuzu söndürər.",
+            "RP": "U S Σ R Δ T O R botunun GitHubdakı reposuna gedən bir link.",
+            "RD": "U S Σ R Δ T O R botunun GitHubdakı README.md faylına gedən bir link.",
+            "CR": "Bu gözəl botu kimin yaratdığını öyrən :-)",
+            "RPT1": "<rəqəm> <mətin>",
+            "RPT2": "Bir mətini bəlli bir sayıda təkrar edər. Spam əmri ilə qarışdırmayın.",
+            "RST": "Botu yenidən başladar.",
+            "RSD": "Bir medyayı yenidən göndərər.",
+            "RAW1": "<cavab>",
+            "RAW2": "Cavab verilən mesaj haqqında məlumat verər.",
             "CHECK_LOGS": "`Tapılmış Mesaj üçün istifadəçi qeydlərini yoxlayın!`"
         },
 
@@ -410,12 +495,21 @@
             "SUCCESS": "Qeyd uğurudur",
             "UPDATED": "yeniləndi",
             "ADDED": "əlavə edildi",
+            "NA": "Seçilən notu çağırar.",
+            "SV1": "<not adı> <not olaraq qeyd ediləcək şey> ya da bir mesajı .save <not adı> şəklində cavablayaraq işlədilir",
+            "SV2": "Cavablanan mesajı adı ilə birlikdə bir not olaraq qeyd edər. (Fotolar, sənədlər və stikerlərdə işləyir.)",
+            "NT": "Bir söhbətdəki bütün notları çağırar.",
+            "CL1": "<not adı>",
+            "CL2": "Seçilən notu silər.",
             "CALL": "komandası ilə qeydi çağıra bilərsiniz"
         },
 
         "ocr": {
             "READING": "`Oxunur...`",
             "CANT_READ": "`Bunu oxuya bilmədim.`\n`Deyəsən yeni eynəklərə ehtiyacım var.`",
+            "OC1": "<dil>",
+            "OC2": "Mətin aydınlatmaq üçün bir fotoya vəya stikerə cavab verin.",
+            "OCO": "Dil kodlarını [buradan](https://ocr.space/ocrapi) götürün.",
             "READ": "Əla bax budur oxuya bildiyim şey:"
         },
 
@@ -427,6 +521,14 @@
             "NOTIFON": "`PM icazəsi olmayan istifadəçilərin bildiriş göndərməsinə icazə verildi!`",
             "ALREADY": "`İstifadəçi hal-hazırda PM göndərə bilməlidir.`",
             "DISAPPROVE": "istifadəmisinin PM göndərə bilmə icazəsi ləğv edildi.",
+            "AP1": "Cavab verilən istifadəçiyə PM icazəsi verər.",
+            "DP1": "Cavab verilən istifadəçiyə PM icazəsini silər.",
+            "BL1": "<istifadəçi adı/cavablama>",
+            "BL2": "İstifadəçini bloklayar.",
+            "UL1": "<istifadəçi adı/cavablama>",
+            "UL2": "İstifadəçinin bloklanmasını silər.",
+            "NT": "İcazə verilməmiş özəl mesajların bildirişlərini təmizləyər ya da deaktiv edər.",
+            "NO": "İcazə verilməmiş özəl mesajların bildirişlərin göndərməsinə icazə verər.",
             "UNBLOCKED": "Qadağan qaldırıldı."
         },
 
@@ -444,12 +546,32 @@
             "SUPERGROUPS": "Super qruplar",
             "CHANNELS": "Kanallar",
             "BOTS": "Botlar",
+            "US1": "<yeni istifadəçi adı>",
+            "US2": "Telegramdakı istifadəçi adınızı dəyişdirir.",
+            "NAM1": "<ad> <soyad>",
+            "NAM2": "Telegramdakı adınızı dəyişdirir. (Ad və soyad ilk boşluğa dayanaraq birləşdirilir.)",
+            "SP1": "Bir fotonu Telegramda profil foto etmək üçün .setpfp əmriylə cavab verin.",
+            "SB1": "<yeni biyoqrafi>",
+            "SB2": "Telegramdakı biyoqrafinizi bu əmri işlədərək dəyişdirin.",
+            "DP1": "<rəqəm>",
+            "DP2": "Telegram profil fotosunu silər.",
+            "R1": "Rezerve etdiyiniz istifadəçi adlarını göstərər.",
+            "C1": "Qruplarınızı, söhbətlərinizi, aktiv botları vs. sayar.",
             "DELPFP": "%s profil şəkilləri silindi."
         },
 
         "purge": {
             "NEED_MSG": "`Təmizləməyə başlamaq üçün bir mesaja ehtiyacım var.`",
             "PURGED": "`Sürətli təmizləmə başa çatdı!\n{} ədəd mesaj silindi.`",
+            "PUR1": "Hədəflənən cavabdan başlayaraq bütün mesajları təmizləyər.",
+            "PURG1": "<sayı>",
+            "PURG2": "Hədəflənən cavabdan başlayaraq öz mesajlarınızı təmizləyər.",
+            "DEL1": "<cavab>",
+            "DEL2": "Cavab verilən mesajı silər.",
+            "ED1": "<yeni mesaj>",
+            "ED2": "Cavab verdiyiniz mesajı yeni mesaj ilə dəyişdirər.",
+            "SD1": "<x> <mesaj>",
+            "SD2": "x saniyə içində özünü yox edən bir mesaj yaradar.",
             "PURGED_ME": "`Təmizlik başa çatdı {} ədəd mesaj silindi.`"
         },
 
@@ -457,6 +579,14 @@
             "ERROR": "`Decode uğursuz oldu.`",
             "TRYING": "**Hazırlanır...**",
             "USAGE": "**İstifadəsi: **",
+            "BAR1": "<məzmun>",
+            "BAR2": "Verilən məzmundan bir barkod edin.",
+            "BAR3": "barcode www.google.com",
+            "DEC1": "<cavab>",
+            "DEC2": "Barkod və ya QRCode həll etmək üçün.",
+            "MAK1": "<cavab>",
+            "MAK2": "Verilən məzmundan bir QR kodu edin.",
+            "MAK3": "makeqr www.google.com",
             "TEXT": "əlavə ediləcək uzun mətin"
         },
 
@@ -468,6 +598,8 @@
             "ONLINE_RBG": "Onlayn görüntüdən arxa fonu silin",
             "NEED": "`Arxa fonu silmək üçün bir şeyə ehtiyacım var.`",
             "CAPTION": "Remove.bg arxa fon istifadə edərək silindi",
+            "RBG1": "<Foto linki/cavab>",
+            "RBG2": "Remove.bg arxa fon istifadə edərək silindi",
             "ERROR": "Xəta (Səhf API key olduğunu zənn edirəm..)"
         },
 
@@ -480,7 +612,7 @@
             "SEARCHING_PHOTO": "Şəkil axtarıram",
             "NOT_FOUND": "`Heçnə tapa bilmədim`",
             "REV1": "<cavab>",
-            "REV2": "Foto vəya stikerə cavab verərək görüntünü Google üstündən axtara bilərsiz.",
+            "REV2": "remove.bg API işlədərək görüntülərin arxa planını silər.",
             "SIMILAR": "Oxşar görüntülər"
         },
 
