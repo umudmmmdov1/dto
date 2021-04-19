@@ -394,15 +394,15 @@ async def unblockpm(unblock):
         )
 
 CmdHelp('pmpermit').add_command(
-    'approve', None, 'Cavab verilən istifadəçiyə PM icazəsi verər.', 
+    'approve', None, (LANG['AP1'])
 ).add_command(
-    'disapprove', None, 'Cavab verilən istifadəçiyə PM icazəsini silər.'
+    'disapprove', None, (LANG['DP1'])
 ).add_command(
-    'block', '<istifadəçi adı/cavablama>', 'İstifadəçini bloklayar.'
+    'block', (LANG['BL1']), (LANG['BL2'])
 ).add_command(
-    'unblock', '<istifadəçi adı/cavablama>', 'İstifadəçinin bloklanmasını silər.'
+    'unblock', (LANG['UL1']), (LANG['UL2'])
 ).add_command(
-    'notifoff', None, 'İcazə verilməmiş özəl mesajların bildirişlərini təmizləyər ya da deaktiv edər.'
+    'notifoff', None, (LANG['NT'])
 ).add_command(
-    'notifon', None, 'İcazə verilməmiş özəl mesajların bildirişlərin göndərməsinə icazə verər.'
+    'notifon', None, (LANG['NO'])
 ).add()
