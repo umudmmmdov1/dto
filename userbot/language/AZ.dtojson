@@ -476,7 +476,7 @@
             "SP3": "sleep 30",
             "SD": "Nostaljik bir şəkildə botunuzu söndürər.",
             "RP": "U S Σ R Δ T O R botunun GitHubdakı reposuna gedən bir link.",
-            "RD": "U S Σ R Δ T O R botunun GitHub\'dakı README.md faylına gedən bir link.",
+            "RD": "U S Σ R Δ T O R botunun GitHubdakı README.md faylına gedən bir link.",
             "CR": "Bu gözəl botu kimin yaratdığını öyrən :-)",
             "RPT1": "<rəqəm> <mətin>",
             "RPT2": "Bir mətini bəlli bir sayıda təkrar edər. Spam əmri ilə qarışdırmayın.",
