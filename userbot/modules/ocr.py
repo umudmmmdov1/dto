@@ -65,7 +65,7 @@ async def ocr(event):
     os.remove(downloaded_file_name)
 
 CmdHelp('ocr').add_command(
-    'ocr', '<dil>', 'Mətin aydınlatmaq üçün bir fotoya vəya stikerə cavab verin.'
+    'ocr', (LANG['OC1']), (LANG['OC2'])
 ).add_info(
-    'Dil kodlarını [buradan](https://ocr.space/ocrapi) götürün.'
+    (LANG['OCO'])
 ).add()
