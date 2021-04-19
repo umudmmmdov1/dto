@@ -46,5 +46,5 @@ async def covid(event):
     await event.edit(sonuclar)
 
 CmdHelp('covid19').add_command(
-    'covid', (LANG['CVD1']), (LANG['CV2'])
+    'covid', (LANG['CVD1']), (LANG['CVD2'])
 ).add()
