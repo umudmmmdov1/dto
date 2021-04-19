@@ -16,7 +16,7 @@ from userbot import bot, BOTLOG_CHATID, LOGSPAMMER, PATTERNS
 
 def register(**args):
     """  """
-    pattern = args.get('pattern', None)
+        pattern = args.get('pattern', None)
     disable_edited = args.get('disable_edited', False)
     groups_only = args.get('groups_only', False)
     trigger_on_fwd = args.get('trigger_on_fwd', False)
@@ -57,7 +57,7 @@ def register(**args):
                 return
              
             if groups_only and not check.is_group:
-                await check.respond("`Bunun bir qrup olduğuna inanmıram.`")
+                await check.respond("`Bunun bir grup olduğunu sanmıyorum.`")
                 return
 
             try:
@@ -72,10 +72,13 @@ def register(**args):
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-                    text = "**U S Σ R Δ T O R XƏTA**\n"
-                    link = "[U S Σ R Δ T O R Support](https://t.me/UseratorSup)"
-                    text += "İstərsəniz, bunu şikayət edə bilərsiz"
-                    text += f"- sədəcə bu mesajı buraya yönləndirin {link}.\n"
+                    eventtext = str(check.text)
+                    text = "**✥ U S Σ R Δ T O R ERROR ✥**\n\n"
+                    link = "[U S Σ R Δ T O R ˢᵘᵖᵖᵒʳᵗ](https://t.me/UseratorOT)"
+                    if len(eventtext)<10:
+                        text += f"**♨️ Xəta:** {eventtext}\n"
+                    text += "\n❗️ İstəsəniz, bunu yönlədirə bilərsiniz."
+                    text += f"- sadəcə bu mesajı {link} bura göndərin.\n"
                     text += "Xəta və Tarix xaricində heç birşey qeyd edilmir\n"
 
                     ftext = "========== XEBERDARLIQ =========="
@@ -97,9 +100,9 @@ def register(**args):
                     ftext += str(sys.exc_info()[1])
                     ftext += "\n\n--------USERBOT XETA GUNLUYU BİTİS--------"
 
-                    command = "git log --pretty=format:\"%an: %s\" -10"
+                    command = "git log --pretty=format:\"%an: %s\" -4"
 
-                    ftext += "\n\n\nSon 10 commit:\n"
+                    ftext += "\n\n\nSon 4 commit:\n"
 
                     process = await asyncsubshell(command,
                                                   stdout=asyncsub.PIPE,
