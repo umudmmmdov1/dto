@@ -234,8 +234,8 @@
             "CANNOT_EMPTY": "Plugin mesajı boş ola bilməz.",
             "DY1": "<modul> <mesaj/cavab>",
             "DY2": "Dəyişdir, botdakı plugin-mesajlarını dəyişdirmənizə yarayır. Əgər mesaj yazmazsanız Plugin mesajını orijinal halına döndərər.",
-            "DY3": ".deyisdir afk \"İndi burada deiləm... Bəlkə heç vaxt gəlmədim\"",
-            "DY4": "Dəstəklənən Pluginlər: afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block\nAlive Dəyişkənləri: {plugin}, {telethon}, {dto}, {python}\nBan/Mute Dəyişkənləri: {id}, {username}, {first_name}, {last_name}, {mention}, {date}, {count}\nAFK Dəyişkənləri: {username}, {mention}, {first_name}, {last_name}, {last_seen_seconds}, {last_seen}, {last_seen_long}\nPMpermit Dəyişkənlər: (pm, block, approve, disapprove):** {id}, {username}, {mention}, {first_name}, {last_name}\nKickme Dəyişkənləri: {title}",
+            "DY3": "deyisdir afk \"İndi burada deiləm... Bəlkə heç vaxt gəlmədim\"",
+            "DY4": "**Dəstəklənən Pluginlər:** `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`\n**Alive Dəyişkənləri:** `{plugin}, {telethon}, {dto}, {python}`\n\**Ban/Mute Dəyişkənləri:** `{id}, {username}, {first_name}, {last_name}, {mention}, {date}, {count}`\n\**AFK Dəyişkənləri:** `{username}, {mention}, {first_name}, {last_name}, {last_seen_seconds}, {last_seen}, {last_seen_long}`\n\**PMpermit Dəyişkənlər(pm, block, approve, disapprove):** `{id}, {username}, {mention}, {first_name}, {last_name}`\**Kickme Dəyişkənləri:** `{title}`",
             "SETTED": "Plugin(`{plu}`) üçün mesajınız(`{msj}`) təsdiqləndi."
         },
 
