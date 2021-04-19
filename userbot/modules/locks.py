@@ -192,9 +192,9 @@ async def rem_locks(event):
         return
 
 CmdHelp('locks').add_command(
-    'lock', '<bağlanacaq medya tipi> vəya .unlock <bağlanacaq medya tipi>', 'Söhbətdəki bir çox şeyləri əngəlləyə bilməni edər. (stiker atmaq, oyun oynamaq vs.)'
+    'lock', (LANG['LK1']), (LANG['LK2'])
 ).add_info(
-    'Bağlıya biləcəyin və bağlayıb aça biləcəyin bunlardır: all, msg, media, sticker, gif, game, inline, poll, invite, pin, info'
+    (LANG['LK3'])
 ).add_warning(
-    'İdarəçi icazələri lazımdır!'
+    (LANG['LK4'])
 ).add()
