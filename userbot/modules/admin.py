@@ -13,7 +13,7 @@ from telethon.errors.rpcerrorlist import (UserIdInvalidError,
 from telethon.tl.functions.channels import (EditAdminRequest,
                                             EditBannedRequest,
                                             EditPhotoRequest, InviteToChannelRequest)
-from telethon.tl.functions.messages import (UpdatePinnedMessageRequest, AddChatUserRequest)
+from telethon.tl.functions.messages import (UpdatePinnedMessageRequest, AddChatUserRequest, ExportChatInviteRequest)
 from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
                                ChatAdminRights, ChatBannedRights,
                                MessageEntityMentionName, MessageMediaPhoto,
@@ -70,8 +70,10 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
+
 @register(outgoing=True, pattern="^.add ?(.*)")
-async def ekle(event):
+@register(outgoing=True, pattern="^.elave ?(.*)")
+async def elave(event):
     if event.fwd_from:
         return
     to_add_users = event.pattern_match.group(1)
@@ -1326,6 +1328,19 @@ async def get_bots(show):
         )
         remove("botlist.txt")
 
+@register(outgoing=True, pattern="^.getlink", groups_only=True)
+async def _(event):
+    await event.edit("Hazırlanır...")
+    try:
+        e = await event.client(
+        ExportChatInviteRequest(event.chat_id),
+        )
+    except ChatAdminRequiredError:
+        return await event.edit(NO_ADMIN)
+        sleep(7)
+        await event.delete()
+    await event.edit(f"Link: {e.link}")
+
 CmdHelp('admin').add_command(
         'promote', (LANG['PROMOTE1']), (LANG['PROMOTE2'])
     ).add_command(
@@ -1368,4 +1383,6 @@ CmdHelp('admin').add_command(
         'pin', (LANG['PIN1']), (LANG['PIN2'])
     ).add_command(
         'setgpic', (LANG['QS1']), (LANG['QS2'])
+    ).add_command(
+        'getlink', None, 'Qrup linkini verər'
     ).add()
