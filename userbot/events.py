@@ -16,7 +16,7 @@ from userbot import bot, BOTLOG_CHATID, LOGSPAMMER, PATTERNS
 
 def register(**args):
     """  """
-        pattern = args.get('pattern', None)
+  pattern = args.get('pattern', None)
     disable_edited = args.get('disable_edited', False)
     groups_only = args.get('groups_only', False)
     trigger_on_fwd = args.get('trigger_on_fwd', False)
@@ -57,7 +57,7 @@ def register(**args):
                 return
              
             if groups_only and not check.is_group:
-                await check.respond("`Bunun bir grup olduğunu sanmıyorum.`")
+                await check.respond("`Bunun bir qrup olduğuna inanmıram.`")
                 return
 
             try:
@@ -75,8 +75,6 @@ def register(**args):
                     eventtext = str(check.text)
                     text = "**✥ U S Σ R Δ T O R ERROR ✥**\n\n"
                     link = "[U S Σ R Δ T O R ˢᵘᵖᵖᵒʳᵗ](https://t.me/UseratorOT)"
-                    if len(eventtext)<10:
-                        text += f"**♨️ Xəta:** {eventtext}\n"
                     text += "\n❗️ İstəsəniz, bunu yönlədirə bilərsiniz."
                     text += f"- sadəcə bu mesajı {link} bura göndərin.\n"
                     text += "Xəta və Tarix xaricində heç birşey qeyd edilmir\n"
