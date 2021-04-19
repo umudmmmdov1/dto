@@ -151,25 +151,23 @@ async def raw(event):
             caption="`Həll edilən mesaj`")
 
 CmdHelp('misc').add_command(
-    'random', '<əşya1> <əşya2> ... <şyaN>', 'Əşya listindən təsadufi bir əşya seçər', 'random userator uniborg userge'
+    'random', (LANG['RD1']), (LANG['RD2']), (LANG['RD3'])
 ).add_command(
-    'sleep', '<vaxt>', 'U S Σ R Δ T O R da bir insandır, o da yorulur. Ara bir biraz yatmağına icazə ver.', 'sleep 30'
+    'sleep', (LANG['SP1']), (LANG['SP2']), (LANG['SP3'])
 ).add_command(
-    'shutdown', None, 'Nostaljik bir şəkildə botunuzu söndürər.'
+    'shutdown', None, (LANG['SD'])
 ).add_command(
-    'repo', None, 'U S Σ R Δ T O R botunun GitHub\'dakı reposuna gedən bir link.'
+    'repo', None, (LANG['RP'])
 ).add_command(
-    'readme', None, 'U S Σ R Δ T O R botunun GitHub\'dakı README.md faylına gedən bir link.'
+    'readme', None, (LANG['RD'])
 ).add_command(
-    'creator', None, 'Bu gözəl botu kimin yaratdığını öyrən :-)'
+    'creator', None, (LANG['CR'])
 ).add_command(
-    'repeat', '<rəqəm> <mətin>', 'Bir mətini bəlli bir sayıda təkrar edər. Spam əmri ilə qarışdırmayın.'
+    'repeat', (LANG['RPT1']), (LANG['RPT2'])
 ).add_command(
-    'restart', None, 'Botu yenidən başladar.'
+    'restart', None, (LANG['RST'])
 ).add_command(
-    'resend', None, 'Bir medyayı yenidən göndərər.'
+    'resend', None, (LANG['RSD'])
 ).add_command(
-    'resend', None, 'Bir medyayı yenidən göndərər.'
-).add_command(
-    'raw', '<cavab>', 'Cavab verilən mesaj haqqında məlumat verər.'
+    'raw', (LANG['RAW1']), (LANG['RAW2'])
 ).add()
