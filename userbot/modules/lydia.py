@@ -99,9 +99,9 @@ async def user(event):
         return
 
 CmdHelp('lydia').add_command(
-    'addcf', '<istifadəçi adı/cavablayaraq>', 'Lydia\'nın avtomatik söhbətini aktivləşdirir.'
+    'addcf', (LANG['AD1']), (LANG['AD2'])
 ).add_command(
-    'remcf', '<istifadəçi adı/cavablayaraq>', 'Lydia\'nın avtomatik söhbətini deaktivləşdirir.'
+    'remcf', (LANG['RM1']), (LANG['RM2'])
 ).add_command(
-    'repcf', '<istifadəçi adı/cavablayaraq>', 'Lydia\'nın avtomatik söhbətini xüsusi istifadəçi üçün aktivləşdirir.'
+    'repcf', (LANG['RP1']), (LANG['RP2'])
 ).add()
