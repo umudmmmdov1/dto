@@ -191,9 +191,9 @@ async def terminal_runner(term):
         )
 
 CmdHelp('evaluators').add_command(
-    'eval', '<istək>', 'Mini ifadələri dəyərləndirin.', 'eval 2+3'
+    'eval', (LANG['EV1']), (LANG['EV2']), 'eval 2+3'
 ).add_command(
-    'exec', '<python kodu>', 'Kiçik python əmrləri işlədin.', 'exec print(\"U S Σ R Δ T O R dan Salamlar!\")'
+    'exec', (LANG['EX1']), (LANG['EX2']), 'exec print(\"U S Σ R Δ T O R\")'
 ).add_command(
-    'term', '<istək>', 'Serverinizdə bash əmrlərini və əmr fayllarını işlədin.', 'term ls'
+    'term', (LANG['EV1']), (LANG['TM']), 'term ls'
 ).add()
