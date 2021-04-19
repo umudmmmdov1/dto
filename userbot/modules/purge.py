@@ -18,6 +18,7 @@ LANG = get_value("purge")
 
 # ████████████████████████████████ #
 
+@register(incoming=True, from_users=SUDO_ID, pattern="^.spurge$")
 @register(outgoing=True, pattern="^.purge$")
 async def fastpurger(purg):
     """ .purge  """
@@ -52,6 +53,7 @@ async def fastpurger(purg):
 
 
 @register(outgoing=True, pattern="^.purgeme")
+@register(incoming=True, from_users=SUDO_ID, pattern="^.spurgeme$")
 async def purgeme(delme):
     """ .purgeme """
     message = delme.text
@@ -79,6 +81,7 @@ async def purgeme(delme):
 
 
 @register(outgoing=True, pattern="^.del$")
+@register(incoming=True, from_users=SUDO_ID, pattern="^.sdel$")
 async def delete_it(delme):
     """ .del  """
     msg_src = await delme.get_reply_message()
