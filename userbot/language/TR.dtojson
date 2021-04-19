@@ -350,7 +350,7 @@
             "NEED_PHOTO": "Galeri çalışması için fotoğraf eklemeniz gerekmektedir. Eklemeyi bilmiyorsanız .dto galeri ile kullanım hakkında bilgi sahibi olabilirsiniz.",
             "STOPPED": "`Galeri durduruldu!`",
             "ALREADY_STOP": "`Galeri zaten çalışmıyor.`",
-            "GE1: "<url>",
+            "GE1": "<url>",
             "GE2": "Galeri sırasına fotoğraf ekler",
             "GE3": "galeri elave https://bit.ly/3x7YIrt",
             "GL": "Galeri sırasını gösterir.",
