@@ -1,7 +1,7 @@
 from telethon import events
 
 import asyncio
-
+from userbot import SUDO_ID
 from userbot.cmdhelp import CmdHelp
 from userbot.events import register
 
