@@ -220,9 +220,9 @@ async def lastlog(lstlog):
         await lstlog.edit(LFM_LOG_ERR)
 
 CmdHelp('lastfm').add_command(
-    'lastfm', None, 'Yeni oynadılan parça ya da ən son oynadılan parça göstərilir.'
+    'lastfm', None, (LANG['LF1'])
 ).add_command(
-    'lastbio', '<on/off>', 'last.fm\'dəki indi oynadılan parça göstərməsi aktivləşdirir/deaktivləşdirir.'
+    'lastbio', (LANG['LF2']), (LANG['LF3'])
 ).add_command(
-    'lastlog', '<on/off>', 'last.fm biyoqrafi loglamasını aktivləşdirir/deaktivləşdirir.'
+    'lastlog', (LANG['LF4']), (LANG['LF5'])
 ).add()
