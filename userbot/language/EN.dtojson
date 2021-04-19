@@ -187,7 +187,7 @@
             "REMOVED": "**The word was removed from the blacklist.**"
         },
         "cevir": {
-            "INVALID_COMMAND": "** Unknown command! ** ` Usage: .çevir foto/ses/gif `",
+            "INVALID_COMMAND": "**Unknown command!** ` Usage: .çevir foto/ses/gif `",
             "NEED_REPLY": "Please reply to a sticker.",
             "CONVERTING_TO_PHOTO": "Turning to photo ...",
             "NEED_EFECT": "`Please specify an effect. Effects that can be used: ``uşaq/robot/earrape/suretli/parazit/yangi`",
@@ -219,12 +219,12 @@
             "SUCCESS_DELETED": "` Plugin message successfully deleted. `",
             "ERROR_DELETED": "Plugin message couldn't be deleted. ** Error",
             "NOT_FOUND": "** Unknown plugin. * * Plugins where you can delete your message",
-            "USAGE": "** Modify, change the plugin-messages in the boot. **\nExample Usage: ` .değiştir afk \" I'm not here right now... Maybe never come.\" `\nPlugin-message delete: ` .değiştir afk `\nplugin-messages you can modify (in-time): ` afk/alive/pm/kickme/dızcı/ban/mute/approve/disaprove/block `",
+            "USAGE": "** Modify, change the plugin-messages in the boot. **\nExample Usage: ` .change afk \" I'm not here right now... Maybe never come.\" `\nPlugin-message delete: ` .değiştir afk `\nplugin-messages you can modify (in-time): ` afk/alive/pm/kickme/dızcı/ban/mute/approve/disaprove/block `",
             "CANNOT_EMPTY": "Plugin message cannot be empty.",
             "DY1": "<module> <message/reply>",
             "DY2": "Change is useful for changing plugin messages in the bot. If you do not write a message, the Plugin will return the message to its original state.",
-            "DY3": ".change afk \"I'm not here now ... Maybe I never came\"",
-            "DY4": "**Supported Plugins:** `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`\n**Alive Variables:** `{plugin}, {telethon}, {dto}, {python}`\n**Ban/Mute Variables:** `{id}, {username}, {first_name}, {last_name}, {mention}, {date}, {count}`\n**AFK Variables:** `{username}, {mention}, {first_name}, {last_name}, {last_seen_seconds}, {last_seen}, {last_seen_long}`\n**PMpermit Variables(pm, block, approve, disapprove):** `{id}, {username}, {mention}, {first_name}, {last_name}`\n**Kickme Dəyişkənləri:** `{title}`",
+            "DY3": "change afk \"I'm not here now ... Maybe I never came\"",
+            "DY4": "**Supported Plugins:** `afk/alive/pm/kickme/dızcı/ban/mute/approve/disapprove/block`\n**Alive Variables:** `{plugin}, {telethon}, {dto}, {python}`\n**Ban/Mute Variables:** `{id}, {username}, {first_name}, {last_name}, {mention}, {date}, {count}`\n**AFK Variables:** `{username}, {mention}, {first_name}, {last_name}, {last_seen_seconds}, {last_seen}, {last_seen_long}`\n**PMpermit Variables(pm, block, approve, disapprove):** `{id}, {username}, {mention}, {first_name}, {last_name}`\n**Kickme Variables:** `{title}`",
             "SETTED": "Your message (`{msj}`) has been set for Plugin (`{plu}`)"
         },
          "covid19": {
