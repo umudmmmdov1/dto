@@ -93,6 +93,6 @@ async def ReTrieveURL(input_url):
                       stream=True)
     return r
 
-CmdHelp('rgb').add_command(
-    'rbg', '<Foto linki/cavab>', 'remove.bg API işlədərək görüntülərin arxa planını silər.'
+CmdHelp('rbg').add_command(
+    'rbg', (LANG['RBG1']), (LANG['RBG2'])
 ).add()
