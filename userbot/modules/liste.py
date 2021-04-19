@@ -64,5 +64,5 @@ async def liste(event):
             await event.edit(LANG['GMUTE_LIST'] % mesaj)
 
 CmdHelp('list').add_command(
-    'list', '<gmute/gban>', 'Gbanladığınız ya da Gmutelədiyiniz istifadəçiləri göstərər.'
+    'list', (LANG['LT1']), (LANG['LT2'])
 ).add()
