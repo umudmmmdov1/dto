@@ -177,7 +177,7 @@ async def remove_profilepic(delpfp):
         LANG['DELPFP'] % len(input_photos))
 
 CmdHelp('profile').add_command(
-    'username', (LANG['US11']), (LANG['US2'])
+    'username', (LANG['US1']), (LANG['US2'])
 ).add_command(
     'name', (LANG['NAM1']), (LANG['NAM2'])
 ).add_command(
