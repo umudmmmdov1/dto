@@ -126,7 +126,7 @@ async def get_dogbin_content(dog_url):
         )
 
 CmdHelp('dogbin').add_command(
-    'paste', '<söz/cavablama>', 'Dogbin işlədərək yapışdırılmış və ya qısadılmış url yaratma (https://del.dog/)'
+    'paste', (LANG['DG1']), (LANG['DG2'])
 ).add_command(
-    'getpaste', None, 'Dogbin url məzmuna mətin axtarır (https://del.dog/)'
+    'getpaste', None, (LANG['DG3'])
 ).add()
