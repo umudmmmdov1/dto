@@ -16,7 +16,7 @@ from userbot import bot, BOTLOG_CHATID, LOGSPAMMER, PATTERNS
 
 def register(**args):
     """  """
-  pattern = args.get('pattern', None)
+    pattern = args.get('pattern', None)
     disable_edited = args.get('disable_edited', False)
     groups_only = args.get('groups_only', False)
     trigger_on_fwd = args.get('trigger_on_fwd', False)
@@ -72,7 +72,6 @@ def register(**args):
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-                    eventtext = str(check.text)
                     text = "**✥ U S Σ R Δ T O R ERROR ✥**\n\n"
                     link = "[U S Σ R Δ T O R ˢᵘᵖᵖᵒʳᵗ](https://t.me/UseratorOT)"
                     text += "\n❗️ İstəsəniz, bunu yönlədirə bilərsiniz."
@@ -98,9 +97,9 @@ def register(**args):
                     ftext += str(sys.exc_info()[1])
                     ftext += "\n\n--------USERBOT XETA GUNLUYU BİTİS--------"
 
-                    command = "git log --pretty=format:\"%an: %s\" -4"
+                    command = "git log --pretty=format:\"%an: %s\" -3"
 
-                    ftext += "\n\n\nSon 4 commit:\n"
+                    ftext += "\n\n\nSon 3 commit:\n"
 
                     process = await asyncsubshell(command,
                                                   stdout=asyncsub.PIPE,
