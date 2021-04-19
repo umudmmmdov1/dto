@@ -54,7 +54,7 @@ class CmdHelp:
         
         """
 
-        result = f"**📗 Modul** `{self.FILE}`\n"
+        result = f"**📗 Modul:** `{self.FILE}`\n"
         if self.WARNING == '' and self.INFO == '':
             result += f"**♻️ Official:** {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
         else:
@@ -62,24 +62,24 @@ class CmdHelp:
             
             if self.INFO == '':
                 if not self.WARNING == '':
-                    result += f"**❗** {self.WARNING}\n\n"
+                    result += f"❗ {self.WARNING}\n\n"
             else:
                 if not self.WARNING == '':
-                    result += f"**❗** {self.WARNING}\n"
-                result += f"**ℹ️** {self.INFO}\n\n"
+                    result += f"❗ {self.WARNING}\n"
+                result += f"ℹ️ {self.INFO}\n\n"
                      
         for command in self.COMMANDS:
             command = self.COMMANDS[command]
             if command['params'] == None:
-                result += f"**⌨️** `{PATTERNS[:1]}{command['command']}`\n"
+                result += f"⌨️ `{PATTERNS[:1]}{command['command']}`\n"
             else:
-                result += f"**⌨️** `{PATTERNS[:1]}{command['command']} {command['params']}`\n"
+                result += f"⌨️ `{PATTERNS[:1]}{command['command']} {command['params']}`\n"
                 
             if command['example'] == None:
-                result += f"**📃** `{command['usage']}`\n\n"
+                result += f"📃 `{command['usage']}`\n\n"
             else:
-                result += f"**📃** `{command['usage']}`\n"
-                result += f"**➤** `{PATTERNS[:1]}{command['example']}`\n\n"
+                result += f"📃 `{command['usage']}`\n"
+                result += f"➤ `{PATTERNS[:1]}{command['example']}`\n\n"
         return result
 
     def add(self):
