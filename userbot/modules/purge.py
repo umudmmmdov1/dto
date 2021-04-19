@@ -129,13 +129,13 @@ async def selfdestruct(destroy):
                                           "sd sorğusu uğurla başa çatdı")
 
 CmdHelp('purge').add_command(
-    'purge', None, 'Hədəflənən cavabdan başlayaraq bütün mesajları təmizləyər.'
+    'purge', None, (LANG['PUR1'])
 ).add_command(
-    'purgeme', '<sayı>', 'Hədəflənən cavabdan başlayaraq öz mesajlarınızı təmizləyər.'
+    'purgeme', (LANG['PURG1']), (LANG['PURG2'])
 ).add_command(
-    'del', '<cavab>', 'Cavab verilən mesajı silər.'
+    'del', (LANG['DEL1']), (LANG['DEL2'])
 ).add_command(
-    'edit', '<yeni mesaj>', 'Cavab verdiyiniz mesajı yeni mesaj ilə dəyişdirər.'
+    'edit', (LANG['ED1']), (LANG['ED2'])
 ).add_command(
-    'sd', '<x> <mesaj>', 'x saniyə içində özünü yox edən bir mesaj yaradar.'
+    'sd', (LANG['SD1']), (LANG['SD2'])
 ).add()
