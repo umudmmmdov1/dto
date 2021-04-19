@@ -108,5 +108,5 @@ async def check_media(reply_message):
         return data
 
 CmdHelp('deepfry').add_command(
-    'deepfry', '<rəqəm 1-5>', 'Seçilən görüntüyə deepfry efekti edər.', 'deepfry 5'
+    'deepfry', (LANG['DF1']), (LANG['DF2']), 'deepfry 5'
 ).add()
