@@ -46,5 +46,5 @@ async def covid(event):
     await event.edit(sonuclar)
 
 CmdHelp('covid19').add_command(
-    'covid', '<ölkə kodu>', 'Həm Dünya həm də verdiyiniz ölkə üçün yenilənmiş Covid 19 statistikaları. Ölkəniz fərqlidisə əmrin yanına ölkə kodu əlavə etməyiniz lazımdır.'
+    'covid', (LANG['CVD1']), (LANG['CV2'])
 ).add()
