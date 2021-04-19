@@ -73,7 +73,7 @@ def register(**args):
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
                     text = "**✥ U S Σ R Δ T O R ERROR ✥**\n"
-                    link = "[U S Σ R Δ T O R](https://t.me/UseratorOT)"
+                    link = "[U S Σ R Δ T O R](https://t.me/UseratorSUP)"
                     text += "\n🔰 İstəsəniz, bunu yönlədirə bilərsiniz."
                     text += f"sadəcə bu mesajı {link} bura göndərin.\n"
                     text += "Xəta və Tarix xaricində heç birşey qeyd edilmir\n"
