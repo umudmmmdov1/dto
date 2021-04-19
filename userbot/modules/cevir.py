@@ -128,9 +128,9 @@ async def cevir(event):
         return
 
 CmdHelp('cevir').add_command(
-    'çevir foto', None, 'Stickeri fotoğrafa çevirər.'
+    'çevir foto', None, (LANG['CV1'])
 ).add_command(
-    'çevir gif', None, 'Videonu və ya animasyonlu stickeri gifə çevirər.'
+    'çevir gif', None, (LANG['CV2'])
 ).add_command(
-    'çevir ses', '<uşaq/robot/earrape/suretli/parazit/yangi>', 'Səsə efekt verər.'
+    'çevir ses', (LANG['CV3']), (LANG['CV4'])
 ).add()
