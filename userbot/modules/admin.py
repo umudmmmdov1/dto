@@ -71,7 +71,6 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
 
-@register(outgoing=True, pattern="^.add ?(.*)")
 @register(outgoing=True, pattern="^.elave ?(.*)")
 async def elave(event):
     if event.fwd_from:
