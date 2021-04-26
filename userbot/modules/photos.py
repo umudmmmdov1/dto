@@ -5,7 +5,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
-@register(outgoing=True, pattern=".ascii ?(.*)")
+@register(outgoing=True, pattern="^.ascii ?(.*)")
 async def asci(event):
     if event.fwd_from:
         return
@@ -46,7 +46,7 @@ async def asci(event):
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
-@register(outgoing=True, pattern=".line ?(.*)")
+@register(outgoing=True, pattern="^.line ?(.*)")
 async def line(event):
     if event.fwd_from:
         return
@@ -87,7 +87,7 @@ async def line(event):
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
-@register(outgoing=True, pattern=".colorize ?(.*)")
+@register(outgoing=True, pattern="^.colorize ?(.*)")
 async def colorizer(event):
     if event.fwd_from:
         return
@@ -128,7 +128,7 @@ async def colorizer(event):
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
-@register(outgoing=True, pattern=".pixel ?(.*)")
+@register(outgoing=True, pattern="^.pixel ?(.*)")
 async def picture(event):
     if event.fwd_from:
         return
