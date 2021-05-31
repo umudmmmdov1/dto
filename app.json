@@ -28,11 +28,6 @@
       "value": ""
       "required": false
     },
-   "AVTOU": {
-      "description": "Fake hesablarınızı idarə etmək üçün Sudo Id.",
-      "value": "1141348051"
-      "required": true
-    },
     "PLUGIN_CHANNEL_ID": {
       "description": "İstəyə bağlıdır (False qalması tövsiyyədir)",
       "required": false
