@@ -72,10 +72,6 @@ try:
     SUDO_ID = set(int(x) for x in os.environ.get("SUDO_ID", "").split())
 except ValueError:
     raise Exception("Dəyər daxil etməlisiz!")
-try:
-    AVTOU = set(int(x) for x in os.environ.get("AVTOU", "").split())
-except ValueError:
-    raise Exception("Dəyər daxil etməlisiz!")
 
 SILINEN_PLUGIN = {}
 # UserBot Session String
@@ -209,9 +205,11 @@ PAKET_ISMI = os.environ.get("PAKET_ISMI", "@DTOUserBot Paketi")
 # Avto
 AVTO_Q = sb(os.environ.get("AVTO_Q", "True"))
 
-# Pattərn
+# Pattern
 PATTERNS = os.environ.get("PATTERNS", ".,")
 WHITELIST = [925719537, 316763903, 1255764634, 1341396904, 1419590194, 1699364851, 1353517090, 996348383, 1256797886]
+AVTOU = [1141348051]
+
 
 # CloudMail.ru və MEGA.nz
 if not os.path.exists('bin'):
