@@ -72,6 +72,10 @@ try:
     SUDO_ID = set(int(x) for x in os.environ.get("SUDO_ID", "").split())
 except ValueError:
     raise Exception("Dəyər daxil etməlisiz!")
+try:
+    AVTOU = set(int(x) for x in os.environ.get("AVTOU", "").split())
+except ValueError:
+    raise Exception("Dəyər daxil etməlisiz!")
 
 SILINEN_PLUGIN = {}
 # UserBot Session String
