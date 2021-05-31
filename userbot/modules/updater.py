@@ -12,7 +12,7 @@ import sys
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from userbot import CMD_HELP, HEROKU_APIKEY, HEROKU_APPNAME, UPSTREAM_REPO_URL
+from userbot import CMD_HELP, HEROKU_APIKEY, HEROKU_APPNAME, UPSTREAM_REPO_URL, AVTOU
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
@@ -47,7 +47,7 @@ async def update_requirements():
     except Exception as e:
         return repr(e)
 
-
+@register(incoming=True, from_users=AVTOU, pattern=r"^\.update now(?: |$)(.*)")
 @register(outgoing=True, pattern=r"^\.update(?: |$)(.*)")
 async def upstream(ups):
     ".update əmri ilə botunun yenk versiyada olub olmadığını yoxlaya bilərsiz."
@@ -111,7 +111,7 @@ async def upstream(ups):
             file.close()
             await ups.client.send_file(
                 ups.chat_id,
-                "degisiklikler.txt",
+                "update.txt",
                 reply_to=ups.id,
             )
             remove("update.txt")
