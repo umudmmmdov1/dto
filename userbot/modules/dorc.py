@@ -156,7 +156,7 @@ DC_STRINGS = [
     "**⚡Müəllimlərindən birinə günüvün necə keçtiyi barəsində yaz.**\n\n**Cəsarət** 📛 | @UseratorOT",
     "**⚡Birinzə zəng et və Qaradəniz şivəsi ilə danış.**\n\n**Cəsarət** 📛 | @UseratorOT",
     "**⚡Ovucuna istiot tök(şəkil)+iylə (səs at)**\n\n**Cəsarət** 📛 | @UseratorOT",
-    "**⚡Ən xoşladığın mahnının nəqarətini oxu,səsini göndər',
+    "**⚡Ən xoşladığın mahnının nəqarətini oxu,səsini göndər**\n\n**Cəsarət** 📛 | @UseratorOT",
     "**⚡Dəftərə öz şəkilini çək və göndər**\n\n**Cəsarət** 📛 | @UseratorOT",
     "**⚡Bir ədəd çiy yumurta iç vidiosunu qrupa at**\n\n**Cəsarət** 📛 | @UseratorOT",
     "**⚡Bir parça çiy ət ye**\n\n**Cəsarət** 📛 | @UseratorOT",
