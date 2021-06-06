@@ -105,7 +105,7 @@ def migration_workaround():
     return None
 
 
-if HEROKU_APP_NAME is not None and HEROKU_API_KEY is not None:
+if HEROKU_APPNAME is not None and HEROKU_APIKEY is not None:
     migration_workaround()
 
 # UserBot Session String
