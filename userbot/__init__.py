@@ -5,6 +5,7 @@
 
 import os
 import time
+import heroku3
 from time import sleep
 from re import compile
 from sys import version_info
