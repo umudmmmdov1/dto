@@ -77,8 +77,8 @@ async def deezl(event):
             await event.delete()
 
 @register(outgoing=True, pattern="^.song ?(.*)")
-@register(incoming=True, from_users=SUDO_ID, pattern="^.song ?(.*)")
-async def song(event):
+    # Ported from Ultroid for Userator
+async def download_video(event):
     a = event.text
     if a[5] == "s":
         return
@@ -95,7 +95,7 @@ async def song(event):
     except BaseException:
         return await x.edit(LANG['NOT_FOUND'])
     type = "audio"
-    await x.edit(f"`{url} Yüklənməyə hazırlanır...` Ümüd bunlara lang əlavə elə")
+    await x.edit(f"`{url} Yüklənməyə hazırlanır...`")
     if type == "audio":
         opts = {
             "format": "bestaudio",
@@ -127,24 +127,22 @@ async def song(event):
         return
     except GeoRestrictedError:
         await x.edit(
-            "`coğrafi...`"
+            "`Coğrafi səbəblərdən yüklənə bilmədi`"
         )
         return
     except MaxDownloadsReached:
         await x.edit("`Max yükləmə limitini aşdınız`")
         return
     except PostProcessingError:
-        await x.edit("`Bir xəta baş verdi.`")
+        await x.edit("`Bir xəta baş verdi`")
         return
     except UnavailableVideoError:
-        await x.edit("`Media bu formatı dəstəkləmir.`")
+        await x.edit("`Dəstəklənməyən media tipi`")
         return
     except XAttrMetadataError as XAME:
-        await x.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
-        return
+        return await x.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
     except ExtractorError:
-        await x.edit("`Yükləmə zamanı bir xəta baş verdi`")
-        return
+        return await x.edit("`Məlumatlar gətirilən zaman bir xəta baş verdu6`")
     except Exception as e:
         return await x.edit(f"{str(type(e)): {str(e)}}")
     dir = os.listdir()
@@ -183,7 +181,6 @@ Musiqi adı - {}
         os.remove(thumb)
     except BaseException:
         pass
-# ported from Ultroid
 
 @register(outgoing=True, pattern="^.songpl ?(.*)")
 async def songpl(event):
