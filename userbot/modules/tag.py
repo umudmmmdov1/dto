@@ -5,19 +5,18 @@ from time import sleep
 
 @register(outgoing=True, pattern="^.tag(?: |$)(.*)")
 @register(incoming=True, from_users=SUDO_ID, pattern="^.tag(?: |$)(.*)")
-async def _(tag):
+async def tagallcmd(event):
 
-	if tag.pattern_match.group(1):
-		seasons = tag.pattern_match.group(1)
-	else:
-		seasons = ""
+		tag = event.pattern_match.group(1)
+		if not tag:
+		  tag = ""
+		await event.delete()
+		tags = []
+		async for user in event.client.iter_participants(event.chat_id):
+			tags.append(f"[{user.first_name}](tg://user?id={user.id})\n")
+		chunkss = list(chunks(tags, 5))
+		random.shuffle(chunkss)
+		for chunk in chunkss:
+			await event.client.send_message(event.chat_id, tag + '\u2060'.join(chunk))
+			sleep(1)
 
-	chat = await tag.get_input_chat()
-	a_=0
-	await tag.delete()
-	async for i in bot.iter_participants(chat):
-		if a_ == 500:
-			break
-		a_+=5
-		await tag.client.send_message(tag.chat_id, "[{}](tg://user?id={}) {}".format(i.first_name, i.id, seasons))
-		sleep(1.4)
