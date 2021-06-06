@@ -56,7 +56,7 @@ def speed_convert(size):
     return f"{round(size, 2)} {units[zero]}"
 
 
-@register(outgoing=True, pattern="^.dc$")
+@register(outgoing=True, pattern="^.data$")
 async def neardc(event):
     """ .dc """
     result = await event.client(functions.help.GetNearestDcRequest())
@@ -77,7 +77,7 @@ async def pingme(pong):
 CmdHelp('www').add_command(
     'speed', None, (LANG['WWW1'])
 ).add_command(
-    'dc', None, (LANG['WWW2'])
+    'data', None, (LANG['WWW2'])
 ).add_command(
     'ping', None, (LANG['WWW3'])
 ).add()
