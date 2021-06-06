@@ -5,8 +5,6 @@
 
 import os
 import time
-import heroku3
-from time import sleep
 from re import compile
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
@@ -19,7 +17,6 @@ from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.sync import TelegramClient, custom
 from telethon.sessions import StringSession
 from telethon.events import callbackquery, InlineQuery, NewMessage
-from userbot import HEROKU_APPNAME, HEROKU_APIKEY
 from math import ceil
 
 load_dotenv("config.env")
@@ -77,39 +74,6 @@ except ValueError:
     raise Exception("Dəyər daxil etməlisiz!")
 
 SILINEN_PLUGIN = {}
-
-def migration_workaround():
-    try:
-        from userbot.modules.sql_helper.globals import addgvar, delgvar, gvarstatus
-    except BaseException:
-        return None
-
-    old_ip = gvarstatus("public_ip")
-    new_ip = get("https://api.ipify.org").text
-
-    if old_ip is None:
-        delgvar("public_ip")
-        addgvar("public_ip", new_ip)
-        return None
-
-    if old_ip == new_ip:
-        return None
-
-    sleep_time = 180
-    LOGS.info(
-        f"A change in IP address is detected, waiting for {sleep_time / 60} minutes before starting the bot."
-    )
-    sleep(sleep_time)
-    LOGS.info("Starting bot...")
-
-    delgvar("public_ip")
-    addgvar("public_ip", new_ip)
-    return None
-
-
-if HEROKU_APPNAME is not None and HEROKU_APIKEY is not None:
-    migration_workaround()
-
 # UserBot Session String
 STRING_SESSION = os.environ.get("STRING_SESSION", None)
 
