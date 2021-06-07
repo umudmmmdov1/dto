@@ -155,7 +155,7 @@ async def download_video(event):
     upteload = """
 Yüklənilir...
 Musiqi adı - {}
-{} tərəfindən
+\n{} tərəfindən
 """.format(
         rip_data["title"], rip_data["uploader"]
     )
