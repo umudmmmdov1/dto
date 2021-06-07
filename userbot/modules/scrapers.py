@@ -10,7 +10,7 @@ import asyncio
 import shutil
 from datetime import datetime
 from bs4 import BeautifulSoup
-import re
+import re, requests
 import urllib.request
 from time import sleep
 from html import unescape
