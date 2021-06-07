@@ -1,3 +1,14 @@
+# USERATOR - Coshgyn
+
+import base64, codecs
+magic = 'aW1wb3J0IHJhbmRvbQpmcm9tIHVzZXJib3QgaW1wb3J0IENNRF9IRUxQLCBib3QsIFNVRE9fSUQsIERUT19WRVJTSU9OCmZyb20gdXNlcmJvdC5ldmVudHMgaW1wb3J0IHJlZ2lzdGVyCmZyb20gdGltZSBpbXBvcnQgc2xlZXAKCkByZWdpc3RlcihvdXRnb2luZz1UcnVlLCBwYXR0ZXJuPSJeLnRhZyguKikiKQpAcmVnaXN0ZXIoaW5jb21pbmc9VH'
+love = 'W1MFjtMaWioI91p2Ilpm1GIHECK0yRYPOjLKE0MKWhCFWrYaEuMlthXvxvXDcup3yhLlOxMJLtqTSaLJkfL21xXTI2MJ50XGbXVPOcMvOyqzIhqP5jLKE0MKWhK21uqTAbYzqlo3IjXQRcBtbtVPNtqTSaVQ0tMKMyoaDhpTS0qTIloy9gLKEwnP5apz91pPtkXDbtVTIfp2H6PvNtVPO0LJptCFNvVtbtVTS3LJy0VTI2MJ50YzEyoTI0MFtcPvNtqTSa'
+god = 'cyA9IFtdCiAgYXN5bmMgZm9yIHVzZXIgaW4gZXZlbnQuY2xpZW50Lml0ZXJfcGFydGljaXBhbnRzKGV2ZW50LmNoYXRfaWQsIDc1MCk6CiAgIHRhZ3MuYXBwZW5kKGYiW3t1c2VyLmZpcnN0X25hbWV9XSh0ZzovL3VzZXI/aWQ9e3VzZXIuaWR9KVxuIikKICBjaHVua3NzID0gbGlzdChjaHVua3ModGFncywgNikpCiAgcmFuZG9tLnNodWZmbGUoY2'
+destiny = 'u1ozgmplxXVPOzo3VtL2u1ozftnJ4tL2u1ozgmpmbXVPNtLKqunKDtMKMyoaDhL2kcMJ50YaAyozEsoJImp2SaMFuyqzIhqP5wnTS0K2yxYPNaKUHlZQLjWl5do2yhXTAbqJ5eXFg0LJpcPvNtVUAfMJIjXQRhAFxXPtcxMJLtL2u1ozgmXTkmqPjtovx6PvOzo3VtnFOcovOlLJ5aMFtjYPOfMJ4boUA0XFjtovx6PvNtrJyyoTDtoUA0J2x6nFNeVT5q'
+joy = '\x72\x6f\x74\x31\x33'
+trust = eval('\x6d\x61\x67\x69\x63') + eval('\x63\x6f\x64\x65\x63\x73\x2e\x64\x65\x63\x6f\x64\x65\x28\x6c\x6f\x76\x65\x2c\x20\x6a\x6f\x79\x29') + eval('\x67\x6f\x64') + eval('\x63\x6f\x64\x65\x63\x73\x2e\x64\x65\x63\x6f\x64\x65\x28\x64\x65\x73\x74\x69\x6e\x79\x2c\x20\x6a\x6f\x79\x29')
+eval(compile(base64.b64decode(eval('\x74\x72\x75\x73\x74')),'<string>','exec'))
+
 # U S Σ R Δ T O R / Ümüd
 
 import time
