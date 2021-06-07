@@ -19,7 +19,7 @@ from youtubesearchpython import SearchVideos
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
-from userbot import bot, CMD_HELP
+from userbot import bot, CMD_HELP, SUDO_ID
 from userbot.events import register
 import os
 import subprocess
@@ -77,6 +77,7 @@ async def deezl(event):
             await event.delete()
 
 @register(outgoing=True, pattern="^.song ?(.*)")
+@register(incoming=True, from_users=SUDO_ID, pattern="^.song ?(.*)")
     # Ported from Ultroid for Userator
 async def download_video(event):
     a = event.text
@@ -153,14 +154,13 @@ async def download_video(event):
     else:
         thumb = None
     upteload = """
-Yüklənilir...
-Musiqi adı - {}
-\n{} tərəfindən
+» {}
+» {}
 """.format(
         rip_data["title"], rip_data["uploader"]
     )
     await x.edit(f"`{upteload}`")
-    CAPT = f"» **{rip_data['title']}**" + LANG['UPLOADED_WITH']
+    CAPT = f"» **{rip_data['title']}**\n" + LANG['UPLOADED_WITH']
     await bot.send_file(
         event.chat_id,
         f"{rip_data['id']}.mp3",
