@@ -1,3 +1,5 @@
+# U S Σ R Δ T O R / Ümüd & Sahib
+
 from random import choice
 from userbot.cmdhelp import CmdHelp
 from userbot.events import register
