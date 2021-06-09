@@ -21,4 +21,5 @@ async def stats(e):
    stat = f"✉️ **Mesajlar:** `{msg}`\n🖼️ **Fotolar:** `{img}`\n📹 **Videolar:** `{vid}`\n🎵 **Musiqilər:** `{msc}`\n🎤 **Səsli mesajlar:** `{ses}`\n🎥 **Video Notlar:** `{rvid}`\n📂 **Fayllar:** `{doc}`\n🔗 **Linklər:** `{url}`\n🎞️ **GIF'lər:** `{gif}`\n🗺 **Yerlər:** `{geo}`\n🛂 **Kontaktlar:** `{kntk}`"
    await e.edit(stat)
 
-CmdHelp('statis').add_command(('stats', None, 'Söhbət haqqında ətraflı məlumat alın').add()
+Help = CmdHelp('statis')
+Help.add_command('statis',  None, 'Söhbət haqqında ətraflı məlumat alın').add()
