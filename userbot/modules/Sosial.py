@@ -6,10 +6,9 @@ from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 from userbot import bot
 
-@register(outgoing=True, pattern="^.pnt ?(.*)")
+
 @register(outgoing=True, pattern="^.tik ?(.*)")
-@register(outgoing=True, pattern="^.ig ?(.*)")
-async def insta(event):
+async def tiktok(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
@@ -50,37 +49,40 @@ async def insta(event):
             await bot(functions.messages.DeleteHistoryRequest(peer=chat, max_id=0))
             await event.delete()
             
-@register(outgoing=True, pattern="^.dzd(?: |$)(.*)")
-async def DeezLoader(event):
-    if event.fwd_from:
-        return
-    dlink = event.pattern_match.group(1)
-    if ".com" not in dlink:
-        await event.edit("`Yükləmək üçün mənə bir link verin`")
+@register(outgoing=True, pattern="^.ig(?: |$)(.*)")
+@register(outgoing=True, pattern="^.pnt(?: |$)(.*)")
+async def _(event):
+    rtext = await event.get_reply_message()
+    d_link = event.pattern_match.group(1)
+    if d_link:
+        pass
+    elif rtext:
+        d_link = rtext.text
+    if ".com" not in d_link:
+        await event.edit("Zəhmət olmasa, düzgün bir link daxil edin")
     else:
-        await event.edit("**Yükləmə başladı** 🎶")
-    chat = "@DeezLoadBot"
+        await event.edit("Yüklənilir...")
+    chat = "@iziBot"
     async with bot.conversation(chat) as conv:
-          try:
-              msg_start = await conv.send_message("/start")
-              response = await conv.get_response()
-              r = await conv.get_response()
-              msg = await conv.send_message(dlink)
-              details = await conv.get_response()
-              song = await conv.get_response()
-#                                   #
-              await bot.send_read_acknowledge(conv.chat_id)
-          except YouBlockedUserError:
-              await event.edit("@DeezLoadBot'u blokdan çıxardın və yenidən yoxlayın.")
-              return
-          await bot.send_file(event.chat_id, song, caption=details.text)     
-          
+        try:
+            msg_start = await conv.send_message("/start")
+            r = await conv.get_response()
+            msg = await conv.send_message(d_link)
+            video = await conv.get_response()
+            details = await conv.get_response()
+            await bot.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await event.edit(f"{chat}'u blokdan çıxarın")
+            return
+        await event.client.send_file(event.chat_id, video, caption=f"{details.text} \n\n@UseratorOT `ilə yükləndi`")
+        await event.client.delete_messages(conv.chat_id,
+                                           [msg_start.id, r.id, msg.id, details.id, video.id])
+        await event.delete()
+
 CmdHelp('sosial').add_command(
     'ig', '<link>', 'Cavab verdiyiniz Instagram linkini media olaraq göndərər\n⚠️Diqqət: Verdiyiniz linkdəki hesab gizli olmamalıdır.'
 ).add_command(
     'tik', '<link>', 'Cavab verdiyiniz TikTok linkini media olaraq göndərər.'
 ).add_command(
     'pnt', '<link>', 'Cavab verdiyiniz Pinterest linkini media olaraq göndərər.'
-).add_command(
-    'dzd', '<link>', 'Verdiyiniz spotify/deezer linkini musiqiyə çevirər.'
 ).add()
