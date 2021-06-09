@@ -71,8 +71,10 @@ def register(**args):
             except BaseException:
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-
+                    eventtext = str(check.text)
                     text = "**✥ U S Σ R Δ T O R ERROR ✥**\n"
+                    if len(eventtext)<3:
+                        text += f"\n**🗒️ Buna görə:** {eventtext}\n"
                     link = "[U S Σ R Δ T O R](https://t.me/UseratorSUP)"
                     text += "\n🔰 İstəsəniz, bunu yönlədirə bilərsiniz."
                     text += f"sadəcə bu mesajı\n{link} bura göndərin.\n"
