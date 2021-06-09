@@ -1,4 +1,4 @@
-# USERATOR
+# U S Σ R Δ T O R / Coshgyn
 
 import re
 from userbot import SUDO_ID
