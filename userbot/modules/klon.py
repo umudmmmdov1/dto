@@ -9,6 +9,7 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import InputPhoto
 from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
 
 PHOTO = TEMP_DOWNLOAD_DIRECTORY + "pp.jpg"
 USERINFO= {}
