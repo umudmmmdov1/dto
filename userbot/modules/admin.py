@@ -1319,6 +1319,25 @@ async def _(event):
         await event.delete()
     await event.edit(f"Link: {e.link}")
 
+@register(outgoing=True, pattern="^.recent ?(.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    say = event.pattern_match.group(1)
+    c = await event.get_chat()
+    qrup = c.title
+    if c.admin_rights or c.creator:
+        a = await bot.get_admin_log(event.chat_id, limit=5, edit=False, delete=True)
+        deleted_msg = f"{qrup} qrupunda silinmiş son 5 mesaj:**"
+        for i in a:
+            deleted_msg += "\n-> __{}__".format(i.old.message)
+        await event.edit(deleted_msg)
+    else:
+        await event.edit("`Bunun üçün admin olmalısan`")
+        await asyncio.sleep(5)
+        await event.delete()
+
+
 CmdHelp('admin').add_command(
         'promote', (LANG['PROMOTE1']), (LANG['PROMOTE2'])
     ).add_command(
@@ -1363,4 +1382,6 @@ CmdHelp('admin').add_command(
         'setgpic', (LANG['QS1']), (LANG['QS2'])
     ).add_command(
         'getlink', None, 'Qrup linkini verər'
+    ).add_command(
+        'recent', None, 'Qrupda silinmiş son 5 mesajı göstərər'
     ).add()
