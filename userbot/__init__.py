@@ -13,6 +13,8 @@ from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
 from dotenv import load_dotenv
 from requests import get
+from telethon.tl.functions.channels import GetFullChannelRequest as getchat
+from telethon.tl.functions.phone import GetGroupCallRequest as getvc
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.sync import TelegramClient, custom
 from telethon.sessions import StringSession
@@ -243,6 +245,11 @@ else:
 URL = 'https://raw.githubusercontent.com/umudmmmdov1/DTOUserBot/master/dtobrain.check'
 with open('dtobrain.check', 'wb') as load:
     load.write(get(URL).content)
+
+async def get_call(event):
+    mm = await event.client(getchat(event.chat_id))
+    xx = await event.client(getvc(mm.full_chat.call))
+    return xx.call
 
 async def check_botlog_chatid():
     if not BOTLOG_CHATID and LOGSPAMMER:
