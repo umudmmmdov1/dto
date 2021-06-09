@@ -4,7 +4,7 @@ from userbot.cmdhelp import CmdHelp
 from telethon.tl.types import *
 from userbot.events import register
 
-@register(outgoing=True, pattern="^.stats")
+@register(outgoing=True, pattern="^.statis")
 async def stats(e): 
    await e.edit("`Məlumatlar toplanılır...`") 
    msg = str((await e.client.get_messages(e.chat_id, limit=0)).total) 
@@ -21,4 +21,4 @@ async def stats(e):
    stat = f"✉️ **Mesajlar:** `{msg}`\n🖼️ **Fotolar:** `{img}`\n📹 **Videolar:** `{vid}`\n🎵 **Musiqilər:** `{msc}`\n🎤 **Səsli mesajlar:** `{ses}`\n🎥 **Video Notlar:** `{rvid}`\n📂 **Fayllar:** `{doc}`\n🔗 **Linklər:** `{url}`\n🎞️ **GIF'lər:** `{gif}`\n🗺 **Yerlər:** `{geo}`\n🛂 **Kontaktlar:** `{kntk}`"
    await e.edit(stat)
 
-CmdHelp(stats).add_command('stats', None, 'Söhbət haqqında ətraflı məlumat alın').add()
+CmdHelp('statis').add_command(('stats', None, 'Söhbət haqqında ətraflı məlumat alın').add()
