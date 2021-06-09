@@ -97,7 +97,7 @@ async def okgoogle(img):
         except TypeError:
             pass
         await img.edit(
-            f"[{guess}]({fetchUrl})\n\n[{LANG['NOT_FOUND']}]({imgspage})")
+            f"[{guess}]({fetchUrl})\n\n[{LANG['SIMILAR']}]({imgspage})")
 
 
 async def ParseSauce(googleurl):
