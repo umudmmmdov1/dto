@@ -1,3 +1,5 @@
+# U S Σ R Δ T O R / Coshgyn
+
 from telethon import events
 import asyncio
 from userbot.events import register
