@@ -151,6 +151,7 @@ async def dyno_usage(dyno):
     hours = math.floor(minutes_remaining / 60)
     minutes = math.floor(minutes_remaining % 60)
     gun = math.floor(hours / 24)
+    ayfaiz = math.floor(gun * 30 / 100)
 
     """ - Current - """
     App = result['apps']
@@ -176,7 +177,7 @@ async def dyno_usage(dyno):
                            f"     •  `{hours}` **saat**  `{minutes}` **dəqiqə**  "
                            f"**|**  [`{percentage}` **%**]\n"
                            f" ➤ `Təxmini bitmə müddəti`: \n"
-                           f"     •  `{gun}` [**Gün**]"
+                           f"     •  `{gun}` (**Gün**) | [`{ayfaiz}` **%**]"
                            )
 
 @register(outgoing=True, pattern=r"^\.loq")
