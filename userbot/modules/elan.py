@@ -40,8 +40,8 @@ async def elan(event):
 
     await event.edit("`Bütün istifadəçilərə elan göndərildi!`\n\n[U S Σ R Δ T O R](t.me/UseratorOT)")
     
-Help = CmdHelp('elan2')
-Help.add_command('rklm', '<mesaj>', 'Qrupdakı bütün istifadəçilərə elan göndərər')
+Help = CmdHelp('reklam')
+Help.add_command('reklam', '<mesaj>', 'Qrupdakı bütün istifadəçilərə elan göndərər')
 Help.add_warning('**Məsuliyyət sizə aiddir**').add()
 Help.add_info(
   '`İstifadəsi üçün admin olmaq lazım deyildir`\n@UseratorOT'
