@@ -48,7 +48,7 @@ async def _(e):
 
 
 
-@register(outgoing=True, pattern="^.tagvc", groups_only=True,)
+@register(outgoing=True, pattern="^.vctag", groups_only=True,)
 async def _(e):
     await e.edit("`İstifadəçilər səsli zəngə çağrılır...`")
     users = []
@@ -65,7 +65,7 @@ async def _(e):
             pass
     await e.edit(f"`{z} istifadəçi çağırıldı`")
 
-CmdHelp('groupcall').add_command('startvc' , None, 'Səsli söhbət başladar').add_command('stopvc', None, 'Səsli söhbəti dayandırar').add_command('tagvc', None, 'İnsanları səsli söhbətə dəvət edər').add()
+CmdHelp('groupcall').add_command('startvc' , None, 'Səsli söhbət başladar').add_command('stopvc', None, 'Səsli söhbəti dayandırar').add_command('vctag', None, 'İnsanları səsli söhbətə dəvət edər').add()
 
 
 
