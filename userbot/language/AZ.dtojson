@@ -612,7 +612,7 @@
             "SEARCHING_PHOTO": "Şəkil axtarıram",
             "NOT_FOUND": "`Heçnə tapa bilmədim`",
             "REV1": "<cavab>",
-            "REV2": "remove.bg API işlədərək görüntülərin arxa planını silər.",
+            "REV2": "Şəkili Google'da təhlil edər",
             "SIMILAR": "Oxşar görüntülər"
         },
 
